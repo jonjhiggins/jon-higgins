@@ -1,0 +1,19 @@
+{
+  "name": "jon-higgins-2015",
+  "version": "0.0.0",
+  "authors": [
+    "Jon Higgins <jon@jonhiggins.co.uk>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}
