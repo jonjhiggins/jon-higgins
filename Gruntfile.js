@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     browserify: {
       dist: {
         files: {
-          '<%= paths.dist %>/assets/js/app.js': ['<%= paths.src %>/js/controllers/*.js' ],
+          '<%= paths.dist %>/assets/js/app.js': ['<%= paths.src %>/js/*.js' ],
         }
       },
       test: {
@@ -32,8 +32,8 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
-        files: ['<%= paths.src %>/js/**/*.js', '<%= paths.tests %>/src/*.js'],
-        tasks: ['browserify', 'mocha'],
+        files: ['Gruntfile.js', '<%= paths.src %>/js/jhApp.js', '<%= paths.src %>/js/**/*.js', '<%= paths.tests %>/src/*.js'],
+        tasks: ['jshint', 'browserify', 'mocha'],
         options: {
           spawn: false,
         },
@@ -88,6 +88,11 @@ module.exports = function(grunt) {
         }
       },
     },
+
+    jshint: {
+      all: ['Gruntfile.js', '<%= paths.tests %>/src/*.js', '<%= paths.src %>/js/*.js', '<%= paths.src %>/js/controllers/*.js', '<%= paths.src %>/js/models/*.js', '<%= paths.src %>/js/views/*.js']
+    }
+
   });
 
   require('load-grunt-tasks')(grunt);
