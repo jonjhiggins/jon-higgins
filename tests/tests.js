@@ -12659,20 +12659,27 @@ return jQuery;
 }.call(this));
 
 },{}],4:[function(require,module,exports){
-module.exports = function() {
-	return 3;
-};
-},{}],5:[function(require,module,exports){
-var main = require('../../src/js/controllers/main');
+describe('App', function(){
+	it('should be defined', function(){
+	  chai.assert.isDefined(jhApp);
+	});
+});
+
 
 describe('Controller', function(){
-  describe('main', function(){
-    it('should be present', function(){
-      chai.assert.isDefined(main());
-    });
-  });
+
+	describe('Home', function(){
+		it('should be defined', function(){
+		  chai.assert.isDefined(jhApp.homeController);
+		});
+
+		it('should list work on show', function(){
+		  chai.assert.isDefined(jhApp.homeController.show());
+		});
+	});
+
 });
-},{"../../src/js/controllers/main":4}],"/src/js/shims/marionette_shim":[function(require,module,exports){
+},{}],"/src/js/shims/marionette_shim":[function(require,module,exports){
 require('backbone').$ = $ || jQuery
 
-},{"backbone":1}]},{},[5]);
+},{"backbone":1}]},{},[4]);

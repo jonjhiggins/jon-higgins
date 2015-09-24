@@ -1,9 +1,20 @@
-var main = require('../../src/js/controllers/main');
+describe('App', function(){
+	it('should be defined', function(){
+	  chai.assert.isDefined(jhApp);
+	});
+});
+
 
 describe('Controller', function(){
-  describe('main', function(){
-    it('should be present', function(){
-      chai.assert.isDefined(main());
-    });
-  });
+
+	describe('Home', function(){
+		it('should be defined', function(){
+		  chai.assert.isDefined(jhApp.homeController);
+		});
+
+		it('should list work on show', function(){
+		  chai.assert.isDefined(jhApp.homeController.show());
+		});
+	});
+
 });
