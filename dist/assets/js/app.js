@@ -16706,24 +16706,45 @@ return jQuery;
 }.call(this));
 
 },{}],7:[function(require,module,exports){
-module.exports = function() {
-	return {
+module.exports = function(jhApp) {
+
+	var homeView = require('./homeView'),
+		homeController = {};
+
+	homeView(jhApp).init();
+
+	homeController = {
+		homeView: homeView(jhApp),
 		show: function() {
-			var home = [1,25,54];
-			return home;
+			var staticView = new jhApp.titleView();
+			staticView.render();
+			return true;
 		}
 	};
+
+	return homeController;
 };
-},{}],8:[function(require,module,exports){
-module.exports = function() {
-	return {
-		show: function() {
-			var work = [1,25,54];
-			return work;
-		}
+},{"./homeView":8}],8:[function(require,module,exports){
+(function() {
+
+	'use strict';
+
+	var Marionette = require('backbone.marionette'),
+		Backbone = require('backbone');
+
+	module.exports = function(jhApp) {
+		return {
+			init: function() {
+				jhApp.titleView = Marionette.ItemView.extend({
+					el: '#main',
+					template: '#home__title'
+				});
+			}
+		};
 	};
-};
-},{}],9:[function(require,module,exports){
+
+}());
+},{"backbone":4,"backbone.marionette":1}],9:[function(require,module,exports){
 (function() {
 
 	'use strict';
@@ -16732,8 +16753,8 @@ module.exports = function() {
 
 		var Marionette = require('backbone.marionette'),
 			Backbone = require('backbone'),
-			homeController = require('./controllers/home'),
-			workController = require('./controllers/work');
+			homeController = require('./home/homeController'),
+			workController = require('./work/workController');
 
 	// App
 
@@ -16772,7 +16793,7 @@ module.exports = function() {
 
 	// Controllers
 
-		jhApp.homeController = homeController();
+		jhApp.homeController = homeController(jhApp);
 		jhApp.workController = workController();
 
 	// Views
@@ -16793,7 +16814,16 @@ module.exports = function() {
 		jhApp.start();
 
 }());
-},{"./controllers/home":7,"./controllers/work":8,"backbone":4,"backbone.marionette":1}],"/src/js/shims/marionette_shim":[function(require,module,exports){
+},{"./home/homeController":7,"./work/workController":10,"backbone":4,"backbone.marionette":1}],10:[function(require,module,exports){
+module.exports = function() {
+	return {
+		show: function() {
+			var work = [1,25,54];
+			return work;
+		}
+	};
+};
+},{}],"/src/js/shims/marionette_shim":[function(require,module,exports){
 require('backbone').$ = $ || jQuery
 
 },{"backbone":4}]},{},[9]);

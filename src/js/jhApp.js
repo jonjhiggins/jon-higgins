@@ -6,8 +6,8 @@
 
 		var Marionette = require('backbone.marionette'),
 			Backbone = require('backbone'),
-			homeController = require('./controllers/home'),
-			workController = require('./controllers/work');
+			homeController = require('./home/homeController'),
+			workController = require('./work/workController');
 
 	// App
 
@@ -46,7 +46,7 @@
 
 	// Controllers
 
-		jhApp.homeController = homeController();
+		jhApp.homeController = homeController(jhApp);
 		jhApp.workController = workController();
 
 	// Views
