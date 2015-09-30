@@ -12,8 +12,18 @@ describe('Controller', function(){
 		  chai.assert.isDefined(jhApp.homeController);
 		});
 
-		it('should list work on show', function(){
+		it('should show', function(){
 		  chai.assert.isDefined(jhApp.homeController.show());
+		});
+	});
+
+	describe('Work', function(){
+		it('should be defined', function(){
+		  chai.assert.isDefined(jhApp.workController);
+		});
+
+		it('should show', function(){
+		  chai.assert.isDefined(jhApp.workController.show());
 		});
 	});
 

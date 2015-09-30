@@ -31,6 +31,19 @@
 			}
 		};
 
+	// Regions
+
+		var RegionContainer = Marionette.LayoutView.extend({
+			el: '#app',
+			regions: {
+				'header': '#header',
+				'main': '#main',
+				'footer': '#footer'
+			}
+		});
+
+		jhApp.regions = new RegionContainer();
+
 	// Controllers
 
 		jhApp.homeController = homeController();
