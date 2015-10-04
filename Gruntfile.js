@@ -48,7 +48,12 @@ module.exports = function(grunt) {
         },
         test: {
           files: {
-            '<%= paths.tests %>/tests.js': ['<%= paths.tests %>/src/*.js' ],
+            '<%= paths.tests %>/tests.js': ['<%= paths.tests %>/src/*.js' ]
+          },
+          options: {
+              debug: true,
+              extensions: ['.hbs'],
+              transform: ['hbsfy']
           }
         },
     },
@@ -56,7 +61,7 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: ['Gruntfile.js', '<%= paths.src %>/js/jhApp.js', '<%= paths.src %>/js/**/*.hbs', '<%= paths.src %>/js/**/*.js', '<%= paths.tests %>/src/*.js'],
-        tasks: ['jshint', 'browserify', 'mocha'],
+        tasks: ['jshint', 'browserify', 'mochify'],
         options: {
           spawn: false,
         },
@@ -103,6 +108,18 @@ module.exports = function(grunt) {
       },
     },
 
+    mochify: {
+      options: {
+        reporter: 'spec',
+        transform: ['hbsfy']
+      },
+      tests: {
+        src: [
+          '<%= paths.tests %>/src/tests.js'
+        ],
+      }
+    },
+
     mocha: {
       test: {
         src: ['<%= paths.tests %>/**/*.html'],
@@ -128,6 +145,6 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   // Default task(s).
-  grunt.registerTask('default', ['wiredep', 'copy', 'browserify', 'mocha', 'browserSync', 'watch']);
+  grunt.registerTask('default', ['wiredep', 'copy', 'browserify', 'mochify', 'browserSync', 'watch']);
 
 };

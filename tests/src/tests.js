@@ -1,31 +1,24 @@
 /*globals app:true, describe:true, xit:true, it:true, chai: true*/
 
+var chai = require('chai'),
+	app = require('../../src/js/app'),
+	HomeModule = require('../../src/js/Home/HomeModule');
+
 describe('App', function(){
-	xit('should be defined', function(){
+	it('should be defined', function(){
 	  chai.assert.isDefined(app);
 	});
 });
 
 
-describe('Controller', function(){
+describe('Module', function(){
 
 	describe('Home', function(){
-		xit('should be defined', function(){
-		  chai.assert.isDefined(app.homeController);
-		});
 
-		xit('should show', function(){
-		  chai.assert.isDefined(app.homeController.show());
-		});
-	});
+		var homeModule = app.module('home', HomeModule);
 
-	describe('Work', function(){
-		xit('should be defined', function(){
-		  chai.assert.isDefined(app.workController);
-		});
-
-		xit('should show', function(){
-		  chai.assert.isDefined(app.workController.show());
+		it('should be defined', function(){
+		  chai.assert(homeModule === app.home);
 		});
 	});
 

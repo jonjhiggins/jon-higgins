@@ -1,5 +1,5 @@
 var Marionette = require('backbone.marionette'),
-	template = require('./homeTemplate.hbs'),
+	template = require('./HomeTemplate.hbs'),
 	HomeView;
 
 HomeView = Marionette.CompositeView.extend({

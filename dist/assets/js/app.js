@@ -1169,7 +1169,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
 
 },{"hbsfy/runtime":20}],25:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
-	template = require('./homeTemplate.hbs'),
+	template = require('./HomeTemplate.hbs'),
 	HomeView;
 
 HomeView = Marionette.CompositeView.extend({
@@ -1178,7 +1178,7 @@ HomeView = Marionette.CompositeView.extend({
 
 module.exports = HomeView;
 
-},{"./homeTemplate.hbs":24,"backbone.marionette":"backbone.marionette"}],26:[function(require,module,exports){
+},{"./HomeTemplate.hbs":24,"backbone.marionette":"backbone.marionette"}],26:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -1210,6 +1210,8 @@ module.exports = new Backbone.Wreqr.Commands();
 // Modules
 
 	app.module('home', HomeModule);
+/*globals console:true*/
+	console.log(app);
 
 // Command handlers
 

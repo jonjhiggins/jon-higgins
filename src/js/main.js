@@ -11,6 +11,8 @@
 // Modules
 
 	app.module('home', HomeModule);
+/*globals console:true*/
+	console.log(app);
 
 // Command handlers
 
