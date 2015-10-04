@@ -1,7 +1,7 @@
-module.exports = function(jhApp) {
+var homeView = require('./homeView'),
+	homeController = {};
 
-	var homeView = require('./homeView'),
-		homeController = {};
+module.exports = function(jhApp) {
 
 	homeView(jhApp).init();
 

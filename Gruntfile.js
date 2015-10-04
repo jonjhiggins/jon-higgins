@@ -6,33 +6,56 @@ module.exports = function(grunt) {
     tests: './tests'
   };
 
+  var vendors = 'jquery backbone backbone.marionette'.split(' ');
+
   // Project configuration.
   grunt.initConfig({
 
     paths: paths,
+    vendors: vendors,
 
     pkg: grunt.file.readJSON('package.json'),
 
     browserify: {
-      dist: {
-        files: {
-          '<%= paths.dist %>/assets/js/app.js': ['<%= paths.src %>/js/*.js' ],
-        }
-      },
-      test: {
-        files: {
-          '<%= paths.tests %>/tests.js': ['<%= paths.tests %>/src/*.js' ],
-        }
-      },
-      options: {
-        watch: true,
-        require: ['<%= paths.src %>/js/shims/marionette_shim']
-      }
+        // just the app
+        app: {
+            src: '<%= paths.src %>/js/app.js',
+            dest: '<%= paths.dist %>/assets/js/app.js',
+            options: {
+                debug: true,
+                extensions: ['.hbs'],
+                transform: ['hbsfy'],
+                external: vendors
+            }
+        },
+        // just vendors
+        vendors: {
+            files: {
+                '<%= paths.dist %>/assets/js/vendors.js': []
+            },
+            options: {
+                'require': vendors
+            }
+        },
+        // bundle all in one
+        bundle: {
+            src: '<%= paths.src %>/js/app.js',
+            dest: '<%= paths.dist %>/assets/js/bundle.js',
+            options: {
+                extensions: ['.hbs'],
+                transform: ['hbsfy']
+            }
+        },
+        test: {
+          files: {
+            '<%= paths.tests %>/tests.js': ['<%= paths.tests %>/src/*.js' ],
+          }
+        },
     },
 
     watch: {
       scripts: {
-        files: ['Gruntfile.js', '<%= paths.src %>/js/jhApp.js', '<%= paths.src %>/js/**/*.js', '<%= paths.tests %>/src/*.js'],
+        files: ['Gruntfile.js', '<%= paths.src %>/js/jhApp.js', '<%= paths.src %>/js/**/*.hbs', '<%= paths.src %>/js/**/*.js', '<%= paths.tests %>/src/*.js'],
         tasks: ['jshint', 'browserify', 'mocha'],
         options: {
           spawn: false,
