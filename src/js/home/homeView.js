@@ -1,14 +1,9 @@
 var Marionette = require('backbone.marionette'),
-	Backbone = require('backbone'),
-	tpl = require('./homeTemplate.hbs');
+	template = require('./homeTemplate.hbs'),
+	HomeView;
 
-module.exports = function(jhApp) {
-	return {
-		init: function() {
-			jhApp.titleView = Marionette.ItemView.extend({
-				el: '#main',
-				template: tpl
-			});
-		}
-	};
-};
+HomeView = Marionette.CompositeView.extend({
+	template: template
+});
+
+module.exports = HomeView;

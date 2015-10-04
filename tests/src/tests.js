@@ -1,6 +1,8 @@
+/*globals app:true, describe:true, xit:true, it:true, chai: true*/
+
 describe('App', function(){
-	it('should be defined', function(){
-	  chai.assert.isDefined(jhApp);
+	xit('should be defined', function(){
+	  chai.assert.isDefined(app);
 	});
 });
 
@@ -8,22 +10,22 @@ describe('App', function(){
 describe('Controller', function(){
 
 	describe('Home', function(){
-		it('should be defined', function(){
-		  chai.assert.isDefined(jhApp.homeController);
+		xit('should be defined', function(){
+		  chai.assert.isDefined(app.homeController);
 		});
 
-		it('should show', function(){
-		  chai.assert.isDefined(jhApp.homeController.show());
+		xit('should show', function(){
+		  chai.assert.isDefined(app.homeController.show());
 		});
 	});
 
 	describe('Work', function(){
-		it('should be defined', function(){
-		  chai.assert.isDefined(jhApp.workController);
+		xit('should be defined', function(){
+		  chai.assert.isDefined(app.workController);
 		});
 
-		it('should show', function(){
-		  chai.assert.isDefined(jhApp.workController.show());
+		xit('should show', function(){
+		  chai.assert.isDefined(app.workController.show());
 		});
 	});
 

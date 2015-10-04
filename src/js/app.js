@@ -1,69 +1,13 @@
-(function() {
+'use strict';
 
-	'use strict';
+var Marionette = require('backbone.marionette');
 
-	// Requires
+var app = new Marionette.Application({
+	regions: {
+		'headerRegion': '#header',
+		'mainRegion': '#main',
+		'footerRegion': '#footer'
+	}
+});
 
-		var Marionette = require('backbone.marionette'),
-			Backbone = require('backbone'),
-			homeController = require('./home/homeController'),
-			workController = require('./work/workController');
-
-	// App
-
-		window.jhApp = new Marionette.Application();
-
-	// Router
-
-		jhApp.Router = Marionette.AppRouter.extend({
-			appRoutes: {
-				'': 'showHome',
-				'work': 'showWork'
-			}
-		});
-
-		var API = {
-			showHome: function() {
-				jhApp.homeController.show();
-			},
-			showWork: function() {
-				jhApp.workController.show();
-			}
-		};
-
-	// Regions
-
-		var RegionContainer = Marionette.LayoutView.extend({
-			el: '#app',
-			regions: {
-				'header': '#header',
-				'main': '#main',
-				'footer': '#footer'
-			}
-		});
-
-		jhApp.regions = new RegionContainer();
-
-	// Controllers
-
-		jhApp.homeController = homeController(jhApp);
-		jhApp.workController = workController();
-
-	// Views
-
-		jhApp.on('start', function() {
-
-			new jhApp.Router({
-				controller: API
-			});
-
-			if (Backbone.history) {
-				Backbone.history.start();
-			}
-		});
-
-	// Start
-
-		jhApp.start();
-
-}());
+module.exports = app;

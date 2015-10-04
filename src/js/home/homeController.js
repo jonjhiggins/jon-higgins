@@ -1,18 +1,20 @@
-var homeView = require('./homeView'),
-	homeController = {};
+var Marionette = require('backbone.marionette'),
+	HomeView = require('./homeView'),
+	commands = require('../config/commands'),
+	HomeController;
 
-module.exports = function(jhApp) {
+HomeController = Marionette.Controller.extend({
+	initialize: function() {
+		/*globals console:true*/
+        console.log('initHome');
+    },
+    showHome: function() {
+    	if (!this.view) {
+    		this.view = new HomeView();
+    		commands.execute('app:screen:show', this.view);
+    	}
+    	console.log('showHome');
+    }
+});
 
-	homeView(jhApp).init();
-
-	homeController = {
-		homeView: homeView(jhApp),
-		show: function() {
-			var staticView = new jhApp.titleView();
-			staticView.render();
-			return true;
-		}
-	};
-
-	return homeController;
-};
+module.exports = HomeController;

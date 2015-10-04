@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     browserify: {
         // just the app
         app: {
-            src: '<%= paths.src %>/js/app.js',
+            src: ['<%= paths.src %>/js/main.js'],
             dest: '<%= paths.dist %>/assets/js/app.js',
             options: {
                 debug: true,
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
         },
         // bundle all in one
         bundle: {
-            src: '<%= paths.src %>/js/app.js',
+            src: '<%= paths.src %>/js/main.js',
             dest: '<%= paths.dist %>/assets/js/bundle.js',
             options: {
                 extensions: ['.hbs'],
@@ -113,7 +113,14 @@ module.exports = function(grunt) {
     },
 
     jshint: {
-      all: ['Gruntfile.js', '<%= paths.tests %>/src/*.js', '<%= paths.src %>/js/*.js', '<%= paths.src %>/js/controllers/*.js', '<%= paths.src %>/js/models/*.js', '<%= paths.src %>/js/views/*.js']
+      files: [
+              'Gruntfile.js',
+              '<%= paths.tests %>/src/*.js',
+              '<%= paths.src %>/js/**/*.js'
+              ],
+      options: {
+          jshintrc: '.jshintrc'
+      }
     }
 
   });
