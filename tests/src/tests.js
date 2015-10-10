@@ -2,7 +2,8 @@
 
 var chai = require('chai'),
 	app = require('../../src/js/app'),
-	HomeModule = require('../../src/js/Home/HomeModule');
+	HomeModule = require('../../src/js/Home/HomeModule'),
+	WorkModule = require('../../src/js/Work/WorkModule');
 
 describe('App', function(){
 	it('should be defined', function(){
@@ -21,5 +22,15 @@ describe('Module', function(){
 		  chai.assert(homeModule === app.home);
 		});
 	});
+
+	describe('Work', function(){
+
+		var workModule = app.module('work', WorkModule);
+
+		it('should be defined', function(){
+		  chai.assert(workModule === app.work);
+		});
+	});
+
 
 });

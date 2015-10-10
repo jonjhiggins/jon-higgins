@@ -6,13 +6,13 @@
 		Backbone = require('backbone'),
 		app = require('./app'),
 		commands = require('./config/commands'),
-		HomeModule = require('./Home/HomeModule');
+		HomeModule = require('./Home/HomeModule'),
+		WorkModule = require('./Work/WorkModule');
 
 // Modules
 
 	app.module('home', HomeModule);
-/*globals console:true*/
-	console.log(app);
+	app.module('work', WorkModule);
 
 // Command handlers
 

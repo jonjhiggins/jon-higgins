@@ -25242,7 +25242,7 @@ HomeController = Marionette.Controller.extend({
 });
 
 module.exports = HomeController;
-},{"../config/commands":72,"./homeView":70,"backbone.marionette":1}],67:[function(require,module,exports){
+},{"../config/commands":77,"./homeView":70,"backbone.marionette":1}],67:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	HomeController = require('./HomeController'),
@@ -25299,6 +25299,83 @@ HomeView = Marionette.CompositeView.extend({
 module.exports = HomeView;
 
 },{"./HomeTemplate.hbs":69,"backbone.marionette":1}],71:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+	WorkView = require('./workView'),
+	commands = require('../config/commands'),
+	WorkController;
+
+WorkController = Marionette.Controller.extend({
+	initialize: function() {
+		/*globals console:true*/
+        console.log('initWork');
+    },
+    showWork: function() {
+    	if (!this.view) {
+    		this.view = new WorkView();
+    		commands.execute('app:screen:show', this.view);
+    	}
+    	console.log('showWork');
+    }
+});
+
+module.exports = WorkController;
+},{"../config/commands":77,"./workView":75,"backbone.marionette":1}],72:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+	Backbone = require('backbone'),
+	WorkController = require('./WorkController'),
+    WorkRouter = require('./WorkRouter'),
+	WorkModule;
+
+WorkModule = Marionette.Module.extend({
+
+	initialize: function() {
+        this.controller = new WorkController({});
+        this.router = new WorkRouter({ controller: this.controller });
+        this.listenTo(Backbone.history, 'route', this._onRoute);
+    },
+
+    _onRoute: function(router) {
+        if (this.router === router) {
+            if (!this._started) this.start();
+        } else {
+            if (this._started) this.stop();
+        }
+    }
+});
+
+module.exports = WorkModule;
+},{"./WorkController":71,"./WorkRouter":73,"backbone":4,"backbone.marionette":1}],73:[function(require,module,exports){
+'use strict';
+
+var Marionette = require('backbone.marionette'),
+    WorkRouter;
+
+WorkRouter = Marionette.AppRouter.extend({
+    appRoutes: {
+        'work': 'showWork',
+    }
+});
+
+module.exports = WorkRouter;
+},{"backbone.marionette":1}],74:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "Work Template";
+},"useData":true});
+
+},{"hbsfy/runtime":63}],75:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+	template = require('./WorkTemplate.hbs'),
+	WorkView;
+
+WorkView = Marionette.CompositeView.extend({
+	template: template
+});
+
+module.exports = WorkView;
+
+},{"./WorkTemplate.hbs":74,"backbone.marionette":1}],76:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -25312,16 +25389,17 @@ var app = new Marionette.Application({
 });
 
 module.exports = app;
-},{"backbone.marionette":1}],72:[function(require,module,exports){
+},{"backbone.marionette":1}],77:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = new Backbone.Wreqr.Commands();
-},{"backbone":4}],73:[function(require,module,exports){
+},{"backbone":4}],78:[function(require,module,exports){
 /*globals app:true, describe:true, xit:true, it:true, chai: true*/
 
 var chai = require('chai'),
 	app = require('../../src/js/app'),
-	HomeModule = require('../../src/js/Home/HomeModule');
+	HomeModule = require('../../src/js/Home/HomeModule'),
+	WorkModule = require('../../src/js/Work/WorkModule');
 
 describe('App', function(){
 	it('should be defined', function(){
@@ -25341,5 +25419,15 @@ describe('Module', function(){
 		});
 	});
 
+	describe('Work', function(){
+
+		var workModule = app.module('work', WorkModule);
+
+		it('should be defined', function(){
+		  chai.assert(workModule === app.work);
+		});
+	});
+
+
 });
-},{"../../src/js/Home/HomeModule":67,"../../src/js/app":71,"chai":5}]},{},[73]);
+},{"../../src/js/Home/HomeModule":67,"../../src/js/Work/WorkModule":72,"../../src/js/app":76,"chai":5}]},{},[78]);
