@@ -3,7 +3,9 @@ var Marionette = require('backbone.marionette'),
 	NavigationItemView;
 
 NavigationItemView = Marionette.ItemView.extend({
-	template: template
+	template: template,
+	tagName: 'li',
+	className: 'navigation__item'
 });
 
 module.exports = NavigationItemView;
