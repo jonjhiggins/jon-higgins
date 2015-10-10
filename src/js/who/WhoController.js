@@ -5,15 +5,14 @@ var Marionette = require('backbone.marionette'),
 
 WhoController = Marionette.Controller.extend({
 	initialize: function() {
-		/*globals console:true*/
-        console.log('initWho');
+
     },
     showWho: function() {
     	if (!this.view) {
     		this.view = new WhoView();
     		commands.execute('app:screen:show', this.view);
+            commands.execute('app:title', 'Who');
     	}
-    	console.log('showWho');
     }
 });
 

@@ -25229,15 +25229,14 @@ var Marionette = require('backbone.marionette'),
 
 HomeController = Marionette.Controller.extend({
 	initialize: function() {
-		/*globals console:true*/
-        console.log('initHome');
+
     },
     showHome: function() {
     	if (!this.view) {
     		this.view = new HomeView();
     		commands.execute('app:screen:show', this.view);
+            commands.execute('app:title', null);
     	}
-    	console.log('showHome');
     }
 });
 
@@ -25306,15 +25305,14 @@ var Marionette = require('backbone.marionette'),
 
 WhoController = Marionette.Controller.extend({
 	initialize: function() {
-		/*globals console:true*/
-        console.log('initWho');
+
     },
     showWho: function() {
     	if (!this.view) {
     		this.view = new WhoView();
     		commands.execute('app:screen:show', this.view);
+            commands.execute('app:title', 'Who');
     	}
-    	console.log('showWho');
     }
 });
 
@@ -25383,15 +25381,14 @@ var Marionette = require('backbone.marionette'),
 
 WorkController = Marionette.Controller.extend({
 	initialize: function() {
-		/*globals console:true*/
-        console.log('initWork');
+
     },
     showWork: function() {
     	if (!this.view) {
     		this.view = new WorkView();
     		commands.execute('app:screen:show', this.view);
+            commands.execute('app:title', 'Work');
     	}
-    	console.log('showWork');
     }
 });
 

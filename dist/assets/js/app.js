@@ -1102,6 +1102,10 @@ module.exports = require('./dist/cjs/handlebars.runtime')['default'];
 module.exports = require("handlebars/runtime")["default"];
 
 },{"handlebars/runtime":19}],21:[function(require,module,exports){
+module.exports={
+	"siteName": "Jon Higgins"
+}
+},{}],22:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	HomeView = require('./homeView'),
 	commands = require('../config/commands'),
@@ -1109,20 +1113,19 @@ var Marionette = require('backbone.marionette'),
 
 HomeController = Marionette.Controller.extend({
 	initialize: function() {
-		/*globals console:true*/
-        console.log('initHome');
+
     },
     showHome: function() {
     	if (!this.view) {
     		this.view = new HomeView();
     		commands.execute('app:screen:show', this.view);
+            commands.execute('app:title', null);
     	}
-    	console.log('showHome');
     }
 });
 
 module.exports = HomeController;
-},{"../config/commands":37,"./homeView":25,"backbone.marionette":"backbone.marionette"}],22:[function(require,module,exports){
+},{"../config/commands":38,"./homeView":26,"backbone.marionette":"backbone.marionette"}],23:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	HomeController = require('./HomeController'),
@@ -1147,7 +1150,7 @@ HomeModule = Marionette.Module.extend({
 });
 
 module.exports = HomeModule;
-},{"./HomeController":21,"./HomeRouter":23,"backbone":"backbone","backbone.marionette":"backbone.marionette"}],23:[function(require,module,exports){
+},{"./HomeController":22,"./HomeRouter":24,"backbone":"backbone","backbone.marionette":"backbone.marionette"}],24:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -1160,14 +1163,14 @@ HomeRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = HomeRouter;
-},{"backbone.marionette":"backbone.marionette"}],24:[function(require,module,exports){
+},{"backbone.marionette":"backbone.marionette"}],25:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Home Template";
 },"useData":true});
 
-},{"hbsfy/runtime":20}],25:[function(require,module,exports){
+},{"hbsfy/runtime":20}],26:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./HomeTemplate.hbs'),
 	HomeView;
@@ -1178,7 +1181,7 @@ HomeView = Marionette.CompositeView.extend({
 
 module.exports = HomeView;
 
-},{"./HomeTemplate.hbs":24,"backbone.marionette":"backbone.marionette"}],26:[function(require,module,exports){
+},{"./HomeTemplate.hbs":25,"backbone.marionette":"backbone.marionette"}],27:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	WhoView = require('./whoView'),
 	commands = require('../config/commands'),
@@ -1186,20 +1189,19 @@ var Marionette = require('backbone.marionette'),
 
 WhoController = Marionette.Controller.extend({
 	initialize: function() {
-		/*globals console:true*/
-        console.log('initWho');
+
     },
     showWho: function() {
     	if (!this.view) {
     		this.view = new WhoView();
     		commands.execute('app:screen:show', this.view);
+            commands.execute('app:title', 'Who');
     	}
-    	console.log('showWho');
     }
 });
 
 module.exports = WhoController;
-},{"../config/commands":37,"./whoView":30,"backbone.marionette":"backbone.marionette"}],27:[function(require,module,exports){
+},{"../config/commands":38,"./whoView":31,"backbone.marionette":"backbone.marionette"}],28:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WhoController = require('./WhoController'),
@@ -1224,7 +1226,7 @@ WhoModule = Marionette.Module.extend({
 });
 
 module.exports = WhoModule;
-},{"./WhoController":26,"./WhoRouter":28,"backbone":"backbone","backbone.marionette":"backbone.marionette"}],28:[function(require,module,exports){
+},{"./WhoController":27,"./WhoRouter":29,"backbone":"backbone","backbone.marionette":"backbone.marionette"}],29:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -1237,14 +1239,14 @@ WhoRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WhoRouter;
-},{"backbone.marionette":"backbone.marionette"}],29:[function(require,module,exports){
+},{"backbone.marionette":"backbone.marionette"}],30:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Who Template";
 },"useData":true});
 
-},{"hbsfy/runtime":20}],30:[function(require,module,exports){
+},{"hbsfy/runtime":20}],31:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WhoTemplate.hbs'),
 	WhoView;
@@ -1255,7 +1257,7 @@ WhoView = Marionette.CompositeView.extend({
 
 module.exports = WhoView;
 
-},{"./WhoTemplate.hbs":29,"backbone.marionette":"backbone.marionette"}],31:[function(require,module,exports){
+},{"./WhoTemplate.hbs":30,"backbone.marionette":"backbone.marionette"}],32:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	WorkView = require('./workView'),
 	commands = require('../config/commands'),
@@ -1263,20 +1265,19 @@ var Marionette = require('backbone.marionette'),
 
 WorkController = Marionette.Controller.extend({
 	initialize: function() {
-		/*globals console:true*/
-        console.log('initWork');
+
     },
     showWork: function() {
     	if (!this.view) {
     		this.view = new WorkView();
     		commands.execute('app:screen:show', this.view);
+            commands.execute('app:title', 'Work');
     	}
-    	console.log('showWork');
     }
 });
 
 module.exports = WorkController;
-},{"../config/commands":37,"./workView":35,"backbone.marionette":"backbone.marionette"}],32:[function(require,module,exports){
+},{"../config/commands":38,"./workView":36,"backbone.marionette":"backbone.marionette"}],33:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WorkController = require('./WorkController'),
@@ -1301,7 +1302,7 @@ WorkModule = Marionette.Module.extend({
 });
 
 module.exports = WorkModule;
-},{"./WorkController":31,"./WorkRouter":33,"backbone":"backbone","backbone.marionette":"backbone.marionette"}],33:[function(require,module,exports){
+},{"./WorkController":32,"./WorkRouter":34,"backbone":"backbone","backbone.marionette":"backbone.marionette"}],34:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -1314,14 +1315,14 @@ WorkRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WorkRouter;
-},{"backbone.marionette":"backbone.marionette"}],34:[function(require,module,exports){
+},{"backbone.marionette":"backbone.marionette"}],35:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Work Template";
 },"useData":true});
 
-},{"hbsfy/runtime":20}],35:[function(require,module,exports){
+},{"hbsfy/runtime":20}],36:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WorkTemplate.hbs'),
 	WorkView;
@@ -1332,7 +1333,7 @@ WorkView = Marionette.CompositeView.extend({
 
 module.exports = WorkView;
 
-},{"./WorkTemplate.hbs":34,"backbone.marionette":"backbone.marionette"}],36:[function(require,module,exports){
+},{"./WorkTemplate.hbs":35,"backbone.marionette":"backbone.marionette"}],37:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -1346,11 +1347,11 @@ var app = new Marionette.Application({
 });
 
 module.exports = app;
-},{"backbone.marionette":"backbone.marionette"}],37:[function(require,module,exports){
+},{"backbone.marionette":"backbone.marionette"}],38:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = new Backbone.Wreqr.Commands();
-},{"backbone":"backbone"}],38:[function(require,module,exports){
+},{"backbone":"backbone"}],39:[function(require,module,exports){
 'use strict';
 
 // Requires
@@ -1359,6 +1360,7 @@ module.exports = new Backbone.Wreqr.Commands();
 		Backbone = require('backbone'),
 		app = require('./app'),
 		commands = require('./config/commands'),
+		siteData = require('../data/site.json'),
 		HomeModule = require('./Home/HomeModule'),
 		WorkModule = require('./Work/WorkModule'),
 		WhoModule = require('./Who/WhoModule');
@@ -1369,14 +1371,18 @@ module.exports = new Backbone.Wreqr.Commands();
 	app.module('work', WorkModule);
 	app.module('who', WhoModule);
 
+	/*globals console*/
+
 // Command handlers
 
 	commands.setHandler('app:screen:show', function(view) {
 	    app.mainRegion.show(view);
 	});
 
+	// Set <title> tag
 	commands.setHandler('app:title', function(title) {
-	    document.title = title;
+		var formattedTitle = title ? ' | ' + title : '';
+	    document.title = siteData.siteName + formattedTitle;
 	});
 
 
@@ -1384,4 +1390,4 @@ module.exports = new Backbone.Wreqr.Commands();
 
 	app.start();
 	Backbone.history.start();
-},{"./Home/HomeModule":22,"./Who/WhoModule":27,"./Work/WorkModule":32,"./app":36,"./config/commands":37,"backbone":"backbone","backbone.marionette":"backbone.marionette"}]},{},[38]);
+},{"../data/site.json":21,"./Home/HomeModule":23,"./Who/WhoModule":28,"./Work/WorkModule":33,"./app":37,"./config/commands":38,"backbone":"backbone","backbone.marionette":"backbone.marionette"}]},{},[39]);

@@ -5,15 +5,14 @@ var Marionette = require('backbone.marionette'),
 
 WorkController = Marionette.Controller.extend({
 	initialize: function() {
-		/*globals console:true*/
-        console.log('initWork');
+
     },
     showWork: function() {
     	if (!this.view) {
     		this.view = new WorkView();
     		commands.execute('app:screen:show', this.view);
+            commands.execute('app:title', 'Work');
     	}
-    	console.log('showWork');
     }
 });
 
