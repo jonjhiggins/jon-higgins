@@ -7,12 +7,14 @@
 		app = require('./app'),
 		commands = require('./config/commands'),
 		HomeModule = require('./Home/HomeModule'),
-		WorkModule = require('./Work/WorkModule');
+		WorkModule = require('./Work/WorkModule'),
+		WhoModule = require('./Who/WhoModule');
 
 // Modules
 
 	app.module('home', HomeModule);
 	app.module('work', WorkModule);
+	app.module('who', WhoModule);
 
 // Command handlers
 

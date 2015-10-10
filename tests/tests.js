@@ -25242,7 +25242,7 @@ HomeController = Marionette.Controller.extend({
 });
 
 module.exports = HomeController;
-},{"../config/commands":77,"./homeView":70,"backbone.marionette":1}],67:[function(require,module,exports){
+},{"../config/commands":82,"./homeView":70,"backbone.marionette":1}],67:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	HomeController = require('./HomeController'),
@@ -25300,6 +25300,83 @@ module.exports = HomeView;
 
 },{"./HomeTemplate.hbs":69,"backbone.marionette":1}],71:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
+	WhoView = require('./whoView'),
+	commands = require('../config/commands'),
+	WhoController;
+
+WhoController = Marionette.Controller.extend({
+	initialize: function() {
+		/*globals console:true*/
+        console.log('initWho');
+    },
+    showWho: function() {
+    	if (!this.view) {
+    		this.view = new WhoView();
+    		commands.execute('app:screen:show', this.view);
+    	}
+    	console.log('showWho');
+    }
+});
+
+module.exports = WhoController;
+},{"../config/commands":82,"./whoView":75,"backbone.marionette":1}],72:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+	Backbone = require('backbone'),
+	WhoController = require('./WhoController'),
+    WhoRouter = require('./WhoRouter'),
+	WhoModule;
+
+WhoModule = Marionette.Module.extend({
+
+	initialize: function() {
+        this.controller = new WhoController({});
+        this.router = new WhoRouter({ controller: this.controller });
+        this.listenTo(Backbone.history, 'route', this._onRoute);
+    },
+
+    _onRoute: function(router) {
+        if (this.router === router) {
+            if (!this._started) this.start();
+        } else {
+            if (this._started) this.stop();
+        }
+    }
+});
+
+module.exports = WhoModule;
+},{"./WhoController":71,"./WhoRouter":73,"backbone":4,"backbone.marionette":1}],73:[function(require,module,exports){
+'use strict';
+
+var Marionette = require('backbone.marionette'),
+    WhoRouter;
+
+WhoRouter = Marionette.AppRouter.extend({
+    appRoutes: {
+        'who': 'showWho',
+    }
+});
+
+module.exports = WhoRouter;
+},{"backbone.marionette":1}],74:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "Who Template";
+},"useData":true});
+
+},{"hbsfy/runtime":63}],75:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+	template = require('./WhoTemplate.hbs'),
+	WhoView;
+
+WhoView = Marionette.CompositeView.extend({
+	template: template
+});
+
+module.exports = WhoView;
+
+},{"./WhoTemplate.hbs":74,"backbone.marionette":1}],76:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
 	WorkView = require('./workView'),
 	commands = require('../config/commands'),
 	WorkController;
@@ -25319,7 +25396,7 @@ WorkController = Marionette.Controller.extend({
 });
 
 module.exports = WorkController;
-},{"../config/commands":77,"./workView":75,"backbone.marionette":1}],72:[function(require,module,exports){
+},{"../config/commands":82,"./workView":80,"backbone.marionette":1}],77:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WorkController = require('./WorkController'),
@@ -25344,7 +25421,7 @@ WorkModule = Marionette.Module.extend({
 });
 
 module.exports = WorkModule;
-},{"./WorkController":71,"./WorkRouter":73,"backbone":4,"backbone.marionette":1}],73:[function(require,module,exports){
+},{"./WorkController":76,"./WorkRouter":78,"backbone":4,"backbone.marionette":1}],78:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -25357,14 +25434,14 @@ WorkRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WorkRouter;
-},{"backbone.marionette":1}],74:[function(require,module,exports){
+},{"backbone.marionette":1}],79:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Work Template";
 },"useData":true});
 
-},{"hbsfy/runtime":63}],75:[function(require,module,exports){
+},{"hbsfy/runtime":63}],80:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WorkTemplate.hbs'),
 	WorkView;
@@ -25375,7 +25452,7 @@ WorkView = Marionette.CompositeView.extend({
 
 module.exports = WorkView;
 
-},{"./WorkTemplate.hbs":74,"backbone.marionette":1}],76:[function(require,module,exports){
+},{"./WorkTemplate.hbs":79,"backbone.marionette":1}],81:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -25389,17 +25466,18 @@ var app = new Marionette.Application({
 });
 
 module.exports = app;
-},{"backbone.marionette":1}],77:[function(require,module,exports){
+},{"backbone.marionette":1}],82:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = new Backbone.Wreqr.Commands();
-},{"backbone":4}],78:[function(require,module,exports){
+},{"backbone":4}],83:[function(require,module,exports){
 /*globals app:true, describe:true, xit:true, it:true, chai: true*/
 
 var chai = require('chai'),
 	app = require('../../src/js/app'),
 	HomeModule = require('../../src/js/Home/HomeModule'),
-	WorkModule = require('../../src/js/Work/WorkModule');
+	WorkModule = require('../../src/js/Work/WorkModule'),
+	WhoModule = require('../../src/js/Who/WhoModule');
 
 describe('App', function(){
 	it('should be defined', function(){
@@ -25428,6 +25506,15 @@ describe('Module', function(){
 		});
 	});
 
+	describe('Who', function(){
+
+		var whoModule = app.module('who', WhoModule);
+
+		it('should be defined', function(){
+		  chai.assert(whoModule === app.who);
+		});
+	});
+
 
 });
-},{"../../src/js/Home/HomeModule":67,"../../src/js/Work/WorkModule":72,"../../src/js/app":76,"chai":5}]},{},[78]);
+},{"../../src/js/Home/HomeModule":67,"../../src/js/Who/WhoModule":72,"../../src/js/Work/WorkModule":77,"../../src/js/app":81,"chai":5}]},{},[83]);
