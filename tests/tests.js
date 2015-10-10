@@ -25225,23 +25225,24 @@ return jQuery;
 var Marionette = require('backbone.marionette'),
 	HomeView = require('./homeView'),
 	commands = require('../config/commands'),
-	HomeController;
+	HomeController,
+    moduleName = 'Home';
 
 HomeController = Marionette.Controller.extend({
 	initialize: function() {
 
     },
     showHome: function() {
-    	if (!this.view) {
-    		this.view = new HomeView();
-    		commands.execute('app:screen:show', this.view);
-            commands.execute('app:title', null);
-    	}
+        this.view = new HomeView();
+
+        commands.execute('app:screen:show', this.view);
+        commands.execute('app:navigation:update', moduleName);
+        commands.execute('app:title', moduleName);
     }
 });
 
 module.exports = HomeController;
-},{"../config/commands":82,"./homeView":70,"backbone.marionette":1}],67:[function(require,module,exports){
+},{"../config/commands":86,"./homeView":70,"backbone.marionette":1}],67:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	HomeController = require('./HomeController'),
@@ -25275,6 +25276,7 @@ var Marionette = require('backbone.marionette'),
 HomeRouter = Marionette.AppRouter.extend({
     appRoutes: {
         '': 'showHome',
+        '/': 'showHome',
     }
 });
 
@@ -25299,25 +25301,98 @@ module.exports = HomeView;
 
 },{"./HomeTemplate.hbs":69,"backbone.marionette":1}],71:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
+	NavigationView = require('./navigationView'),
+	commands = require('../config/commands'),
+	NavigationController;
+
+NavigationController = Marionette.Controller.extend({
+	initialize: function() {
+
+    },
+    showNavigation: function(section) {
+    	this.view = new NavigationView({"section": section});
+        return this.view;
+    }
+});
+
+module.exports = NavigationController;
+},{"../config/commands":86,"./navigationView":74,"backbone.marionette":1}],72:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+	Backbone = require('backbone'),
+	NavigationController = require('./NavigationController'),
+	NavigationModule;
+
+NavigationModule = Marionette.Module.extend({
+
+	initialize: function() {
+        this.controller = new NavigationController({});
+    },
+
+    showNavigation: function(section) {
+        return this.controller.showNavigation(section);
+    }
+
+});
+
+module.exports = NavigationModule;
+},{"./NavigationController":71,"backbone":4,"backbone.marionette":1}],73:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+    return "class=\"active\"";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : {};
+
+  return "<ul>\n	<li><a href=\"#/\" "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.homeActive : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ">Home</a></li>\n	<li><a href=\"#/work\" "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.workActive : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ">Work</a></li>\n	<li><a href=\"#/who\" "
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.whoActive : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ">Who</a></li>\n</ul>";
+},"useData":true});
+
+},{"hbsfy/runtime":63}],74:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+	template = require('./NavigationTemplate.hbs'),
+	NavigationView;
+
+NavigationView = Marionette.CompositeView.extend({
+	template: template,
+    templateHelpers: function() {
+        return {
+            homeActive: this.options.section === 'Home',
+            workActive: this.options.section === 'Work',
+            wordsActive: this.options.section === 'Words',
+            whoActive: this.options.section === 'Who'
+        };
+    }
+});
+
+module.exports = NavigationView;
+
+},{"./NavigationTemplate.hbs":73,"backbone.marionette":1}],75:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
 	WhoView = require('./whoView'),
 	commands = require('../config/commands'),
-	WhoController;
+	WhoController,
+    moduleName = 'Who';
 
 WhoController = Marionette.Controller.extend({
 	initialize: function() {
 
     },
     showWho: function() {
-    	if (!this.view) {
-    		this.view = new WhoView();
-    		commands.execute('app:screen:show', this.view);
-            commands.execute('app:title', 'Who');
-    	}
+    	this.view = new WhoView();
+
+        commands.execute('app:screen:show', this.view);
+        commands.execute('app:navigation:update', moduleName);
+        commands.execute('app:title', moduleName);
     }
 });
 
 module.exports = WhoController;
-},{"../config/commands":82,"./whoView":75,"backbone.marionette":1}],72:[function(require,module,exports){
+},{"../config/commands":86,"./whoView":79,"backbone.marionette":1}],76:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WhoController = require('./WhoController'),
@@ -25342,7 +25417,7 @@ WhoModule = Marionette.Module.extend({
 });
 
 module.exports = WhoModule;
-},{"./WhoController":71,"./WhoRouter":73,"backbone":4,"backbone.marionette":1}],73:[function(require,module,exports){
+},{"./WhoController":75,"./WhoRouter":77,"backbone":4,"backbone.marionette":1}],77:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -25355,14 +25430,14 @@ WhoRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WhoRouter;
-},{"backbone.marionette":1}],74:[function(require,module,exports){
+},{"backbone.marionette":1}],78:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Who Template";
 },"useData":true});
 
-},{"hbsfy/runtime":63}],75:[function(require,module,exports){
+},{"hbsfy/runtime":63}],79:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WhoTemplate.hbs'),
 	WhoView;
@@ -25373,27 +25448,28 @@ WhoView = Marionette.CompositeView.extend({
 
 module.exports = WhoView;
 
-},{"./WhoTemplate.hbs":74,"backbone.marionette":1}],76:[function(require,module,exports){
+},{"./WhoTemplate.hbs":78,"backbone.marionette":1}],80:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	WorkView = require('./workView'),
 	commands = require('../config/commands'),
-	WorkController;
+	WorkController,
+    moduleName = 'Work';
 
 WorkController = Marionette.Controller.extend({
 	initialize: function() {
 
     },
     showWork: function() {
-    	if (!this.view) {
-    		this.view = new WorkView();
-    		commands.execute('app:screen:show', this.view);
-            commands.execute('app:title', 'Work');
-    	}
+    	this.view = new WorkView();
+
+        commands.execute('app:screen:show', this.view);
+        commands.execute('app:navigation:update', moduleName);
+        commands.execute('app:title', moduleName);
     }
 });
 
 module.exports = WorkController;
-},{"../config/commands":82,"./workView":80,"backbone.marionette":1}],77:[function(require,module,exports){
+},{"../config/commands":86,"./workView":84,"backbone.marionette":1}],81:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WorkController = require('./WorkController'),
@@ -25418,7 +25494,7 @@ WorkModule = Marionette.Module.extend({
 });
 
 module.exports = WorkModule;
-},{"./WorkController":76,"./WorkRouter":78,"backbone":4,"backbone.marionette":1}],78:[function(require,module,exports){
+},{"./WorkController":80,"./WorkRouter":82,"backbone":4,"backbone.marionette":1}],82:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -25431,14 +25507,14 @@ WorkRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WorkRouter;
-},{"backbone.marionette":1}],79:[function(require,module,exports){
+},{"backbone.marionette":1}],83:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Work Template";
 },"useData":true});
 
-},{"hbsfy/runtime":63}],80:[function(require,module,exports){
+},{"hbsfy/runtime":63}],84:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WorkTemplate.hbs'),
 	WorkView;
@@ -25449,7 +25525,7 @@ WorkView = Marionette.CompositeView.extend({
 
 module.exports = WorkView;
 
-},{"./WorkTemplate.hbs":79,"backbone.marionette":1}],81:[function(require,module,exports){
+},{"./WorkTemplate.hbs":83,"backbone.marionette":1}],85:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -25463,18 +25539,19 @@ var app = new Marionette.Application({
 });
 
 module.exports = app;
-},{"backbone.marionette":1}],82:[function(require,module,exports){
+},{"backbone.marionette":1}],86:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = new Backbone.Wreqr.Commands();
-},{"backbone":4}],83:[function(require,module,exports){
+},{"backbone":4}],87:[function(require,module,exports){
 /*globals app:true, describe:true, xit:true, it:true, chai: true*/
 
 var chai = require('chai'),
 	app = require('../../src/js/app'),
 	HomeModule = require('../../src/js/Home/HomeModule'),
 	WorkModule = require('../../src/js/Work/WorkModule'),
-	WhoModule = require('../../src/js/Who/WhoModule');
+	WhoModule = require('../../src/js/Who/WhoModule'),
+	NavigationModule = require('../../src/js/Navigation/NavigationModule');
 
 describe('App', function(){
 	it('should be defined', function(){
@@ -25512,6 +25589,15 @@ describe('Module', function(){
 		});
 	});
 
+	describe('Navigation', function(){
+
+		var navigationModule = app.module('navigation', NavigationModule);
+
+		it('should be defined', function(){
+		  chai.assert(navigationModule === app.navigation);
+		});
+	});
+
 
 });
-},{"../../src/js/Home/HomeModule":67,"../../src/js/Who/WhoModule":72,"../../src/js/Work/WorkModule":77,"../../src/js/app":81,"chai":5}]},{},[83]);
+},{"../../src/js/Home/HomeModule":67,"../../src/js/Navigation/NavigationModule":72,"../../src/js/Who/WhoModule":76,"../../src/js/Work/WorkModule":81,"../../src/js/app":85,"chai":5}]},{},[87]);

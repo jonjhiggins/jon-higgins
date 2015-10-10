@@ -6,6 +6,7 @@ var Marionette = require('backbone.marionette'),
 HomeRouter = Marionette.AppRouter.extend({
     appRoutes: {
         '': 'showHome',
+        '/': 'showHome',
     }
 });
 

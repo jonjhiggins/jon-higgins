@@ -9,13 +9,15 @@
 		siteData = require('../data/site.json'),
 		HomeModule = require('./Home/HomeModule'),
 		WorkModule = require('./Work/WorkModule'),
-		WhoModule = require('./Who/WhoModule');
+		WhoModule = require('./Who/WhoModule'),
+		NavigationModule = require('./Navigation/NavigationModule');
 
 // Modules
 
 	app.module('home', HomeModule);
 	app.module('work', WorkModule);
 	app.module('who', WhoModule);
+	app.module('navigation', NavigationModule);
 
 	/*globals console*/
 
@@ -25,9 +27,14 @@
 	    app.mainRegion.show(view);
 	});
 
+	commands.setHandler('app:navigation:update', function(section) {
+		var view = app.navigation.showNavigation(section);
+	    app.headerRegion.show(view);
+	});
+
 	// Set <title> tag
 	commands.setHandler('app:title', function(title) {
-		var formattedTitle = title ? ' | ' + title : '';
+		var formattedTitle = title !== 'Home' ? ' | ' + title : '';
 	    document.title = siteData.siteName + formattedTitle;
 	});
 
