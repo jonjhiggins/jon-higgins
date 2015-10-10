@@ -60,7 +60,7 @@ module.exports = function(grunt) {
 
     watch: {
       scripts: {
-        files: ['Gruntfile.js', '<%= paths.src %>/js/jhApp.js', '<%= paths.src %>/js/**/*.hbs', '<%= paths.src %>/js/**/*.js', '<%= paths.tests %>/src/*.js'],
+        files: ['Gruntfile.js', '<%= paths.src %>/js/*.js', '<%= paths.src %>/js/**/*.hbs', '<%= paths.src %>/js/**/*.js', '<%= paths.tests %>/src/*.js'],
         tasks: ['jshint', 'browserify', 'mochify'],
         options: {
           spawn: false,
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
 
     browserSync: {
         bsFiles: {
-            src : ['<%= paths.dist %>/assets/js/app.js', '<%= paths.dist %>/*.html']
+            src : ['<%= paths.dist %>/assets/js/bundle.js', '<%= paths.dist %>/*.html']
         },
         options: {
             watchTask: true,

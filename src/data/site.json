@@ -1,3 +1,21 @@
 {
-	"siteName": "Jon Higgins"
+	"siteName": "Jon Higgins",
+	"navigation": [
+		{
+			"title": "Home",
+			"link": "#"
+		},
+		{
+			"title": "Work",
+			"link": "#/work"
+		},
+		{
+			"title": "Words",
+			"link": "#/words"
+		},
+		{
+			"title": "Who",
+			"link": "#/who"
+		}
+	]
 }
