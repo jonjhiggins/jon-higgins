@@ -29,7 +29,7 @@
 
 	commands.setHandler('app:navigation:update', function(section) {
 		var view = app.navigation.showNavigation(section);
-	    app.headerRegion.show(view);
+	    app.navigationRegion.show(view);
 	});
 
 	// Set <title> tag

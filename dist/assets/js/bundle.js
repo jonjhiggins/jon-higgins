@@ -18123,7 +18123,7 @@ var Marionette = require('backbone.marionette');
 
 var app = new Marionette.Application({
 	regions: {
-		'headerRegion': '#header',
+		'navigationRegion': '#navigation',
 		'mainRegion': '#main',
 		'footerRegion': '#footer'
 	}
@@ -18166,7 +18166,7 @@ module.exports = new Backbone.Wreqr.Commands();
 
 	commands.setHandler('app:navigation:update', function(section) {
 		var view = app.navigation.showNavigation(section);
-	    app.headerRegion.show(view);
+	    app.navigationRegion.show(view);
 	});
 
 	// Set <title> tag
