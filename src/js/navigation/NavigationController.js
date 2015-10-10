@@ -24,7 +24,10 @@ NavigationController = Marionette.Controller.extend({
     },
 
     showNavigation: function(section) {
-    	this.view = new NavigationView({collection: this.navigationItems});
+    	this.view = new NavigationView({
+            collection: this.navigationItems,
+            section: section
+        });
         return this.view;
     }
 });

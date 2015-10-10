@@ -17935,7 +17935,10 @@ NavigationController = Marionette.Controller.extend({
     },
 
     showNavigation: function(section) {
-    	this.view = new NavigationView({collection: this.navigationItems});
+    	this.view = new NavigationView({
+            collection: this.navigationItems,
+            section: section
+        });
         return this.view;
     }
 });
@@ -17973,7 +17976,12 @@ var Marionette = require('backbone.marionette'),
 NavigationItemView = Marionette.ItemView.extend({
 	template: template,
 	tagName: 'li',
-	className: 'navigation__item'
+	className: 'navigation__item',
+	templateHelpers: function () {
+		return {
+			active: this.options.section === this.model.get('title')
+		};
+	}
 });
 
 module.exports = NavigationItemView;
@@ -18022,7 +18030,12 @@ var Marionette = require('backbone.marionette'),
 
 NavigationView = Marionette.CompositeView.extend({
 	template: template,
-    childView: NavigationItemView
+    childView: NavigationItemView,
+    childViewOptions: function () {
+    	return {
+    		section: this.options.section
+    	};
+    }
 });
 
 module.exports = NavigationView;

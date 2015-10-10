@@ -5,7 +5,12 @@ var Marionette = require('backbone.marionette'),
 NavigationItemView = Marionette.ItemView.extend({
 	template: template,
 	tagName: 'li',
-	className: 'navigation__item'
+	className: 'navigation__item',
+	templateHelpers: function () {
+		return {
+			active: this.options.section === this.model.get('title')
+		};
+	}
 });
 
 module.exports = NavigationItemView;

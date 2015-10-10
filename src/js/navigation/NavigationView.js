@@ -5,7 +5,12 @@ var Marionette = require('backbone.marionette'),
 
 NavigationView = Marionette.CompositeView.extend({
 	template: template,
-    childView: NavigationItemView
+    childView: NavigationItemView,
+    childViewOptions: function () {
+    	return {
+    		section: this.options.section
+    	};
+    }
 });
 
 module.exports = NavigationView;
