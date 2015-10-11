@@ -18019,7 +18019,7 @@ module.exports = NavigationModule;
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<ul class=\"navigation\"></ul>";
+    return "";
 },"useData":true});
 
 },{"hbsfy/runtime":24}],40:[function(require,module,exports){
@@ -18030,6 +18030,8 @@ var Marionette = require('backbone.marionette'),
 
 NavigationView = Marionette.CompositeView.extend({
 	template: template,
+    tagName: 'ul',
+    className: 'navigation',
     childView: NavigationItemView,
     childViewOptions: function () {
     	return {
