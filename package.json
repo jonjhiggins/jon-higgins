@@ -21,7 +21,8 @@
     "chai": "~3.2.0",
     "grunt-notify": "~0.4.1",
     "grunt-contrib-jshint": "~0.11.3",
-    "grunt-mochify": "~0.2.0"
+    "grunt-mochify": "~0.2.0",
+    "grunt-sass": "~1.1.0-beta"
   },
   "dependencies": {
     "backbone.marionette": "2.4.2",

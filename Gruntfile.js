@@ -108,6 +108,17 @@ module.exports = function(grunt) {
       },
     },
 
+    sass: {
+        options: {
+            sourceMap: true
+        },
+        main: {
+            files: {
+                '<%= paths.dist %>/assets/css/main.css': '<%= paths.src %>/scss/main.scss'
+            }
+        }
+    },
+
     mochify: {
       options: {
         reporter: 'spec',
