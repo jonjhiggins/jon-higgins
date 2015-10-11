@@ -22,7 +22,9 @@
     "grunt-notify": "~0.4.1",
     "grunt-contrib-jshint": "~0.11.3",
     "grunt-mochify": "~0.2.0",
-    "grunt-sass": "~1.1.0-beta"
+    "grunt-sass": "~1.1.0-beta",
+    "grunt-markdown-to-json-with-content": "0.0.3",
+    "handlebars-helper-md": "~0.2.0"
   },
   "dependencies": {
     "backbone.marionette": "2.4.2",
@@ -30,6 +32,8 @@
     "backbone": "1.2.1",
     "jquery": "~2.1.4",
     "json2": "~0.4.0",
-    "hbsfy": "~2.3.1"
+    "hbsfy": "~2.3.1",
+    "markdown": "~0.5.0",
+    "helper-md": "~0.1.0"
   }
 }

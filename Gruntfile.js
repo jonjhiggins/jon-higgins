@@ -149,6 +149,19 @@ module.exports = function(grunt) {
       options: {
           jshintrc: '.jshintrc'
       }
+    },
+
+    // Markdown to JSON
+    m2j: {
+        release: {
+            options: {
+                minify: true,
+                width: 60
+            },
+            files: {
+                '<%= paths.dist %>/assets/data/work.json': ['<%= paths.src %>/data/work/*.md']
+            },
+        }
     }
 
   });
