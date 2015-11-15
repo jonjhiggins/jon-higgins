@@ -24,7 +24,7 @@
     "grunt-mochify": "~0.2.0",
     "grunt-sass": "~1.1.0-beta",
     "grunt-markdown-to-json-with-content": "0.0.3",
-    "handlebars-helper-md": "~0.2.0"
+    "grunt-contrib-uglify": "~0.10.1"
   },
   "dependencies": {
     "backbone.marionette": "2.4.2",
