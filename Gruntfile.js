@@ -23,8 +23,6 @@ module.exports = function(grunt) {
             dest: '<%= paths.dist %>/assets/js/app.js',
             options: {
                 debug: true,
-                extensions: ['.hbs'],
-                transform: ['hbsfy'],
                 external: vendors
             }
         },
@@ -40,20 +38,11 @@ module.exports = function(grunt) {
         // bundle all in one
         bundle: {
             src: '<%= paths.src %>/js/main.js',
-            dest: '<%= paths.dist %>/assets/js/bundle.js',
-            options: {
-                extensions: ['.hbs'],
-                transform: ['hbsfy']
-            }
+            dest: '<%= paths.dist %>/assets/js/bundle.js'
         },
         test: {
           files: {
             '<%= paths.tests %>/tests.js': ['<%= paths.tests %>/src/*.js' ]
-          },
-          options: {
-              debug: true,
-              extensions: ['.hbs'],
-              transform: ['hbsfy']
           }
         },
     },

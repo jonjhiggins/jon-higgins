@@ -35,5 +35,23 @@
     "hbsfy": "~2.3.1",
     "markdown": "~0.5.0",
     "helper-md": "~0.1.0"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "hbsfy",
+        {
+          "extensions": [
+            "hbs"
+          ],
+          "precompilerOptions": {
+            "knownHelpersOnly": true,
+            "knownHelpers": {
+              "md": true
+            }
+          }
+        }
+      ]
+    ]
   }
 }
