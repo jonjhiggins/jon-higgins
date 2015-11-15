@@ -31811,7 +31811,7 @@ HomeController = Marionette.Controller.extend({
 });
 
 module.exports = HomeController;
-},{"../config/commands":136,"./homeView":113,"backbone.marionette":1}],110:[function(require,module,exports){
+},{"../config/commands":138,"./homeView":113,"backbone.marionette":1}],110:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	HomeController = require('./HomeController'),
@@ -31904,7 +31904,7 @@ NavigationController = Marionette.Controller.extend({
 });
 
 module.exports = NavigationController;
-},{"../../data/site.json":108,"../config/commands":136,"./NavigationItem":115,"./NavigationItems":118,"./navigationView":121,"backbone":4,"backbone.marionette":1}],115:[function(require,module,exports){
+},{"../../data/site.json":108,"../config/commands":138,"./NavigationItem":115,"./NavigationItems":118,"./navigationView":121,"backbone":4,"backbone.marionette":1}],115:[function(require,module,exports){
 var Backbone = require('backbone'),
 	NavigationItem;
 
@@ -32030,7 +32030,7 @@ WhoController = Marionette.Controller.extend({
 });
 
 module.exports = WhoController;
-},{"../config/commands":136,"./whoView":126,"backbone.marionette":1}],123:[function(require,module,exports){
+},{"../config/commands":138,"./whoView":126,"backbone.marionette":1}],123:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WhoController = require('./WhoController'),
@@ -32088,12 +32088,36 @@ module.exports = WhoView;
 
 },{"./WhoTemplate.hbs":125,"backbone.marionette":1}],127:[function(require,module,exports){
 var Backbone = require('backbone'),
+    WorkArticleItem = require('./WorkArticleItem'),
+    WorkArticleCollection;
+
+WorkArticleCollection = Backbone.Collection.extend({
+    model: WorkArticleItem
+});
+
+module.exports = WorkArticleCollection;
+
+},{"./WorkArticleItem":129,"backbone":4}],128:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+    WorkArticleItemView = require('./WorkArticleItemView'),
+    WorkArticleCollectionView;
+
+WorkArticleCollectionView = Marionette.CollectionView.extend({
+    className: 'article-list',
+    childView: WorkArticleItemView
+});
+
+module.exports = WorkArticleCollectionView;
+
+},{"./WorkArticleItemView":131,"backbone.marionette":1}],129:[function(require,module,exports){
+var Backbone = require('backbone'),
     WorkArticleItem;
 
-var WorkArticleItem = Backbone.Model.extend({});
+WorkArticleItem = Backbone.Model.extend({});
 
 module.exports = WorkArticleItem;
-},{"backbone":4}],128:[function(require,module,exports){
+
+},{"backbone":4}],130:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -32103,7 +32127,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + "\n";
 },"useData":true});
 
-},{"hbsfy/runtime":29}],129:[function(require,module,exports){
+},{"hbsfy/runtime":29}],131:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     template = require('./WorkArticleItemTemplate.hbs'),
     HandlebarsCompiler = require('hbsfy/runtime'),
@@ -32125,7 +32149,7 @@ WorkArticleItemView = Marionette.ItemView.extend({
 
 module.exports = WorkArticleItemView;
 
-},{"./WorkArticleItemTemplate.hbs":128,"backbone.marionette":1,"hbsfy/runtime":29,"helper-md":30}],130:[function(require,module,exports){
+},{"./WorkArticleItemTemplate.hbs":130,"backbone.marionette":1,"hbsfy/runtime":29,"helper-md":30}],132:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     markdown = require('markdown').markdown,
@@ -32134,6 +32158,8 @@ var Marionette = require('backbone.marionette'),
     WorkView = require('./workView'),
     WorkArticleItem = require('./WorkArticleItem'),
     WorkArticleItemView = require('./WorkArticleItemView'),
+    WorkArticleCollection = require('./WorkArticleCollection'),
+    WorkArticleCollectionView = require('./WorkArticleCollectionView'),
     moduleName = 'Work';
 
 WorkController = Marionette.Controller.extend({
@@ -32166,8 +32192,14 @@ WorkController = Marionette.Controller.extend({
 
         });
 
-        this.view = new WorkArticleItemView({
-            model: items[1]
+        // this.view = new WorkArticleItemView({
+        //     model: items[1]
+        // });
+
+        var collection = new WorkArticleCollection(items);
+
+        this.view = new WorkArticleCollectionView({
+            collection: collection
         });
 
         commands.execute('app:screen:show', this.view);
@@ -32175,7 +32207,8 @@ WorkController = Marionette.Controller.extend({
 });
 
 module.exports = WorkController;
-},{"../config/commands":136,"./WorkArticleItem":127,"./WorkArticleItemView":129,"./workView":134,"backbone.marionette":1,"jquery":104,"markdown":105}],131:[function(require,module,exports){
+
+},{"../config/commands":138,"./WorkArticleCollection":127,"./WorkArticleCollectionView":128,"./WorkArticleItem":129,"./WorkArticleItemView":131,"./workView":136,"backbone.marionette":1,"jquery":104,"markdown":105}],133:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WorkController = require('./WorkController'),
@@ -32200,7 +32233,7 @@ WorkModule = Marionette.Module.extend({
 });
 
 module.exports = WorkModule;
-},{"./WorkController":130,"./WorkRouter":132,"backbone":4,"backbone.marionette":1}],132:[function(require,module,exports){
+},{"./WorkController":132,"./WorkRouter":134,"backbone":4,"backbone.marionette":1}],134:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -32213,14 +32246,14 @@ WorkRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WorkRouter;
-},{"backbone.marionette":1}],133:[function(require,module,exports){
+},{"backbone.marionette":1}],135:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Work Template";
 },"useData":true});
 
-},{"hbsfy/runtime":29}],134:[function(require,module,exports){
+},{"hbsfy/runtime":29}],136:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WorkTemplate.hbs'),
 	WorkView;
@@ -32231,7 +32264,7 @@ WorkView = Marionette.CompositeView.extend({
 
 module.exports = WorkView;
 
-},{"./WorkTemplate.hbs":133,"backbone.marionette":1}],135:[function(require,module,exports){
+},{"./WorkTemplate.hbs":135,"backbone.marionette":1}],137:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -32245,11 +32278,11 @@ var app = new Marionette.Application({
 });
 
 module.exports = app;
-},{"backbone.marionette":1}],136:[function(require,module,exports){
+},{"backbone.marionette":1}],138:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = new Backbone.Wreqr.Commands();
-},{"backbone":4}],137:[function(require,module,exports){
+},{"backbone":4}],139:[function(require,module,exports){
 'use strict';
 
 // Requires
@@ -32295,4 +32328,4 @@ module.exports = new Backbone.Wreqr.Commands();
 
 	app.start();
 	Backbone.history.start();
-},{"../data/site.json":108,"./Home/HomeModule":110,"./Navigation/NavigationModule":119,"./Who/WhoModule":123,"./Work/WorkModule":131,"./app":135,"./config/commands":136,"backbone":4,"backbone.marionette":1}]},{},[137]);
+},{"../data/site.json":108,"./Home/HomeModule":110,"./Navigation/NavigationModule":119,"./Who/WhoModule":123,"./Work/WorkModule":133,"./app":137,"./config/commands":138,"backbone":4,"backbone.marionette":1}]},{},[139]);

@@ -6,6 +6,8 @@ var Marionette = require('backbone.marionette'),
     WorkView = require('./workView'),
     WorkArticleItem = require('./WorkArticleItem'),
     WorkArticleItemView = require('./WorkArticleItemView'),
+    WorkArticleCollection = require('./WorkArticleCollection'),
+    WorkArticleCollectionView = require('./WorkArticleCollectionView'),
     moduleName = 'Work';
 
 WorkController = Marionette.Controller.extend({
@@ -38,8 +40,14 @@ WorkController = Marionette.Controller.extend({
 
         });
 
-        this.view = new WorkArticleItemView({
-            model: items[1]
+        // this.view = new WorkArticleItemView({
+        //     model: items[1]
+        // });
+
+        var collection = new WorkArticleCollection(items);
+
+        this.view = new WorkArticleCollectionView({
+            collection: collection
         });
 
         commands.execute('app:screen:show', this.view);

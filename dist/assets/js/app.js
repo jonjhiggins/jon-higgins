@@ -15104,7 +15104,7 @@ HomeController = Marionette.Controller.extend({
 });
 
 module.exports = HomeController;
-},{"../config/commands":130,"./homeView":107,"backbone.marionette":"backbone.marionette"}],104:[function(require,module,exports){
+},{"../config/commands":132,"./homeView":107,"backbone.marionette":"backbone.marionette"}],104:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	HomeController = require('./HomeController'),
@@ -15197,7 +15197,7 @@ NavigationController = Marionette.Controller.extend({
 });
 
 module.exports = NavigationController;
-},{"../../data/site.json":102,"../config/commands":130,"./NavigationItem":109,"./NavigationItems":112,"./navigationView":115,"backbone":"backbone","backbone.marionette":"backbone.marionette"}],109:[function(require,module,exports){
+},{"../../data/site.json":102,"../config/commands":132,"./NavigationItem":109,"./NavigationItems":112,"./navigationView":115,"backbone":"backbone","backbone.marionette":"backbone.marionette"}],109:[function(require,module,exports){
 var Backbone = require('backbone'),
 	NavigationItem;
 
@@ -15323,7 +15323,7 @@ WhoController = Marionette.Controller.extend({
 });
 
 module.exports = WhoController;
-},{"../config/commands":130,"./whoView":120,"backbone.marionette":"backbone.marionette"}],117:[function(require,module,exports){
+},{"../config/commands":132,"./whoView":120,"backbone.marionette":"backbone.marionette"}],117:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WhoController = require('./WhoController'),
@@ -15381,12 +15381,36 @@ module.exports = WhoView;
 
 },{"./WhoTemplate.hbs":119,"backbone.marionette":"backbone.marionette"}],121:[function(require,module,exports){
 var Backbone = require('backbone'),
+    WorkArticleItem = require('./WorkArticleItem'),
+    WorkArticleCollection;
+
+WorkArticleCollection = Backbone.Collection.extend({
+    model: WorkArticleItem
+});
+
+module.exports = WorkArticleCollection;
+
+},{"./WorkArticleItem":123,"backbone":"backbone"}],122:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+    WorkArticleItemView = require('./WorkArticleItemView'),
+    WorkArticleCollectionView;
+
+WorkArticleCollectionView = Marionette.CollectionView.extend({
+    className: 'article-list',
+    childView: WorkArticleItemView
+});
+
+module.exports = WorkArticleCollectionView;
+
+},{"./WorkArticleItemView":125,"backbone.marionette":"backbone.marionette"}],123:[function(require,module,exports){
+var Backbone = require('backbone'),
     WorkArticleItem;
 
-var WorkArticleItem = Backbone.Model.extend({});
+WorkArticleItem = Backbone.Model.extend({});
 
 module.exports = WorkArticleItem;
-},{"backbone":"backbone"}],122:[function(require,module,exports){
+
+},{"backbone":"backbone"}],124:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -15396,7 +15420,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + "\n";
 },"useData":true});
 
-},{"hbsfy/runtime":25}],123:[function(require,module,exports){
+},{"hbsfy/runtime":25}],125:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     template = require('./WorkArticleItemTemplate.hbs'),
     HandlebarsCompiler = require('hbsfy/runtime'),
@@ -15418,7 +15442,7 @@ WorkArticleItemView = Marionette.ItemView.extend({
 
 module.exports = WorkArticleItemView;
 
-},{"./WorkArticleItemTemplate.hbs":122,"backbone.marionette":"backbone.marionette","hbsfy/runtime":25,"helper-md":26}],124:[function(require,module,exports){
+},{"./WorkArticleItemTemplate.hbs":124,"backbone.marionette":"backbone.marionette","hbsfy/runtime":25,"helper-md":26}],126:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     markdown = require('markdown').markdown,
@@ -15427,6 +15451,8 @@ var Marionette = require('backbone.marionette'),
     WorkView = require('./workView'),
     WorkArticleItem = require('./WorkArticleItem'),
     WorkArticleItemView = require('./WorkArticleItemView'),
+    WorkArticleCollection = require('./WorkArticleCollection'),
+    WorkArticleCollectionView = require('./WorkArticleCollectionView'),
     moduleName = 'Work';
 
 WorkController = Marionette.Controller.extend({
@@ -15459,8 +15485,14 @@ WorkController = Marionette.Controller.extend({
 
         });
 
-        this.view = new WorkArticleItemView({
-            model: items[1]
+        // this.view = new WorkArticleItemView({
+        //     model: items[1]
+        // });
+
+        var collection = new WorkArticleCollection(items);
+
+        this.view = new WorkArticleCollectionView({
+            collection: collection
         });
 
         commands.execute('app:screen:show', this.view);
@@ -15468,7 +15500,8 @@ WorkController = Marionette.Controller.extend({
 });
 
 module.exports = WorkController;
-},{"../config/commands":130,"./WorkArticleItem":121,"./WorkArticleItemView":123,"./workView":128,"backbone.marionette":"backbone.marionette","jquery":"jquery","markdown":100}],125:[function(require,module,exports){
+
+},{"../config/commands":132,"./WorkArticleCollection":121,"./WorkArticleCollectionView":122,"./WorkArticleItem":123,"./WorkArticleItemView":125,"./workView":130,"backbone.marionette":"backbone.marionette","jquery":"jquery","markdown":100}],127:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WorkController = require('./WorkController'),
@@ -15493,7 +15526,7 @@ WorkModule = Marionette.Module.extend({
 });
 
 module.exports = WorkModule;
-},{"./WorkController":124,"./WorkRouter":126,"backbone":"backbone","backbone.marionette":"backbone.marionette"}],126:[function(require,module,exports){
+},{"./WorkController":126,"./WorkRouter":128,"backbone":"backbone","backbone.marionette":"backbone.marionette"}],128:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -15506,14 +15539,14 @@ WorkRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WorkRouter;
-},{"backbone.marionette":"backbone.marionette"}],127:[function(require,module,exports){
+},{"backbone.marionette":"backbone.marionette"}],129:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Work Template";
 },"useData":true});
 
-},{"hbsfy/runtime":25}],128:[function(require,module,exports){
+},{"hbsfy/runtime":25}],130:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WorkTemplate.hbs'),
 	WorkView;
@@ -15524,7 +15557,7 @@ WorkView = Marionette.CompositeView.extend({
 
 module.exports = WorkView;
 
-},{"./WorkTemplate.hbs":127,"backbone.marionette":"backbone.marionette"}],129:[function(require,module,exports){
+},{"./WorkTemplate.hbs":129,"backbone.marionette":"backbone.marionette"}],131:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -15538,11 +15571,11 @@ var app = new Marionette.Application({
 });
 
 module.exports = app;
-},{"backbone.marionette":"backbone.marionette"}],130:[function(require,module,exports){
+},{"backbone.marionette":"backbone.marionette"}],132:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = new Backbone.Wreqr.Commands();
-},{"backbone":"backbone"}],131:[function(require,module,exports){
+},{"backbone":"backbone"}],133:[function(require,module,exports){
 'use strict';
 
 // Requires
@@ -15588,4 +15621,4 @@ module.exports = new Backbone.Wreqr.Commands();
 
 	app.start();
 	Backbone.history.start();
-},{"../data/site.json":102,"./Home/HomeModule":104,"./Navigation/NavigationModule":113,"./Who/WhoModule":117,"./Work/WorkModule":125,"./app":129,"./config/commands":130,"backbone":"backbone","backbone.marionette":"backbone.marionette"}]},{},[131]);
+},{"../data/site.json":102,"./Home/HomeModule":104,"./Navigation/NavigationModule":113,"./Who/WhoModule":117,"./Work/WorkModule":127,"./app":131,"./config/commands":132,"backbone":"backbone","backbone.marionette":"backbone.marionette"}]},{},[133]);
