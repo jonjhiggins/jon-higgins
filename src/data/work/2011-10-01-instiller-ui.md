@@ -6,7 +6,7 @@ date: 2011-10-01
 type: web
 skills: [design, build]
 content_url: http://www.instiller.co.uk
-images: [work-hero-instiller-ui-1.png]
+images: [article-image.jpg]
 description: Design user interface for powerful app used daily to send millions of emails for brands such as Premier Inn and HMV
 ---
 
@@ -28,4 +28,4 @@ Grids and consistent navigational elements improve usability. Colour was reduced
 
 ###### Powerful
 <img src="/img/work-article-instiller-ui-item.png" alt="" title="Screenshot of UI element"/>
-UI widgets, such as javascript emulating a single page web-app improve user experience and reduce development time. 
+UI widgets, such as javascript emulating a single page web-app improve user experience and reduce development time.

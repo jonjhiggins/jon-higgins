@@ -7,7 +7,7 @@ date: 2013-04-01
 type: email
 content_url: /attachments/instiller-email/
 skills: [design, build]
-images: [work-hero-instiller-email-1.png]
+images: [article-image.jpg]
 half-width: true
 ---
 
