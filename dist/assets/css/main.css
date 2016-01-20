@@ -1,7 +1,28 @@
-html {
-  font-family: sans-serif; }
+/* Sass Mixin that generates a Baseline Grid */
+/* by: Mike Morrison, Soholaunch.com */
+/* You don't have to leave this credit comment in, but it would be nice of you. */
+body {
+  font-family: 'Input Sans', monospace;
+  background-image: -webkit-linear-gradient(0deg, rgba(200, 0, 0, 0) 60px, transparent 20px), -webkit-linear-gradient(top, transparent 95%, rgba(56, 255, 255, 0.8) 100%);
+  background-image: -moz-linear-gradient(0deg, rgba(200, 0, 0, 0) 60px, transparent 20px), -moz-linear-gradient(top, transparent 95%, rgba(56, 255, 255, 0.8) 100%);
+  background-image: -o-linear-gradient(0deg, rgba(200, 0, 0, 0) 60px, transparent 20px), -o-linear-gradient(top, transparent 95%, rgba(56, 255, 255, 0.8) 100%);
+  background-size: 80px 100%, 100% 12px;
+  background-position: 10px 0px; }
 
-.active {
-  font-weight: bold; }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Boing', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.075em;
+  font-weight: normal; }
+
+body {
+  margin: 0; }
+
+.page {
+  max-width: 34.375rem;
+  margin: 2.25rem auto; }
+
+img {
+  max-width: 100%; }
 
 /*# sourceMappingURL=main.css.map */

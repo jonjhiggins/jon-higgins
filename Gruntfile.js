@@ -57,19 +57,23 @@ module.exports = function(grunt) {
             },
             html: {
                 files: ['<%= paths.src %>/*.html'],
-                tasks: ['copy:html'],
+                tasks: ['copy:html', 'browserify'],
             },
             bower: {
                 files: ['/bower_components/*'],
-                tasks: ['wiredep']
+                tasks: ['wiredep', 'browserify']
             },
             images: {
                 files: ['<%= paths.src %>/images/*'],
-                tasks: ['copy:images']
+                tasks: ['copy:images', 'browserify']
             },
             data: {
                 files: ['<%= paths.src %>/data/**/*'],
-                tasks: ['m2j']
+                tasks: ['m2j', 'browserify']
+            },
+            sass: {
+                files: ['<%= paths.src %>/scss/*'],
+                tasks: ['sass', 'browserify']
             }
         },
 

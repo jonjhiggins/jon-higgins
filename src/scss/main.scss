@@ -1,7 +1,5 @@
-html {
-	font-family: sans-serif;
-}
+@import 'mixins';
+@import 'variables';
 
-.active {
-	font-weight: bold;
-}
+@import 'typography';
+@import 'layout';

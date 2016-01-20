@@ -1,0 +1,97 @@
+body {
+    font-family: 'Input Sans', monospace;
+    @include baseline-grid;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Boing', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.075em;
+    font-weight: normal; // Only if boing loaded
+}
+
+// header and Body text styles
+
+.page {
+    p,
+    ul,
+    ol {
+        font-size: rem($fontSizeBody);
+        line-height: $lineHeightBody / $fontSizeBody;
+        color: rgba(0,0,0,0.6);
+        position: relative;
+        top: -1px; // Visual adjustment to baseline grid
+    }
+
+    p,
+    figure {
+        margin: 0 0 em($lineHeightBody, $fontSizeBody) 0;
+    }
+
+    ul,
+    ol {
+        margin: em($lineHeightBody + 6, $fontSizeBody) 0 em($lineHeightBody + 6, $fontSizeBody) 0;
+        li {
+            margin: 0 0 em($lineHeightBody, $fontSizeBody) 0;
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-top: 0;
+        line-height: 1em;
+    }
+
+    h1,
+    .h1 {
+        font-size: rem($fontSizeH1Large);
+        line-height: 1em;
+        margin: em(24, $fontSizeH1Large) 0 em(42, $fontSizeH1Large);
+    }
+
+    h2,
+    .h2 {
+        font-size: rem($fontSizeH2Large);
+    }
+
+    h3,
+    .h3 {
+        font-size: rem($fontSizeH3Large);
+        line-height: 27 / $fontSizeH3Large;
+        margin: em(45, $fontSizeH3Large) 0 em(24, $fontSizeH3Large);
+        border-top: em(3, $fontSizeH3Large) dotted rgba(0,0,0,0.2);
+        padding-top: em(15, $fontSizeH3Large);
+    }
+
+    h4,
+    .h4 {
+        //font-family: 'input sans';
+        //font-weight: 900;
+        font-size: rem($fontSizeH4Large);
+        color: rgba(0,0,0,0.7);
+        line-height: 18 / $fontSizeH4Large;
+        margin: em(24, $fontSizeH4Large) 0 em(18, $fontSizeH4Large);
+        position: relative;
+        top: -2px; // Visual adjustment to baseline grid
+    }
+
+    h5,
+    .h5,
+    h6,
+    .h6 {
+        font-size: rem($fontSizeH5Large);
+        line-height: 18 / $fontSizeH5Large;
+
+    }
+
+    h5,
+    .h5 {
+        color: rgba(0,0,0,0.6);
+
+    }
+
+    h6,
+    .h6 {
+        color: rgba(0,0,0,0.4);
+
+    }
+}
