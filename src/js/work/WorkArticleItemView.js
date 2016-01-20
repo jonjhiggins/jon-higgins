@@ -1,5 +1,6 @@
 var Marionette = require('backbone.marionette'),
-    template = require('./WorkArticleItemTemplate.hbs'),
+    templateSingle = require('./WorkArticleItemTemplate.hbs'),
+    templateCollection = require('./WorkArticleCollectionItemTemplate.hbs'),
     HandlebarsCompiler = require('hbsfy/runtime'),
     WorkArticleItemView;
 
@@ -7,14 +8,19 @@ var Marionette = require('backbone.marionette'),
 HandlebarsCompiler.registerHelper('md', require('helper-md'));
 
 WorkArticleItemView = Marionette.ItemView.extend({
-    template: template,
+    // Different template when in a collection
+    getTemplate: function() {
+        return this.model.collection ? templateCollection : templateSingle;
+    },
     tagName: 'article',
     className: 'article-item',
-    templateHelpers: function () {
+    templateHelpers: function() {
         return {
             date: function() {
                 var date = new Date(this.model.get('item').date),
-                    dateFormatted = date.toLocaleString('en-gb', { month: "short" }) + ' ' + date.getFullYear();
+                    dateFormatted = date.toLocaleString('en-gb', {
+                        month: "short"
+                    }) + ' ' + date.getFullYear();
 
                 return dateFormatted;
             }.bind(this)
