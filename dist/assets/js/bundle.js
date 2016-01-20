@@ -3437,7 +3437,7 @@
   return Marionette;
 }));
 
-},{"backbone":4,"backbone.babysitter":2,"backbone.wreqr":3,"underscore":107}],2:[function(require,module,exports){
+},{"backbone":4,"backbone.babysitter":2,"backbone.wreqr":3,"underscore":97}],2:[function(require,module,exports){
 // Backbone.BabySitter
 // -------------------
 // v0.1.10
@@ -3629,7 +3629,7 @@
 
 }));
 
-},{"backbone":4,"underscore":107}],3:[function(require,module,exports){
+},{"backbone":4,"underscore":97}],3:[function(require,module,exports){
 // Backbone.Wreqr (Backbone.Marionette)
 // ----------------------------------
 // v1.3.5
@@ -4066,7 +4066,7 @@
 
 }));
 
-},{"backbone":4,"underscore":107}],4:[function(require,module,exports){
+},{"backbone":4,"underscore":97}],4:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.1
 
@@ -5943,7 +5943,7 @@
 }));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":104,"underscore":107}],5:[function(require,module,exports){
+},{"jquery":94,"underscore":97}],5:[function(require,module,exports){
 
 },{}],6:[function(require,module,exports){
 if (typeof Object.create === 'function') {
@@ -6674,10 +6674,10 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 var _handlebarsBase = require('./handlebars/base');
 
+var base = _interopRequireWildcard(_handlebarsBase);
+
 // Each of these augment the Handlebars object. No need to setup here.
 // (This is done to easily share code between commonjs and browse envs)
-
-var base = _interopRequireWildcard(_handlebarsBase);
 
 var _handlebarsSafeString = require('./handlebars/safe-string');
 
@@ -6697,10 +6697,9 @@ var runtime = _interopRequireWildcard(_handlebarsRuntime);
 
 var _handlebarsNoConflict = require('./handlebars/no-conflict');
 
-// For compatibility and usage outside of module systems, make the Handlebars object a namespace
-
 var _handlebarsNoConflict2 = _interopRequireDefault(_handlebarsNoConflict);
 
+// For compatibility and usage outside of module systems, make the Handlebars object a namespace
 function create() {
   var hb = new base.HandlebarsEnvironment();
 
@@ -6752,7 +6751,7 @@ var _logger = require('./logger');
 
 var _logger2 = _interopRequireDefault(_logger);
 
-var VERSION = '4.0.3';
+var VERSION = '4.0.5';
 exports.VERSION = VERSION;
 var COMPILER_REVISION = 7;
 
@@ -6804,7 +6803,7 @@ HandlebarsEnvironment.prototype = {
       _utils.extend(this.partials, name);
     } else {
       if (typeof partial === 'undefined') {
-        throw new _exception2['default']('Attempting to register a partial as undefined');
+        throw new _exception2['default']('Attempting to register a partial called "' + name + '" as undefined');
       }
       this.partials[name] = partial;
     }
@@ -7311,6 +7310,7 @@ exports['default'] = function (Handlebars) {
     if (root.Handlebars === Handlebars) {
       root.Handlebars = $Handlebars;
     }
+    return Handlebars;
   };
 };
 
@@ -7671,10 +7671,10 @@ function extend(obj /* , ...source */) {
 
 var toString = Object.prototype.toString;
 
+exports.toString = toString;
 // Sourced from lodash
 // https://github.com/bestiejs/lodash/blob/master/LICENSE.txt
 /* eslint-disable func-style */
-exports.toString = toString;
 var isFunction = function isFunction(value) {
   return typeof value === 'function';
 };
@@ -7694,8 +7694,8 @@ var isArray = Array.isArray || function (value) {
   return value && typeof value === 'object' ? toString.call(value) === '[object Array]' : false;
 };
 
-// Older IE versions do not directly support indexOf so we must implement our own, sadly.
 exports.isArray = isArray;
+// Older IE versions do not directly support indexOf so we must implement our own, sadly.
 
 function indexOf(array, value) {
   for (var i = 0, len = array.length; i < len; i++) {
@@ -7775,7 +7775,6 @@ module.exports = require("handlebars/runtime")["default"];
 'use strict';
 
 var fs = require('fs');
-var hljs = require('highlight-redux');
 var Remarkable = require('remarkable');
 var extend = require('extend-shallow');
 
@@ -7822,11 +7821,11 @@ module.exports = function md(name, opts) {
  */
 
 function read(fp, opts, fn) {
-  // var str = fs.readFileSync(fp, 'utf8');
-  // if (typeof fn === 'function') {
-  //   str = fn(str)(opts);
-  // }
-  return markdown(opts).render(fp);
+  var str = fs.readFileSync(fp, 'utf8');
+  if (typeof fn === 'function') {
+    str = fn(str)(opts);
+  }
+  return markdown(opts).render(str);
 }
 
 /**
@@ -7844,26 +7843,12 @@ function markdown(options) {
     langPrefix: 'lang-',
     linkify: true,
     typographer: false,
-    xhtmlOut: false,
-    highlight: function highlight(code, lang) {
-      try {
-        try {
-          return hljs.highlight(lang, code).value;
-        } catch (err) {
-          if (!/Unknown language/i.test(err.message)) {
-            throw err;
-          }
-          return hljs.highlightAuto(code).value;
-        }
-      } catch (err) {
-        return code;
-      }
-    }
+    xhtmlOut: false
   }, options));
 }
 
 }).call(this,require('_process'))
-},{"_process":7,"extend-shallow":31,"fs":5,"highlight-redux":95,"remarkable":33}],31:[function(require,module,exports){
+},{"_process":7,"extend-shallow":31,"fs":5,"remarkable":33}],31:[function(require,module,exports){
 'use strict';
 
 var slice = require('array-slice');
@@ -18042,1239 +18027,6 @@ return Autolinker;
 }));
 
 },{}],94:[function(require,module,exports){
-var Highlight = function() {
-
-  /* Utility functions */
-
-  function escape(value) {
-    return value.replace(/&/gm, '&amp;').replace(/</gm, '&lt;').replace(/>/gm, '&gt;');
-  }
-
-  function tag(node) {
-    return node.nodeName.toLowerCase();
-  }
-
-  function testRe(re, lexeme) {
-    var match = re && re.exec(lexeme);
-    return match && match.index == 0;
-  }
-
-  function blockText(block) {
-    return Array.prototype.map.call(block.childNodes, function(node) {
-      if (node.nodeType == 3) {
-        return options.useBR ? node.nodeValue.replace(/\n/g, '') : node.nodeValue;
-      }
-      if (tag(node) == 'br') {
-        return '\n';
-      }
-      return blockText(node);
-    }).join('');
-  }
-
-  function blockLanguage(block) {
-    var classes = (block.className + ' ' + (block.parentNode ? block.parentNode.className : '')).split(/\s+/);
-    classes = classes.map(function(c) {return c.replace(/^language-/, '');});
-    return classes.filter(function(c) {return getLanguage(c) || c == 'no-highlight';})[0];
-  }
-
-  function inherit(parent, obj) {
-    var result = {};
-    for (var key in parent)
-      result[key] = parent[key];
-    if (obj)
-      for (var key in obj)
-        result[key] = obj[key];
-    return result;
-  };
-
-  /* Stream merging */
-
-  function nodeStream(node) {
-    var result = [];
-    (function _nodeStream(node, offset) {
-      for (var child = node.firstChild; child; child = child.nextSibling) {
-        if (child.nodeType == 3)
-          offset += child.nodeValue.length;
-        else if (tag(child) == 'br')
-          offset += 1;
-        else if (child.nodeType == 1) {
-          result.push({
-            event: 'start',
-            offset: offset,
-            node: child
-          });
-          offset = _nodeStream(child, offset);
-          result.push({
-            event: 'stop',
-            offset: offset,
-            node: child
-          });
-        }
-      }
-      return offset;
-    })(node, 0);
-    return result;
-  }
-
-  function mergeStreams(original, highlighted, value) {
-    var processed = 0;
-    var result = '';
-    var nodeStack = [];
-
-    function selectStream() {
-      if (!original.length || !highlighted.length) {
-        return original.length ? original : highlighted;
-      }
-      if (original[0].offset != highlighted[0].offset) {
-        return (original[0].offset < highlighted[0].offset) ? original : highlighted;
-      }
-
-      /*
-      To avoid starting the stream just before it should stop the order is
-      ensured that original always starts first and closes last:
-
-      if (event1 == 'start' && event2 == 'start')
-        return original;
-      if (event1 == 'start' && event2 == 'stop')
-        return highlighted;
-      if (event1 == 'stop' && event2 == 'start')
-        return original;
-      if (event1 == 'stop' && event2 == 'stop')
-        return highlighted;
-
-      ... which is collapsed to:
-      */
-      return highlighted[0].event == 'start' ? original : highlighted;
-    }
-
-    function open(node) {
-      function attr_str(a) {return ' ' + a.nodeName + '="' + escape(a.value) + '"';}
-      result += '<' + tag(node) + Array.prototype.map.call(node.attributes, attr_str).join('') + '>';
-    }
-
-    function close(node) {
-      result += '</' + tag(node) + '>';
-    }
-
-    function render(event) {
-      (event.event == 'start' ? open : close)(event.node);
-    }
-
-    while (original.length || highlighted.length) {
-      var stream = selectStream();
-      result += escape(value.substr(processed, stream[0].offset - processed));
-      processed = stream[0].offset;
-      if (stream == original) {
-        /*
-        On any opening or closing tag of the original markup we first close
-        the entire highlighted node stack, then render the original tag along
-        with all the following original tags at the same offset and then
-        reopen all the tags on the highlighted stack.
-        */
-        nodeStack.reverse().forEach(close);
-        do {
-          render(stream.splice(0, 1)[0]);
-          stream = selectStream();
-        } while (stream == original && stream.length && stream[0].offset == processed);
-        nodeStack.reverse().forEach(open);
-      } else {
-        if (stream[0].event == 'start') {
-          nodeStack.push(stream[0].node);
-        } else {
-          nodeStack.pop();
-        }
-        render(stream.splice(0, 1)[0]);
-      }
-    }
-    return result + escape(value.substr(processed));
-  }
-
-  /* Initialization */
-
-  function compileLanguage(language) {
-
-    function reStr(re) {
-        return (re && re.source) || re;
-    }
-
-    function langRe(value, global) {
-      return RegExp(
-        reStr(value),
-        'm' + (language.case_insensitive ? 'i' : '') + (global ? 'g' : '')
-      );
-    }
-
-    function compileMode(mode, parent) {
-      if (mode.compiled)
-        return;
-      mode.compiled = true;
-
-      mode.keywords = mode.keywords || mode.beginKeywords;
-      if (mode.keywords) {
-        var compiled_keywords = {};
-
-        function flatten(className, str) {
-          if (language.case_insensitive) {
-            str = str.toLowerCase();
-          }
-          str.split(' ').forEach(function(kw) {
-            var pair = kw.split('|');
-            compiled_keywords[pair[0]] = [className, pair[1] ? Number(pair[1]) : 1];
-          });
-        }
-
-        if (typeof mode.keywords == 'string') { // string
-          flatten('keyword', mode.keywords);
-        } else {
-          Object.keys(mode.keywords).forEach(function (className) {
-            flatten(className, mode.keywords[className]);
-          });
-        }
-        mode.keywords = compiled_keywords;
-      }
-      mode.lexemesRe = langRe(mode.lexemes || /\b[A-Za-z0-9_]+\b/, true);
-
-      if (parent) {
-        if (mode.beginKeywords) {
-          mode.begin = mode.beginKeywords.split(' ').join('|');
-        }
-        if (!mode.begin)
-          mode.begin = /\B|\b/;
-        mode.beginRe = langRe(mode.begin);
-        if (!mode.end && !mode.endsWithParent)
-          mode.end = /\B|\b/;
-        if (mode.end)
-          mode.endRe = langRe(mode.end);
-        mode.terminator_end = reStr(mode.end) || '';
-        if (mode.endsWithParent && parent.terminator_end)
-          mode.terminator_end += (mode.end ? '|' : '') + parent.terminator_end;
-      }
-      if (mode.illegal)
-        mode.illegalRe = langRe(mode.illegal);
-      if (mode.relevance === undefined)
-        mode.relevance = 1;
-      if (!mode.contains) {
-        mode.contains = [];
-      }
-      var expanded_contains = [];
-      mode.contains.forEach(function(c) {
-        if (c.variants) {
-          c.variants.forEach(function(v) {expanded_contains.push(inherit(c, v));});
-        } else {
-          expanded_contains.push(c == 'self' ? mode : c);
-        }
-      });
-      mode.contains = expanded_contains;
-      mode.contains.forEach(function(c) {compileMode(c, mode);});
-
-      if (mode.starts) {
-        compileMode(mode.starts, parent);
-      }
-
-      var terminators =
-        mode.contains.map(function(c) {
-          return c.beginKeywords ? '\\.?\\b(' + c.begin + ')\\b\\.?' : c.begin;
-        })
-        .concat([mode.terminator_end])
-        .concat([mode.illegal])
-        .map(reStr)
-        .filter(Boolean);
-      mode.terminators = terminators.length ? langRe(terminators.join('|'), true) : {exec: function(s) {return null;}};
-
-      mode.continuation = {};
-    }
-
-    compileMode(language);
-  }
-
-  /*
-  Core highlighting function. Accepts a language name, or an alias, and a
-  string with the code to highlight. Returns an object with the following
-  properties:
-
-  - relevance (int)
-  - value (an HTML string with highlighting markup)
-
-  */
-  function highlight(name, value, ignore_illegals, continuation) {
-
-    function subMode(lexeme, mode) {
-      for (var i = 0; i < mode.contains.length; i++) {
-        if (testRe(mode.contains[i].beginRe, lexeme)) {
-          return mode.contains[i];
-        }
-      }
-    }
-
-    function endOfMode(mode, lexeme) {
-      if (testRe(mode.endRe, lexeme)) {
-        return mode;
-      }
-      if (mode.endsWithParent) {
-        return endOfMode(mode.parent, lexeme);
-      }
-    }
-
-    function isIllegal(lexeme, mode) {
-      return !ignore_illegals && testRe(mode.illegalRe, lexeme);
-    }
-
-    function keywordMatch(mode, match) {
-      var match_str = language.case_insensitive ? match[0].toLowerCase() : match[0];
-      return mode.keywords.hasOwnProperty(match_str) && mode.keywords[match_str];
-    }
-
-    function buildSpan(classname, insideSpan, leaveOpen, noPrefix) {
-      var classPrefix = noPrefix ? '' : options.classPrefix,
-          openSpan    = '<span class="' + classPrefix,
-          closeSpan   = leaveOpen ? '' : '</span>';
-
-      openSpan += classname + '">';
-
-      return openSpan + insideSpan + closeSpan;
-    }
-
-    function processKeywords() {
-      var buffer = escape(mode_buffer);
-      if (!top.keywords)
-        return buffer;
-      var result = '';
-      var last_index = 0;
-      top.lexemesRe.lastIndex = 0;
-      var match = top.lexemesRe.exec(buffer);
-      while (match) {
-        result += buffer.substr(last_index, match.index - last_index);
-        var keyword_match = keywordMatch(top, match);
-        if (keyword_match) {
-          relevance += keyword_match[1];
-          result += buildSpan(keyword_match[0], match[0]);
-        } else {
-          result += match[0];
-        }
-        last_index = top.lexemesRe.lastIndex;
-        match = top.lexemesRe.exec(buffer);
-      }
-      return result + buffer.substr(last_index);
-    }
-
-    function processSubLanguage() {
-      if (top.subLanguage && !languages[top.subLanguage]) {
-        return escape(mode_buffer);
-      }
-      var result = top.subLanguage ? highlight(top.subLanguage, mode_buffer, true, top.continuation.top) : highlightAuto(mode_buffer);
-      // Counting embedded language score towards the host language may be disabled
-      // with zeroing the containing mode relevance. Usecase in point is Markdown that
-      // allows XML everywhere and makes every XML snippet to have a much larger Markdown
-      // score.
-      if (top.relevance > 0) {
-        relevance += result.relevance;
-      }
-      if (top.subLanguageMode == 'continuous') {
-        top.continuation.top = result.top;
-      }
-      return buildSpan(result.language, result.value, false, true);
-    }
-
-    function processBuffer() {
-      return top.subLanguage !== undefined ? processSubLanguage() : processKeywords();
-    }
-
-    function startNewMode(mode, lexeme) {
-      var markup = mode.className? buildSpan(mode.className, '', true): '';
-      if (mode.returnBegin) {
-        result += markup;
-        mode_buffer = '';
-      } else if (mode.excludeBegin) {
-        result += escape(lexeme) + markup;
-        mode_buffer = '';
-      } else {
-        result += markup;
-        mode_buffer = lexeme;
-      }
-      top = Object.create(mode, {parent: {value: top}});
-    }
-
-    function processLexeme(buffer, lexeme) {
-
-      mode_buffer += buffer;
-      if (lexeme === undefined) {
-        result += processBuffer();
-        return 0;
-      }
-
-      var new_mode = subMode(lexeme, top);
-      if (new_mode) {
-        result += processBuffer();
-        startNewMode(new_mode, lexeme);
-        return new_mode.returnBegin ? 0 : lexeme.length;
-      }
-
-      var end_mode = endOfMode(top, lexeme);
-      if (end_mode) {
-        var origin = top;
-        if (!(origin.returnEnd || origin.excludeEnd)) {
-          mode_buffer += lexeme;
-        }
-        result += processBuffer();
-        do {
-          if (top.className) {
-            result += '</span>';
-          }
-          relevance += top.relevance;
-          top = top.parent;
-        } while (top != end_mode.parent);
-        if (origin.excludeEnd) {
-          result += escape(lexeme);
-        }
-        mode_buffer = '';
-        if (end_mode.starts) {
-          startNewMode(end_mode.starts, '');
-        }
-        return origin.returnEnd ? 0 : lexeme.length;
-      }
-
-      if (isIllegal(lexeme, top))
-        throw new Error('Illegal lexeme "' + lexeme + '" for mode "' + (top.className || '<unnamed>') + '"');
-
-      /*
-      Parser should not reach this point as all types of lexemes should be caught
-      earlier, but if it does due to some bug make sure it advances at least one
-      character forward to prevent infinite looping.
-      */
-      mode_buffer += lexeme;
-      return lexeme.length || 1;
-    }
-
-    var language = getLanguage(name);
-    if (!language) {
-      throw new Error('Unknown language: "' + name + '"');
-    }
-
-    compileLanguage(language);
-    var top = continuation || language;
-    var result = '';
-    for(var current = top; current != language; current = current.parent) {
-      if (current.className) {
-        result = buildSpan(current.className, result, true);
-      }
-    }
-    var mode_buffer = '';
-    var relevance = 0;
-    try {
-      var match, count, index = 0;
-      while (true) {
-        top.terminators.lastIndex = index;
-        match = top.terminators.exec(value);
-        if (!match)
-          break;
-        count = processLexeme(value.substr(index, match.index - index), match[0]);
-        index = match.index + count;
-      }
-      processLexeme(value.substr(index));
-      for(var current = top; current.parent; current = current.parent) { // close dangling modes
-        if (current.className) {
-          result += '</span>';
-        }
-      };
-      return {
-        relevance: relevance,
-        value: result,
-        language: name,
-        top: top
-      };
-    } catch (e) {
-      if (e.message.indexOf('Illegal') != -1) {
-        return {
-          relevance: 0,
-          value: escape(value)
-        };
-      } else {
-        throw e;
-      }
-    }
-  }
-
-  /*
-  Highlighting with language detection. Accepts a string with the code to
-  highlight. Returns an object with the following properties:
-
-  - language (detected language)
-  - relevance (int)
-  - value (an HTML string with highlighting markup)
-  - second_best (object with the same structure for second-best heuristically
-    detected language, may be absent)
-
-  */
-  function highlightAuto(text, languageSubset) {
-    languageSubset = languageSubset || options.languages || Object.keys(languages);
-    var result = {
-      relevance: 0,
-      value: escape(text)
-    };
-    var second_best = result;
-    languageSubset.forEach(function(name) {
-      if (!getLanguage(name)) {
-        return;
-      }
-      var current = highlight(name, text, false);
-      current.language = name;
-      if (current.relevance > second_best.relevance) {
-        second_best = current;
-      }
-      if (current.relevance > result.relevance) {
-        second_best = result;
-        result = current;
-      }
-    });
-    if (second_best.language) {
-      result.second_best = second_best;
-    }
-    return result;
-  }
-
-  /*
-  Post-processing of the highlighted markup:
-
-  - replace TABs with something more useful
-  - replace real line-breaks with '<br>' for non-pre containers
-
-  */
-  function fixMarkup(value) {
-    if (options.tabReplace) {
-      value = value.replace(/^((<[^>]+>|\t)+)/gm, function(match, p1, offset, s) {
-        return p1.replace(/\t/g, options.tabReplace);
-      });
-    }
-    if (options.useBR) {
-      value = value.replace(/\n/g, '<br>');
-    }
-    return value;
-  }
-
-  /*
-  Applies highlighting to a DOM node containing code. Accepts a DOM node and
-  two optional parameters for fixMarkup.
-  */
-  function highlightBlock(block) {
-    var text = blockText(block);
-    var language = blockLanguage(block);
-    if (language == 'no-highlight')
-        return;
-    var result = language ? highlight(language, text, true) : highlightAuto(text);
-    var original = nodeStream(block);
-    if (original.length) {
-      var pre = document.createElementNS('http://www.w3.org/1999/xhtml', 'pre');
-      pre.innerHTML = result.value;
-      result.value = mergeStreams(original, nodeStream(pre), text);
-    }
-    result.value = fixMarkup(result.value);
-
-    block.innerHTML = result.value;
-    block.className += ' hljs ' + (!language && result.language || '');
-    block.result = {
-      language: result.language,
-      re: result.relevance
-    };
-    if (result.second_best) {
-      block.second_best = {
-        language: result.second_best.language,
-        re: result.second_best.relevance
-      };
-    }
-  }
-
-  var options = {
-    classPrefix: 'hljs-',
-    tabReplace: null,
-    useBR: false,
-    languages: undefined
-  };
-
-  /*
-  Updates highlight.js global options with values passed in the form of an object
-  */
-  function configure(user_options) {
-    options = inherit(options, user_options);
-  }
-
-  /*
-  Applies highlighting to all <pre><code>..</code></pre> blocks on a page.
-  */
-  function initHighlighting() {
-    if (initHighlighting.called)
-      return;
-    initHighlighting.called = true;
-
-    var blocks = document.querySelectorAll('pre code');
-    Array.prototype.forEach.call(blocks, highlightBlock);
-  }
-
-  /*
-  Attaches highlighting to the page load event.
-  */
-  function initHighlightingOnLoad() {
-    addEventListener('DOMContentLoaded', initHighlighting, false);
-    addEventListener('load', initHighlighting, false);
-  }
-
-  var languages = {};
-  var aliases = {};
-
-  function registerLanguage(name, language) {
-    var lang = languages[name] = language(this);
-    if (lang.aliases) {
-      lang.aliases.forEach(function(alias) {aliases[alias] = name;});
-    }
-  }
-
-  function getLanguage(name) {
-    return languages[name] || languages[aliases[name]];
-  }
-
-  /* Interface definition */
-
-  this.highlight = highlight;
-  this.highlightAuto = highlightAuto;
-  this.fixMarkup = fixMarkup;
-  this.highlightBlock = highlightBlock;
-  this.configure = configure;
-  this.initHighlighting = initHighlighting;
-  this.initHighlightingOnLoad = initHighlightingOnLoad;
-  this.registerLanguage = registerLanguage;
-  this.getLanguage = getLanguage;
-  this.inherit = inherit;
-
-  // Common regexps
-  this.IDENT_RE = '[a-zA-Z][a-zA-Z0-9_]*';
-  this.UNDERSCORE_IDENT_RE = '[a-zA-Z_][a-zA-Z0-9_]*';
-  this.NUMBER_RE = '\\b\\d+(\\.\\d+)?';
-  this.C_NUMBER_RE = '(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)'; // 0x..., 0..., decimal, float
-  this.BINARY_NUMBER_RE = '\\b(0b[01]+)'; // 0b...
-  this.RE_STARTERS_RE = '!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~';
-
-  // Common modes
-  this.BACKSLASH_ESCAPE = {
-    begin: '\\\\[\\s\\S]', relevance: 0
-  };
-  this.APOS_STRING_MODE = {
-    className: 'string',
-    begin: '\'', end: '\'',
-    illegal: '\\n',
-    contains: [this.BACKSLASH_ESCAPE]
-  };
-  this.QUOTE_STRING_MODE = {
-    className: 'string',
-    begin: '"', end: '"',
-    illegal: '\\n',
-    contains: [this.BACKSLASH_ESCAPE]
-  };
-  this.C_LINE_COMMENT_MODE = {
-    className: 'comment',
-    begin: '//', end: '$'
-  };
-  this.C_BLOCK_COMMENT_MODE = {
-    className: 'comment',
-    begin: '/\\*', end: '\\*/'
-  };
-  this.HASH_COMMENT_MODE = {
-    className: 'comment',
-    begin: '#', end: '$'
-  };
-  this.NUMBER_MODE = {
-    className: 'number',
-    begin: this.NUMBER_RE,
-    relevance: 0
-  };
-  this.C_NUMBER_MODE = {
-    className: 'number',
-    begin: this.C_NUMBER_RE,
-    relevance: 0
-  };
-  this.BINARY_NUMBER_MODE = {
-    className: 'number',
-    begin: this.BINARY_NUMBER_RE,
-    relevance: 0
-  };
-  this.REGEXP_MODE = {
-    className: 'regexp',
-    begin: /\//, end: /\/[gim]*/,
-    illegal: /\n/,
-    contains: [
-      this.BACKSLASH_ESCAPE,
-      {
-        begin: /\[/, end: /\]/,
-        relevance: 0,
-        contains: [this.BACKSLASH_ESCAPE]
-      }
-    ]
-  };
-  this.TITLE_MODE = {
-    className: 'title',
-    begin: this.IDENT_RE,
-    relevance: 0
-  };
-  this.UNDERSCORE_TITLE_MODE = {
-    className: 'title',
-    begin: this.UNDERSCORE_IDENT_RE,
-    relevance: 0
-  };
-};
-module.exports = Highlight;
-},{}],95:[function(require,module,exports){
-var Highlight = require('./highlight');
-var hljs = new Highlight();
-hljs.registerLanguage('bash', require('./languages/bash.js'));
-hljs.registerLanguage('javascript', require('./languages/javascript.js'));
-hljs.registerLanguage('xml', require('./languages/xml.js'));
-hljs.registerLanguage('markdown', require('./languages/markdown.js'));
-hljs.registerLanguage('css', require('./languages/css.js'));
-hljs.registerLanguage('http', require('./languages/http.js'));
-hljs.registerLanguage('ini', require('./languages/ini.js'));
-hljs.registerLanguage('json', require('./languages/json.js'));
-module.exports = hljs;
-},{"./highlight":94,"./languages/bash.js":96,"./languages/css.js":97,"./languages/http.js":98,"./languages/ini.js":99,"./languages/javascript.js":100,"./languages/json.js":101,"./languages/markdown.js":102,"./languages/xml.js":103}],96:[function(require,module,exports){
-module.exports = function(hljs) {
-  var VAR = {
-    className: 'variable',
-    variants: [
-      {begin: /\$[\w\d#@][\w\d_]*/},
-      {begin: /\$\{(.*?)\}/}
-    ]
-  };
-  var QUOTE_STRING = {
-    className: 'string',
-    begin: /"/, end: /"/,
-    contains: [
-      hljs.BACKSLASH_ESCAPE,
-      VAR,
-      {
-        className: 'variable',
-        begin: /\$\(/, end: /\)/,
-        contains: [hljs.BACKSLASH_ESCAPE]
-      }
-    ]
-  };
-  var APOS_STRING = {
-    className: 'string',
-    begin: /'/, end: /'/
-  };
-
-  return {
-    lexemes: /-?[a-z\.]+/,
-    keywords: {
-      keyword:
-        'if then else elif fi for break continue while in do done exit return set '+
-        'declare case esac export exec',
-      literal:
-        'true false',
-      built_in:
-        'printf echo read cd pwd pushd popd dirs let eval unset typeset readonly '+
-        'getopts source shopt caller type hash bind help sudo',
-      operator:
-        '-ne -eq -lt -gt -f -d -e -s -l -a' // relevance booster
-    },
-    contains: [
-      {
-        className: 'shebang',
-        begin: /^#![^\n]+sh\s*$/,
-        relevance: 10
-      },
-      {
-        className: 'function',
-        begin: /\w[\w\d_]*\s*\(\s*\)\s*\{/,
-        returnBegin: true,
-        contains: [hljs.inherit(hljs.TITLE_MODE, {begin: /\w[\w\d_]*/})],
-        relevance: 0
-      },
-      hljs.HASH_COMMENT_MODE,
-      hljs.NUMBER_MODE,
-      QUOTE_STRING,
-      APOS_STRING,
-      VAR
-    ]
-  };
-};
-},{}],97:[function(require,module,exports){
-module.exports = function(hljs) {
-  var IDENT_RE = '[a-zA-Z-][a-zA-Z0-9_-]*';
-  var FUNCTION = {
-    className: 'function',
-    begin: IDENT_RE + '\\(', end: '\\)',
-    contains: ['self', hljs.NUMBER_MODE, hljs.APOS_STRING_MODE, hljs.QUOTE_STRING_MODE]
-  };
-  return {
-    case_insensitive: true,
-    illegal: '[=/|\']',
-    contains: [
-      hljs.C_BLOCK_COMMENT_MODE,
-      {
-        className: 'id', begin: '\\#[A-Za-z0-9_-]+'
-      },
-      {
-        className: 'class', begin: '\\.[A-Za-z0-9_-]+',
-        relevance: 0
-      },
-      {
-        className: 'attr_selector',
-        begin: '\\[', end: '\\]',
-        illegal: '$'
-      },
-      {
-        className: 'pseudo',
-        begin: ':(:)?[a-zA-Z0-9\\_\\-\\+\\(\\)\\"\\\']+'
-      },
-      {
-        className: 'at_rule',
-        begin: '@(font-face|page)',
-        lexemes: '[a-z-]+',
-        keywords: 'font-face page'
-      },
-      {
-        className: 'at_rule',
-        begin: '@', end: '[{;]', // at_rule eating first "{" is a good thing
-                                 // because it doesn’t let it to be parsed as
-                                 // a rule set but instead drops parser into
-                                 // the default mode which is how it should be.
-        contains: [
-          {
-            className: 'keyword',
-            begin: /\S+/
-          },
-          {
-            begin: /\s/, endsWithParent: true, excludeEnd: true,
-            relevance: 0,
-            contains: [
-              FUNCTION,
-              hljs.APOS_STRING_MODE, hljs.QUOTE_STRING_MODE,
-              hljs.NUMBER_MODE
-            ]
-          }
-        ]
-      },
-      {
-        className: 'tag', begin: IDENT_RE,
-        relevance: 0
-      },
-      {
-        className: 'rules',
-        begin: '{', end: '}',
-        illegal: '[^\\s]',
-        relevance: 0,
-        contains: [
-          hljs.C_BLOCK_COMMENT_MODE,
-          {
-            className: 'rule',
-            begin: '[^\\s]', returnBegin: true, end: ';', endsWithParent: true,
-            contains: [
-              {
-                className: 'attribute',
-                begin: '[A-Z\\_\\.\\-]+', end: ':',
-                excludeEnd: true,
-                illegal: '[^\\s]',
-                starts: {
-                  className: 'value',
-                  endsWithParent: true, excludeEnd: true,
-                  contains: [
-                    FUNCTION,
-                    hljs.NUMBER_MODE,
-                    hljs.QUOTE_STRING_MODE,
-                    hljs.APOS_STRING_MODE,
-                    hljs.C_BLOCK_COMMENT_MODE,
-                    {
-                      className: 'hexcolor', begin: '#[0-9A-Fa-f]+'
-                    },
-                    {
-                      className: 'important', begin: '!important'
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  };
-};
-},{}],98:[function(require,module,exports){
-module.exports = function(hljs) {
-  return {
-    illegal: '\\S',
-    contains: [
-      {
-        className: 'status',
-        begin: '^HTTP/[0-9\\.]+', end: '$',
-        contains: [{className: 'number', begin: '\\b\\d{3}\\b'}]
-      },
-      {
-        className: 'request',
-        begin: '^[A-Z]+ (.*?) HTTP/[0-9\\.]+$', returnBegin: true, end: '$',
-        contains: [
-          {
-            className: 'string',
-            begin: ' ', end: ' ',
-            excludeBegin: true, excludeEnd: true
-          }
-        ]
-      },
-      {
-        className: 'attribute',
-        begin: '^\\w', end: ': ', excludeEnd: true,
-        illegal: '\\n|\\s|=',
-        starts: {className: 'string', end: '$'}
-      },
-      {
-        begin: '\\n\\n',
-        starts: {subLanguage: '', endsWithParent: true}
-      }
-    ]
-  };
-};
-},{}],99:[function(require,module,exports){
-module.exports = function(hljs) {
-  return {
-    case_insensitive: true,
-    illegal: /\S/,
-    contains: [
-      {
-        className: 'comment',
-        begin: ';', end: '$'
-      },
-      {
-        className: 'title',
-        begin: '^\\[', end: '\\]'
-      },
-      {
-        className: 'setting',
-        begin: '^[a-z0-9\\[\\]_-]+[ \\t]*=[ \\t]*', end: '$',
-        contains: [
-          {
-            className: 'value',
-            endsWithParent: true,
-            keywords: 'on off true false yes no',
-            contains: [hljs.QUOTE_STRING_MODE, hljs.NUMBER_MODE],
-            relevance: 0
-          }
-        ]
-      }
-    ]
-  };
-};
-},{}],100:[function(require,module,exports){
-module.exports = function(hljs) {
-  return {
-    aliases: ['js'],
-    keywords: {
-      keyword:
-        'in if for while finally var new function do return void else break catch ' +
-        'instanceof with throw case default try this switch continue typeof delete ' +
-        'let yield const class',
-      literal:
-        'true false null undefined NaN Infinity',
-      built_in:
-        'eval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent ' +
-        'encodeURI encodeURIComponent escape unescape Object Function Boolean Error ' +
-        'EvalError InternalError RangeError ReferenceError StopIteration SyntaxError ' +
-        'TypeError URIError Number Math Date String RegExp Array Float32Array ' +
-        'Float64Array Int16Array Int32Array Int8Array Uint16Array Uint32Array ' +
-        'Uint8Array Uint8ClampedArray ArrayBuffer DataView JSON Intl arguments require'
-    },
-    contains: [
-      {
-        className: 'pi',
-        begin: /^\s*('|")use strict('|")/,
-        relevance: 10
-      },
-      hljs.APOS_STRING_MODE,
-      hljs.QUOTE_STRING_MODE,
-      hljs.C_LINE_COMMENT_MODE,
-      hljs.C_BLOCK_COMMENT_MODE,
-      hljs.C_NUMBER_MODE,
-      { // "value" container
-        begin: '(' + hljs.RE_STARTERS_RE + '|\\b(case|return|throw)\\b)\\s*',
-        keywords: 'return throw case',
-        contains: [
-          hljs.C_LINE_COMMENT_MODE,
-          hljs.C_BLOCK_COMMENT_MODE,
-          hljs.REGEXP_MODE,
-          { // E4X
-            begin: /</, end: />;/,
-            relevance: 0,
-            subLanguage: 'xml'
-          }
-        ],
-        relevance: 0
-      },
-      {
-        className: 'function',
-        beginKeywords: 'function', end: /\{/,
-        contains: [
-          hljs.inherit(hljs.TITLE_MODE, {begin: /[A-Za-z$_][0-9A-Za-z$_]*/}),
-          {
-            className: 'params',
-            begin: /\(/, end: /\)/,
-            contains: [
-              hljs.C_LINE_COMMENT_MODE,
-              hljs.C_BLOCK_COMMENT_MODE
-            ],
-            illegal: /["'\(]/
-          }
-        ],
-        illegal: /\[|%/
-      },
-      {
-        begin: /\$[(.]/ // relevance booster for a pattern common to JS libs: `$(something)` and `$.something`
-      },
-      {
-        begin: '\\.' + hljs.IDENT_RE, relevance: 0 // hack: prevents detection of keywords after dots
-      }
-    ]
-  };
-};
-},{}],101:[function(require,module,exports){
-module.exports = function(hljs) {
-  var LITERALS = {literal: 'true false null'};
-  var TYPES = [
-    hljs.QUOTE_STRING_MODE,
-    hljs.C_NUMBER_MODE
-  ];
-  var VALUE_CONTAINER = {
-    className: 'value',
-    end: ',', endsWithParent: true, excludeEnd: true,
-    contains: TYPES,
-    keywords: LITERALS
-  };
-  var OBJECT = {
-    begin: '{', end: '}',
-    contains: [
-      {
-        className: 'attribute',
-        begin: '\\s*"', end: '"\\s*:\\s*', excludeBegin: true, excludeEnd: true,
-        contains: [hljs.BACKSLASH_ESCAPE],
-        illegal: '\\n',
-        starts: VALUE_CONTAINER
-      }
-    ],
-    illegal: '\\S'
-  };
-  var ARRAY = {
-    begin: '\\[', end: '\\]',
-    contains: [hljs.inherit(VALUE_CONTAINER, {className: null})], // inherit is also a workaround for a bug that makes shared modes with endsWithParent compile only the ending of one of the parents
-    illegal: '\\S'
-  };
-  TYPES.splice(TYPES.length, 0, OBJECT, ARRAY);
-  return {
-    contains: TYPES,
-    keywords: LITERALS,
-    illegal: '\\S'
-  };
-};
-},{}],102:[function(require,module,exports){
-module.exports = function(hljs) {
-  return {
-    contains: [
-      // highlight headers
-      {
-        className: 'header',
-        variants: [
-          { begin: '^#{1,6}', end: '$' },
-          { begin: '^.+?\\n[=-]{2,}$' }
-        ]
-      },
-      // inline html
-      {
-        begin: '<', end: '>',
-        subLanguage: 'xml',
-        relevance: 0
-      },
-      // lists (indicators only)
-      {
-        className: 'bullet',
-        begin: '^([*+-]|(\\d+\\.))\\s+'
-      },
-      // strong segments
-      {
-        className: 'strong',
-        begin: '[*_]{2}.+?[*_]{2}'
-      },
-      // emphasis segments
-      {
-        className: 'emphasis',
-        variants: [
-          { begin: '\\*.+?\\*' },
-          { begin: '_.+?_'
-          , relevance: 0
-          }
-        ]
-      },
-      // blockquotes
-      {
-        className: 'blockquote',
-        begin: '^>\\s+', end: '$'
-      },
-      // code snippets
-      {
-        className: 'code',
-        variants: [
-          { begin: '`.+?`' },
-          { begin: '^( {4}|\t)', end: '$'
-          , relevance: 0
-          }
-        ]
-      },
-      // horizontal rules
-      {
-        className: 'horizontal_rule',
-        begin: '^[-\\*]{3,}', end: '$'
-      },
-      // using links - title and link
-      {
-        begin: '\\[.+?\\][\\(\\[].+?[\\)\\]]',
-        returnBegin: true,
-        contains: [
-          {
-            className: 'link_label',
-            begin: '\\[', end: '\\]',
-            excludeBegin: true,
-            returnEnd: true,
-            relevance: 0
-          },
-          {
-            className: 'link_url',
-            begin: '\\]\\(', end: '\\)',
-            excludeBegin: true, excludeEnd: true
-          },
-          {
-            className: 'link_reference',
-            begin: '\\]\\[', end: '\\]',
-            excludeBegin: true, excludeEnd: true,
-          }
-        ],
-        relevance: 10
-      },
-      {
-        begin: '^\\[\.+\\]:', end: '$',
-        returnBegin: true,
-        contains: [
-          {
-            className: 'link_reference',
-            begin: '\\[', end: '\\]',
-            excludeBegin: true, excludeEnd: true
-          },
-          {
-            className: 'link_url',
-            begin: '\\s', end: '$'
-          }
-        ]
-      }
-    ]
-  };
-};
-},{}],103:[function(require,module,exports){
-module.exports = function(hljs) {
-  var XML_IDENT_RE = '[A-Za-z0-9\\._:-]+';
-  var PHP = {
-    begin: /<\?(php)?(?!\w)/, end: /\?>/,
-    subLanguage: 'php', subLanguageMode: 'continuous'
-  };
-  var TAG_INTERNALS = {
-    endsWithParent: true,
-    illegal: /</,
-    relevance: 0,
-    contains: [
-      PHP,
-      {
-        className: 'attribute',
-        begin: XML_IDENT_RE,
-        relevance: 0
-      },
-      {
-        begin: '=',
-        relevance: 0,
-        contains: [
-          {
-            className: 'value',
-            variants: [
-              {begin: /"/, end: /"/},
-              {begin: /'/, end: /'/},
-              {begin: /[^\s\/>]+/}
-            ]
-          }
-        ]
-      }
-    ]
-  };
-  return {
-    aliases: ['html'],
-    case_insensitive: true,
-    contains: [
-      {
-        className: 'doctype',
-        begin: '<!DOCTYPE', end: '>',
-        relevance: 10,
-        contains: [{begin: '\\[', end: '\\]'}]
-      },
-      {
-        className: 'comment',
-        begin: '<!--', end: '-->',
-        relevance: 10
-      },
-      {
-        className: 'cdata',
-        begin: '<\\!\\[CDATA\\[', end: '\\]\\]>',
-        relevance: 10
-      },
-      {
-        className: 'tag',
-        /*
-        The lookahead pattern (?=...) ensures that 'begin' only matches
-        '<style' as a single word, followed by a whitespace or an
-        ending braket. The '$' is needed for the lexeme to be recognized
-        by hljs.subMode() that tests lexemes outside the stream.
-        */
-        begin: '<style(?=\\s|>|$)', end: '>',
-        keywords: {title: 'style'},
-        contains: [TAG_INTERNALS],
-        starts: {
-          end: '</style>', returnEnd: true,
-          subLanguage: 'css'
-        }
-      },
-      {
-        className: 'tag',
-        // See the comment in the <style tag about the lookahead pattern
-        begin: '<script(?=\\s|>|$)', end: '>',
-        keywords: {title: 'script'},
-        contains: [TAG_INTERNALS],
-        starts: {
-          end: '</script>', returnEnd: true,
-          subLanguage: 'javascript'
-        }
-      },
-      {
-        begin: '<%', end: '%>',
-        subLanguage: 'vbscript'
-      },
-      PHP,
-      {
-        className: 'pi',
-        begin: /<\?\w+/, end: /\?>/,
-        relevance: 10
-      },
-      {
-        className: 'tag',
-        begin: '</?', end: '/?>',
-        contains: [
-          {
-            className: 'title', begin: '[^ /><]+', relevance: 0
-          },
-          TAG_INTERNALS
-        ]
-      }
-    ]
-  };
-};
-},{}],104:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -28486,12 +27238,12 @@ return jQuery;
 
 }));
 
-},{}],105:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 // super simple module for the most common nodejs use case.
 exports.markdown = require("./markdown");
 exports.parse = exports.markdown.toHTML;
 
-},{"./markdown":106}],106:[function(require,module,exports){
+},{"./markdown":96}],96:[function(require,module,exports){
 // Released under MIT license
 // Copyright (c) 2009-2010 Dominic Baggott
 // Copyright (c) 2009-2010 Ash Berlin
@@ -30218,7 +28970,7 @@ function merge_text_nodes( jsonml ) {
   }
 } )() );
 
-},{"util":9}],107:[function(require,module,exports){
+},{"util":9}],97:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -31768,7 +30520,7 @@ function merge_text_nodes( jsonml ) {
   }
 }.call(this));
 
-},{}],108:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 module.exports={
 	"siteName": "Jon Higgins",
 	"navigation": [
@@ -31790,7 +30542,7 @@ module.exports={
 		}
 	]
 }
-},{}],109:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	HomeView = require('./homeView'),
 	commands = require('../config/commands'),
@@ -31811,7 +30563,7 @@ HomeController = Marionette.Controller.extend({
 });
 
 module.exports = HomeController;
-},{"../config/commands":138,"./homeView":113,"backbone.marionette":1}],110:[function(require,module,exports){
+},{"../config/commands":128,"./homeView":103,"backbone.marionette":1}],100:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	HomeController = require('./HomeController'),
@@ -31836,7 +30588,7 @@ HomeModule = Marionette.Module.extend({
 });
 
 module.exports = HomeModule;
-},{"./HomeController":109,"./HomeRouter":111,"backbone":4,"backbone.marionette":1}],111:[function(require,module,exports){
+},{"./HomeController":99,"./HomeRouter":101,"backbone":4,"backbone.marionette":1}],101:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -31850,14 +30602,14 @@ HomeRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = HomeRouter;
-},{"backbone.marionette":1}],112:[function(require,module,exports){
+},{"backbone.marionette":1}],102:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Home Template";
 },"useData":true});
 
-},{"hbsfy/runtime":29}],113:[function(require,module,exports){
+},{"hbsfy/runtime":29}],103:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./HomeTemplate.hbs'),
 	HomeView;
@@ -31868,7 +30620,7 @@ HomeView = Marionette.CompositeView.extend({
 
 module.exports = HomeView;
 
-},{"./HomeTemplate.hbs":112,"backbone.marionette":1}],114:[function(require,module,exports){
+},{"./HomeTemplate.hbs":102,"backbone.marionette":1}],104:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     Backbone = require('backbone'),
     commands = require('../config/commands'),
@@ -31904,14 +30656,14 @@ NavigationController = Marionette.Controller.extend({
 });
 
 module.exports = NavigationController;
-},{"../../data/site.json":108,"../config/commands":138,"./NavigationItem":115,"./NavigationItems":118,"./navigationView":121,"backbone":4,"backbone.marionette":1}],115:[function(require,module,exports){
+},{"../../data/site.json":98,"../config/commands":128,"./NavigationItem":105,"./NavigationItems":108,"./navigationView":111,"backbone":4,"backbone.marionette":1}],105:[function(require,module,exports){
 var Backbone = require('backbone'),
 	NavigationItem;
 
 var NavigationItem = Backbone.Model.extend({});
 
 module.exports = NavigationItem;
-},{"backbone":4}],116:[function(require,module,exports){
+},{"backbone":4}],106:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -31928,7 +30680,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "</a>";
 },"useData":true});
 
-},{"hbsfy/runtime":29}],117:[function(require,module,exports){
+},{"hbsfy/runtime":29}],107:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./NavigationItemTemplate.hbs'),
 	NavigationItemView;
@@ -31953,7 +30705,7 @@ NavigationItemView = Marionette.ItemView.extend({
 
 module.exports = NavigationItemView;
 
-},{"./NavigationItemTemplate.hbs":116,"backbone.marionette":1}],118:[function(require,module,exports){
+},{"./NavigationItemTemplate.hbs":106,"backbone.marionette":1}],108:[function(require,module,exports){
 var Backbone = require('backbone'),
     NavigationItem = require('./NavigationItem'),
     NavigationItems;
@@ -31963,7 +30715,7 @@ var NavigationItems = Backbone.Collection.extend({
 });
 
 module.exports = NavigationItems;
-},{"./NavigationItem":115,"backbone":4}],119:[function(require,module,exports){
+},{"./NavigationItem":105,"backbone":4}],109:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	NavigationController = require('./NavigationController'),
@@ -31982,14 +30734,14 @@ NavigationModule = Marionette.Module.extend({
 });
 
 module.exports = NavigationModule;
-},{"./NavigationController":114,"backbone":4,"backbone.marionette":1}],120:[function(require,module,exports){
+},{"./NavigationController":104,"backbone":4,"backbone.marionette":1}],110:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "";
 },"useData":true});
 
-},{"hbsfy/runtime":29}],121:[function(require,module,exports){
+},{"hbsfy/runtime":29}],111:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./NavigationTemplate.hbs'),
     NavigationItemView = require('./NavigationItemView.js'),
@@ -32009,7 +30761,7 @@ NavigationView = Marionette.CompositeView.extend({
 
 module.exports = NavigationView;
 
-},{"./NavigationItemView.js":117,"./NavigationTemplate.hbs":120,"backbone.marionette":1}],122:[function(require,module,exports){
+},{"./NavigationItemView.js":107,"./NavigationTemplate.hbs":110,"backbone.marionette":1}],112:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	WhoView = require('./whoView'),
 	commands = require('../config/commands'),
@@ -32030,7 +30782,7 @@ WhoController = Marionette.Controller.extend({
 });
 
 module.exports = WhoController;
-},{"../config/commands":138,"./whoView":126,"backbone.marionette":1}],123:[function(require,module,exports){
+},{"../config/commands":128,"./whoView":116,"backbone.marionette":1}],113:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WhoController = require('./WhoController'),
@@ -32055,7 +30807,7 @@ WhoModule = Marionette.Module.extend({
 });
 
 module.exports = WhoModule;
-},{"./WhoController":122,"./WhoRouter":124,"backbone":4,"backbone.marionette":1}],124:[function(require,module,exports){
+},{"./WhoController":112,"./WhoRouter":114,"backbone":4,"backbone.marionette":1}],114:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -32068,14 +30820,14 @@ WhoRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WhoRouter;
-},{"backbone.marionette":1}],125:[function(require,module,exports){
+},{"backbone.marionette":1}],115:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Who Template";
 },"useData":true});
 
-},{"hbsfy/runtime":29}],126:[function(require,module,exports){
+},{"hbsfy/runtime":29}],116:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WhoTemplate.hbs'),
 	WhoView;
@@ -32086,7 +30838,7 @@ WhoView = Marionette.CompositeView.extend({
 
 module.exports = WhoView;
 
-},{"./WhoTemplate.hbs":125,"backbone.marionette":1}],127:[function(require,module,exports){
+},{"./WhoTemplate.hbs":115,"backbone.marionette":1}],117:[function(require,module,exports){
 var Backbone = require('backbone'),
     WorkArticleItem = require('./WorkArticleItem'),
     WorkArticleCollection;
@@ -32097,7 +30849,7 @@ WorkArticleCollection = Backbone.Collection.extend({
 
 module.exports = WorkArticleCollection;
 
-},{"./WorkArticleItem":129,"backbone":4}],128:[function(require,module,exports){
+},{"./WorkArticleItem":119,"backbone":4}],118:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     WorkArticleItemView = require('./WorkArticleItemView'),
     WorkArticleCollectionView;
@@ -32109,7 +30861,7 @@ WorkArticleCollectionView = Marionette.CollectionView.extend({
 
 module.exports = WorkArticleCollectionView;
 
-},{"./WorkArticleItemView":131,"backbone.marionette":1}],129:[function(require,module,exports){
+},{"./WorkArticleItemView":121,"backbone.marionette":1}],119:[function(require,module,exports){
 var Backbone = require('backbone'),
     WorkArticleItem;
 
@@ -32117,7 +30869,7 @@ WorkArticleItem = Backbone.Model.extend({});
 
 module.exports = WorkArticleItem;
 
-},{"backbone":4}],130:[function(require,module,exports){
+},{"backbone":4}],120:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -32127,7 +30879,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + "\n";
 },"useData":true});
 
-},{"hbsfy/runtime":29}],131:[function(require,module,exports){
+},{"hbsfy/runtime":29}],121:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     template = require('./WorkArticleItemTemplate.hbs'),
     HandlebarsCompiler = require('hbsfy/runtime'),
@@ -32149,7 +30901,7 @@ WorkArticleItemView = Marionette.ItemView.extend({
 
 module.exports = WorkArticleItemView;
 
-},{"./WorkArticleItemTemplate.hbs":130,"backbone.marionette":1,"hbsfy/runtime":29,"helper-md":30}],132:[function(require,module,exports){
+},{"./WorkArticleItemTemplate.hbs":120,"backbone.marionette":1,"hbsfy/runtime":29,"helper-md":30}],122:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     markdown = require('markdown').markdown,
@@ -32208,7 +30960,7 @@ WorkController = Marionette.Controller.extend({
 
 module.exports = WorkController;
 
-},{"../config/commands":138,"./WorkArticleCollection":127,"./WorkArticleCollectionView":128,"./WorkArticleItem":129,"./WorkArticleItemView":131,"./workView":136,"backbone.marionette":1,"jquery":104,"markdown":105}],133:[function(require,module,exports){
+},{"../config/commands":128,"./WorkArticleCollection":117,"./WorkArticleCollectionView":118,"./WorkArticleItem":119,"./WorkArticleItemView":121,"./workView":126,"backbone.marionette":1,"jquery":94,"markdown":95}],123:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WorkController = require('./WorkController'),
@@ -32233,7 +30985,7 @@ WorkModule = Marionette.Module.extend({
 });
 
 module.exports = WorkModule;
-},{"./WorkController":132,"./WorkRouter":134,"backbone":4,"backbone.marionette":1}],134:[function(require,module,exports){
+},{"./WorkController":122,"./WorkRouter":124,"backbone":4,"backbone.marionette":1}],124:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -32246,14 +30998,14 @@ WorkRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WorkRouter;
-},{"backbone.marionette":1}],135:[function(require,module,exports){
+},{"backbone.marionette":1}],125:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Work Template";
 },"useData":true});
 
-},{"hbsfy/runtime":29}],136:[function(require,module,exports){
+},{"hbsfy/runtime":29}],126:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WorkTemplate.hbs'),
 	WorkView;
@@ -32264,7 +31016,7 @@ WorkView = Marionette.CompositeView.extend({
 
 module.exports = WorkView;
 
-},{"./WorkTemplate.hbs":135,"backbone.marionette":1}],137:[function(require,module,exports){
+},{"./WorkTemplate.hbs":125,"backbone.marionette":1}],127:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -32278,11 +31030,11 @@ var app = new Marionette.Application({
 });
 
 module.exports = app;
-},{"backbone.marionette":1}],138:[function(require,module,exports){
+},{"backbone.marionette":1}],128:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = new Backbone.Wreqr.Commands();
-},{"backbone":4}],139:[function(require,module,exports){
+},{"backbone":4}],129:[function(require,module,exports){
 'use strict';
 
 // Requires
@@ -32328,4 +31080,4 @@ module.exports = new Backbone.Wreqr.Commands();
 
 	app.start();
 	Backbone.history.start();
-},{"../data/site.json":108,"./Home/HomeModule":110,"./Navigation/NavigationModule":119,"./Who/WhoModule":123,"./Work/WorkModule":133,"./app":137,"./config/commands":138,"backbone":4,"backbone.marionette":1}]},{},[139]);
+},{"../data/site.json":98,"./Home/HomeModule":100,"./Navigation/NavigationModule":109,"./Who/WhoModule":113,"./Work/WorkModule":123,"./app":127,"./config/commands":128,"backbone":4,"backbone.marionette":1}]},{},[129]);
