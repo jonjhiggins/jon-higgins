@@ -9,12 +9,17 @@ HandlebarsCompiler.registerHelper('md', require('helper-md'));
 WorkArticleItemView = Marionette.ItemView.extend({
     template: template,
     tagName: 'article',
-    className: 'article-item'/*,
+    className: 'article-item',
     templateHelpers: function () {
         return {
-            active: this.options.section === this.model.get('title')
+            date: function() {
+                var date = new Date(this.model.get('item').date),
+                    dateFormatted = date.toLocaleString('en-gb', { month: "short" }) + ' ' + date.getFullYear();
+
+                return dateFormatted;
+            }.bind(this)
         };
-    }*/
+    }
 });
 
 module.exports = WorkArticleItemView;

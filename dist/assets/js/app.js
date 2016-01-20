@@ -14156,7 +14156,16 @@ module.exports = WorkArticleCollectionView;
 var Backbone = require('backbone'),
     WorkArticleItem;
 
-WorkArticleItem = Backbone.Model.extend({});
+WorkArticleItem = Backbone.Model.extend({
+    initialize: function() {
+
+        // Generate URL from key
+        var key = this.get('key'),
+            file = key.substring(11, key.length); // trim off date
+
+        this.set('url', '/work/' + file);
+    }
+});
 
 module.exports = WorkArticleItem;
 
@@ -14166,15 +14175,17 @@ var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "<div class=\"article__date\">"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.date : stack1), depth0))
-    + "</div>\n<div class=\"article__title\">"
+  return "<a href=\""
+    + alias2(alias1((depth0 != null ? depth0.url : depth0), depth0))
+    + "\">\n    <div class=\"article__date\">"
+    + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
+    + "</div>\n    <div class=\"article__title\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</div>\n<figure class=\"article__image\"><img src=\"assets/img/"
+    + "</div>\n    <figure class=\"article__image\"><img src=\"assets/img/"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1), depth0))
-    + "\" alt=\"\" /></figure>\n<div class=\"article__description\">"
+    + "\" alt=\"\" /></figure>\n    <div class=\"article__description\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.description : stack1), depth0))
-    + "</div>\n";
+    + "</div>\n</a>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":23}],114:[function(require,module,exports){
@@ -14189,12 +14200,17 @@ HandlebarsCompiler.registerHelper('md', require('helper-md'));
 WorkArticleItemView = Marionette.ItemView.extend({
     template: template,
     tagName: 'article',
-    className: 'article-item'/*,
+    className: 'article-item',
     templateHelpers: function () {
         return {
-            active: this.options.section === this.model.get('title')
+            date: function() {
+                var date = new Date(this.model.get('item').date),
+                    dateFormatted = date.toLocaleString('en-gb', { month: "short" }) + ' ' + date.getFullYear();
+
+                return dateFormatted;
+            }.bind(this)
         };
-    }*/
+    }
 });
 
 module.exports = WorkArticleItemView;
@@ -14233,8 +14249,11 @@ WorkController = Marionette.Controller.extend({
 
         var items = [];
 
-        $.each(data[0], function(index, item) {
-            var newItem = new WorkArticleItem({item: item});
+        $.each(data[0], function(key, item) {
+            var newItem = new WorkArticleItem({
+                key: key,
+                item: item
+            });
             items.push(newItem);
         });
 

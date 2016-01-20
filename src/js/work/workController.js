@@ -31,8 +31,11 @@ WorkController = Marionette.Controller.extend({
 
         var items = [];
 
-        $.each(data[0], function(index, item) {
-            var newItem = new WorkArticleItem({item: item});
+        $.each(data[0], function(key, item) {
+            var newItem = new WorkArticleItem({
+                key: key,
+                item: item
+            });
             items.push(newItem);
         });
 
