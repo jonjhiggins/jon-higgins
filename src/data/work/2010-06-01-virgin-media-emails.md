@@ -5,6 +5,7 @@ title: Email templates for Virgin Media
 type: email
 skills: [design, build]
 half-width: true
+date: 2010-06-01
 images: [article-image.jpg]
 description: Email templates for Britain's Next Top Model, VM Player and more.
 ---
