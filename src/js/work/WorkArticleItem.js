@@ -4,11 +4,18 @@ var Backbone = require('backbone'),
 WorkArticleItem = Backbone.Model.extend({
     initialize: function() {
 
-        // Generate URL from key
-        var key = this.get('key'),
-            file = key.substring(11, key.length); // trim off date
+        var key = this.get('key');
 
-        this.set('url', '/work/' + file);
+
+        if (key) {
+            var url = this.generateUrl(key);
+            this.set('url', url);
+        }
+
+    },
+    // Generate URL from key
+    generateUrl: function(key) {
+        return '#/work/' + key;
     }
 });
 

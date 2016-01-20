@@ -21,13 +21,25 @@ WorkController = Marionette.Controller.extend({
         commands.execute('app:navigation:update', moduleName);
         commands.execute('app:title', moduleName);
 
-        this.loadWork();
+        var renderWork = this.renderWork.bind(this);
+
+        this.loadWork(renderWork);
     },
-    loadWork: function () {
-        $.ajax('/assets/data/work.json').done(this.renderWork.bind(this));
+    showWorkItem: function(id) {
+        this.view = new WorkView();
+
+        commands.execute('app:screen:show', this.view);
+        commands.execute('app:navigation:update', moduleName);
+        commands.execute('app:title', moduleName);
+
+        var renderWorkItem = this.renderWorkItem.bind(this, id);
+
+        this.loadWork(renderWorkItem);
+    },
+    loadWork: function (callback) {
+        $.ajax('/assets/data/work.json').done(callback);
     },
     renderWork: function (data) {
-        /*globals console*/
 
         var items = [];
 
@@ -43,6 +55,17 @@ WorkController = Marionette.Controller.extend({
 
         this.view = new WorkArticleCollectionView({
             collection: collection
+        });
+
+        commands.execute('app:screen:show', this.view);
+    },
+    renderWorkItem: function (id, data) {
+
+        var model = new WorkArticleItem({ item: data[0][id] });
+
+        this.view = new WorkArticleItemView({
+            key: null,
+            model: model
         });
 
         commands.execute('app:screen:show', this.view);
