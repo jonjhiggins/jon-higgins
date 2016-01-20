@@ -10,6 +10,17 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal; // Only if boing loaded
 }
 
+a {
+    color: $colourLink;
+    text-decoration: none;
+    border-bottom: 1px solid $colourLinkUnderline;
+
+    h1 &, h2 &, h3 &, h4 &, h5 &, h6 &, img & {
+        border-bottom: none;
+    }
+}
+
+
 // header and Body text styles
 
 .page {

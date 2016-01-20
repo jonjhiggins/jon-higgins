@@ -30857,13 +30857,13 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + alias2(alias1((depth0 != null ? depth0.url : depth0), depth0))
     + "\">\n    <div class=\"article__date\">"
     + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
-    + "</div>\n    <div class=\"article__title\">"
+    + "</div>\n    <h3 class=\"article__title\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</div>\n    <figure class=\"article__image\"><img src=\"assets/img/"
+    + "</h3>\n    <figure class=\"article__image\"><img src=\"assets/img/"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1), depth0))
-    + "\" alt=\"\" /></figure>\n    <div class=\"article__description\">"
+    + "\" alt=\"\" /></figure>\n    <p class=\"article__description\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.description : stack1), depth0))
-    + "</div>\n</a>\n";
+    + "</p>\n</a>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":27}],118:[function(require,module,exports){
@@ -30910,9 +30910,9 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
 
   return "<div class=\"article__date\">"
     + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
-    + "</div>\n<div class=\"article__title\">"
+    + "</div>\n<h1 class=\"article__title\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</div>\n<figure class=\"article__image\"><img src=\"assets/img/"
+    + "</h1>\n<figure class=\"article__image\"><img src=\"assets/img/"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1), depth0))
     + "\" alt=\"\" /></figure>\n<div class=\"article__description\">"
     + ((stack1 = helpers.md.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.__content : stack1),{"name":"md","hash":{},"data":data})) != null ? stack1 : "")

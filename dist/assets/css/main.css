@@ -15,6 +15,79 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 0.075em;
   font-weight: normal; }
 
+a {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5); }
+  h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, img a {
+    border-bottom: none; }
+
+.page p,
+.page ul,
+.page ol {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: rgba(0, 0, 0, 0.6);
+  position: relative;
+  top: -1px; }
+
+.page p,
+.page figure {
+  margin: 0 0 1.5em 0; }
+
+.page ul,
+.page ol {
+  margin: 2em 0 2em 0; }
+  .page ul li,
+  .page ol li {
+    margin: 0 0 1.5em 0; }
+
+.page h1, .page h2, .page h3, .page h4, .page h5, .page h6 {
+  margin-top: 0;
+  line-height: 1em; }
+
+.page h1,
+.page .h1 {
+  font-size: 2.25rem;
+  line-height: 1em;
+  margin: 0.6666666667em 0 1.1666666667em; }
+
+.page h2,
+.page .h2 {
+  font-size: 1.875rem; }
+
+.page h3,
+.page .h3 {
+  font-size: 1.5rem;
+  line-height: 1.125;
+  margin: 1.875em 0 1em;
+  border-top: 0.125em dotted rgba(0, 0, 0, 0.2);
+  padding-top: 0.625em; }
+
+.page h4,
+.page .h4 {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.7);
+  line-height: 1.125;
+  margin: 1.5em 0 1.125em;
+  position: relative;
+  top: -2px; }
+
+.page h5,
+.page .h5,
+.page h6,
+.page .h6 {
+  font-size: 0.6875rem;
+  line-height: 1.6363636364; }
+
+.page h5,
+.page .h5 {
+  color: rgba(0, 0, 0, 0.6); }
+
+.page h6,
+.page .h6 {
+  color: rgba(0, 0, 0, 0.4); }
+
 body {
   margin: 0; }
 
