@@ -1,8 +1,8 @@
 var Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     markdown = require('markdown').markdown,
-	commands = require('../config/commands'),
-	WorkController,
+    commands = require('../config/commands'),
+    WorkController,
     WorkView = require('./workView'),
     WorkArticleItem = require('./WorkArticleItem'),
     WorkArticleItemView = require('./WorkArticleItemView'),
@@ -11,11 +11,11 @@ var Marionette = require('backbone.marionette'),
     moduleName = 'Work';
 
 WorkController = Marionette.Controller.extend({
-	initialize: function() {
+    initialize: function() {
 
     },
     showWork: function() {
-    	this.view = new WorkView();
+        this.view = new WorkView();
 
         commands.execute('app:screen:show', this.view);
         commands.execute('app:navigation:update', moduleName);
@@ -36,10 +36,10 @@ WorkController = Marionette.Controller.extend({
 
         this.loadWork(renderWorkItem);
     },
-    loadWork: function (callback) {
+    loadWork: function(callback) {
         $.ajax('/assets/data/work.json').done(callback);
     },
-    renderWork: function (data) {
+    renderWork: function(data) {
 
         var items = [];
 
@@ -51,6 +51,11 @@ WorkController = Marionette.Controller.extend({
             items.push(newItem);
         });
 
+        // Date order
+        items.sort(function(x, y) {
+            return new Date(y.get('item').date) - new Date(x.get('item').date);
+        });
+
         var collection = new WorkArticleCollection(items);
 
         this.view = new WorkArticleCollectionView({
@@ -59,9 +64,11 @@ WorkController = Marionette.Controller.extend({
 
         commands.execute('app:screen:show', this.view);
     },
-    renderWorkItem: function (id, data) {
+    renderWorkItem: function(id, data) {
 
-        var model = new WorkArticleItem({ item: data[0][id] });
+        var model = new WorkArticleItem({
+            item: data[0][id]
+        });
 
         this.view = new WorkArticleItemView({
             key: null,
