@@ -74,6 +74,10 @@ module.exports = function(grunt) {
             sass: {
                 files: ['<%= paths.src %>/scss/*'],
                 tasks: ['sass', 'browserify']
+            },
+            fonts: {
+                files: ['<%= paths.src %>/fonts/*'],
+                tasks: ['copy:fonts', 'browserify']
             }
         },
 
@@ -116,6 +120,14 @@ module.exports = function(grunt) {
                     cwd: '<%= paths.src %>/images',
                     src: ['*'],
                     dest: '<%= paths.dist %>/assets/img'
+                }, ],
+            },
+            fonts: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= paths.src %>/fonts',
+                    src: ['*'],
+                    dest: '<%= paths.dist %>/assets/fonts'
                 }, ],
             }
         },

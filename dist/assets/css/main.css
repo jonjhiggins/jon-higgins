@@ -1,8 +1,14 @@
 /* Sass Mixin that generates a Baseline Grid */
 /* by: Mike Morrison, Soholaunch.com */
 /* You don't have to leave this credit comment in, but it would be nice of you. */
+@font-face {
+  font-family: "Boing";
+  src: url("/assets/fonts/Boing.woff2") format("woff2"), url("/assets/fonts/Boing.woff") format("woff");
+  font-weight: bold;
+  font-style: normal; }
+
 body {
-  font-family: 'Input Sans', monospace;
+  font-family: "Input Sans", monospace;
   background-image: -webkit-linear-gradient(0deg, rgba(200, 0, 0, 0) 60px, transparent 20px), -webkit-linear-gradient(top, transparent 95%, rgba(56, 255, 255, 0.8) 100%);
   background-image: -moz-linear-gradient(0deg, rgba(200, 0, 0, 0) 60px, transparent 20px), -moz-linear-gradient(top, transparent 95%, rgba(56, 255, 255, 0.8) 100%);
   background-image: -o-linear-gradient(0deg, rgba(200, 0, 0, 0) 60px, transparent 20px), -o-linear-gradient(top, transparent 95%, rgba(56, 255, 255, 0.8) 100%);
@@ -10,7 +16,7 @@ body {
   background-position: 10px 0px; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Boing', sans-serif;
+  font-family: "Boing", sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.075em;
   font-weight: normal; }
