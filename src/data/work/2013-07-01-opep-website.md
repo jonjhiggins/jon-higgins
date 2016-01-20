@@ -3,7 +3,7 @@ layout: work-item
 category: work
 title: OPEP website
 class: opep-website
-Date: 2013-07-01
+date: 2013-07-01
 type: web
 skills: [plan, design, build]
 content_url: http://www.opep.co.uk

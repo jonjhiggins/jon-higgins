@@ -3,7 +3,7 @@ layout: work-item
 category: work
 title: Responsive website for Instiller
 class: instiller-site
-Date: 2013-08-01
+date: 2013-08-01
 type: web
 skills: [design, build]
 images: [work-hero-instiller-site-1.png]

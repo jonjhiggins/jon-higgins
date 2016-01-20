@@ -32,17 +32,9 @@ WorkController = Marionette.Controller.extend({
         var items = [];
 
         $.each(data[0], function(index, item) {
-
-            var html = /*markdown.toHTML(*/item.__content/*)*/,
-                newItem = new WorkArticleItem({html: html});
-
+            var newItem = new WorkArticleItem({item: item});
             items.push(newItem);
-
         });
-
-        // this.view = new WorkArticleItemView({
-        //     model: items[1]
-        // });
 
         var collection = new WorkArticleCollection(items);
 

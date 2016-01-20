@@ -13897,7 +13897,7 @@ module.exports = HomeRouter;
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "Home Template!\n";
+    return "Home Template\n";
 },"useData":true});
 
 },{"hbsfy/runtime":23}],96:[function(require,module,exports){
@@ -14164,10 +14164,17 @@ module.exports = WorkArticleItem;
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-  return ((stack1 = helpers.md.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.html : depth0),{"name":"md","hash":{},"data":data})) != null ? stack1 : "")
-    + "\n";
+  return "<div class=\"article__date\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.date : stack1), depth0))
+    + "</div>\n<div class=\"article__title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
+    + "</div>\n<figure class=\"article__image\"><img src=\"assets/img/"
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1), depth0))
+    + "\" alt=\"\" /></figure>\n<div class=\"article__description\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.description : stack1), depth0))
+    + "</div>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":23}],114:[function(require,module,exports){
@@ -14227,17 +14234,9 @@ WorkController = Marionette.Controller.extend({
         var items = [];
 
         $.each(data[0], function(index, item) {
-
-            var html = /*markdown.toHTML(*/item.__content/*)*/,
-                newItem = new WorkArticleItem({html: html});
-
+            var newItem = new WorkArticleItem({item: item});
             items.push(newItem);
-
         });
-
-        // this.view = new WorkArticleItemView({
-        //     model: items[1]
-        // });
 
         var collection = new WorkArticleCollection(items);
 

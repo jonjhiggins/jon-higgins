@@ -2,7 +2,7 @@
 layout: work-item
 category: work
 title: Design user interface for email marketing solution
-Date: 2011-10-01
+date: 2011-10-01
 type: web
 skills: [design, build]
 content_url: http://www.instiller.co.uk
