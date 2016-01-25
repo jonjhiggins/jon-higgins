@@ -11,6 +11,7 @@
 		WorkModule = require('./Work/WorkModule'),
 		WhoModule = require('./Who/WhoModule'),
 		NavigationModule = require('./Navigation/NavigationModule'),
+		ShowAnimated = require('../js/plugins/backbone.marionette.showAnimated'),
 		$ = require('jQuery');
 
 // Modules
@@ -22,10 +23,14 @@
 
 	/*globals console*/
 
+	var showAnimated = new ShowAnimated();
+
 // Command handlers
 
 	commands.setHandler('app:screen:show', function(view) {
-	    app.mainRegion.show(view);
+
+	    //app.mainRegion.show(view);
+		app.mainRegion.showAnimated(view, {animationType: 'slideLeft'});
 	});
 
 	commands.setHandler('app:navigation:update', function(section) {

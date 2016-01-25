@@ -3,7 +3,6 @@ var Marionette = require('backbone.marionette'),
     markdown = require('markdown').markdown,
     commands = require('../config/commands'),
     WorkController,
-    WorkView = require('./workView'),
     WorkArticleItem = require('./WorkArticleItem'),
     WorkArticleItemView = require('./WorkArticleItemView'),
     WorkArticleCollection = require('./WorkArticleCollection'),
@@ -15,9 +14,6 @@ WorkController = Marionette.Controller.extend({
 
     },
     showWork: function() {
-        this.view = new WorkView();
-
-        commands.execute('app:screen:show', this.view);
         commands.execute('app:navigation:update', moduleName);
         commands.execute('app:title', moduleName);
 
@@ -26,9 +22,6 @@ WorkController = Marionette.Controller.extend({
         this.loadWork(renderWork);
     },
     showWorkItem: function(id) {
-        this.view = new WorkView();
-
-        commands.execute('app:screen:show', this.view);
         commands.execute('app:navigation:update', moduleName);
         commands.execute('app:title', moduleName);
 
