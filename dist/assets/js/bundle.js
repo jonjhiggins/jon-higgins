@@ -2552,7 +2552,7 @@ return Autolinker;
 
 }));
 
-},{"backbone":6,"underscore":94}],4:[function(require,module,exports){
+},{"backbone":6,"underscore":95}],4:[function(require,module,exports){
 // MarionetteJS (Backbone.Marionette)
 // ----------------------------------
 // v2.4.2
@@ -5991,7 +5991,7 @@ return Autolinker;
   return Marionette;
 }));
 
-},{"backbone":6,"backbone.babysitter":3,"backbone.wreqr":5,"underscore":94}],5:[function(require,module,exports){
+},{"backbone":6,"backbone.babysitter":3,"backbone.wreqr":5,"underscore":95}],5:[function(require,module,exports){
 // Backbone.Wreqr (Backbone.Marionette)
 // ----------------------------------
 // v1.3.5
@@ -6428,7 +6428,7 @@ return Autolinker;
 
 }));
 
-},{"backbone":6,"underscore":94}],6:[function(require,module,exports){
+},{"backbone":6,"underscore":95}],6:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.1
 
@@ -8305,7 +8305,7 @@ return Autolinker;
 }));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":30,"underscore":94}],7:[function(require,module,exports){
+},{"jquery":31,"underscore":95}],7:[function(require,module,exports){
 'use strict';
 
 var slice = require('array-slice');
@@ -9526,7 +9526,7 @@ function markdown(options) {
 }
 
 }).call(this,require('_process'))
-},{"_process":33,"extend-shallow":7,"remarkable":34}],29:[function(require,module,exports){
+},{"_process":34,"extend-shallow":7,"remarkable":35}],29:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -18764,11 +18764,13 @@ return jQuery;
 }));
 
 },{}],31:[function(require,module,exports){
+arguments[4][30][0].apply(exports,arguments)
+},{"dup":30}],32:[function(require,module,exports){
 // super simple module for the most common nodejs use case.
 exports.markdown = require("./markdown");
 exports.parse = exports.markdown.toHTML;
 
-},{"./markdown":32}],32:[function(require,module,exports){
+},{"./markdown":33}],33:[function(require,module,exports){
 // Released under MIT license
 // Copyright (c) 2009-2010 Dominic Baggott
 // Copyright (c) 2009-2010 Ash Berlin
@@ -20495,7 +20497,7 @@ function merge_text_nodes( jsonml ) {
   }
 } )() );
 
-},{"util":96}],33:[function(require,module,exports){
+},{"util":97}],34:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -20588,13 +20590,13 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 'use strict';
 
 
 module.exports = require('./lib/');
 
-},{"./lib/":48}],35:[function(require,module,exports){
+},{"./lib/":49}],36:[function(require,module,exports){
 // List of valid entities
 //
 // Generate with ./support/entities.js script
@@ -22730,7 +22732,7 @@ module.exports = {
   "zwnj":"\u200C"
 };
 
-},{}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 // List of valid html blocks names, accorting to commonmark spec
 // http://jgm.github.io/CommonMark/spec.html#html-blocks
 
@@ -22794,7 +22796,7 @@ var html_blocks = {};
 
 module.exports = html_blocks;
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 // Regexps to match html elements
 
 'use strict';
@@ -22855,7 +22857,7 @@ var HTML_TAG_RE = replace(/^(?:open_tag|close_tag|comment|processing|declaration
 
 module.exports.HTML_TAG_RE = HTML_TAG_RE;
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 // List of valid url schemas, accorting to commonmark spec
 // http://jgm.github.io/CommonMark/spec.html#autolinks
 
@@ -23029,7 +23031,7 @@ module.exports = [
   'ymsgr'
 ];
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23172,7 +23174,7 @@ exports.fromCodePoint     = fromCodePoint;
 exports.replaceEntities   = replaceEntities;
 exports.escapeHtml        = escapeHtml;
 
-},{"./entities":35}],40:[function(require,module,exports){
+},{"./entities":36}],41:[function(require,module,exports){
 // Commonmark default options
 
 'use strict';
@@ -23244,7 +23246,7 @@ module.exports = {
   }
 };
 
-},{}],41:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 // Remarkable default options
 
 'use strict';
@@ -23324,7 +23326,7 @@ module.exports = {
   }
 };
 
-},{}],42:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 // Remarkable default options
 
 'use strict';
@@ -23363,7 +23365,7 @@ module.exports = {
   }
 };
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 var replaceEntities = require('../common/utils').replaceEntities;
@@ -23378,7 +23380,7 @@ module.exports = function normalizeLink(url) {
   return encodeURI(normalized);
 };
 
-},{"../common/utils":39}],44:[function(require,module,exports){
+},{"../common/utils":40}],45:[function(require,module,exports){
 'use strict';
 
 module.exports = function normalizeReference(str) {
@@ -23388,7 +23390,7 @@ module.exports = function normalizeReference(str) {
   return str.trim().replace(/\s+/g, ' ').toUpperCase();
 };
 
-},{}],45:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 'use strict';
 
 
@@ -23474,7 +23476,7 @@ module.exports = function parseLinkDestination(state, pos) {
   return true;
 };
 
-},{"../common/utils":39,"./normalize_link":43}],46:[function(require,module,exports){
+},{"../common/utils":40,"./normalize_link":44}],47:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23535,7 +23537,7 @@ module.exports = function parseLinkLabel(state, start) {
   return labelEnd;
 };
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 'use strict';
 
 
@@ -23583,7 +23585,7 @@ module.exports = function parseLinkTitle(state, pos) {
   return false;
 };
 
-},{"../common/utils":39}],48:[function(require,module,exports){
+},{"../common/utils":40}],49:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23780,7 +23782,7 @@ module.exports = Remarkable;
 
 module.exports.utils = require('./common/utils');
 
-},{"./common/utils":39,"./configs/commonmark":40,"./configs/default":41,"./configs/full":42,"./parser_block":49,"./parser_core":50,"./parser_inline":51,"./renderer":52,"./ruler":53}],49:[function(require,module,exports){
+},{"./common/utils":40,"./configs/commonmark":41,"./configs/default":42,"./configs/full":43,"./parser_block":50,"./parser_core":51,"./parser_inline":52,"./renderer":53,"./ruler":54}],50:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23937,7 +23939,7 @@ ParserBlock.prototype.parse = function (str, options, env, outTokens) {
 
 module.exports = ParserBlock;
 
-},{"./ruler":53,"./rules_block/blockquote":55,"./rules_block/code":56,"./rules_block/deflist":57,"./rules_block/fences":58,"./rules_block/footnote":59,"./rules_block/heading":60,"./rules_block/hr":61,"./rules_block/htmlblock":62,"./rules_block/lheading":63,"./rules_block/list":64,"./rules_block/paragraph":65,"./rules_block/state_block":66,"./rules_block/table":67}],50:[function(require,module,exports){
+},{"./ruler":54,"./rules_block/blockquote":56,"./rules_block/code":57,"./rules_block/deflist":58,"./rules_block/fences":59,"./rules_block/footnote":60,"./rules_block/heading":61,"./rules_block/hr":62,"./rules_block/htmlblock":63,"./rules_block/lheading":64,"./rules_block/list":65,"./rules_block/paragraph":66,"./rules_block/state_block":67,"./rules_block/table":68}],51:[function(require,module,exports){
 'use strict';
 
 /**
@@ -23997,7 +23999,7 @@ Core.prototype.process = function (state) {
 
 module.exports = Core;
 
-},{"./ruler":53,"./rules_core/abbr":68,"./rules_core/abbr2":69,"./rules_core/block":70,"./rules_core/footnote_tail":71,"./rules_core/inline":72,"./rules_core/linkify":73,"./rules_core/references":74,"./rules_core/replacements":75,"./rules_core/smartquotes":76}],51:[function(require,module,exports){
+},{"./ruler":54,"./rules_core/abbr":69,"./rules_core/abbr2":70,"./rules_core/block":71,"./rules_core/footnote_tail":72,"./rules_core/inline":73,"./rules_core/linkify":74,"./rules_core/references":75,"./rules_core/replacements":76,"./rules_core/smartquotes":77}],52:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24160,7 +24162,7 @@ function validateLink(url) {
 
 module.exports = ParserInline;
 
-},{"./common/utils":39,"./ruler":53,"./rules_inline/autolink":77,"./rules_inline/backticks":78,"./rules_inline/del":79,"./rules_inline/emphasis":80,"./rules_inline/entity":81,"./rules_inline/escape":82,"./rules_inline/footnote_inline":83,"./rules_inline/footnote_ref":84,"./rules_inline/htmltag":85,"./rules_inline/ins":86,"./rules_inline/links":87,"./rules_inline/mark":88,"./rules_inline/newline":89,"./rules_inline/state_inline":90,"./rules_inline/sub":91,"./rules_inline/sup":92,"./rules_inline/text":93}],52:[function(require,module,exports){
+},{"./common/utils":40,"./ruler":54,"./rules_inline/autolink":78,"./rules_inline/backticks":79,"./rules_inline/del":80,"./rules_inline/emphasis":81,"./rules_inline/entity":82,"./rules_inline/escape":83,"./rules_inline/footnote_inline":84,"./rules_inline/footnote_ref":85,"./rules_inline/htmltag":86,"./rules_inline/ins":87,"./rules_inline/links":88,"./rules_inline/mark":89,"./rules_inline/newline":90,"./rules_inline/state_inline":91,"./rules_inline/sub":92,"./rules_inline/sup":93,"./rules_inline/text":94}],53:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24237,7 +24239,7 @@ Renderer.prototype.render = function (tokens, options, env) {
   return result;
 };
 
-},{"./common/utils":39,"./rules":54}],53:[function(require,module,exports){
+},{"./common/utils":40,"./rules":55}],54:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24512,7 +24514,7 @@ Ruler.prototype.getRules = function (chainName) {
 
 module.exports = Ruler;
 
-},{}],54:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 'use strict';
 
 /**
@@ -24940,7 +24942,7 @@ var getBreak = rules.getBreak = function getBreak(tokens, idx) {
 
 module.exports = rules;
 
-},{"./common/utils":39}],55:[function(require,module,exports){
+},{"./common/utils":40}],56:[function(require,module,exports){
 // Block quotes
 
 'use strict';
@@ -25075,7 +25077,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],56:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 // Code block (4 spaces padded)
 
 'use strict';
@@ -25113,7 +25115,7 @@ module.exports = function code(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],57:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 // Definition lists
 
 'use strict';
@@ -25322,7 +25324,7 @@ module.exports = function deflist(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],58:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 // fences (``` lang, ~~~ lang)
 
 'use strict';
@@ -25415,7 +25417,7 @@ module.exports = function fences(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],59:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 // Process footnote reference list
 
 'use strict';
@@ -25484,7 +25486,7 @@ module.exports = function footnote(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],60:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 // heading (#, ##, ...)
 
 'use strict';
@@ -25544,7 +25546,7 @@ module.exports = function heading(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],61:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 // Horizontal rule
 
 'use strict';
@@ -25591,7 +25593,7 @@ module.exports = function hr(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],62:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 // HTML block
 
 'use strict';
@@ -25667,7 +25669,7 @@ module.exports = function htmlblock(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/html_blocks":36}],63:[function(require,module,exports){
+},{"../common/html_blocks":37}],64:[function(require,module,exports){
 // lheading (---, ===)
 
 'use strict';
@@ -25724,7 +25726,7 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],64:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 // Lists
 
 'use strict';
@@ -25992,7 +25994,7 @@ module.exports = function list(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],65:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 // Paragraph
 
 'use strict';
@@ -26053,7 +26055,7 @@ module.exports = function paragraph(state, startLine/*, endLine*/) {
   return true;
 };
 
-},{}],66:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 // Parser state class
 
 'use strict';
@@ -26213,7 +26215,7 @@ StateBlock.prototype.getLines = function getLines(begin, end, indent, keepLastLF
 
 module.exports = StateBlock;
 
-},{}],67:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 // GFM table, non-standard
 
 'use strict';
@@ -26349,7 +26351,7 @@ module.exports = function table(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],68:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 // Parse abbreviation definitions, i.e. `*[abbr]: description`
 //
 
@@ -26421,7 +26423,7 @@ module.exports = function abbr(state) {
   }
 };
 
-},{"../helpers/parse_link_label":46,"../rules_inline/state_inline":90}],69:[function(require,module,exports){
+},{"../helpers/parse_link_label":47,"../rules_inline/state_inline":91}],70:[function(require,module,exports){
 // Enclose abbreviations in <abbr> tags
 //
 'use strict';
@@ -26511,7 +26513,7 @@ module.exports = function abbr2(state) {
   }
 };
 
-},{}],70:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 'use strict';
 
 module.exports = function block(state) {
@@ -26530,7 +26532,7 @@ module.exports = function block(state) {
   }
 };
 
-},{}],71:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 'use strict';
 
 
@@ -26627,7 +26629,7 @@ module.exports = function footnote_block(state) {
   });
 };
 
-},{}],72:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 'use strict';
 
 module.exports = function inline(state) {
@@ -26642,7 +26644,7 @@ module.exports = function inline(state) {
   }
 };
 
-},{}],73:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 // Replace link-like texts with link nodes.
 //
 // Currently restricted by `inline.validateLink()` to http/https/ftp
@@ -26805,7 +26807,7 @@ module.exports = function linkify(state) {
   }
 };
 
-},{"autolinker":2}],74:[function(require,module,exports){
+},{"autolinker":2}],75:[function(require,module,exports){
 'use strict';
 
 
@@ -26905,7 +26907,7 @@ module.exports = function references(state) {
   }
 };
 
-},{"../helpers/normalize_reference":44,"../helpers/parse_link_destination":45,"../helpers/parse_link_label":46,"../helpers/parse_link_title":47,"../rules_inline/state_inline":90}],75:[function(require,module,exports){
+},{"../helpers/normalize_reference":45,"../helpers/parse_link_destination":46,"../helpers/parse_link_label":47,"../helpers/parse_link_title":48,"../rules_inline/state_inline":91}],76:[function(require,module,exports){
 // Simple typographical replacements
 //
 'use strict';
@@ -26971,7 +26973,7 @@ module.exports = function replace(state) {
   }
 };
 
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 // Convert straight quotation marks to typographic ones
 //
 'use strict';
@@ -27086,7 +27088,7 @@ module.exports = function smartquotes(state) {
   }
 };
 
-},{}],77:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 // Process autolinks '<protocol:...>'
 
 'use strict';
@@ -27166,7 +27168,7 @@ module.exports = function autolink(state, silent) {
   return false;
 };
 
-},{"../common/url_schemas":38,"../helpers/normalize_link":43}],78:[function(require,module,exports){
+},{"../common/url_schemas":39,"../helpers/normalize_link":44}],79:[function(require,module,exports){
 // Parse backticks
 
 'use strict';
@@ -27214,7 +27216,7 @@ module.exports = function backticks(state, silent) {
   return true;
 };
 
-},{}],79:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 // Process ~~deleted text~~
 
 'use strict';
@@ -27300,7 +27302,7 @@ module.exports = function del(state, silent) {
   return true;
 };
 
-},{}],80:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 // Process *this* and _that_
 
 'use strict';
@@ -27451,7 +27453,7 @@ module.exports = function emphasis(state, silent) {
   return true;
 };
 
-},{}],81:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 // Process html entity - &#123;, &#xAF;, &quot;, ...
 
 'use strict';
@@ -27501,7 +27503,7 @@ module.exports = function entity(state, silent) {
   return true;
 };
 
-},{"../common/entities":35,"../common/utils":39}],82:[function(require,module,exports){
+},{"../common/entities":36,"../common/utils":40}],83:[function(require,module,exports){
 // Proceess escaped chars and hardbreaks
 
 'use strict';
@@ -27552,7 +27554,7 @@ module.exports = function escape(state, silent) {
   return true;
 };
 
-},{}],83:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 // Process inline footnotes (^[...])
 
 'use strict';
@@ -27607,7 +27609,7 @@ module.exports = function footnote_inline(state, silent) {
   return true;
 };
 
-},{"../helpers/parse_link_label":46}],84:[function(require,module,exports){
+},{"../helpers/parse_link_label":47}],85:[function(require,module,exports){
 // Process footnote references ([^...])
 
 'use strict';
@@ -27671,7 +27673,7 @@ module.exports = function footnote_ref(state, silent) {
   return true;
 };
 
-},{}],85:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 // Process html tags
 
 'use strict';
@@ -27722,7 +27724,7 @@ module.exports = function htmltag(state, silent) {
   return true;
 };
 
-},{"../common/html_re":37}],86:[function(require,module,exports){
+},{"../common/html_re":38}],87:[function(require,module,exports){
 // Process ++inserted text++
 
 'use strict';
@@ -27808,7 +27810,7 @@ module.exports = function ins(state, silent) {
   return true;
 };
 
-},{}],87:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 // Process [links](<to> "stuff")
 
 'use strict';
@@ -27975,7 +27977,7 @@ module.exports = function links(state, silent) {
   return true;
 };
 
-},{"../helpers/normalize_reference":44,"../helpers/parse_link_destination":45,"../helpers/parse_link_label":46,"../helpers/parse_link_title":47}],88:[function(require,module,exports){
+},{"../helpers/normalize_reference":45,"../helpers/parse_link_destination":46,"../helpers/parse_link_label":47,"../helpers/parse_link_title":48}],89:[function(require,module,exports){
 // Process ==highlighted text==
 
 'use strict';
@@ -28061,7 +28063,7 @@ module.exports = function del(state, silent) {
   return true;
 };
 
-},{}],89:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 // Proceess '\n'
 
 'use strict';
@@ -28111,7 +28113,7 @@ module.exports = function newline(state, silent) {
   return true;
 };
 
-},{}],90:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 // Inline parser state
 
 'use strict';
@@ -28195,7 +28197,7 @@ StateInline.prototype.cacheGet = function (key) {
 
 module.exports = StateInline;
 
-},{}],91:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 // Process ~subscript~
 
 'use strict';
@@ -28255,7 +28257,7 @@ module.exports = function sub(state, silent) {
   return true;
 };
 
-},{}],92:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 // Process ^superscript^
 
 'use strict';
@@ -28315,7 +28317,7 @@ module.exports = function sup(state, silent) {
   return true;
 };
 
-},{}],93:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 // Skip text characters for text token, place those to pending buffer
 // and increment current pos
 
@@ -28370,7 +28372,7 @@ module.exports = function text(state, silent) {
   return true;
 };
 
-},{}],94:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -29920,14 +29922,14 @@ module.exports = function text(state, silent) {
   }
 }.call(this));
 
-},{}],95:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],96:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -30517,7 +30519,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":95,"_process":33,"inherits":29}],97:[function(require,module,exports){
+},{"./support/isBuffer":96,"_process":34,"inherits":29}],98:[function(require,module,exports){
 module.exports={
 	"siteName": "Jon Higgins",
 	"navigation": [
@@ -30540,7 +30542,7 @@ module.exports={
 	]
 }
 
-},{}],98:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	HomeView = require('./homeView'),
 	commands = require('../config/commands'),
@@ -30562,7 +30564,7 @@ HomeController = Marionette.Controller.extend({
 
 module.exports = HomeController;
 
-},{"../config/commands":128,"./homeView":102,"backbone.marionette":4}],99:[function(require,module,exports){
+},{"../config/commands":129,"./homeView":103,"backbone.marionette":4}],100:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	HomeController = require('./HomeController'),
@@ -30587,7 +30589,7 @@ HomeModule = Marionette.Module.extend({
 });
 
 module.exports = HomeModule;
-},{"./HomeController":98,"./HomeRouter":100,"backbone":6,"backbone.marionette":4}],100:[function(require,module,exports){
+},{"./HomeController":99,"./HomeRouter":101,"backbone":6,"backbone.marionette":4}],101:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -30601,14 +30603,14 @@ HomeRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = HomeRouter;
-},{"backbone.marionette":4}],101:[function(require,module,exports){
+},{"backbone.marionette":4}],102:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Home Template\n";
 },"useData":true});
 
-},{"hbsfy/runtime":27}],102:[function(require,module,exports){
+},{"hbsfy/runtime":27}],103:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./HomeTemplate.hbs'),
 	HomeView;
@@ -30619,7 +30621,7 @@ HomeView = Marionette.CompositeView.extend({
 
 module.exports = HomeView;
 
-},{"./HomeTemplate.hbs":101,"backbone.marionette":4}],103:[function(require,module,exports){
+},{"./HomeTemplate.hbs":102,"backbone.marionette":4}],104:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     Backbone = require('backbone'),
     commands = require('../config/commands'),
@@ -30655,14 +30657,14 @@ NavigationController = Marionette.Controller.extend({
 });
 
 module.exports = NavigationController;
-},{"../../data/site.json":97,"../config/commands":128,"./NavigationItem":104,"./NavigationItems":107,"./navigationView":110,"backbone":6,"backbone.marionette":4}],104:[function(require,module,exports){
+},{"../../data/site.json":98,"../config/commands":129,"./NavigationItem":105,"./NavigationItems":108,"./navigationView":111,"backbone":6,"backbone.marionette":4}],105:[function(require,module,exports){
 var Backbone = require('backbone'),
 	NavigationItem;
 
 var NavigationItem = Backbone.Model.extend({});
 
 module.exports = NavigationItem;
-},{"backbone":6}],105:[function(require,module,exports){
+},{"backbone":6}],106:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -30679,7 +30681,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "</a>";
 },"useData":true});
 
-},{"hbsfy/runtime":27}],106:[function(require,module,exports){
+},{"hbsfy/runtime":27}],107:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./NavigationItemTemplate.hbs'),
 	NavigationItemView;
@@ -30704,7 +30706,7 @@ NavigationItemView = Marionette.ItemView.extend({
 
 module.exports = NavigationItemView;
 
-},{"./NavigationItemTemplate.hbs":105,"backbone.marionette":4}],107:[function(require,module,exports){
+},{"./NavigationItemTemplate.hbs":106,"backbone.marionette":4}],108:[function(require,module,exports){
 var Backbone = require('backbone'),
     NavigationItem = require('./NavigationItem'),
     NavigationItems;
@@ -30714,7 +30716,7 @@ var NavigationItems = Backbone.Collection.extend({
 });
 
 module.exports = NavigationItems;
-},{"./NavigationItem":104,"backbone":6}],108:[function(require,module,exports){
+},{"./NavigationItem":105,"backbone":6}],109:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	NavigationController = require('./NavigationController'),
@@ -30733,14 +30735,14 @@ NavigationModule = Marionette.Module.extend({
 });
 
 module.exports = NavigationModule;
-},{"./NavigationController":103,"backbone":6,"backbone.marionette":4}],109:[function(require,module,exports){
+},{"./NavigationController":104,"backbone":6,"backbone.marionette":4}],110:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "";
 },"useData":true});
 
-},{"hbsfy/runtime":27}],110:[function(require,module,exports){
+},{"hbsfy/runtime":27}],111:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./NavigationTemplate.hbs'),
     NavigationItemView = require('./NavigationItemView.js'),
@@ -30760,7 +30762,7 @@ NavigationView = Marionette.CompositeView.extend({
 
 module.exports = NavigationView;
 
-},{"./NavigationItemView.js":106,"./NavigationTemplate.hbs":109,"backbone.marionette":4}],111:[function(require,module,exports){
+},{"./NavigationItemView.js":107,"./NavigationTemplate.hbs":110,"backbone.marionette":4}],112:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	WhoView = require('./whoView'),
 	commands = require('../config/commands'),
@@ -30781,7 +30783,7 @@ WhoController = Marionette.Controller.extend({
 });
 
 module.exports = WhoController;
-},{"../config/commands":128,"./whoView":115,"backbone.marionette":4}],112:[function(require,module,exports){
+},{"../config/commands":129,"./whoView":116,"backbone.marionette":4}],113:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WhoController = require('./WhoController'),
@@ -30806,7 +30808,7 @@ WhoModule = Marionette.Module.extend({
 });
 
 module.exports = WhoModule;
-},{"./WhoController":111,"./WhoRouter":113,"backbone":6,"backbone.marionette":4}],113:[function(require,module,exports){
+},{"./WhoController":112,"./WhoRouter":114,"backbone":6,"backbone.marionette":4}],114:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -30819,14 +30821,14 @@ WhoRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WhoRouter;
-},{"backbone.marionette":4}],114:[function(require,module,exports){
+},{"backbone.marionette":4}],115:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Who Template";
 },"useData":true});
 
-},{"hbsfy/runtime":27}],115:[function(require,module,exports){
+},{"hbsfy/runtime":27}],116:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WhoTemplate.hbs'),
 	WhoView;
@@ -30837,7 +30839,7 @@ WhoView = Marionette.CompositeView.extend({
 
 module.exports = WhoView;
 
-},{"./WhoTemplate.hbs":114,"backbone.marionette":4}],116:[function(require,module,exports){
+},{"./WhoTemplate.hbs":115,"backbone.marionette":4}],117:[function(require,module,exports){
 var Backbone = require('backbone'),
     WorkArticleItem = require('./WorkArticleItem'),
     WorkArticleCollection;
@@ -30848,7 +30850,7 @@ WorkArticleCollection = Backbone.Collection.extend({
 
 module.exports = WorkArticleCollection;
 
-},{"./WorkArticleItem":119,"backbone":6}],117:[function(require,module,exports){
+},{"./WorkArticleItem":120,"backbone":6}],118:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -30867,7 +30869,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + "</p>\n</a>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":27}],118:[function(require,module,exports){
+},{"hbsfy/runtime":27}],119:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     WorkArticleItemView = require('./WorkArticleItemView'),
     WorkArticleCollectionView;
@@ -30879,7 +30881,7 @@ WorkArticleCollectionView = Marionette.CollectionView.extend({
 
 module.exports = WorkArticleCollectionView;
 
-},{"./WorkArticleItemView":121,"backbone.marionette":4}],119:[function(require,module,exports){
+},{"./WorkArticleItemView":122,"backbone.marionette":4}],120:[function(require,module,exports){
 var Backbone = require('backbone'),
     WorkArticleItem;
 
@@ -30903,7 +30905,7 @@ WorkArticleItem = Backbone.Model.extend({
 
 module.exports = WorkArticleItem;
 
-},{"backbone":6}],120:[function(require,module,exports){
+},{"backbone":6}],121:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -30920,7 +30922,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + "</div>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":27}],121:[function(require,module,exports){
+},{"hbsfy/runtime":27}],122:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     templateSingle = require('./WorkArticleItemTemplate.hbs'),
     templateCollection = require('./WorkArticleCollectionItemTemplate.hbs'),
@@ -30953,7 +30955,7 @@ WorkArticleItemView = Marionette.ItemView.extend({
 
 module.exports = WorkArticleItemView;
 
-},{"./WorkArticleCollectionItemTemplate.hbs":117,"./WorkArticleItemTemplate.hbs":120,"backbone.marionette":4,"hbsfy/runtime":27,"helper-md":28}],122:[function(require,module,exports){
+},{"./WorkArticleCollectionItemTemplate.hbs":118,"./WorkArticleItemTemplate.hbs":121,"backbone.marionette":4,"hbsfy/runtime":27,"helper-md":28}],123:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     markdown = require('markdown').markdown,
@@ -31037,7 +31039,7 @@ WorkController = Marionette.Controller.extend({
 
 module.exports = WorkController;
 
-},{"../config/commands":128,"./WorkArticleCollection":116,"./WorkArticleCollectionView":118,"./WorkArticleItem":119,"./WorkArticleItemView":121,"./workView":126,"backbone.marionette":4,"jquery":30,"markdown":31}],123:[function(require,module,exports){
+},{"../config/commands":129,"./WorkArticleCollection":117,"./WorkArticleCollectionView":119,"./WorkArticleItem":120,"./WorkArticleItemView":122,"./workView":127,"backbone.marionette":4,"jquery":31,"markdown":32}],124:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WorkController = require('./WorkController'),
@@ -31062,7 +31064,7 @@ WorkModule = Marionette.Module.extend({
 });
 
 module.exports = WorkModule;
-},{"./WorkController":122,"./WorkRouter":124,"backbone":6,"backbone.marionette":4}],124:[function(require,module,exports){
+},{"./WorkController":123,"./WorkRouter":125,"backbone":6,"backbone.marionette":4}],125:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -31077,14 +31079,14 @@ WorkRouter = Marionette.AppRouter.extend({
 
 module.exports = WorkRouter;
 
-},{"backbone.marionette":4}],125:[function(require,module,exports){
+},{"backbone.marionette":4}],126:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "Work Template";
 },"useData":true});
 
-},{"hbsfy/runtime":27}],126:[function(require,module,exports){
+},{"hbsfy/runtime":27}],127:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WorkTemplate.hbs'),
 	WorkView;
@@ -31095,7 +31097,7 @@ WorkView = Marionette.CompositeView.extend({
 
 module.exports = WorkView;
 
-},{"./WorkTemplate.hbs":125,"backbone.marionette":4}],127:[function(require,module,exports){
+},{"./WorkTemplate.hbs":126,"backbone.marionette":4}],128:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -31110,11 +31112,11 @@ var app = new Marionette.Application({
 
 module.exports = app;
 
-},{"backbone.marionette":4}],128:[function(require,module,exports){
+},{"backbone.marionette":4}],129:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = new Backbone.Wreqr.Commands();
-},{"backbone":6}],129:[function(require,module,exports){
+},{"backbone":6}],130:[function(require,module,exports){
 'use strict';
 
 // Requires
@@ -31127,7 +31129,8 @@ module.exports = new Backbone.Wreqr.Commands();
 		HomeModule = require('./Home/HomeModule'),
 		WorkModule = require('./Work/WorkModule'),
 		WhoModule = require('./Who/WhoModule'),
-		NavigationModule = require('./Navigation/NavigationModule');
+		NavigationModule = require('./Navigation/NavigationModule'),
+		$ = require('jQuery');
 
 // Modules
 
@@ -31162,4 +31165,41 @@ module.exports = new Backbone.Wreqr.Commands();
 	// Turn on HTML5 pushState / turn off hashbang
 	Backbone.history.start({ pushState: true });
 
-},{"../data/site.json":97,"./Home/HomeModule":99,"./Navigation/NavigationModule":108,"./Who/WhoModule":112,"./Work/WorkModule":123,"./app":127,"./config/commands":128,"backbone":6,"backbone.marionette":4}]},{},[129]);
+	// Use absolute URLs  to navigate to anything not in your Router.
+
+var openLinkInTab = false;
+
+// Only need this for pushState enabled browsers
+if (Backbone.history && Backbone.history._hasPushState) {
+
+  $(document).on('keydown', function(event) {
+    if (event.ctrlKey || event.keyCode === 91) {
+      openLinkInTab = true;
+    }
+  });
+
+  $(document).on('keyup', function(event) {
+      openLinkInTab = false;
+  });
+
+  // Use delegation to avoid initial DOM selection and allow all matching elements to bubble
+  $(document).on('click', 'a', function(evt) {
+    // Get the anchor href and protcol
+    var href = $(this).attr("href"),
+		protocol = this.protocol + "//";
+
+    // Ensure the protocol is not part of URL, meaning its relative.
+    // Stop the event bubbling to ensure the link will not cause a page refresh.
+    if (!openLinkInTab && href.slice(protocol.length) !== protocol) {
+      evt.preventDefault();
+
+      // Note by using Backbone.history.navigate, router events will not be
+      // triggered.  If this is a problem, change this to navigate on your
+      // router.
+      Backbone.history.navigate(href, true);
+    }
+  });
+
+}
+
+},{"../data/site.json":98,"./Home/HomeModule":100,"./Navigation/NavigationModule":109,"./Who/WhoModule":113,"./Work/WorkModule":124,"./app":128,"./config/commands":129,"backbone":6,"backbone.marionette":4,"jQuery":30}]},{},[130]);
