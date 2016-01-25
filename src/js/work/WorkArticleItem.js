@@ -15,7 +15,7 @@ WorkArticleItem = Backbone.Model.extend({
     },
     // Generate URL from key
     generateUrl: function(key) {
-        return '#/work/' + key;
+        return '/work/' + key;
     }
 });
 
