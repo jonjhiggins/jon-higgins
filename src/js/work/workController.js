@@ -18,7 +18,7 @@ WorkController = Marionette.Controller.extend({
         commands.execute('app:title', moduleName);
 
         var renderWork = this.renderWork.bind(this);
-
+        commands.execute('app:screen:hide', moduleName);
         this.loadWork(renderWork);
     },
     showWorkItem: function(id) {
@@ -26,7 +26,7 @@ WorkController = Marionette.Controller.extend({
         commands.execute('app:title', moduleName);
 
         var renderWorkItem = this.renderWorkItem.bind(this, id);
-
+        commands.execute('app:screen:hide', moduleName);
         this.loadWork(renderWorkItem);
     },
     loadWork: function(callback) {

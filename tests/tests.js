@@ -38214,7 +38214,7 @@ module.exports = WhoRouter;
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "Who Template";
+    return "<div class=\"page\">Who Template</div>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":63}],154:[function(require,module,exports){
@@ -38365,7 +38365,7 @@ WorkController = Marionette.Controller.extend({
         commands.execute('app:title', moduleName);
 
         var renderWork = this.renderWork.bind(this);
-
+        commands.execute('app:screen:hide', moduleName);
         this.loadWork(renderWork);
     },
     showWorkItem: function(id) {
@@ -38373,7 +38373,7 @@ WorkController = Marionette.Controller.extend({
         commands.execute('app:title', moduleName);
 
         var renderWorkItem = this.renderWorkItem.bind(this, id);
-
+        commands.execute('app:screen:hide', moduleName);
         this.loadWork(renderWorkItem);
     },
     loadWork: function(callback) {

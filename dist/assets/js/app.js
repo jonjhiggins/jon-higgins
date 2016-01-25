@@ -32462,7 +32462,7 @@ module.exports = WhoRouter;
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "Who Template";
+    return "<div class=\"page\">Who Template</div>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":24}],112:[function(require,module,exports){
@@ -32613,7 +32613,7 @@ WorkController = Marionette.Controller.extend({
         commands.execute('app:title', moduleName);
 
         var renderWork = this.renderWork.bind(this);
-
+        commands.execute('app:screen:hide', moduleName);
         this.loadWork(renderWork);
     },
     showWorkItem: function(id) {
@@ -32621,7 +32621,7 @@ WorkController = Marionette.Controller.extend({
         commands.execute('app:title', moduleName);
 
         var renderWorkItem = this.renderWorkItem.bind(this, id);
-
+        commands.execute('app:screen:hide', moduleName);
         this.loadWork(renderWorkItem);
     },
     loadWork: function(callback) {
@@ -32758,6 +32758,10 @@ module.exports = new Backbone.Wreqr.Commands();
 
 // Command handlers
 
+	commands.setHandler('app:screen:hide', function(view) {
+		app.mainRegion.hideAnimated();
+	});
+
 	commands.setHandler('app:screen:show', function(view) {
 
 	    //app.mainRegion.show(view);
@@ -32833,11 +32837,10 @@ var TweenMax = require('gsap/src/uncompressed/TweenMax.js'),
 var ShowAnimated = function() {
 
     _.extend(Marionette.Region.prototype, {
-
+/*globals console*/
         animationType: 'default',
 
         attachHtml: function(view) {
-
             var self = this,
                 oldView = this.currentView,
                 newView = view;
@@ -32887,7 +32890,6 @@ var ShowAnimated = function() {
         },
 
         showAnimated: function(view, options) {
-
             options = options || {};
             this.animationType = options.animationType || 'default';
             //options.preventDestroy = true;
@@ -32903,6 +32905,12 @@ var ShowAnimated = function() {
                 oldView.destroy();
             }
 
+        },
+
+        hideAnimated: function() {
+            if (this.currentView) {
+                this.currentView.$el.fadeOut();
+            }
         }
     });
 

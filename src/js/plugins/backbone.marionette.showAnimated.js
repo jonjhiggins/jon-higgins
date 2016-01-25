@@ -81,6 +81,12 @@ var ShowAnimated = function() {
                 oldView.destroy();
             }
 
+        },
+
+        hideAnimated: function() {
+            if (this.currentView) {
+                this.currentView.$el.fadeOut();
+            }
         }
     });
 
