@@ -37914,22 +37914,23 @@ module.exports={
 	"navigation": [
 		{
 			"title": "Home",
-			"link": "#"
+			"link": "/"
 		},
 		{
 			"title": "Work",
-			"link": "#/work"
+			"link": "/work"
 		},
 		{
 			"title": "Words",
-			"link": "#/words"
+			"link": "/words"
 		},
 		{
 			"title": "Who",
-			"link": "#/who"
+			"link": "/who"
 		}
 	]
 }
+
 },{}],137:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	HomeView = require('./homeView'),
@@ -38499,6 +38500,7 @@ var app = new Marionette.Application({
 });
 
 module.exports = app;
+
 },{"backbone.marionette":5}],167:[function(require,module,exports){
 var Backbone = require('backbone');
 

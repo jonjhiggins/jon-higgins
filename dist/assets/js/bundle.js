@@ -30523,22 +30523,23 @@ module.exports={
 	"navigation": [
 		{
 			"title": "Home",
-			"link": "#"
+			"link": "/"
 		},
 		{
 			"title": "Work",
-			"link": "#/work"
+			"link": "/work"
 		},
 		{
 			"title": "Words",
-			"link": "#/words"
+			"link": "/words"
 		},
 		{
 			"title": "Who",
-			"link": "#/who"
+			"link": "/who"
 		}
 	]
 }
+
 },{}],98:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	HomeView = require('./homeView'),
@@ -31108,6 +31109,7 @@ var app = new Marionette.Application({
 });
 
 module.exports = app;
+
 },{"backbone.marionette":4}],128:[function(require,module,exports){
 var Backbone = require('backbone');
 
@@ -31157,5 +31159,7 @@ module.exports = new Backbone.Wreqr.Commands();
 // Start App
 
 	app.start();
-	Backbone.history.start();
+	// Turn on HTML5 pushState / turn off hashbang
+	Backbone.history.start({ pushState: true });
+
 },{"../data/site.json":97,"./Home/HomeModule":99,"./Navigation/NavigationModule":108,"./Who/WhoModule":112,"./Work/WorkModule":123,"./app":127,"./config/commands":128,"backbone":6,"backbone.marionette":4}]},{},[129]);

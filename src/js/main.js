@@ -42,4 +42,5 @@
 // Start App
 
 	app.start();
-	Backbone.history.start();
+	// Turn on HTML5 pushState / turn off hashbang
+	Backbone.history.start({ pushState: true });

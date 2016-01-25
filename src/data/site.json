@@ -3,19 +3,19 @@
 	"navigation": [
 		{
 			"title": "Home",
-			"link": "#"
+			"link": "/"
 		},
 		{
 			"title": "Work",
-			"link": "#/work"
+			"link": "/work"
 		},
 		{
 			"title": "Words",
-			"link": "#/words"
+			"link": "/words"
 		},
 		{
 			"title": "Who",
-			"link": "#/who"
+			"link": "/who"
 		}
 	]
 }
