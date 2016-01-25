@@ -8,6 +8,8 @@ module.exports = function(grunt) {
 
     var vendors = 'jquery backbone backbone.marionette'.split(' ');
 
+    var historyApiFallback = require('connect-history-api-fallback');
+
     // Project configuration.
     grunt.initConfig({
 
@@ -87,6 +89,7 @@ module.exports = function(grunt) {
             },
             options: {
                 watchTask: true,
+                middleware: [ historyApiFallback() ],
                 server: {
                     baseDir: paths.dist,
                     routes: {
