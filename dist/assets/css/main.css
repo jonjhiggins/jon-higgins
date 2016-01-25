@@ -3,7 +3,7 @@
 /* You don't have to leave this credit comment in, but it would be nice of you. */
 @font-face {
   font-family: "Boing";
-  src: url("/assets/fonts/Boing.woff2") format("woff2"), url("/assets/fonts/Boing.woff") format("woff");
+  src: url("../fonts/Boing.woff2") format("woff2"), url("../fonts/Boing.woff") format("woff");
   font-weight: bold;
   font-style: normal; }
 
