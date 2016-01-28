@@ -38249,7 +38249,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + alias2(alias1((depth0 != null ? depth0.url : depth0), depth0))
     + "\">\n        <div class=\"article__date\">"
     + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
-    + "</div>\n        <h3 class=\"article__title\">"
+    + "</div>\n        <h3 class=\"article__title h2\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
     + "</h3>\n        <figure class=\"article__image\"><img src=\"assets/img/"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1), depth0))

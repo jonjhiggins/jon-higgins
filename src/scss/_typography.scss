@@ -5,9 +5,12 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: $fontHeading;
+    font-weight: normal; // Only if boing loaded
+}
+
+h2, h3, h4, h5, h6 {
     text-transform: uppercase;
     letter-spacing: 0.075em;
-    font-weight: normal; // Only if boing loaded
 }
 
 a {
@@ -55,13 +58,17 @@ a {
     h1,
     .h1 {
         font-size: rem($fontSizeH1Large);
+        text-transform: none;
+        letter-spacing: 0.01em;
         line-height: 1em;
         margin: em(24, $fontSizeH1Large) 0 em(42, $fontSizeH1Large);
+        color: $colourBlack;
     }
 
     h2,
     .h2 {
         font-size: rem($fontSizeH2Large);
+        color: $colourLightBrown;
     }
 
     h3,
@@ -71,6 +78,7 @@ a {
         margin: em(45, $fontSizeH3Large) 0 em(24, $fontSizeH3Large);
         border-top: em(3, $fontSizeH3Large) dotted rgba(0,0,0,0.2);
         padding-top: em(15, $fontSizeH3Large);
+        color: $colourLightBrown;
     }
 
     h4,
@@ -83,6 +91,7 @@ a {
         margin: em(24, $fontSizeH4Large) 0 em(18, $fontSizeH4Large);
         position: relative;
         top: -2px; // Visual adjustment to baseline grid
+        color: $colourBrown;
     }
 
     h5,
@@ -91,18 +100,7 @@ a {
     .h6 {
         font-size: rem($fontSizeH5Large);
         line-height: 18 / $fontSizeH5Large;
-
-    }
-
-    h5,
-    .h5 {
-        color: rgba(0,0,0,0.6);
-
-    }
-
-    h6,
-    .h6 {
-        color: rgba(0,0,0,0.4);
+        color: $colourMidGrey;
 
     }
 }
