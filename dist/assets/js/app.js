@@ -32617,30 +32617,52 @@ var Marionette = require('backbone.marionette'),
     ArticleItemView = require('./ArticleItemView'),
     ArticleCollection = require('./ArticleCollection'),
     ArticleCollectionView = require('./ArticleCollectionView'),
-    moduleName = 'Articles';
+    pageNames = {
+        work: 'Work',
+        words: 'Words'
+    };
 
 ArticlesController = Marionette.Controller.extend({
     initialize: function() {
 
     },
-    showArticle: function() {
+    showWork: function() {
+        this.showArticles('work', false);
+    },
+    showWords: function() {
+        this.showArticles('words', false);
+    },
+    showWorkItem: function(id) {
+        this.showArticles('work', true, id);
+    },
+    showWordsItem: function(id) {
+        this.showArticles('words', true, id);
+    },
+    updateNavigation: function(moduleName) {
         commands.execute('app:navigation:update', moduleName);
         commands.execute('app:title', moduleName);
-
-        var renderArticle = this.renderArticle.bind(this);
-        commands.execute('app:screen:hide', moduleName);
-        this.loadArticle(renderArticle);
     },
-    showArticleItem: function(id) {
-        commands.execute('app:navigation:update', moduleName);
-        commands.execute('app:title', moduleName);
+    showArticles: function(type, singleArticleItem, id) {
 
-        var renderArticleItem = this.renderArticleItem.bind(this, id);
-        commands.execute('app:screen:hide', moduleName);
-        this.loadArticle(renderArticleItem);
+        var renderArticle;
+
+        this.updateNavigation(pageNames[type]);
+        commands.execute('app:screen:hide');
+
+        if (singleArticleItem) {
+            // Just showing one article
+            renderArticle = this.renderArticleItem.bind(this, id);
+        } else {
+            // List all articles
+            renderArticle = this.renderArticle.bind(this);
+        }
+
+        this.loadArticle(type, renderArticle);
     },
-    loadArticle: function(callback) {
-        $.ajax('/assets/data/work.json').done(callback);
+    loadArticle: function(type, callback) {
+        $.ajax('/assets/data/' + type + '.json')
+            .done(callback)
+            .fail(this.failedAjax);
     },
     renderArticle: function(data) {
 
@@ -32679,6 +32701,10 @@ ArticlesController = Marionette.Controller.extend({
         });
 
         commands.execute('app:screen:show', this.view);
+    },
+    failedAjax: function() {
+        // @TODO make error view
+        window.alert('Sorry, there was a connection error');
     }
 });
 
@@ -32718,9 +32744,12 @@ var Marionette = require('backbone.marionette'),
 
 ArticlesRouter = Marionette.AppRouter.extend({
     appRoutes: {
-        'work': 'showArticle',
-        'work/': 'showArticle',
-        'work/:id': 'showArticleItem'
+        'work': 'showWork',
+        'work/': 'showWork',
+        'work/:id': 'showWorkItem',
+        'words': 'showWords',
+        'words/': 'showWords',
+        'words/:id': 'showWordsItem'
     }
 });
 
@@ -32760,7 +32789,7 @@ module.exports = new Backbone.Wreqr.Commands();
 
 // Command handlers
 
-	commands.setHandler('app:screen:hide', function(view) {
+	commands.setHandler('app:screen:hide', function() {
 		app.mainRegion.hideAnimated();
 	});
 

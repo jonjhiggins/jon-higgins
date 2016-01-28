@@ -5,9 +5,12 @@ var Marionette = require('backbone.marionette'),
 
 ArticlesRouter = Marionette.AppRouter.extend({
     appRoutes: {
-        'work': 'showArticle',
-        'work/': 'showArticle',
-        'work/:id': 'showArticleItem'
+        'work': 'showWork',
+        'work/': 'showWork',
+        'work/:id': 'showWorkItem',
+        'words': 'showWords',
+        'words/': 'showWords',
+        'words/:id': 'showWordsItem'
     }
 });
 

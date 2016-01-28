@@ -186,7 +186,8 @@ module.exports = function(grunt) {
                     width: 60
                 },
                 files: {
-                    '<%= paths.dist %>/assets/data/work.json': ['<%= paths.src %>/data/work/*.md']
+                    '<%= paths.dist %>/assets/data/work.json': ['<%= paths.src %>/data/work/*.md'],
+                    '<%= paths.dist %>/assets/data/words.json': ['<%= paths.src %>/data/words/*.md']
                 },
             }
         },
@@ -205,6 +206,6 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     // Default task(s).
-    grunt.registerTask('default', ['wiredep', 'copy', 'browserify', 'mochify', 'uglify', 'browserSync', 'watch']);
+    grunt.registerTask('default', ['m2j', 'wiredep', 'copy', 'browserify', 'mochify', 'uglify', 'browserSync', 'watch']);
 
 };

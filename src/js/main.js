@@ -27,7 +27,7 @@
 
 // Command handlers
 
-	commands.setHandler('app:screen:hide', function(view) {
+	commands.setHandler('app:screen:hide', function() {
 		app.mainRegion.hideAnimated();
 	});
 
