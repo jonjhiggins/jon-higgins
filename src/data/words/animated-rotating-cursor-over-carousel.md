@@ -2,6 +2,7 @@
 layout: post
 title: Animated rotating cursor over carousel
 description: Apply CSS3 transforms, transitions and animations to cursors.
+date: 2015-03-20
 category: words
 tags: [development, css, javascript]
 ---
@@ -26,7 +27,7 @@ Note that this effect will only be seen on desktop - there's no cursor on touch 
 ### How
 Now that we have a UX justification for this design pattern we need to look at a clean and reliable frontend implementation.
 
-### 1. Setup parent layout: add a carousel, with mousemove and click events. 
+### 1. Setup parent layout: add a carousel, with mousemove and click events.
 
 Mousemove checks if the cursor is in the left or right portion of the carousel, and adds a "left" or "right" class accordingly. Click event checks if the target is a link (either within the content or carousel pagination), if not it will page to next or previous slide, depending on whether the cursor is in the left or right portion of the carousel.
 

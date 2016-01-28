@@ -2,6 +2,7 @@
 layout: post
 title: Using Grunt to build email templates
 description: Take the pain out of building email templates using Grunt Email Boilerplate.
+date: 2014-01-21
 category: words
 tags: [development, email design, javascript]
 ---
@@ -16,27 +17,27 @@ Take the pain out of building email templates using [Grunt Email Boilerplate](ht
  *Couldn't templating help reduce the complexity of layouts and support DRY (don't repeat yourself)?*
 
 #### 2. Simple email templates often require complex CSS
-Email templates require a mixture of inline and embedded CSS. Using an method of inlining styles, such as [Premailer](https://github.com/premailer/premailer), is pretty much essential for keeping your HTML files clean. CSS pre-processors, such as SASS, can also help speed up development time. If we want to look at templating out sections of the email (suggested above) SASS helps us keep our CSS modular in separate files. Previously I would run `sass watch`, then run Premailer when the email was built / every time a template needing updating. 
+Email templates require a mixture of inline and embedded CSS. Using an method of inlining styles, such as [Premailer](https://github.com/premailer/premailer), is pretty much essential for keeping your HTML files clean. CSS pre-processors, such as SASS, can also help speed up development time. If we want to look at templating out sections of the email (suggested above) SASS helps us keep our CSS modular in separate files. Previously I would run `sass watch`, then run Premailer when the email was built / every time a template needing updating.
 
 *Couldn't this workflow be better automated?*
 
 #### 3. Testing email templates can be time consuming
-Previously, I would build a template then upload it to an email platform from which I'd send out test emails to myself and [Litmus](https://litmus.com). I'd then make adjustments, upload, send tests... adjustments, upload, send tests, adjustments, upload send tests... you get the picture. 
+Previously, I would build a template then upload it to an email platform from which I'd send out test emails to myself and [Litmus](https://litmus.com). I'd then make adjustments, upload, send tests... adjustments, upload, send tests, adjustments, upload send tests... you get the picture.
 
 *Couldn't we speed up this process?*
 
 #### 4. Manually updating email templates is often a dull, repetitive and painful task
-While some email templates are hooked up to CMS/ecommerce solutions that populate email templates, this level of integration isn't always feasible for some people. Updating a typical product/sales email template each month might involve updating the product name, product price, product URL and product image (resized, optimised and re-uploaded) for each product in the email - a dull, time-consuming task. Doing this task through a WYSIWYG editor commonly found in email platforms is prone to breaking layouts (editing wrong regions or incorrectly sized images). 
+While some email templates are hooked up to CMS/ecommerce solutions that populate email templates, this level of integration isn't always feasible for some people. Updating a typical product/sales email template each month might involve updating the product name, product price, product URL and product image (resized, optimised and re-uploaded) for each product in the email - a dull, time-consuming task. Doing this task through a WYSIWYG editor commonly found in email platforms is prone to breaking layouts (editing wrong regions or incorrectly sized images).
 
 *Couldn't this task be automated? And couldn't we better protect the layout from mistakes?*
 
 ### Grunt Email Boilerplate to the rescue!
-[Grunt Email Boilerplate](https://github.com/dwightjack/grunt-email-boilerplate) is a vanilla email template that takes advantage of task-runner [Grunt](http://gruntjs.com) and it's many plugins/tasks. Out of the box it: 
+[Grunt Email Boilerplate](https://github.com/dwightjack/grunt-email-boilerplate) is a vanilla email template that takes advantage of task-runner [Grunt](http://gruntjs.com) and it's many plugins/tasks. Out of the box it:
 
 * Provides templating via EJS
 * Watches and builds your SASS
 * Runs your content through Premailer
-* Optimises images 
+* Optimises images
 * Optionally, sends the email via Nodemailer
 
 ...which solves most of our problems outlined above:
@@ -54,4 +55,3 @@ While some email templates are hooked up to CMS/ecommerce solutions that populat
 While template building and testing can be painful, Grunt Email Boilerplate does a great job of speeding up development right out of the box. It's also straightforward to customise to fit your requirements.
 
 The next time you're building email templates I suggest you check out [Grunt Email Boilerplate](https://github.com/dwightjack/grunt-email-boilerplate). You can also [check out the source of a HTML template](https://github.com/jonjhiggins/clubline-emails) I built using Grunt Email Boilerplate - including customisations I've made to the workflow.
-

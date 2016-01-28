@@ -2,11 +2,12 @@
 layout: post
 title: Modifying 'max-device-width' with Javascript
 description: Changing CSS media queries on the client side.
+date: 2012-11-30
 category: words
 tags: [development, javascript, media queries, responsive]
 ---
 
-I recently had the requirement to swap out all occurrences of the CSS media query ``max-device-width`` with ``max-width`` in Javascript. I wasn't able to find any resources on how to go about this, so this may be of use for anyone needing to modify media queries on the client side. 
+I recently had the requirement to swap out all occurrences of the CSS media query ``max-device-width`` with ``max-width`` in Javascript. I wasn't able to find any resources on how to go about this, so this may be of use for anyone needing to modify media queries on the client side.
 
 ### Why would you need to mess with 'max-device-width'?
 
@@ -20,7 +21,7 @@ First we need to get hold of all the stylesheets that the document has loaded an
 function getCSSMediaRules(doc) {
 	var stylesheets = doc.styleSheets;
 	var mediaRules = new Array();
-			
+
 	// loop through all CSS files
 	for (var i in stylesheets) {
 		if (stylesheets.hasOwnProperty(i)) {
@@ -38,7 +39,7 @@ function getCSSMediaRules(doc) {
 			}
 		}
 	}
-		  	
+
 	return mediaRules;
 }
 ```

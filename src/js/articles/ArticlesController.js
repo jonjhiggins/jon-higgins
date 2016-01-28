@@ -44,7 +44,7 @@ ArticlesController = Marionette.Controller.extend({
             renderArticle = this.renderArticleItem.bind(this, id);
         } else {
             // List all articles
-            renderArticle = this.renderArticle.bind(this);
+            renderArticle = this.renderArticle.bind(this, type);
         }
 
         this.loadArticle(type, renderArticle);
@@ -54,14 +54,15 @@ ArticlesController = Marionette.Controller.extend({
             .done(callback)
             .fail(this.failedAjax);
     },
-    renderArticle: function(data) {
+    renderArticle: function(type, data) {
 
         var items = [];
 
         $.each(data[0], function(key, item) {
             var newItem = new ArticleItem({
                 key: key,
-                item: item
+                item: item,
+                type: type
             });
             items.push(newItem);
         });
@@ -80,7 +81,7 @@ ArticlesController = Marionette.Controller.extend({
         commands.execute('app:screen:show', this.view);
     },
     renderArticleItem: function(id, data) {
-
+/*globals console*/console.log(id, data);
         var model = new ArticleItem({
             item: data[0][id]
         });

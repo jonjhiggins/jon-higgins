@@ -38487,18 +38487,19 @@ var Backbone = require('backbone'),
 ArticleItem = Backbone.Model.extend({
     initialize: function() {
 
-        var key = this.get('key');
+        var key = this.get('key'),
+            type = this.get('type');
 
 
-        if (key) {
-            var url = this.generateUrl(key);
+        if (key && type) {
+            var url = this.generateUrl(type, key);
             this.set('url', url);
         }
 
     },
     // Generate URL from key
-    generateUrl: function(key) {
-        return '/work/' + key;
+    generateUrl: function(type, key) {
+        return '/' + type + '/' + key;
     }
 });
 
@@ -38601,7 +38602,7 @@ ArticlesController = Marionette.Controller.extend({
             renderArticle = this.renderArticleItem.bind(this, id);
         } else {
             // List all articles
-            renderArticle = this.renderArticle.bind(this);
+            renderArticle = this.renderArticle.bind(this, type);
         }
 
         this.loadArticle(type, renderArticle);
@@ -38611,14 +38612,15 @@ ArticlesController = Marionette.Controller.extend({
             .done(callback)
             .fail(this.failedAjax);
     },
-    renderArticle: function(data) {
+    renderArticle: function(type, data) {
 
         var items = [];
 
         $.each(data[0], function(key, item) {
             var newItem = new ArticleItem({
                 key: key,
-                item: item
+                item: item,
+                type: type
             });
             items.push(newItem);
         });
@@ -38637,7 +38639,7 @@ ArticlesController = Marionette.Controller.extend({
         commands.execute('app:screen:show', this.view);
     },
     renderArticleItem: function(id, data) {
-
+/*globals console*/console.log(id, data);
         var model = new ArticleItem({
             item: data[0][id]
         });
