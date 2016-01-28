@@ -76,8 +76,8 @@ a {
         font-size: rem($fontSizeH3Large);
         line-height: 27 / $fontSizeH3Large;
         margin: em(45, $fontSizeH3Large) 0 em(24, $fontSizeH3Large);
-        border-top: em(3, $fontSizeH3Large) dotted rgba(0,0,0,0.2);
-        padding-top: em(15, $fontSizeH3Large);
+        border-bottom: em(3, $fontSizeH3Large) solid rgba($colourLightBrown,0.5);
+        padding: em(15, $fontSizeH3Large) 0 em(6, $fontSizeH3Large);
         color: $colourLightBrown;
     }
 

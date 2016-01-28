@@ -68,8 +68,8 @@ a {
   font-size: 1.6875rem;
   line-height: 1;
   margin: 1.6666666667em 0 0.8888888889em;
-  border-top: 0.1111111111em dotted rgba(0, 0, 0, 0.2);
-  padding-top: 0.5555555556em;
+  border-bottom: 0.1111111111em solid rgba(179, 176, 128, 0.5);
+  padding: 0.5555555556em 0 0.2222222222em;
   color: #B3B080; }
 
 .page h4,
