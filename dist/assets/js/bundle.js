@@ -38335,7 +38335,7 @@ var Marionette = require('backbone.marionette'),
 NavigationView = Marionette.CompositeView.extend({
 	template: template,
     tagName: 'ul',
-    className: 'navigation',
+    className: 'navigation__list',
     childView: NavigationItemView,
     childViewOptions: function () {
     	return {

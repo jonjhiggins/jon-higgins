@@ -8,7 +8,7 @@
   font-style: normal; }
 
 body {
-  font-family: "Input Sans Light", monospace; }
+  font-family: "Input Sans", monospace; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Boing", sans-serif;
@@ -100,7 +100,15 @@ body {
 img {
   max-width: 100%; }
 
-.header {
-  display: none; }
+.navigation .navigation__list {
+  list-style: none;
+  margin: 0; }
+
+.navigation .navigation__item {
+  display: inline-block; }
+  .navigation .navigation__item a {
+    border-bottom: 0; }
+  .navigation .navigation__item .active {
+    font-weight: bold; }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,22 @@
+// Header
+
+.navigation {
+
+    .navigation__list {
+        list-style: none;
+        margin: 0;
+    }
+
+    .navigation__item {
+
+        display: inline-block;
+
+        a {
+            border-bottom: 0;
+        }
+
+        .active {
+            font-weight: bold;
+        }
+    }
+}
