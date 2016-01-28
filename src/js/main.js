@@ -8,7 +8,7 @@
 		commands = require('./config/commands'),
 		siteData = require('../data/site.json'),
 		HomeModule = require('./Home/HomeModule'),
-		WorkModule = require('./Work/WorkModule'),
+		ArticlesModule = require('./articles/ArticlesModule'),
 		WhoModule = require('./Who/WhoModule'),
 		NavigationModule = require('./Navigation/NavigationModule'),
 		ShowAnimated = require('../js/plugins/backbone.marionette.showAnimated'),
@@ -17,7 +17,7 @@
 // Modules
 
 	app.module('home', HomeModule);
-	app.module('work', WorkModule);
+	app.module('articles', ArticlesModule);
 	app.module('who', WhoModule);
 	app.module('navigation', NavigationModule);
 

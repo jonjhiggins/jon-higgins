@@ -2,42 +2,42 @@ var Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     markdown = require('markdown').markdown,
     commands = require('../config/commands'),
-    WorkController,
-    WorkArticleItem = require('./WorkArticleItem'),
-    WorkArticleItemView = require('./WorkArticleItemView'),
-    WorkArticleCollection = require('./WorkArticleCollection'),
-    WorkArticleCollectionView = require('./WorkArticleCollectionView'),
-    moduleName = 'Work';
+    ArticlesController,
+    ArticleItem = require('./ArticleItem'),
+    ArticleItemView = require('./ArticleItemView'),
+    ArticleCollection = require('./ArticleCollection'),
+    ArticleCollectionView = require('./ArticleCollectionView'),
+    moduleName = 'Articles';
 
-WorkController = Marionette.Controller.extend({
+ArticlesController = Marionette.Controller.extend({
     initialize: function() {
 
     },
-    showWork: function() {
+    showArticle: function() {
         commands.execute('app:navigation:update', moduleName);
         commands.execute('app:title', moduleName);
 
-        var renderWork = this.renderWork.bind(this);
+        var renderArticle = this.renderArticle.bind(this);
         commands.execute('app:screen:hide', moduleName);
-        this.loadWork(renderWork);
+        this.loadArticle(renderArticle);
     },
-    showWorkItem: function(id) {
+    showArticleItem: function(id) {
         commands.execute('app:navigation:update', moduleName);
         commands.execute('app:title', moduleName);
 
-        var renderWorkItem = this.renderWorkItem.bind(this, id);
+        var renderArticleItem = this.renderArticleItem.bind(this, id);
         commands.execute('app:screen:hide', moduleName);
-        this.loadWork(renderWorkItem);
+        this.loadArticle(renderArticleItem);
     },
-    loadWork: function(callback) {
+    loadArticle: function(callback) {
         $.ajax('/assets/data/work.json').done(callback);
     },
-    renderWork: function(data) {
+    renderArticle: function(data) {
 
         var items = [];
 
         $.each(data[0], function(key, item) {
-            var newItem = new WorkArticleItem({
+            var newItem = new ArticleItem({
                 key: key,
                 item: item
             });
@@ -49,21 +49,21 @@ WorkController = Marionette.Controller.extend({
             return new Date(y.get('item').date) - new Date(x.get('item').date);
         });
 
-        var collection = new WorkArticleCollection(items);
+        var collection = new ArticleCollection(items);
 
-        this.view = new WorkArticleCollectionView({
+        this.view = new ArticleCollectionView({
             collection: collection
         });
 
         commands.execute('app:screen:show', this.view);
     },
-    renderWorkItem: function(id, data) {
+    renderArticleItem: function(id, data) {
 
-        var model = new WorkArticleItem({
+        var model = new ArticleItem({
             item: data[0][id]
         });
 
-        this.view = new WorkArticleItemView({
+        this.view = new ArticleItemView({
             key: null,
             model: model
         });
@@ -72,4 +72,4 @@ WorkController = Marionette.Controller.extend({
     }
 });
 
-module.exports = WorkController;
+module.exports = ArticlesController;

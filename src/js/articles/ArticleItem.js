@@ -1,7 +1,7 @@
 var Backbone = require('backbone'),
-    WorkArticleItem;
+    ArticleItem;
 
-WorkArticleItem = Backbone.Model.extend({
+ArticleItem = Backbone.Model.extend({
     initialize: function() {
 
         var key = this.get('key');
@@ -19,4 +19,4 @@ WorkArticleItem = Backbone.Model.extend({
     }
 });
 
-module.exports = WorkArticleItem;
+module.exports = ArticleItem;

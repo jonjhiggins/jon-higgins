@@ -1,14 +1,14 @@
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
-	WorkController = require('./WorkController'),
-    WorkRouter = require('./WorkRouter'),
-	WorkModule;
+	ArticlesController = require('./ArticlesController'),
+    ArticlesRouter = require('./ArticlesRouter'),
+	ArticlesModule;
 
-WorkModule = Marionette.Module.extend({
+ArticlesModule = Marionette.Module.extend({
 
 	initialize: function() {
-        this.controller = new WorkController({});
-        this.router = new WorkRouter({ controller: this.controller });
+        this.controller = new ArticlesController({});
+        this.router = new ArticlesRouter({ controller: this.controller });
         this.listenTo(Backbone.history, 'route', this._onRoute);
     },
 
@@ -21,4 +21,4 @@ WorkModule = Marionette.Module.extend({
     }
 });
 
-module.exports = WorkModule;
+module.exports = ArticlesModule;

@@ -1,13 +1,13 @@
 var Marionette = require('backbone.marionette'),
-    templateSingle = require('./WorkArticleItemTemplate.hbs'),
-    templateCollection = require('./WorkArticleCollectionItemTemplate.hbs'),
+    templateSingle = require('./ArticleItemTemplate.hbs'),
+    templateCollection = require('./ArticleCollectionItemTemplate.hbs'),
     HandlebarsCompiler = require('hbsfy/runtime'),
-    WorkArticleItemView;
+    ArticleItemView;
 
 // Register handlebars markdown helper
 HandlebarsCompiler.registerHelper('md', require('helper-md'));
 
-WorkArticleItemView = Marionette.ItemView.extend({
+ArticleItemView = Marionette.ItemView.extend({
     // Different template when in a collection
     getTemplate: function() {
         return this.model.collection ? templateCollection : templateSingle;
@@ -28,4 +28,4 @@ WorkArticleItemView = Marionette.ItemView.extend({
     }
 });
 
-module.exports = WorkArticleItemView;
+module.exports = ArticleItemView;

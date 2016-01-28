@@ -3,7 +3,7 @@
 var chai = require('chai'),
 	app = require('../../src/js/app'),
 	HomeModule = require('../../src/js/Home/HomeModule'),
-	WorkModule = require('../../src/js/Work/WorkModule'),
+	ArticlesModule = require('../../src/js/articles/ArticlesModule'),
 	WhoModule = require('../../src/js/Who/WhoModule'),
 	NavigationModule = require('../../src/js/Navigation/NavigationModule');
 
@@ -25,12 +25,12 @@ describe('Module', function(){
 		});
 	});
 
-	describe('Work', function(){
+	describe('Articles', function(){
 
-		var workModule = app.module('work', WorkModule);
+		var articlesModule = app.module('articles', ArticlesModule);
 
 		it('should be defined', function(){
-		  chai.assert(workModule === app.work);
+		  chai.assert(articlesModule === app.articles);
 		});
 	});
 
