@@ -32703,6 +32703,7 @@ var Marionette = require('backbone.marionette'),
 WorkRouter = Marionette.AppRouter.extend({
     appRoutes: {
         'work': 'showWork',
+        'work/': 'showWork',
         'work/:id': 'showWorkItem'
     }
 });
