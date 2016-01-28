@@ -21,7 +21,10 @@ h2, h3, h4, h5, h6 {
 a {
   color: #333;
   text-decoration: none;
-  border-bottom: 1px solid rgba(51, 51, 51, 0.5); }
+  border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+  transition: background-color 400ms ease; }
+  a:hover {
+    background-color: #FFF200; }
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, img a {
     border-bottom: none; }
 
@@ -61,7 +64,9 @@ a {
 .page h2,
 .page .h2 {
   font-size: 2.5rem;
-  color: #B3B080; }
+  color: #B3B080;
+  border-bottom: 0.1111111111em solid rgba(179, 176, 128, 0.5);
+  padding: 0.5555555556em 0 0.2222222222em; }
 
 .page h3,
 .page .h3 {

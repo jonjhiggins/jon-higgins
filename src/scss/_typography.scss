@@ -17,6 +17,11 @@ a {
     color: $colourLink;
     text-decoration: none;
     border-bottom: 1px solid $colourLinkUnderline;
+    transition: background-color 400ms ease;
+
+    &:hover {
+        background-color: $colourBrightYellow;
+    }
 
     h1 &, h2 &, h3 &, h4 &, h5 &, h6 &, img & {
         border-bottom: none;
@@ -69,6 +74,8 @@ a {
     .h2 {
         font-size: rem($fontSizeH2Large);
         color: $colourLightBrown;
+        border-bottom: em(3, $fontSizeH3Large) solid rgba($colourLightBrown,0.5);
+        padding: em(15, $fontSizeH3Large) 0 em(6, $fontSizeH3Large);
     }
 
     h3,
