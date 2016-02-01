@@ -114,10 +114,15 @@ body {
 
 .page {
   max-width: 34.375rem;
-  margin: 2.25rem auto; }
+  margin: 2.25rem 1.5rem; }
 
 img {
   max-width: 100%; }
+
+@media screen and (min-width: 43.75rem) {
+  .page {
+    margin-left: 3rem;
+    margin-right: 3rem; } }
 
 .header {
   background-color: #FFF200;
