@@ -32173,7 +32173,7 @@ module.exports={
 			"link": "/words"
 		},
 		{
-			"title": "Who",
+			"title": "Who?",
 			"link": "/who"
 		}
 	]
@@ -32311,9 +32311,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 
   return "<a href=\""
     + alias2(alias1((depth0 != null ? depth0.link : depth0), depth0))
-    + "\" class=\"navigation__link navigation__link--"
-    + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
-    + " "
+    + "\" class=\"navigation__link "
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.active : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\"><span class=\"navigation__link__text\">"
     + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
@@ -32335,7 +32333,9 @@ var Marionette = require('backbone.marionette'),
 NavigationItemView = Marionette.ItemView.extend({
 	template: template,
 	tagName: 'li',
-	className: 'navigation__item',
+	className: function() {
+		return 'navigation__item navigation__item--' + this.model.get('title').toLowerCase();
+	},
 	templateHelpers: function () {
 		return {
 			active: this.options.section === this.model.get('title')

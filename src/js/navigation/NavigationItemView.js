@@ -12,7 +12,9 @@ var Marionette = require('backbone.marionette'),
 NavigationItemView = Marionette.ItemView.extend({
 	template: template,
 	tagName: 'li',
-	className: 'navigation__item',
+	className: function() {
+		return 'navigation__item navigation__item--' + this.model.get('title').toLowerCase();
+	},
 	templateHelpers: function () {
 		return {
 			active: this.options.section === this.model.get('title')

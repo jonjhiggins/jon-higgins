@@ -4,11 +4,18 @@
 
 .header {
     background-color: $colourBrightYellow;
-    margin-top: rem(42);
-    padding-left: $gutterSmall;
-    padding-right: $gutterSmall;
+    margin-top: rem(18);
+    padding-left: rem($gutterSmall);
+    padding-right: rem($gutterSmall);
 
     .header__text {
         @include visuallyhidden;
+    }
+
+    // Responsive
+    // ----
+
+    @media screen and (min-width: $bpMedium) {
+        margin-top: rem(42);
     }
 }

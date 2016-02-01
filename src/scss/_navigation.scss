@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: flex-end;
     height: rem(48);
+    position: relative;
 
     .navigation__list {
         list-style: none;
@@ -22,7 +23,7 @@
         font-family: $fontHeading;
         font-size: $fontSizeBody;
         line-height: 1em;
-        margin-left: $gridMarginSmall;
+        margin-left: rem($gridMarginSmall * 1.5);
 
         a {
             border-bottom: 0;
@@ -33,7 +34,15 @@
         }
     }
 
-    .navigation__link--Home {
+    // Logo / Home link
+    .navigation__item--home {
+        position: absolute;
+        left:rem(-8);
+        top: rem(-12);
+        height: rem(72);
+        width: rem(84);
+        margin-left: 0;
+        background: url(../img/logo.svg) 0 0 no-repeat transparent;
         .navigation__link__text {
             @include visuallyhidden;
         }

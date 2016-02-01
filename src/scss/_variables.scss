@@ -5,8 +5,8 @@
     // Grid
     // ----
 
-    $gutterSmall: rem(24);
-    $gridMarginSmall: rem(12);
+    $gutterSmall: 24;
+    $gridMarginSmall: 12;
 
     // Font size
     // ----
@@ -48,3 +48,9 @@
 
     $colourLink: $colourBlack;
     $colourLinkUnderline: rgba($colourBlack, 0.5);
+
+    // Breakpoints
+    // ----
+
+    $bpMedium: rem(700);
+    $bpLarge: rem(900);
