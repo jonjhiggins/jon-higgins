@@ -26,11 +26,6 @@
         font-family: $fontHeading;
         font-size: $fontSizeBody;
         line-height: 1em;
-
-        a:not(.active) {
-            border-bottom: 0;
-        }
-
     }
 
     // Logo / Home link
@@ -41,8 +36,8 @@
 
         .navigation__link {
             display: block;
-            height: rem(72);
-            width: rem(84);
+            width: rem(72);
+            height: rem(84);
             padding: 0;
             background: url(../img/logo.svg) 0 0 no-repeat transparent;
             border-bottom: 0;
@@ -59,6 +54,31 @@
     .navigation__link {
         padding: rem($gridMarginSmall);
         display: block;
+        border-bottom: 0;
+
+        &.active {
+            .navigation__link__text {
+                &:after {
+                    background-color:  $colourLinkUnderline;
+                }
+            }
+        }
+    }
+
+    .navigation__link__text {
+        position: relative;
+        display: block;
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: transparent;
+            transition: background-color 400ms ease;
+        }
     }
 
     // Responsive
@@ -70,6 +90,17 @@
 
         .navigation__item {
             font-size: $fontSizeH3Large;
+        }
+
+        // Logo / Home link
+        .navigation__item--home {
+            left:rem(-15);
+            top: rem(-15);
+
+            .navigation__link {
+                width: rem(160);
+                height: rem(135);
+            }
         }
     }
 }

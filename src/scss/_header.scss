@@ -17,5 +17,7 @@
 
     @media screen and (min-width: $bpMedium) {
         margin-top: rem(42);
+        padding-left: rem($gutterMedium);
+        padding-right: rem($gutterMedium);
     }
 }
