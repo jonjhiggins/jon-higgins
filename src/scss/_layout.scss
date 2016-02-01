@@ -5,12 +5,15 @@
     // Global Layout
     // ----
 
+    * {
+        box-sizing: border-box;
+    }
+
     body {
         margin: 0;
     }
 
     .page {
-        max-width: rem(550);
         margin: rem(36) rem($gutterSmall);
     }
 

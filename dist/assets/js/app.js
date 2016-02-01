@@ -32465,7 +32465,7 @@ module.exports = WhoRouter;
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"page\">Who Template</div>\n";
+    return "<div class=\"page\">\n    Who Template\n\n    <div class=\"grid__row\">\n        <div class=\"grid__col grid__col--l--1\">a</div>\n        <div class=\"grid__col grid__col--l--1\">a</div>\n        <div class=\"grid__col grid__col--l--1\">a</div>\n        <div class=\"grid__col grid__col--l--1\">a</div>\n        <div class=\"grid__col grid__col--l--1\">a</div>\n        <div class=\"grid__col grid__col--l--1\">a</div>\n    </div>\n</div>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":24}],112:[function(require,module,exports){

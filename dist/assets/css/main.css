@@ -109,11 +109,13 @@ a {
   background-position: 0 0.15em;
   background-size: 2.725em; }
 
+* {
+  box-sizing: border-box; }
+
 body {
   margin: 0; }
 
 .page {
-  max-width: 34.375rem;
   margin: 2.25rem 1.5rem; }
 
 img {
@@ -123,6 +125,20 @@ img {
   .page {
     margin-left: 3rem;
     margin-right: 3rem; } }
+
+.grid__row {
+  white-space: nowrap;
+  margin: 0 -0.75rem; }
+  .grid__row > * {
+    white-space: normal; }
+
+.grid__col, .navigation .navigation__item {
+  padding: 0 0.75rem;
+  display: inline-block; }
+
+@media screen and (min-width: 56.25rem) {
+  .grid__col--l--1, .navigation .navigation__item {
+    width: 16.6666666667%; } }
 
 .header {
   background-color: #FFF200;
@@ -162,11 +178,12 @@ img {
     margin: 0 -0.75rem 0 0;
     padding: 0;
     text-align: right;
-    flex: none; }
+    flex: none;
+    width: 100%; }
   .navigation .navigation__item {
     display: inline-block;
     font-family: "Boing", sans-serif;
-    font-size: 12;
+    font-size: 0.75rem;
     line-height: 1em; }
   .navigation .navigation__item--home {
     position: absolute;
@@ -217,7 +234,7 @@ img {
     .navigation {
       height: 6.375rem; }
       .navigation .navigation__item {
-        font-size: 27; }
+        font-size: 1.6875rem; }
       .navigation .navigation__item--home {
         left: -0.9375rem;
         top: -0.9375rem; }
