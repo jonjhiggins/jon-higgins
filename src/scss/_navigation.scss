@@ -12,26 +12,25 @@
 
     .navigation__list {
         list-style: none;
-        margin: 0;
+        margin: 0 rem(-$gridMarginSmall) 0 0;
+        padding: 0;
         text-align: right;
         flex: none;
     }
 
-    .navigation__item {
+    // Navigation Item
+    // ----
 
+    .navigation__item {
         display: inline-block;
         font-family: $fontHeading;
         font-size: $fontSizeBody;
         line-height: 1em;
-        margin-left: rem($gridMarginSmall * 1.5);
 
-        a {
+        a:not(.active) {
             border-bottom: 0;
         }
 
-        .active {
-            font-weight: bold;
-        }
     }
 
     // Logo / Home link
@@ -39,12 +38,38 @@
         position: absolute;
         left:rem(-8);
         top: rem(-12);
-        height: rem(72);
-        width: rem(84);
-        margin-left: 0;
-        background: url(../img/logo.svg) 0 0 no-repeat transparent;
+
+        .navigation__link {
+            display: block;
+            height: rem(72);
+            width: rem(84);
+            padding: 0;
+            background: url(../img/logo.svg) 0 0 no-repeat transparent;
+            border-bottom: 0;
+        }
+
         .navigation__link__text {
             @include visuallyhidden;
+        }
+    }
+
+    // Navigation Link
+    // ----
+
+    .navigation__link {
+        padding: rem($gridMarginSmall);
+        display: block;
+    }
+
+    // Responsive
+    // ----
+
+    @media screen and (min-width: $bpMedium) {
+
+        height: rem(102);
+
+        .navigation__item {
+            font-size: $fontSizeH3Large;
         }
     }
 }
