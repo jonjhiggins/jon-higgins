@@ -123,6 +123,22 @@ img {
   background-color: #FFF200;
   margin-top: 2.625rem;
   height: 3rem; }
+  .header .header__text {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px; }
+    .header .header__text.focusable:active, .header .header__text.focusable:focus {
+      clip: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      position: static;
+      width: auto; }
 
 .navigation .navigation__list {
   list-style: none;

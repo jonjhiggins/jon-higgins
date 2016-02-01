@@ -16,7 +16,9 @@
 }
 
 
-// Helper classes
+// Visually hidden / invisible / clearfix
+// ---
+
 @mixin h5bp-helpers {
 
   .hidden { @include h5bp-hidden; }
