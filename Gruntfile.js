@@ -42,17 +42,17 @@ module.exports = function(grunt) {
                 src: '<%= paths.src %>/js/main.js',
                 dest: '<%= paths.dist %>/assets/js/bundle.js'
             },
-            test: {
-                files: {
-                    '<%= paths.tests %>/tests.js': ['<%= paths.tests %>/src/*.js']
-                }
-            },
+            // test: {
+            //     files: {
+            //         '<%= paths.tests %>/tests.js': ['<%= paths.tests %>/src/*.js']
+            //     }
+            // },
         },
 
         watch: {
             scripts: {
                 files: ['Gruntfile.js', '<%= paths.src %>/js/*.js', '<%= paths.src %>/js/**/*.hbs', '<%= paths.src %>/js/**/*.js', '<%= paths.tests %>/src/*.js'],
-                tasks: ['jshint', 'browserify', 'mochify', 'uglify'],
+                tasks: ['jshint', 'browserify', /*'mochify',*/ 'uglify'],
                 options: {
                     spawn: false,
                 },
@@ -206,6 +206,6 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     // Default task(s).
-    grunt.registerTask('default', ['m2j', 'wiredep', 'copy', 'browserify', 'mochify', 'uglify', 'browserSync', 'watch']);
+    grunt.registerTask('default', ['m2j', 'wiredep', 'copy', 'browserify', /*'mochify',*/ 'uglify', 'browserSync', 'watch']);
 
 };
