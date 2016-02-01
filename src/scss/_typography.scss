@@ -1,3 +1,7 @@
+// ====
+// Typography
+// ====
+
 body {
     font-family: $fontBody;
     //@include baseline-grid;
@@ -55,6 +59,8 @@ a {
         }
     }
 
+    // Headers
+
     h1, h2, h3, h4, h5, h6 {
         margin-top: 0;
         line-height: 1em;
@@ -90,8 +96,6 @@ a {
 
     h4,
     .h4 {
-        //font-family: 'input sans';
-        //font-weight: 900;
         font-size: rem($fontSizeH4Large);
         color: rgba(0,0,0,0.7);
         line-height: 18 / $fontSizeH4Large;

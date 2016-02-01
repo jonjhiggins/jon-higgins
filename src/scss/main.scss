@@ -1,9 +1,22 @@
+// ====
+// Main.scss - only includes
+// ====
+
+// Mixins / variables
+// ----
+
 @import 'mixins';
 @import 'variables';
 @import 'fontFaces';
 
+// Global type / layout
+// ----
+
 @import 'typography';
 @import 'layout';
+
+// Modules / sections
+// ----
 
 @import 'header';
 @import 'navigation';

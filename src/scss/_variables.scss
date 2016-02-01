@@ -1,33 +1,44 @@
-// Font size
-$fontSizeBody: 12;
-$fontSizeH1ExtraExtraLarge: 81;
-$fontSizeH1ExtraLarge: 54;
-$fontSizeH1Large: 60;
-$fontSizeH2Large: 40;
-$fontSizeH3Large: 27;
-$fontSizeH4Large: 18;
-$fontSizeH5Large: 12;
-$fontSizeH6Large: 12;
+// ====
+// Variables
+// ====
 
-// Font families
-$fontBody: "Input Sans", monospace;
-$fontHeading: "Boing", sans-serif;
+    // Font size
+    // ----
 
-// Line height
-$lineHeightBody: 18;
+    $fontSizeBody: 12;
+    $fontSizeH1ExtraExtraLarge: 81;
+    $fontSizeH1ExtraLarge: 54;
+    $fontSizeH1Large: 60;
+    $fontSizeH2Large: 40;
+    $fontSizeH3Large: 27;
+    $fontSizeH4Large: 18;
+    $fontSizeH5Large: 12;
+    $fontSizeH6Large: 12;
 
-// Colours
-$colourWhite:#FFF;
+    // Font families
+    // ----
+    $fontBody: "Input Sans", monospace;
+    $fontHeading: "Boing", sans-serif;
 
-$colourBrightYellow: #FFF200;
-$colourJadedYellow: #E0D500;
-$colourBrown: #8D8940;
-$colourLightBrown: #B3B080;
+    // Line height
+    // ----
 
-$colourBlack: #333;
-$colourDarkGrey: #666;
-$colourMidGrey: #979797;
-$colourLightGrey: #E6E6E6;
+    $lineHeightBody: 18;
 
-$colourLink: $colourBlack;
-$colourLinkUnderline: rgba($colourBlack, 0.5);
+    // Colours
+    // ----
+
+    $colourWhite:#FFF;
+
+    $colourBrightYellow: #FFF200;
+    $colourJadedYellow: #E0D500;
+    $colourBrown: #8D8940;
+    $colourLightBrown: #B3B080;
+
+    $colourBlack: #333;
+    $colourDarkGrey: #666;
+    $colourMidGrey: #979797;
+    $colourLightGrey: #E6E6E6;
+
+    $colourLink: $colourBlack;
+    $colourLinkUnderline: rgba($colourBlack, 0.5);
