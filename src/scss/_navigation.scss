@@ -4,14 +4,25 @@
 
 .navigation {
 
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: rem(48);
+
     .navigation__list {
         list-style: none;
         margin: 0;
+        text-align: right;
+        flex: none;
     }
 
     .navigation__item {
 
         display: inline-block;
+        font-family: $fontHeading;
+        font-size: $fontSizeBody;
+        line-height: 1em;
+        margin-left: $gridMarginSmall;
 
         a {
             border-bottom: 0;
@@ -19,6 +30,12 @@
 
         .active {
             font-weight: bold;
+        }
+    }
+
+    .navigation__link--Home {
+        .navigation__link__text {
+            @include visuallyhidden;
         }
     }
 }

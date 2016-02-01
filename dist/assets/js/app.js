@@ -32305,17 +32305,19 @@ module.exports = NavigationItem;
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
-    return "class=\"active\"";
+    return "active";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "<a href=\""
     + alias2(alias1((depth0 != null ? depth0.link : depth0), depth0))
-    + "\" "
-    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.active : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + ">"
+    + "\" class=\"navigation__link navigation__link--"
     + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
-    + "</a>";
+    + " "
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.active : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\"><span class=\"navigation__link__text\">"
+    + alias2(alias1((depth0 != null ? depth0.title : depth0), depth0))
+    + "</span></a>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":24}],103:[function(require,module,exports){

@@ -5,9 +5,10 @@
 .header {
     background-color: $colourBrightYellow;
     margin-top: rem(42);
-    height: rem(48);
+    padding-left: $gutterSmall;
+    padding-right: $gutterSmall;
 
     .header__text {
-        @include h5bp-visuallyhidden;
+        @include visuallyhidden;
     }
 }

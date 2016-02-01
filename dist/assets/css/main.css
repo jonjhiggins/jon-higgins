@@ -122,7 +122,8 @@ img {
 .header {
   background-color: #FFF200;
   margin-top: 2.625rem;
-  height: 3rem; }
+  padding-left: 1.5rem;
+  padding-right: 1.5rem; }
   .header .header__text {
     border: 0;
     clip: rect(0 0 0 0);
@@ -140,15 +141,41 @@ img {
       position: static;
       width: auto; }
 
-.navigation .navigation__list {
-  list-style: none;
-  margin: 0; }
-
-.navigation .navigation__item {
-  display: inline-block; }
-  .navigation .navigation__item a {
-    border-bottom: 0; }
-  .navigation .navigation__item .active {
-    font-weight: bold; }
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 3rem; }
+  .navigation .navigation__list {
+    list-style: none;
+    margin: 0;
+    text-align: right;
+    flex: none; }
+  .navigation .navigation__item {
+    display: inline-block;
+    font-family: "Boing", sans-serif;
+    font-size: 12;
+    line-height: 1em;
+    margin-left: 0.75rem; }
+    .navigation .navigation__item a {
+      border-bottom: 0; }
+    .navigation .navigation__item .active {
+      font-weight: bold; }
+  .navigation .navigation__link--Home .navigation__link__text {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px; }
+    .navigation .navigation__link--Home .navigation__link__text.focusable:active, .navigation .navigation__link--Home .navigation__link__text.focusable:focus {
+      clip: auto;
+      height: auto;
+      margin: 0;
+      overflow: visible;
+      position: static;
+      width: auto; }
 
 /*# sourceMappingURL=main.css.map */

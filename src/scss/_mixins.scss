@@ -23,7 +23,7 @@
 
   .hidden { @include h5bp-hidden; }
 
-  .visuallyhidden { @include h5bp-visuallyhidden; }
+  .visuallyhidden { @include visuallyhidden; }
 
   .invisible { @include h5bp-invisible; }
 
@@ -40,7 +40,7 @@
 
 // Hide only visually, but have it available for screenreaders:
 // http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
-@mixin h5bp-visuallyhidden {
+@mixin visuallyhidden {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
