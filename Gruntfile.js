@@ -20,23 +20,23 @@ module.exports = function(grunt) {
 
         browserify: {
             // just the app
-            app: {
-                src: ['<%= paths.src %>/js/main.js'],
-                dest: '<%= paths.dist %>/assets/js/app.js',
-                options: {
-                    debug: true,
-                    external: vendors
-                }
-            },
-            // just vendors
-            vendors: {
-                files: {
-                    '<%= paths.dist %>/assets/js/vendors.js': []
-                },
-                options: {
-                    'require': vendors
-                }
-            },
+            // app: {
+            //     src: ['<%= paths.src %>/js/main.js'],
+            //     dest: '<%= paths.dist %>/assets/js/app.js',
+            //     options: {
+            //         debug: true,
+            //         external: vendors
+            //     }
+            // },
+            // // just vendors
+            // vendors: {
+            //     files: {
+            //         '<%= paths.dist %>/assets/js/vendors.js': []
+            //     },
+            //     options: {
+            //         'require': vendors
+            //     }
+            // },
             // bundle all in one
             bundle: {
                 src: '<%= paths.src %>/js/main.js',
