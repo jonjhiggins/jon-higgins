@@ -2,7 +2,7 @@ var Marionette = require('backbone.marionette'),
 	WhoView = require('./whoView'),
 	commands = require('../config/commands'),
 	WhoController,
-    moduleName = 'Who';
+    moduleName = 'Who?';
 
 WhoController = Marionette.Controller.extend({
 	initialize: function() {
