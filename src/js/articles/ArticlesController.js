@@ -60,11 +60,11 @@ ArticlesController = Marionette.Controller.extend({
     renderArticles: function(type, filterArchived, data) {
 
         var items = [];
-
+/*globals console*/
         $.each(data[0], function(key, item) {
 
             // Filter in/out archived items if required
-            if (filterArchived !== null && (filterArchived && item.archive) || (!filterArchived && !item.archive)) {
+            if (filterArchived !== null && ((filterArchived && item.archive) || (!filterArchived && !item.archive))) {
                 return;
             }
 
