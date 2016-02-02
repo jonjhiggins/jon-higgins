@@ -8,6 +8,7 @@ skills: [design, build]
 content_url: http://www.instiller.co.uk
 images: [article-image.jpg]
 description: Design user interface for powerful app used daily to send millions of emails for brands such as Premier Inn and HMV
+archive: true
 ---
 
 #### The problem

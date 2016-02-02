@@ -9,6 +9,7 @@ skills: [brand, design]
 content_url: http://www.opep.co.uk
 images: [article-image.jpg]
 description: Create brand for teacher collective aiming for outstanding PE
+archive: true
 ---
 
 #### The problem

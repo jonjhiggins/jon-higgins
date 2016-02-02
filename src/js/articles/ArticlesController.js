@@ -17,22 +17,22 @@ ArticlesController = Marionette.Controller.extend({
 
     },
     showWork: function() {
-        this.showArticles('work', false);
+        this.showArticles('work', false, true);
     },
     showWords: function() {
-        this.showArticles('words', false);
+        this.showArticles('words', false, null);
     },
     showWorkItem: function(id) {
-        this.showArticles('work', true, id);
+        this.showArticles('work', true, null, id);
     },
     showWordsItem: function(id) {
-        this.showArticles('words', true, id);
+        this.showArticles('words', true, null, id);
     },
     updateNavigation: function(moduleName) {
         commands.execute('app:navigation:update', moduleName);
         commands.execute('app:title', moduleName);
     },
-    showArticles: function(type, singleArticleItem, id) {
+    showArticles: function(type, singleArticleItem, filterArchived, id) {
 
         var renderArticle;
 
@@ -44,7 +44,7 @@ ArticlesController = Marionette.Controller.extend({
             renderArticle = this.renderArticleItem.bind(this, id);
         } else {
             // List all articles
-            renderArticle = this.renderArticle.bind(this, type);
+            renderArticle = this.renderArticles.bind(this, type, filterArchived);
         }
 
         this.loadArticle(type, renderArticle);
@@ -54,11 +54,17 @@ ArticlesController = Marionette.Controller.extend({
             .done(callback)
             .fail(this.failedAjax);
     },
-    renderArticle: function(type, data) {
+    renderArticles: function(type, filterArchived, data) {
 
         var items = [];
 
         $.each(data[0], function(key, item) {
+
+            // Filter out archived items if required
+            if (filterArchived && item.archive) {
+                return;
+            }
+
             var newItem = new ArticleItem({
                 key: key,
                 item: item,

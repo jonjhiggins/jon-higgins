@@ -8,7 +8,7 @@ type: email
 content_url: /attachments/instiller-email/
 skills: [design, build]
 images: [article-image.jpg]
-half-width: true
+archive: true
 ---
 
 I designed and built this responsive email which is cross-client compatible with everything from Android Mail through to Outlook 2013.
