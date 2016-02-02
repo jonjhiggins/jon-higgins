@@ -6,7 +6,7 @@ var Marionette = require('backbone.marionette'),
     ArticleItem = require('./ArticleItem'),
     ArticleItemView = require('./ArticleItemView'),
     ArticleCollection = require('./ArticleCollection'),
-    ArticleCollectionView = require('./ArticleCollectionView'),
+    ArticleCompositeView = require('./ArticleCompositeView'),
     pageNames = {
         work: 'Work',
         words: 'Words'
@@ -18,6 +18,9 @@ ArticlesController = Marionette.Controller.extend({
     },
     showWork: function() {
         this.showArticles('work', false, true);
+    },
+    showWorkArchive: function() {
+        this.showArticles('work', false, false);
     },
     showWords: function() {
         this.showArticles('words', false, null);
@@ -60,8 +63,8 @@ ArticlesController = Marionette.Controller.extend({
 
         $.each(data[0], function(key, item) {
 
-            // Filter out archived items if required
-            if (filterArchived && item.archive) {
+            // Filter in/out archived items if required
+            if (filterArchived !== null && (filterArchived && item.archive) || (!filterArchived && !item.archive)) {
                 return;
             }
 
@@ -80,7 +83,9 @@ ArticlesController = Marionette.Controller.extend({
 
         var collection = new ArticleCollection(items);
 
-        this.view = new ArticleCollectionView({
+        this.view = new ArticleCompositeView({
+            archiveMode: filterArchived === false,
+            archiveAvailable: filterArchived,
             collection: collection
         });
 

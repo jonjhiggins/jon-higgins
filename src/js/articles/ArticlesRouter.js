@@ -7,6 +7,7 @@ ArticlesRouter = Marionette.AppRouter.extend({
     appRoutes: {
         'work': 'showWork',
         'work/': 'showWork',
+        'work/archive': 'showWorkArchive',
         'work/:id': 'showWorkItem',
         'words': 'showWords',
         'words/': 'showWords',
