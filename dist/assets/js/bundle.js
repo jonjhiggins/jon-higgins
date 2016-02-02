@@ -41877,12 +41877,6 @@ var Marionette = require('backbone.marionette'),
 	template = require('./NavigationItemTemplate.hbs'),
 	NavigationItemView;
 
-// 	var HandlebarsCompiler = require('hbsfy/runtime');
-
-// 		//console.log(HandlebarsCompiler.helper);
-
-// HandlebarsCompiler.registerHelper('md', require('helper-md'));
-
 
 NavigationItemView = Marionette.ItemView.extend({
 	template: template,
@@ -42257,7 +42251,6 @@ ArticlesController = Marionette.Controller.extend({
         commands.execute('app:screen:show', this.view);
     },
     renderArticleItem: function(id, data) {
-/*globals console*/console.log(id, data);
         var model = new ArticleItem({
             item: data[0][id]
         });

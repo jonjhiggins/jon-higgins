@@ -81,7 +81,6 @@ ArticlesController = Marionette.Controller.extend({
         commands.execute('app:screen:show', this.view);
     },
     renderArticleItem: function(id, data) {
-/*globals console*/console.log(id, data);
         var model = new ArticleItem({
             item: data[0][id]
         });

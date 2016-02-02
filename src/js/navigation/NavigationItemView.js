@@ -2,12 +2,6 @@ var Marionette = require('backbone.marionette'),
 	template = require('./NavigationItemTemplate.hbs'),
 	NavigationItemView;
 
-// 	var HandlebarsCompiler = require('hbsfy/runtime');
-
-// 		//console.log(HandlebarsCompiler.helper);
-
-// HandlebarsCompiler.registerHelper('md', require('helper-md'));
-
 
 NavigationItemView = Marionette.ItemView.extend({
 	template: template,
