@@ -7,9 +7,11 @@
 
     $gutterSmall: 24;
     $gutterMedium: 48;
+    $gutterLarge: $gutterMedium;
     $gridMarginSmall: 12;
     $gridMarginMedium: 24;
     $gridMarginLarge: 24;
+    $maxWidthPage: 740;
 
     // Font size
     // ----
@@ -61,4 +63,4 @@
     // ----
 
     $bpMedium: rem(600);
-    $bpLarge: rem(900);
+    $bpLarge: rem(932);

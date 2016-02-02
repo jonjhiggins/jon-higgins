@@ -14,7 +14,10 @@
     }
 
     .page {
-        margin: rem(48) rem($gutterSmall) rem(36);
+        padding: rem($gutterSmall);
+        max-width: rem($maxWidthPage);
+        margin: rem(48) auto rem(36);
+        box-sizing: content-box;
     }
 
     img {
@@ -26,7 +29,13 @@
 
     @media screen and (min-width: $bpMedium) {
         .page {
-            margin-left: rem($gutterMedium);
-            margin-right: rem($gutterMedium);
+            padding: rem($gutterMedium);
+        }
+    }
+
+    @media screen and (min-width: $bpLarge) {
+        .page {
+            padding: rem($gutterLarge);
+            border: rem(3) solid $colourLightGrey;
         }
     }
