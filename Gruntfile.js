@@ -75,7 +75,7 @@ module.exports = function(grunt) {
             },
             sass: {
                 files: ['<%= paths.src %>/scss/*'],
-                tasks: ['sass', 'browserify']
+                tasks: ['sass']
             },
             fonts: {
                 files: ['<%= paths.src %>/fonts/*'],
@@ -85,7 +85,7 @@ module.exports = function(grunt) {
 
         browserSync: {
             bsFiles: {
-                src: ['<%= paths.dist %>/assets/js/bundle.js', '<%= paths.dist %>/*.html']
+                src: ['<%= paths.dist %>/assets/js/bundle.js', '<%= paths.dist %>/*.html', '<%= paths.dist %>/assets/css/main.css']
             },
             options: {
                 watchTask: true,

@@ -1,0 +1,18 @@
+// ====
+// Article
+// ====
+
+    // Article item
+    // ----
+
+    .article-item {
+        .article__date {
+            margin-bottom: em(12, $fontSizeBody);
+        }
+
+        .article__title {
+            margin-top: rem(12);
+            padding-top: 0;
+        }
+
+    }

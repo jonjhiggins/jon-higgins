@@ -55,35 +55,33 @@ a {
 
 .page h1,
 .page .h1 {
-  font-size: 3.75rem;
+  font-size: 1.6875rem;
   text-transform: none;
   letter-spacing: 0.01em;
-  line-height: 1em;
-  margin: 0.4em 0 0.7em;
+  margin: 0.8888888889em 0 0.8888888889em;
   color: #333; }
 
 .page h2,
 .page .h2 {
-  font-size: 2.5rem;
+  font-size: 1.375rem;
   color: #B3B080;
-  border-bottom: 0.1111111111em solid rgba(179, 176, 128, 0.5);
-  padding: 0.5555555556em 0 0.2222222222em; }
+  border-bottom: 0.1875rem solid rgba(179, 176, 128, 0.5);
+  padding: 0.6818181818em 0 0.2727272727em; }
 
 .page h3,
 .page .h3 {
-  font-size: 1.6875rem;
-  line-height: 1;
-  margin: 1.6666666667em 0 0.8888888889em;
-  border-bottom: 0.1111111111em solid rgba(179, 176, 128, 0.5);
-  padding: 0.5555555556em 0 0.2222222222em;
+  font-size: 1.125rem;
+  margin: 2.5em 0 1.3333333333em;
+  border-bottom: 0.1875rem solid rgba(179, 176, 128, 0.5);
+  padding: 0.8333333333em 0 0.3333333333em;
   color: #B3B080; }
 
 .page h4,
 .page .h4 {
-  font-size: 1.125rem;
+  font-size: 0.9375rem;
   color: rgba(0, 0, 0, 0.7);
-  line-height: 1;
-  margin: 1.3333333333em 0 1em;
+  line-height: 1.2;
+  margin: 1.6em 0 0.8em;
   position: relative;
   top: -2px;
   color: #8D8940; }
@@ -109,6 +107,29 @@ a {
   background-repeat: no-repeat;
   background-position: 0 0.15em;
   background-size: 2.725em; }
+
+@media screen and (min-width: 37.5rem) {
+  .page h1,
+  .page .h1 {
+    font-size: 3.75rem;
+    margin: 0.4em 0 0.7em; }
+  .page h2,
+  .page .h2 {
+    font-size: 2.5rem;
+    padding: 0.375em 0 0.15em; }
+  .page h3,
+  .page .h3 {
+    font-size: 1.6875rem;
+    line-height: 1;
+    margin: 1.6666666667em 0 0.8888888889em;
+    padding: 0.5555555556em 0 0.2222222222em; }
+  .page h4,
+  .page .h4 {
+    font-size: 1.125rem;
+    line-height: 1;
+    margin: 1.3333333333em 0 1em;
+    position: relative;
+    top: -2px; } }
 
 * {
   box-sizing: border-box; }
@@ -253,5 +274,12 @@ img {
     .navigation .navigation__item {
       margin-left: 0;
       text-align: center; } }
+
+.article-item .article__date {
+  margin-bottom: 1em; }
+
+.article-item .article__title {
+  margin-top: 0.75rem;
+  padding-top: 0; }
 
 /*# sourceMappingURL=main.css.map */

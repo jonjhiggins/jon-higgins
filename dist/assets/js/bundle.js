@@ -38466,9 +38466,9 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 
   return "<div class=\"page\">\n    <a href=\""
     + alias2(alias1((depth0 != null ? depth0.url : depth0), depth0))
-    + "\">\n        <div class=\"article__date\">"
+    + "\">\n        <p class=\"article__date\">"
     + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
-    + "</div>\n        <h3 class=\"article__title h2\">"
+    + "</p>\n        <h3 class=\"article__title h2\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
     + "</h3>\n        "
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
@@ -38526,9 +38526,9 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {};
 
-  return "<div class=\"page\">\n    <div class=\"article__date\">"
+  return "<div class=\"page\">\n    <p class=\"article__date\">"
     + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
-    + "</div>\n    <h1 class=\"article__title\">"
+    + "</p>\n    <h1 class=\"article__title\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
     + "</h1>\n    "
     + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")

@@ -76,38 +76,36 @@ a {
 
         h1,
         .h1 {
-            font-size: rem($fontSizeH1Large);
+            font-size: rem($fontSizeH1Small);
             text-transform: none;
             letter-spacing: 0.01em;
-            line-height: 1em;
-            margin: em(24, $fontSizeH1Large) 0 em(42, $fontSizeH1Large);
+            margin: em(24, $fontSizeH1Small) 0 em(24, $fontSizeH1Small);
             color: $colourBlack;
         }
 
         h2,
         .h2 {
-            font-size: rem($fontSizeH2Large);
+            font-size: rem($fontSizeH2Small);
             color: $colourLightBrown;
-            border-bottom: em(3, $fontSizeH3Large) solid rgba($colourLightBrown,0.5);
-            padding: em(15, $fontSizeH3Large) 0 em(6, $fontSizeH3Large);
+            border-bottom: rem(3) solid rgba($colourLightBrown,0.5);
+            padding: em(15, $fontSizeH2Small) 0 em(6, $fontSizeH2Small);
         }
 
         h3,
         .h3 {
-            font-size: rem($fontSizeH3Large);
-            line-height: 27 / $fontSizeH3Large;
-            margin: em(45, $fontSizeH3Large) 0 em(24, $fontSizeH3Large);
-            border-bottom: em(3, $fontSizeH3Large) solid rgba($colourLightBrown,0.5);
-            padding: em(15, $fontSizeH3Large) 0 em(6, $fontSizeH3Large);
+            font-size: rem($fontSizeH3Small);
+            margin: em(45, $fontSizeH3Small) 0 em(24, $fontSizeH3Small);
+            border-bottom: rem(3) solid rgba($colourLightBrown,0.5);
+            padding: em(15, $fontSizeH3Small) 0 em(6, $fontSizeH3Small);
             color: $colourLightBrown;
         }
 
         h4,
         .h4 {
-            font-size: rem($fontSizeH4Large);
+            font-size: rem($fontSizeH4Small);
             color: rgba(0,0,0,0.7);
-            line-height: 18 / $fontSizeH4Large;
-            margin: em(24, $fontSizeH4Large) 0 em(18, $fontSizeH4Large);
+            line-height: 18 / $fontSizeH4Small;
+            margin: em(24, $fontSizeH4Small) 0 em(12, $fontSizeH4Small);
             position: relative;
             top: -2px; // Visual adjustment to baseline grid
             color: $colourBrown;
@@ -142,4 +140,38 @@ a {
                 background-size: em(109, $fontSizeH2Large);
             }
         }
+
+    // Responsive
+    // ----
+
+    @media screen and (min-width: $bpMedium) {
+        h1,
+        .h1 {
+            font-size: rem($fontSizeH1Large);
+            margin: em(24, $fontSizeH1Large) 0 em(42, $fontSizeH1Large);
+        }
+
+        h2,
+        .h2 {
+            font-size: rem($fontSizeH2Large);
+            padding: em(15, $fontSizeH2Large) 0 em(6, $fontSizeH2Large);
+        }
+
+        h3,
+        .h3 {
+            font-size: rem($fontSizeH3Large);
+            line-height: 27 / $fontSizeH3Large;
+            margin: em(45, $fontSizeH3Large) 0 em(24, $fontSizeH3Large);
+            padding: em(15, $fontSizeH3Large) 0 em(6, $fontSizeH3Large);
+        }
+
+        h4,
+        .h4 {
+            font-size: rem($fontSizeH4Large);
+            line-height: 18 / $fontSizeH4Large;
+            margin: em(24, $fontSizeH4Large) 0 em(18, $fontSizeH4Large);
+            position: relative;
+            top: -2px; // Visual adjustment to baseline grid
+        }
+    }
 }
