@@ -44,7 +44,8 @@ a {
 
 .page ul,
 .page ol {
-  margin: 2em 0 2em 0; }
+  margin: 2em 0 2em 0;
+  padding-left: 1em; }
   .page ul li,
   .page ol li {
     margin: 0 0 1.5em 0; }
@@ -109,6 +110,9 @@ a {
   background-size: 2.725em; }
 
 @media screen and (min-width: 37.5rem) {
+  .page ul,
+  .page ol {
+    padding-left: 1.5rem; }
   .page h1,
   .page .h1 {
     font-size: 3.75rem;

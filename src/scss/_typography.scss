@@ -61,6 +61,7 @@ a {
         ul,
         ol {
             margin: em($lineHeightBody + 6, $fontSizeBody) 0 em($lineHeightBody + 6, $fontSizeBody) 0;
+            padding-left: 1em;
             li {
                 margin: 0 0 em($lineHeightBody, $fontSizeBody) 0;
             }
@@ -145,6 +146,12 @@ a {
     // ----
 
     @media screen and (min-width: $bpMedium) {
+
+        ul,
+        ol {
+            padding-left: rem($gridMarginMedium);
+        }
+
         h1,
         .h1 {
             font-size: rem($fontSizeH1Large);
