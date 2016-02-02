@@ -8,6 +8,7 @@
     $gutterSmall: 24;
     $gutterMedium: 48;
     $gutterLarge: $gutterMedium;
+    $gutterExtraLarge: $gutterMedium * 2;
     $gridMarginSmall: 12;
     $gridMarginMedium: 24;
     $gridMarginLarge: 24;
@@ -64,3 +65,4 @@
 
     $bpMedium: rem(600);
     $bpLarge: rem(932);
+    $bpExtraLarge: rem(1200);

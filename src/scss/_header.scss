@@ -20,4 +20,9 @@
         padding-left: rem($gutterMedium);
         padding-right: rem($gutterMedium);
     }
+
+    @media screen and (min-width: $bpExtraLarge) {
+        padding-left: rem($gutterExtraLarge);
+        padding-right: rem($gutterExtraLarge);
+    }
 }

@@ -26,8 +26,6 @@
         font-family: $fontHeading;
         font-size: rem($fontSizeBody);
         line-height: 1em;
-        @extend .grid__col--l;
-        @extend .grid__col--l--1;
     }
 
     // Logo / Home link
@@ -116,12 +114,5 @@
             padding: 0; // Padding is for touch
         }
 
-    }
-
-    @media screen and (min-width: $bpLarge) {
-        .navigation__item {
-            margin-left: 0;
-            text-align: center;
-        }
     }
 }

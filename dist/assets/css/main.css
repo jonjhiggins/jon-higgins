@@ -181,10 +181,10 @@ img {
   display: inline-block; }
 
 @media screen and (min-width: 58.25rem) {
-  .grid__col--l, .navigation .navigation__item {
+  .grid__col--l {
     padding: 0 0.75rem;
     display: inline-block; }
-  .grid__col--l--1, .navigation .navigation__item {
+  .grid__col--l--1 {
     width: 16.6666666667%; } }
 
 .header {
@@ -213,6 +213,10 @@ img {
       margin-top: 2.625rem;
       padding-left: 3rem;
       padding-right: 3rem; } }
+  @media screen and (min-width: 75rem) {
+    .header {
+      padding-left: 6rem;
+      padding-right: 6rem; } }
 
 .navigation {
   display: flex;
@@ -292,10 +296,6 @@ img {
           height: 8.4375rem; }
       .navigation .navigation__link {
         padding: 0; } }
-  @media screen and (min-width: 58.25rem) {
-    .navigation .navigation__item {
-      margin-left: 0;
-      text-align: center; } }
 
 .article-item .article__date {
   margin-bottom: 1em; }
