@@ -2,6 +2,7 @@ var Marionette = require('backbone.marionette'),
     templateSingle = require('./ArticleItemTemplate.hbs'),
     templateCollection = require('./ArticleCollectionItemTemplate.hbs'),
     HandlebarsCompiler = require('hbsfy/runtime'),
+    moment = require('moment'),
     ArticleItemView;
 
 // Register handlebars markdown helper
@@ -17,12 +18,7 @@ ArticleItemView = Marionette.ItemView.extend({
     templateHelpers: function() {
         return {
             date: function() {
-                var date = new Date(this.model.get('item').date),
-                    dateFormatted = date.toLocaleString('en-gb', {
-                        month: "short"
-                    }) + ' ' + date.getFullYear();
-
-                return dateFormatted;
+                return moment(this.model.get('item').date, 'YYYYMMDD').format('MMM YYYY');
             }.bind(this)
         };
     }
