@@ -219,16 +219,24 @@ img {
       padding-right: 6rem; } }
 
 .navigation {
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   height: 3rem;
   position: relative; }
   .navigation .navigation__list {
     list-style: none;
     padding: 0;
     text-align: right;
-    flex: none; }
+    -webkit-flex: none;
+        -ms-flex: none;
+            flex: none; }
   .navigation .navigation__item {
     display: inline-block;
     font-family: "Boing", sans-serif;
@@ -283,7 +291,9 @@ img {
     .navigation {
       height: 6.375rem; }
       .navigation .navigation__list {
-        flex-basis: calc(100% + 3rem); }
+        -webkit-flex-basis: calc(100% + 3rem);
+            -ms-flex-preferred-size: calc(100% + 3rem);
+                flex-basis: calc(100% + 3rem); }
       .navigation .navigation__item {
         font-size: 1.6875rem;
         margin-left: 3rem; }
@@ -306,5 +316,4 @@ img {
 
 .module .module__title {
   margin: 0; }
-
-/*# sourceMappingURL=main.css.map */
+/*# sourceMappingURL=../../css/maps/main.css.map */

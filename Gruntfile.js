@@ -75,7 +75,7 @@ module.exports = function(grunt) {
             },
             sass: {
                 files: ['<%= paths.src %>/scss/*'],
-                tasks: ['sass']
+                tasks: ['sass', 'postcss']
             },
             fonts: {
                 files: ['<%= paths.src %>/fonts/*'],
@@ -199,13 +199,32 @@ module.exports = function(grunt) {
                     '<%= paths.dist %>/assets/js/bundle.min.js': ['<%= paths.dist %>/assets/js/bundle.js']
                 }
             }
-        }
+        },
+
+        postcss: {
+            options: {
+                map: {
+                    inline: false, // save all sourcemaps as separate files...
+                    annotation: 'dist/css/maps/' // ...to the specified directory
+                },
+
+                processors: [
+                    require('autoprefixer')({
+                        browsers: 'last 2 versions'
+                    }), // add vendor prefixes
+                    //require('cssnano')() // minify the result
+                ]
+            },
+            dist: {
+                src: '<%= paths.dist %>/assets/css/main.css'
+            }
+        },
 
     });
 
     require('load-grunt-tasks')(grunt);
 
     // Default task(s).
-    grunt.registerTask('default', ['m2j', 'wiredep', 'copy', 'browserify', /*'mochify',*/ 'uglify', 'browserSync', 'watch']);
+    grunt.registerTask('default', ['m2j', 'wiredep', 'copy', 'browserify', /*'mochify',*/ 'uglify', 'sass', 'postcss', 'browserSync', 'watch']);
 
 };
