@@ -12,10 +12,10 @@
 
     .navigation__list {
         list-style: none;
-        margin: 0 rem(-$gridMarginSmall) 0 0;
         padding: 0;
         text-align: right;
         flex: none;
+
     }
 
     // Navigation Item
@@ -24,15 +24,17 @@
     .navigation__item {
         display: inline-block;
         font-family: $fontHeading;
-        font-size: $fontSizeBody;
+        font-size: rem($fontSizeBody);
         line-height: 1em;
+        @extend .grid__col--l;
+        @extend .grid__col--l--1;
     }
 
     // Logo / Home link
     .navigation__item--home {
         position: absolute;
         left:rem(-8);
-        top: rem(-12);
+        top: rem(-6);
 
         .navigation__link {
             display: block;
@@ -67,7 +69,7 @@
 
     .navigation__link__text {
         position: relative;
-        display: block;
+        display: inline-block;
 
         &:after {
             content: '';
@@ -88,19 +90,38 @@
 
         height: rem(102);
 
+        .navigation__list {
+            @extend .grid__row;
+            flex-basis: calc(100% + #{rem($gutterMedium)});
+        }
+
         .navigation__item {
-            font-size: $fontSizeH3Large;
+            font-size: rem($fontSizeH3Large);
+            margin-left: rem($gridMarginMedium * 2);
         }
 
         // Logo / Home link
         .navigation__item--home {
             left:rem(-15);
             top: rem(-15);
+            margin-left: 0;
 
             .navigation__link {
                 width: rem(160);
                 height: rem(135);
             }
+        }
+
+        .navigation__link {
+            padding: 0; // Padding is for touch
+        }
+
+    }
+
+    @media screen and (min-width: $bpLarge) {
+        .navigation__item {
+            margin-left: 0;
+            text-align: center;
         }
     }
 }

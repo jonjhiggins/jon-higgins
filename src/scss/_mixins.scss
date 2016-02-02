@@ -98,7 +98,7 @@
 //$body-width: 100%;
 $baseline: 12px;
 @mixin baseline-grid {
-	//$columns: 6;
+	$columns: 6;
 	$column-color: rgba(200,0,0,.8);
 	$baseline-color: rgba(56,255,255,.8);
 
@@ -109,6 +109,6 @@ $baseline: 12px;
 
 	background-image: -webkit-linear-gradient(0deg, $column-color calc(100% - #{$gutter-width}), transparent $gutter-width),
 							-webkit-linear-gradient(top, rgba(0,0,0,0) 95%, $baseline-color 100%);
-	background-size: calc(#{$column-width} + 5px) 100%, 100% $baseline;
+	background-size: calc(#{$column-width} + #{$gutter-width / $columns}) 100%, 100% $baseline;
 	background-position: 0 0px; // Use to offset and center your grid
 }

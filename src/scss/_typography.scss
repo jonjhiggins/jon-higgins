@@ -23,10 +23,6 @@ a {
     border-bottom: 1px solid $colourLinkUnderline;
     transition: background-color 400ms ease;
 
-    &:hover {
-        background-color: $colourBrightYellow;
-    }
-
     h1 &, h2 &, h3 &, h4 &, h5 &, h6 &, img & {
         border-bottom: none;
     }
@@ -36,101 +32,114 @@ a {
 // header and Body text styles
 
 .page {
-    p,
-    ul,
-    ol {
-        font-size: rem($fontSizeBody);
-        line-height: $lineHeightBody / $fontSizeBody;
-        color: rgba(0,0,0,0.6);
-        position: relative;
-        top: -1px; // Visual adjustment to baseline grid
-    }
 
-    p,
-    figure {
-        margin: 0 0 em($lineHeightBody, $fontSizeBody) 0;
-    }
+    // Links
+    // ----
 
-    ul,
-    ol {
-        margin: em($lineHeightBody + 6, $fontSizeBody) 0 em($lineHeightBody + 6, $fontSizeBody) 0;
-        li {
+        a:hover {
+            background-color: $colourBrightYellow;
+        }
+
+    // Paragraphs and lists
+    // ----
+
+        p,
+        ul,
+        ol {
+            font-size: rem($fontSizeBody);
+            line-height: $lineHeightBody / $fontSizeBody;
+            color: rgba(0,0,0,0.6);
+            position: relative;
+            top: -1px; // Visual adjustment to baseline grid
+        }
+
+        p,
+        figure {
             margin: 0 0 em($lineHeightBody, $fontSizeBody) 0;
         }
-    }
+
+        ul,
+        ol {
+            margin: em($lineHeightBody + 6, $fontSizeBody) 0 em($lineHeightBody + 6, $fontSizeBody) 0;
+            li {
+                margin: 0 0 em($lineHeightBody, $fontSizeBody) 0;
+            }
+        }
 
     // Headers
+    // ----
 
-    h1, h2, h3, h4, h5, h6 {
-        margin-top: 0;
-        line-height: 1em;
-    }
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 0;
+            line-height: 1em;
+        }
 
-    h1,
-    .h1 {
-        font-size: rem($fontSizeH1Large);
-        text-transform: none;
-        letter-spacing: 0.01em;
-        line-height: 1em;
-        margin: em(24, $fontSizeH1Large) 0 em(42, $fontSizeH1Large);
-        color: $colourBlack;
-    }
+        h1,
+        .h1 {
+            font-size: rem($fontSizeH1Large);
+            text-transform: none;
+            letter-spacing: 0.01em;
+            line-height: 1em;
+            margin: em(24, $fontSizeH1Large) 0 em(42, $fontSizeH1Large);
+            color: $colourBlack;
+        }
 
-    h2,
-    .h2 {
-        font-size: rem($fontSizeH2Large);
-        color: $colourLightBrown;
-        border-bottom: em(3, $fontSizeH3Large) solid rgba($colourLightBrown,0.5);
-        padding: em(15, $fontSizeH3Large) 0 em(6, $fontSizeH3Large);
-    }
+        h2,
+        .h2 {
+            font-size: rem($fontSizeH2Large);
+            color: $colourLightBrown;
+            border-bottom: em(3, $fontSizeH3Large) solid rgba($colourLightBrown,0.5);
+            padding: em(15, $fontSizeH3Large) 0 em(6, $fontSizeH3Large);
+        }
 
-    h3,
-    .h3 {
-        font-size: rem($fontSizeH3Large);
-        line-height: 27 / $fontSizeH3Large;
-        margin: em(45, $fontSizeH3Large) 0 em(24, $fontSizeH3Large);
-        border-bottom: em(3, $fontSizeH3Large) solid rgba($colourLightBrown,0.5);
-        padding: em(15, $fontSizeH3Large) 0 em(6, $fontSizeH3Large);
-        color: $colourLightBrown;
-    }
+        h3,
+        .h3 {
+            font-size: rem($fontSizeH3Large);
+            line-height: 27 / $fontSizeH3Large;
+            margin: em(45, $fontSizeH3Large) 0 em(24, $fontSizeH3Large);
+            border-bottom: em(3, $fontSizeH3Large) solid rgba($colourLightBrown,0.5);
+            padding: em(15, $fontSizeH3Large) 0 em(6, $fontSizeH3Large);
+            color: $colourLightBrown;
+        }
 
-    h4,
-    .h4 {
-        font-size: rem($fontSizeH4Large);
-        color: rgba(0,0,0,0.7);
-        line-height: 18 / $fontSizeH4Large;
-        margin: em(24, $fontSizeH4Large) 0 em(18, $fontSizeH4Large);
-        position: relative;
-        top: -2px; // Visual adjustment to baseline grid
-        color: $colourBrown;
-    }
+        h4,
+        .h4 {
+            font-size: rem($fontSizeH4Large);
+            color: rgba(0,0,0,0.7);
+            line-height: 18 / $fontSizeH4Large;
+            margin: em(24, $fontSizeH4Large) 0 em(18, $fontSizeH4Large);
+            position: relative;
+            top: -2px; // Visual adjustment to baseline grid
+            color: $colourBrown;
+        }
 
-    h5,
-    .h5,
-    h6,
-    .h6 {
-        font-size: rem($fontSizeH5Large);
-        line-height: 18 / $fontSizeH5Large;
-        color: $colourMidGrey;
+        h5,
+        .h5,
+        h6,
+        .h6 {
+            font-size: rem($fontSizeH5Large);
+            line-height: 18 / $fontSizeH5Large;
+            color: $colourMidGrey;
 
-    }
+        }
 
     // Pull quotes
+    // ----
 
-    .p--pullquote {
-        &:before {
-            content: attr(data-pullquote);
-            font-size: $fontSizeH2Large;
-            font-family: $fontHeading;
-            line-height: 1em;
-            color: $colourMidGrey;
-            display: block;
-            padding:em(46, $fontSizeH2Large) 0 em(46, $fontSizeH2Large) em(99, $fontSizeH2Large);
-            margin:0 0 em($lineHeightBody, $fontSizeH2Large) em(-99, $fontSizeH2Large);
-            background-image: url('data:image/svg+xml;charset=UTF-8,<svg viewBox="0 0 109 109" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><circle cx="843.643" cy="318.561" r="67.644" fill="#FFF200" transform="matrix(.66525 0 0 .66502 -506.73 -157.367)"/><circle cx="843.643" cy="318.561" r="67.644" fill="none" stroke-width="1.25" stroke="#FFF200" transform="matrix(.7983 0 0 .79802 -618.978 -199.737)"/><path d="M51.683 60.6c0-3.28-1.92-6.24-4.8-7.68 1.68-3.2 2.64-4.32 6.08-7.76.56-.56.72-1.2.72-1.6 0-.32-.08-.8-.64-1.36-.64-.64-1.76-1.36-2.8-2-.8-.48-1.52-.72-2.24-.72-.96 0-1.84.4-2.88 1.12-4.08 2.72-11.52 11.6-11.52 19.36 0 5.84 4.24 9.52 9.12 9.52 5.12 0 8.96-4 8.96-8.88zm20.24 0c0-3.28-1.92-6.24-4.8-7.68 1.68-3.2 2.64-4.32 6.08-7.76.56-.56.72-1.2.72-1.6 0-.32-.08-.8-.64-1.36-.64-.64-1.76-1.36-2.8-2-.8-.48-1.52-.72-2.24-.72-.96 0-1.84.4-2.88 1.12-4.08 2.72-11.52 11.6-11.52 19.36 0 5.84 4.24 9.52 9.12 9.52 5.12 0 8.96-4 8.96-8.88z" fill="#2F2F2F" fill-rule="nonzero"/></svg>');
-            background-repeat: no-repeat;
-            background-position: 0 em(6, $fontSizeH2Large);
-            background-size: em(109, $fontSizeH2Large);
+        .p--pullquote {
+            &:before {
+                content: attr(data-pullquote);
+                font-size: $fontSizeH2Large;
+                font-family: $fontHeading;
+                line-height: 1em;
+                color: $colourMidGrey;
+                display: block;
+                padding:em(46, $fontSizeH2Large) 0 em(46, $fontSizeH2Large) em(99, $fontSizeH2Large);
+                margin:0 0 em($lineHeightBody, $fontSizeH2Large) em(-99, $fontSizeH2Large);
+                background-image: url('data:image/svg+xml;charset=UTF-8,<svg viewBox="0 0 109 109" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><circle cx="843.643" cy="318.561" r="67.644" fill="#FFF200" transform="matrix(.66525 0 0 .66502 -506.73 -157.367)"/><circle cx="843.643" cy="318.561" r="67.644" fill="none" stroke-width="1.25" stroke="#FFF200" transform="matrix(.7983 0 0 .79802 -618.978 -199.737)"/><path d="M51.683 60.6c0-3.28-1.92-6.24-4.8-7.68 1.68-3.2 2.64-4.32 6.08-7.76.56-.56.72-1.2.72-1.6 0-.32-.08-.8-.64-1.36-.64-.64-1.76-1.36-2.8-2-.8-.48-1.52-.72-2.24-.72-.96 0-1.84.4-2.88 1.12-4.08 2.72-11.52 11.6-11.52 19.36 0 5.84 4.24 9.52 9.12 9.52 5.12 0 8.96-4 8.96-8.88zm20.24 0c0-3.28-1.92-6.24-4.8-7.68 1.68-3.2 2.64-4.32 6.08-7.76.56-.56.72-1.2.72-1.6 0-.32-.08-.8-.64-1.36-.64-.64-1.76-1.36-2.8-2-.8-.48-1.52-.72-2.24-.72-.96 0-1.84.4-2.88 1.12-4.08 2.72-11.52 11.6-11.52 19.36 0 5.84 4.24 9.52 9.12 9.52 5.12 0 8.96-4 8.96-8.88z" fill="#2F2F2F" fill-rule="nonzero"/></svg>');
+                background-repeat: no-repeat;
+                background-position: 0 em(6, $fontSizeH2Large);
+                background-size: em(109, $fontSizeH2Large);
+            }
         }
-    }
 }

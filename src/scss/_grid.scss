@@ -1,6 +1,11 @@
 // ====
 // Grid
 // ====
+//
+// e.g
+// <div class="grid__row">
+//     <div class="grid__col--l grid__col--l--1">a</div><div class="grid__col--l grid__col--l--1">a</div><div class="grid__col--l grid__col--l--1">a</div><div class="grid__col--l grid__col--l--1">a</div><div class="grid__col--l grid__col--l--1">a</div><div class="grid__col--l grid__col--l--1"><span>a</span></div>
+// </div>
 
     // Rows
     // ----
@@ -18,7 +23,7 @@
     // ----
 
     .grid__col {
-        padding:0 rem($gridMarginSmall);
+        padding:0 rem($gridMarginSmall / 2);
         display: inline-block;
     }
 
@@ -26,6 +31,13 @@
     // ----
 
     @media screen and (min-width: $bpLarge) {
+
+        .grid__col--l {
+            padding:0 rem($gridMarginLarge / 2);
+            display: inline-block;
+        }
+
+
         .grid__col--l--1 {
             width: (100 / 6) * 1%;
         }
