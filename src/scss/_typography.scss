@@ -128,17 +128,17 @@ a {
         .p--pullquote {
             &:before {
                 content: attr(data-pullquote);
-                font-size: $fontSizeH2Large;
+                font-size: rem($fontSizeH2Small);
                 font-family: $fontHeading;
-                line-height: 1em;
+                line-height: em(24, $fontSizeH2Small);
                 color: $colourMidGrey;
                 display: block;
-                padding:em(46, $fontSizeH2Large) 0 em(46, $fontSizeH2Large) em(99, $fontSizeH2Large);
-                margin:0 0 em($lineHeightBody, $fontSizeH2Large) em(-99, $fontSizeH2Large);
+                padding:em(24, $fontSizeH2Small) 0 em(12, $fontSizeH2Small) em(48, $fontSizeH2Small);
+                margin:0 0 em($lineHeightBody, $fontSizeH2Small) em(-18, $fontSizeH2Small);
                 background-image: url('data:image/svg+xml;charset=UTF-8,<svg viewBox="0 0 109 109" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414"><circle cx="843.643" cy="318.561" r="67.644" fill="#FFF200" transform="matrix(.66525 0 0 .66502 -506.73 -157.367)"/><circle cx="843.643" cy="318.561" r="67.644" fill="none" stroke-width="1.25" stroke="#FFF200" transform="matrix(.7983 0 0 .79802 -618.978 -199.737)"/><path d="M51.683 60.6c0-3.28-1.92-6.24-4.8-7.68 1.68-3.2 2.64-4.32 6.08-7.76.56-.56.72-1.2.72-1.6 0-.32-.08-.8-.64-1.36-.64-.64-1.76-1.36-2.8-2-.8-.48-1.52-.72-2.24-.72-.96 0-1.84.4-2.88 1.12-4.08 2.72-11.52 11.6-11.52 19.36 0 5.84 4.24 9.52 9.12 9.52 5.12 0 8.96-4 8.96-8.88zm20.24 0c0-3.28-1.92-6.24-4.8-7.68 1.68-3.2 2.64-4.32 6.08-7.76.56-.56.72-1.2.72-1.6 0-.32-.08-.8-.64-1.36-.64-.64-1.76-1.36-2.8-2-.8-.48-1.52-.72-2.24-.72-.96 0-1.84.4-2.88 1.12-4.08 2.72-11.52 11.6-11.52 19.36 0 5.84 4.24 9.52 9.12 9.52 5.12 0 8.96-4 8.96-8.88z" fill="#2F2F2F" fill-rule="nonzero"/></svg>');
                 background-repeat: no-repeat;
-                background-position: 0 em(6, $fontSizeH2Large);
-                background-size: em(109, $fontSizeH2Large);
+                background-position: rem(-5) rem(9);
+                background-size: em(48, $fontSizeH2Small);
             }
         }
 
@@ -147,10 +147,16 @@ a {
 
     @media screen and (min-width: $bpMedium) {
 
+        // Lists
+        // ----
+
         ul,
         ol {
             padding-left: rem($gridMarginMedium);
         }
+
+        // Headings
+        // ----
 
         h1,
         .h1 {
@@ -180,5 +186,32 @@ a {
             position: relative;
             top: -2px; // Visual adjustment to baseline grid
         }
+
+        // Pull quotes
+        // ----
+
+            .p--pullquote {
+                &:before {
+                    font-size: rem($fontSizeH2Large);
+                    line-height: em(48, $fontSizeH2Large);
+                    padding:em(42, $fontSizeH2Large) 0 em(42, $fontSizeH2Large) em(120, $fontSizeH2Large);
+                    margin:0 0 em($lineHeightBody, $fontSizeH2Large) em(-54, $fontSizeH2Large);
+                    background-position: rem(-5) rem(7);
+                    background-size: em(109, $fontSizeH2Large);
+                }
+            }
+    }
+
+    @media screen and (min-width: $bpLarge) {
+
+        // Pull quotes
+        // ----
+
+            // pull out wider than page
+            .p--pullquote {
+                &:before {
+                    margin-left: em(-99, $fontSizeH2Large);
+                }
+            }
     }
 }
