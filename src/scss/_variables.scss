@@ -56,6 +56,7 @@
     $colourBlack: #333;
     $colourDarkGrey: #666;
     $colourMidGrey: #979797;
+    $colourMidLightGrey: mix($colourMidGrey, #E6E6E6, 50%);
     $colourLightGrey: #E6E6E6;
 
     $colourLink: $colourBlack;

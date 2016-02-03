@@ -248,6 +248,11 @@ img {
   .button:hover {
     background-color: #E0D500; }
 
+.button.button--secondary {
+  background-color: #E6E6E6; }
+  .button.button--secondary:hover {
+    background-color: #bfbfbf; }
+
 .button--arrow:after {
   content: '\2192';
   display: inline-block;
@@ -460,7 +465,4 @@ img {
   100% {
     -webkit-transform: scale(1, 1);
             transform: scale(1, 1); } }
-
-.module .module__title {
-  margin: 0; }
 /*# sourceMappingURL=../../css/maps/main.css.map */

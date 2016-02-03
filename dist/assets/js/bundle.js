@@ -42107,9 +42107,9 @@ module.exports = ArticleCompositeView;
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
-    return "        <div class=\"page\"><h1 class=\"module__title\">Work Archive</h1></div>\n";
+    return "        <h1 class=\"module__title\">Work Archive</h1>\n";
 },"3":function(container,depth0,helpers,partials,data) {
-    return "        <div class=\"page\"><a href=\"/work/archive\" class=\"button\">View Archived Work</a></div>\n";
+    return "        <div class=\"button-holder\"><a href=\"/work/archive\" class=\"button button--arrow button--secondary\">View Archived Work</a></div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 
