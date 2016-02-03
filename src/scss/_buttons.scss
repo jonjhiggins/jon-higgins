@@ -1,0 +1,40 @@
+// ====
+// Buttons
+// ====
+
+    // Base
+
+    .button {
+        display: inline-block;
+        color: $colourBlack;
+        background-color: $colourBrightYellow;
+        font-size: rem($fontSizeButton);
+        line-height: em(12, $fontSizeButton);
+        padding:em(6, $fontSizeButton)  em(12, $fontSizeButton);
+        border-radius: rem(3);
+        border: rem(1) solid $colourBlack;
+        transition: background-color 400ms ease;
+
+        &:hover {
+            background-color: $colourJadedYellow;
+        }
+    }
+
+    // Button: arrow
+
+    .button--arrow {
+        &:after {
+            content: '\2192';
+            display: inline-block;
+            position: relative;
+            margin-left: 0.5em;
+            top: rem(1);
+            transition: transform 400ms ease;
+        }
+
+        &:hover {
+            &:after {
+                transform: translateX(rem(2));
+            }
+        }
+    }
