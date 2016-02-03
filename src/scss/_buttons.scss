@@ -3,6 +3,7 @@
 // ====
 
     // Base
+    // ----
 
     .button {
         display: inline-block;
@@ -20,7 +21,16 @@
         }
     }
 
+    .button.button--secondary {
+        background-color: $colourLightGrey;
+
+        &:hover {
+            background-color: $colourMidLightGrey;
+        }
+    }
+
     // Button: arrow
+    // ----
 
     .button--arrow {
         &:after {
