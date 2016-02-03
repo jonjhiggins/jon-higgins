@@ -14,7 +14,9 @@ ArticleItemView = Marionette.ItemView.extend({
         return this.model.collection ? templateCollection : templateSingle;
     },
     tagName: 'article',
-    className: 'article-item',
+    className: function() {
+        return 'article-item article-item--' + this.model.get('item').class;
+    } ,
     templateHelpers: function() {
         return {
             date: function() {

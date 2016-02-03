@@ -40,7 +40,16 @@
 
         .article-item__title {
             margin: 0;
-            padding: rem($gutterSmall) 0;
+            padding: rem($gutterSmall) 0 rem(18);
         }
 
+    }
+
+    // Custom article-items
+
+    .article-item--land-rover-visual-identity-refresh {
+        .article-item__image {
+            mix-blend-mode: normal;
+            margin: 0 rem(-$gutterSmall);
+        }
     }
