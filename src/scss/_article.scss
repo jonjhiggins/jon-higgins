@@ -8,12 +8,15 @@
     .article-item {
 
         margin-bottom: rem(48);
+        position: relative;
 
         .article-item__header,
         .article-item__footer {
             position: relative;
             margin: 0 rem(-$gutterSmall);
-            padding: 0 $gutterSmall;
+            padding: 0 rem($gutterSmall);
+            @extend  %grid__col--l;
+            @extend  %grid__col--l--4;
         }
 
         .article-item__header {
@@ -47,6 +50,7 @@
         }
 
         .article-item__image {
+            @extend %grid__col--l--3;
             position: relative;
             z-index: -2;
             margin: 0;
@@ -87,8 +91,8 @@
             .article-item__footer {
                 margin-left: rem(-$gutterMedium);
                 margin-right: rem(-$gutterMedium);
-                padding-left: $gutterMedium;
-                padding-left: $gutterMedium;
+                padding-left: rem($gutterMedium);
+                padding-left: rem($gutterMedium);
             }
 
             .article-item__footer {
@@ -106,6 +110,50 @@
                     margin-left: rem(-$gutterMedium);
                     margin-right: rem(-$gutterMedium);
                 }
+            }
+        }
+
+        @media screen and (min-width: $bpLarge) {
+
+            margin-top: rem(48);
+            margin-bottom: rem(72);
+            padding-top: rem(48);
+            padding-bottom: rem(48);
+            overflow: hidden;
+
+            .article-item__image {
+                position: absolute;
+                top: rem(-48);
+                right: 0;
+                z-index: 1;
+                mix-blend-mode: multiply;
+            }
+
+            .article-item__header,
+            .article-item__footer {
+                margin: 0;
+                background-color: $colourBrightYellow;
+            }
+
+            .article-item__title,
+            .article-item__description {
+                width: 75%;
+            }
+
+            .article-item__header {
+                padding-bottom: 0;
+                &:before {
+                    content: none;
+                }
+            }
+
+            .article-item__footer {
+                padding-top: 0;
+            }
+
+            .article-item__footer {
+
+
             }
         }
     }
