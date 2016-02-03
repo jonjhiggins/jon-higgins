@@ -386,12 +386,28 @@ img {
   margin-bottom: 3rem; }
   .article-item .article-item__header,
   .article-item .article-item__footer {
-    background-color: #FFF200;
+    position: relative;
     margin: 0 -1.5rem;
     padding: 0 24; }
   .article-item .article-item__header {
     padding-bottom: 3.75rem;
     margin-bottom: -3.75rem; }
+    .article-item .article-item__header:before {
+      content: '';
+      background-color: #FFF200;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      -webkit-transform-origin: 0% 50%;
+              transform-origin: 0% 50%;
+      -webkit-transform: scale(0, 1);
+              transform: scale(0, 1);
+      -webkit-animation: swipeHorizontal 600ms ease-out 0s forwards;
+              animation: swipeHorizontal 600ms ease-out 0s forwards;
+      mix-blend-mode: multiply; }
   .article-item .article-item__footer {
     padding-top: 4.125rem;
     padding-bottom: 1.5rem;
@@ -399,17 +415,51 @@ img {
   .article-item .article-item__date {
     margin-bottom: 1em; }
   .article-item .article-item__image {
-    mix-blend-mode: multiply;
     position: relative;
-    z-index: 1;
+    z-index: -2;
     margin: 0; }
   .article-item .article-item__title {
     margin: 0;
     padding: 1.5rem 0 1.125rem; }
+  .article-item .article-item__title,
+  .article-item .article-item__image,
+  .article-item .article-item__description,
+  .article-item .article-item__buttons {
+    opacity: 0;
+    -webkit-animation: fadeIn 600ms ease-out 0s forwards;
+            animation: fadeIn 600ms ease-out 0s forwards; }
 
 .article-item--land-rover-visual-identity-refresh .article-item__image {
   mix-blend-mode: normal;
   margin: 0 -1.5rem; }
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-webkit-keyframes swipeHorizontal {
+  0% {
+    -webkit-transform: scale(0, 1);
+            transform: scale(0, 1); }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1); } }
+
+@keyframes swipeHorizontal {
+  0% {
+    -webkit-transform: scale(0, 1);
+            transform: scale(0, 1); }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1); } }
 
 .module .module__title {
   margin: 0; }

@@ -42073,7 +42073,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n    <footer class=\"article-item__footer\">\n        <p class=\"article-item__description\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.description : stack1), depth0))
-    + "</p>\n        <div class=\"button-holder\">\n            <div class=\"button button--arrow\">View</div>\n        </div>\n    </footer>\n</a>\n";
+    + "</p>\n        <div class=\"article-item__buttons button-holder\">\n            <div class=\"button button--arrow\">View</div>\n        </div>\n    </footer>\n</a>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":28}],122:[function(require,module,exports){
