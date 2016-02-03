@@ -31,7 +31,8 @@ a {
 
 // header and Body text styles
 
-.page {
+.page,
+.body-text {
 
     // Links
     // ----
@@ -82,6 +83,7 @@ a {
             letter-spacing: 0.01em;
             margin: em(24, $fontSizeH1Small) 0 em(24, $fontSizeH1Small);
             color: $colourBlack;
+            border-bottom: 0;
         }
 
         h2,

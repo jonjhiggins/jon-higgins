@@ -67,7 +67,7 @@ module.exports = function(grunt) {
             },
             images: {
                 files: ['<%= paths.src %>/images/*'],
-                tasks: ['copy:images', 'browserify']
+                tasks: ['copy:images']
             },
             data: {
                 files: ['<%= paths.src %>/data/**/*'],
@@ -85,7 +85,7 @@ module.exports = function(grunt) {
 
         browserSync: {
             bsFiles: {
-                src: ['<%= paths.dist %>/assets/js/bundle.js', '<%= paths.dist %>/*.html', '<%= paths.dist %>/assets/css/main.css']
+                src: ['<%= paths.dist %>/assets/js/bundle.js', '<%= paths.dist %>/*.html', '<%= paths.dist %>/assets/css/main.css' , '<%= paths.dist %>/assets/img/*']
             },
             options: {
                 watchTask: true,

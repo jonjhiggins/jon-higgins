@@ -13,8 +13,12 @@
         margin: 0;
     }
 
+    .container,
     .page {
         padding: rem($gutterSmall);
+    }
+
+    .page {
         max-width: rem($maxWidthPage);
         margin: rem(48) auto rem(36);
         box-sizing: content-box;
@@ -28,14 +32,21 @@
     // ----
 
     @media screen and (min-width: $bpMedium) {
+
+        .container,
         .page {
             padding: rem($gutterMedium);
         }
     }
 
     @media screen and (min-width: $bpLarge) {
+
+        .container,
         .page {
             padding: rem($gutterLarge);
+        }
+
+        .page {
             border: rem(3) solid $colourLightGrey;
         }
     }

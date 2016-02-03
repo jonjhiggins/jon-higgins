@@ -42059,23 +42059,21 @@ var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<figure class=\"article__image\"><img src=\"/assets/img/"
+  return "<figure class=\"article-item__image\"><img src=\"/assets/img/"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1), depth0))
     + "\" alt=\"\" /></figure>";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
-  return "<div class=\"page\">\n    <a href=\""
+  return "<a href=\""
     + alias2(alias1((depth0 != null ? depth0.url : depth0), depth0))
-    + "\">\n        <p class=\"article__date\">"
-    + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
-    + "</p>\n        <h3 class=\"article__title h2\">"
+    + "\">\n    <header class=\"article-item__header\">\n        <h3 class=\"article-item__title h1\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</h3>\n        "
+    + "</h3>\n    </header>\n    "
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n        <p class=\"article__description\">"
+    + "\n    <footer class=\"article-item__footer\">\n        <p class=\"article-item__description\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.description : stack1), depth0))
-    + "</p>\n    </a>\n</div>\n";
+    + "</p>\n        <div class=\"button-holder\">\n            <div class=\"button button--arrow\">View</div>\n        </div>\n    </footer>\n</a>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":28}],122:[function(require,module,exports){
@@ -42095,7 +42093,10 @@ ArticleCompositeView = Marionette.CompositeView.extend({
             }.bind(this),
             archiveAvailable: function() {
                 return this.options.archiveAvailable;
-            }.bind(this)
+            }.bind(this),
+            templateType: function() {
+                return this.options.templateType;
+            }
         };
     }
 });
@@ -42106,17 +42107,17 @@ module.exports = ArticleCompositeView;
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
-    return "    <div class=\"page\"><h1 class=\"module__title\">Work Archive</h1></div>\n";
+    return "        <div class=\"page\"><h1 class=\"module__title\">Work Archive</h1></div>\n";
 },"3":function(container,depth0,helpers,partials,data) {
-    return "    <div class=\"page\"><a href=\"/work/archive\" class=\"button\">View Archived Work</a></div>\n";
+    return "        <div class=\"page\"><a href=\"/work/archive\" class=\"button\">View Archived Work</a></div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 
-  return "<div class=\"module module--article-list\">\n"
+  return "<div class=\"module module--article-list body-text\">\n    <div class=\"container\">\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.archiveMode : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n    <div class=\"article-list\"></div>\n\n"
+    + "\n        <div class=\"article-list\"></div>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.archiveAvailable : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</div>\n";
+    + "    </div>\n</div>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":28}],124:[function(require,module,exports){
@@ -42259,7 +42260,7 @@ ArticlesController = Marionette.Controller.extend({
     renderArticles: function(type, filterArchived, data) {
 
         var items = [];
-/*globals console*/
+
         $.each(data[0], function(key, item) {
 
             // Filter in/out archived items if required
@@ -42285,7 +42286,8 @@ ArticlesController = Marionette.Controller.extend({
         this.view = new ArticleCompositeView({
             archiveMode: filterArchived === false,
             archiveAvailable: filterArchived,
-            collection: collection
+            collection: collection,
+            templateType: type
         });
 
         commands.execute('app:screen:show', this.view);

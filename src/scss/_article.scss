@@ -6,13 +6,41 @@
     // ----
 
     .article-item {
-        .article__date {
+
+        margin-bottom: rem(48);
+
+        .article-item__header,
+        .article-item__footer {
+            background-color: $colourBrightYellow;
+            margin: 0 rem(-$gutterSmall);
+            padding: 0 $gutterSmall;
+        }
+
+        .article-item__header {
+            padding-bottom: rem(60);
+            margin-bottom: rem(-60);
+        }
+
+        .article-item__footer {
+            padding-top: rem(42 + 24);
+            padding-bottom: rem($gutterSmall);
+            margin-top: rem(-42);
+        }
+
+        .article-item__date {
             margin-bottom: em(12, $fontSizeBody);
         }
 
-        .article__title {
-            margin-top: rem(12);
-            padding-top: 0;
+        .article-item__image {
+            mix-blend-mode: multiply;
+            position: relative;
+            z-index: 1;
+            margin: 0;
+        }
+
+        .article-item__title {
+            margin: 0;
+            padding: rem($gutterSmall) 0;
         }
 
     }

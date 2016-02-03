@@ -14,7 +14,10 @@ ArticleCompositeView = Marionette.CompositeView.extend({
             }.bind(this),
             archiveAvailable: function() {
                 return this.options.archiveAvailable;
-            }.bind(this)
+            }.bind(this),
+            templateType: function() {
+                return this.options.templateType;
+            }
         };
     }
 });

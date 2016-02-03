@@ -60,7 +60,7 @@ ArticlesController = Marionette.Controller.extend({
     renderArticles: function(type, filterArchived, data) {
 
         var items = [];
-/*globals console*/
+
         $.each(data[0], function(key, item) {
 
             // Filter in/out archived items if required
@@ -86,7 +86,8 @@ ArticlesController = Marionette.Controller.extend({
         this.view = new ArticleCompositeView({
             archiveMode: filterArchived === false,
             archiveAvailable: filterArchived,
-            collection: collection
+            collection: collection,
+            templateType: type
         });
 
         commands.execute('app:screen:show', this.view);
