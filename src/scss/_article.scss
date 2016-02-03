@@ -20,6 +20,7 @@
             padding-bottom: rem(60);
             margin-bottom: rem(-60);
 
+            // Swiping yellow backround
             &:before {
                 content: '';
                 background-color: $colourBrightYellow;
@@ -37,9 +38,8 @@
         }
 
         .article-item__footer {
-            padding-top: rem(42 + 24);
+            padding-top: rem($gutterSmall);
             padding-bottom: rem($gutterSmall);
-            margin-top: rem(-42);
         }
 
         .article-item__date {
@@ -67,44 +67,45 @@
                 animation: fadeIn 600ms ease-out 0s forwards;
             }
 
-            // .article-item__image {
-            //     animation-delay: 1.8s;
-            // }
-            //
-            // .article-item__description {
-            //     animation-delay: 2s;
-            // }
-            //
-            // .article-item__buttons {
-            //     animation-delay: 2.2s;
-            // }
+        // Custom article-items
+        // ----
 
-
-    }
-
-    // Custom article-items
-
-    .article-item--land-rover-visual-identity-refresh {
-        .article-item__image {
-            mix-blend-mode: normal;
-            margin: 0 rem(-$gutterSmall);
+        &.article-item--land-rover-visual-identity-refresh {
+            .article-item__image {
+                mix-blend-mode: normal;
+                margin: 0 rem(-$gutterSmall);
+            }
         }
-    }
 
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
 
-    @keyframes swipeHorizontal {
-        0% {
-            transform: scale(0, 1);
-        }
-        100% {
-            transform: scale(1, 1);
+
+        // Responsive
+        // ----
+
+        @media screen and (min-width: $bpMedium) {
+            .article-item__header,
+            .article-item__footer {
+                margin-left: rem(-$gutterMedium);
+                margin-right: rem(-$gutterMedium);
+                padding-left: $gutterMedium;
+                padding-left: $gutterMedium;
+            }
+
+            .article-item__footer {
+                padding-top: rem($gutterMedium);
+                padding-bottom: rem($gutterMedium);
+            }
+
+            .article-item__title {
+                padding-top: rem($gutterMedium);
+                padding-bottom: rem($gutterMedium * 0.75);
+            }
+
+            &.article-item--land-rover-visual-identity-refresh {
+                .article-item__image {
+                    margin-left: rem(-$gutterMedium);
+                    margin-right: rem(-$gutterMedium);
+                }
+            }
         }
     }

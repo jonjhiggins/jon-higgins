@@ -188,6 +188,34 @@ a {
   .body-text .p--pullquote:before {
     margin-left: -2.475em; } }
 
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@-webkit-keyframes swipeHorizontal {
+  0% {
+    -webkit-transform: scale(0, 1);
+            transform: scale(0, 1); }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1); } }
+
+@keyframes swipeHorizontal {
+  0% {
+    -webkit-transform: scale(0, 1);
+            transform: scale(0, 1); }
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1); } }
+
 * {
   box-sizing: border-box; }
 
@@ -414,9 +442,8 @@ img {
               animation: swipeHorizontal 600ms ease-out 0s forwards;
       mix-blend-mode: multiply; }
   .article-item .article-item__footer {
-    padding-top: 4.125rem;
-    padding-bottom: 1.5rem;
-    margin-top: -2.625rem; }
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem; }
   .article-item .article-item__date {
     margin-bottom: 1em; }
   .article-item .article-item__image {
@@ -433,36 +460,23 @@ img {
     opacity: 0;
     -webkit-animation: fadeIn 600ms ease-out 0s forwards;
             animation: fadeIn 600ms ease-out 0s forwards; }
-
-.article-item--land-rover-visual-identity-refresh .article-item__image {
-  mix-blend-mode: normal;
-  margin: 0 -1.5rem; }
-
-@-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
-
-@-webkit-keyframes swipeHorizontal {
-  0% {
-    -webkit-transform: scale(0, 1);
-            transform: scale(0, 1); }
-  100% {
-    -webkit-transform: scale(1, 1);
-            transform: scale(1, 1); } }
-
-@keyframes swipeHorizontal {
-  0% {
-    -webkit-transform: scale(0, 1);
-            transform: scale(0, 1); }
-  100% {
-    -webkit-transform: scale(1, 1);
-            transform: scale(1, 1); } }
+  .article-item.article-item--land-rover-visual-identity-refresh .article-item__image {
+    mix-blend-mode: normal;
+    margin: 0 -1.5rem; }
+  @media screen and (min-width: 37.5rem) {
+    .article-item .article-item__header,
+    .article-item .article-item__footer {
+      margin-left: -3rem;
+      margin-right: -3rem;
+      padding-left: 48;
+      padding-left: 48; }
+    .article-item .article-item__footer {
+      padding-top: 3rem;
+      padding-bottom: 3rem; }
+    .article-item .article-item__title {
+      padding-top: 3rem;
+      padding-bottom: 2.25rem; }
+    .article-item.article-item--land-rover-visual-identity-refresh .article-item__image {
+      margin-left: -3rem;
+      margin-right: -3rem; } }
 /*# sourceMappingURL=../../css/maps/main.css.map */
