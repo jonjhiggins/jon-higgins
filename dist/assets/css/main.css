@@ -491,7 +491,7 @@ img {
       margin-left: -3rem;
       margin-right: -3rem;
       padding-left: 3rem;
-      padding-left: 3rem; }
+      padding-right: 3rem; }
     .article-item .article-item__footer {
       padding-top: 3rem;
       padding-bottom: 3rem; }
@@ -508,6 +508,20 @@ img {
       padding-top: 3rem;
       padding-bottom: 3rem;
       overflow: hidden; }
+      .article-item:nth-child(even) {
+        direction: rtl; }
+        .article-item:nth-child(even) .article-item__image {
+          right: auto;
+          left: 0; }
+        .article-item:nth-child(even) .article-item__header,
+        .article-item:nth-child(even) .article-item__footer,
+        .article-item:nth-child(even) .article-buttons {
+          margin: 0; }
+          .article-item:nth-child(even) .article-item__header *,
+          .article-item:nth-child(even) .article-item__footer *,
+          .article-item:nth-child(even) .article-buttons * {
+            direction: ltr;
+            text-align: right; }
       .article-item .article-item__image {
         position: absolute;
         top: -3rem;

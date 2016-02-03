@@ -92,7 +92,7 @@
                 margin-left: rem(-$gutterMedium);
                 margin-right: rem(-$gutterMedium);
                 padding-left: rem($gutterMedium);
-                padding-left: rem($gutterMedium);
+                padding-right: rem($gutterMedium);
             }
 
             .article-item__footer {
@@ -120,6 +120,25 @@
             padding-top: rem(48);
             padding-bottom: rem(48);
             overflow: hidden;
+
+            &:nth-child(even) {
+                direction: rtl;
+                .article-item__image {
+                    right: auto;
+                    left: 0;
+                }
+
+                .article-item__header,
+                .article-item__footer,
+                .article-buttons {
+                    margin: 0;
+
+                    * {
+                        direction: ltr;
+                        text-align: right;
+                    }
+                }
+            }
 
             .article-item__image {
                 position: absolute;
