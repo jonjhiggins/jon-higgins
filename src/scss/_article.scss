@@ -23,13 +23,17 @@
 
             &:first-child {
                 .article__hero-image-holder {
-                    border-right-width: rem(2);
+                    border-right-width: rem(1);
                 }
             }
 
             &:last-child {
                 .article__hero-image-holder {
-                    border-left-width: rem(2);
+                    border-left-width: rem(1);
+
+                    img {
+                        animation-delay: 4.5s;
+                    }
                 }
             }
         }
@@ -46,7 +50,8 @@
                 top: 0;
                 left: 0;
                 max-width: none;
-                width: 275%;
+                width: 100%;
+                animation: scrollThrough 12s 3s infinite;
             }
         }
 
@@ -73,5 +78,17 @@
             .article__buttons {
                 margin-top: rem(60);
             }
+        }
+    }
+
+    @keyframes scrollThrough {
+        50% {
+            transform: translateY(-33.3%);
+        }
+        75% {
+            transform: translateY(0%);
+        }
+        75.6% {
+            transform: translateY(0%);
         }
     }
