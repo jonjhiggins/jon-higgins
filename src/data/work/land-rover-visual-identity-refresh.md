@@ -13,8 +13,28 @@ archive: false
 
 ---
 
-#### The problem
-TBC
+## The problem
+Land Rover's refreshed visual identity (VI) needed to be rolled out across all its global marketing sites. The VI had been designed for print, so they needed translating to screen format.
 
-#### The solution
-TBC
+Also, there were visual inconsistencies through out the site which broke VI/brand guidelines.
+
+## The solution
+As part of the Land Rover Agile team I collaborated with other developers and designers to implement the new VI. We worked hard on visual consistency, particularly on grids and typography, with minute attention to detail.
+
+My colleague [Pete Williams](http://www.petewritescode.com) and I re-worked the SASS codebase to make it more modular and documented the new VI guidelines for future maintainability.
+
+#### Improving typographic and layout consistency
+
+* Contributed to both the design of and implementation of a baseline grid system based on the x-height of titles
+* Limited the range of font sizes used, with sets for different break points
+* Re-worked every component within the site to use uniform margins specified by the VI's grid system
+
+#### Improving codebase
+
+* SASS: replaced manually inputted values with variables for consistency
+* SASS: pulled out shared styles from components and moved to partials for consistency
+* Documented new VI guidelines in [http://assemble.io](Assemble)-based styleguide
+
+#### Improving content
+
+* Worked with content authors to clean-up content that broke VI guidelines. Introduced new components / layout options based on author's feedback.
