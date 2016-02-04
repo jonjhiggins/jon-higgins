@@ -21,7 +21,7 @@ archive: false
 ---
 
 ## The problem
-Land Rover's refreshed visual identity (VI) needed to be rolled out across all its global marketing sites. The VI had been designed for print, so they needed translating to screen format.
+Land Rover's refreshed visual identity (VI) needed to be rolled out across all its global marketing sites. The VI had been designed for print, so needed translating to screen format.
 
 Also, there were visual inconsistencies through out the site which broke VI/brand guidelines.
 
