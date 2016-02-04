@@ -42053,7 +42053,76 @@ ArticleCollection = Backbone.Collection.extend({
 
 module.exports = ArticleCollection;
 
-},{"./ArticleItem":124,"backbone":6}],121:[function(require,module,exports){
+},{"./ArticleItem":123,"backbone":6}],121:[function(require,module,exports){
+var Marionette = require('backbone.marionette'),
+    ArticleItemView = require('./ArticleItemView'),
+    ArticleCompositeViewTemplate = require('./ArticleCompositeViewTemplate.hbs'),
+    ArticleCompositeView;
+
+ArticleCompositeView = Marionette.CompositeView.extend({
+    childViewContainer: '.article-list',
+    template: ArticleCompositeViewTemplate,
+    childView: ArticleItemView,
+    templateHelpers: function() {
+        return {
+            archiveMode: function() {
+                return this.options.archiveMode;
+            }.bind(this),
+            archiveAvailable: function() {
+                return this.options.archiveAvailable;
+            }.bind(this),
+            templateType: function() {
+                return this.options.templateType;
+            }
+        };
+    }
+});
+
+module.exports = ArticleCompositeView;
+
+},{"./ArticleCompositeViewTemplate.hbs":122,"./ArticleItemView":125,"backbone.marionette":4}],122:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+    return "        <h1 class=\"module__title\">Work Archive</h1>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "        <div class=\"button-holder\"><a href=\"/work/archive\" class=\"button button--arrow button--secondary\">View Archived Work</a></div>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : {};
+
+  return "\n\n<div class=\"module module--article-list body-text\">\n    <div class=\"container\">\n\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.archiveMode : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n        <div class=\"article-list\"></div>\n\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.archiveAvailable : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "    </div>\n</div>\n";
+},"useData":true});
+
+},{"hbsfy/runtime":28}],123:[function(require,module,exports){
+var Backbone = require('backbone'),
+    ArticleItem;
+
+ArticleItem = Backbone.Model.extend({
+    initialize: function() {
+
+        var key = this.get('key'),
+            type = this.get('type');
+
+
+        if (key && type) {
+            var url = this.generateUrl(type, key);
+            this.set('url', url);
+        }
+
+    },
+    // Generate URL from key
+    generateUrl: function(type, key) {
+        return '/' + type + '/' + key;
+    }
+});
+
+module.exports = ArticleItem;
+
+},{"backbone":6}],124:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -42090,110 +42159,10 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "</p>\n        <div class=\"article-item__buttons button-holder\">\n            <div class=\"button button--arrow\">View</div>\n        </div>\n    </footer>\n</a>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],122:[function(require,module,exports){
+},{"hbsfy/runtime":28}],125:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
-    ArticleItemView = require('./ArticleItemView'),
-    ArticleCompositeViewTemplate = require('./ArticleCompositeViewTemplate.hbs'),
-    ArticleCompositeView;
-
-ArticleCompositeView = Marionette.CompositeView.extend({
-    childViewContainer: '.article-list',
-    template: ArticleCompositeViewTemplate,
-    childView: ArticleItemView,
-    templateHelpers: function() {
-        return {
-            archiveMode: function() {
-                return this.options.archiveMode;
-            }.bind(this),
-            archiveAvailable: function() {
-                return this.options.archiveAvailable;
-            }.bind(this),
-            templateType: function() {
-                return this.options.templateType;
-            }
-        };
-    }
-});
-
-module.exports = ArticleCompositeView;
-
-},{"./ArticleCompositeViewTemplate.hbs":123,"./ArticleItemView":126,"backbone.marionette":4}],123:[function(require,module,exports){
-// hbsfy compiled Handlebars template
-var HandlebarsCompiler = require('hbsfy/runtime');
-module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
-    return "        <h1 class=\"module__title\">Work Archive</h1>\n";
-},"3":function(container,depth0,helpers,partials,data) {
-    return "        <div class=\"button-holder\"><a href=\"/work/archive\" class=\"button button--arrow button--secondary\">View Archived Work</a></div>\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : {};
-
-  return "\n\n<div class=\"module module--article-list body-text\">\n    <div class=\"container\">\n\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.archiveMode : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n        <div class=\"article-list\"></div>\n\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.archiveAvailable : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    </div>\n</div>\n";
-},"useData":true});
-
-},{"hbsfy/runtime":28}],124:[function(require,module,exports){
-var Backbone = require('backbone'),
-    ArticleItem;
-
-ArticleItem = Backbone.Model.extend({
-    initialize: function() {
-
-        var key = this.get('key'),
-            type = this.get('type');
-
-
-        if (key && type) {
-            var url = this.generateUrl(type, key);
-            this.set('url', url);
-        }
-
-    },
-    // Generate URL from key
-    generateUrl: function(type, key) {
-        return '/' + type + '/' + key;
-    }
-});
-
-module.exports = ArticleItem;
-
-},{"backbone":6}],125:[function(require,module,exports){
-// hbsfy compiled Handlebars template
-var HandlebarsCompiler = require('hbsfy/runtime');
-module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return "        <figure class=\"article__image\">\n            <img src=\"/assets/img/"
-    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1), depth0))
-    + "\" alt=\"\" />\n        </figure>\n";
-},"3":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return "        <div class=\"article__buttons button-holder\">\n            <a href=\""
-    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.content_url : stack1), depth0))
-    + "\" class=\"button button--arrow\">View Work</a>\n        </div>\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {};
-
-  return "<div class=\"page\">\n    <p class=\"article__date\">"
-    + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
-    + "</p>\n    <h1 class=\"article__title\">"
-    + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</h1>\n"
-    + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    <div class=\"article__description\">"
-    + ((stack1 = helpers.md.call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.__content : stack1),{"name":"md","hash":{},"data":data})) != null ? stack1 : "")
-    + "</div>\n"
-    + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.content_url : stack1),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</div>\n";
-},"useData":true});
-
-},{"hbsfy/runtime":28}],126:[function(require,module,exports){
-var Marionette = require('backbone.marionette'),
-    templateSingle = require('./ArticleItemTemplate.hbs'),
-    templateCollection = require('./ArticleCollectionItemTemplate.hbs'),
+    templateSingle = require('./ArticleTemplate.hbs'),
+    templateCollection = require('./ArticleItemTemplate.hbs'),
     HandlebarsCompiler = require('hbsfy/runtime'),
     moment = require('moment'),
     ArticleItemView;
@@ -42232,7 +42201,50 @@ ArticleItemView = Marionette.ItemView.extend({
 
 module.exports = ArticleItemView;
 
-},{"./ArticleCollectionItemTemplate.hbs":121,"./ArticleItemTemplate.hbs":125,"backbone.marionette":4,"hbsfy/runtime":28,"helper-md":29,"moment":35}],127:[function(require,module,exports){
+},{"./ArticleItemTemplate.hbs":124,"./ArticleTemplate.hbs":126,"backbone.marionette":4,"hbsfy/runtime":28,"helper-md":29,"moment":35}],126:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "        <div class=\"article__hero-images\">\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.heroImages : stack1),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "        </div>\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "                <figure class=\"article__hero-image\">\n                    <img src=\"/assets/img/"
+    + container.escapeExpression(container.lambda((depth0 != null ? depth0.image : depth0), depth0))
+    + "\" alt=\"\" />\n                    "
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.caption : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n                </figure>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "<figcaption class=\"article__hero-caption\">"
+    + container.escapeExpression(container.lambda((depth0 != null ? depth0.caption : depth0), depth0))
+    + "</figcaption>";
+},"5":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "        <div class=\"article__buttons button-holder\">\n            <a href=\""
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.content_url : stack1), depth0))
+    + "\" class=\"button button--arrow\">View Work</a>\n        </div>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {};
+
+  return "<div class=\"page\">\n    <p class=\"article__date\">"
+    + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
+    + "</p>\n    <h1 class=\"article__title\">"
+    + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
+    + "</h1>\n"
+    + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.heroImages : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "    <div class=\"article__description\">"
+    + ((stack1 = helpers.md.call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.__content : stack1),{"name":"md","hash":{},"data":data})) != null ? stack1 : "")
+    + "</div>\n"
+    + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.content_url : stack1),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</div>\n";
+},"useData":true});
+
+},{"hbsfy/runtime":28}],127:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     markdown = require('markdown').markdown,
@@ -42347,7 +42359,7 @@ ArticlesController = Marionette.Controller.extend({
 
 module.exports = ArticlesController;
 
-},{"../config/commands":130,"./ArticleCollection":120,"./ArticleCompositeView":122,"./ArticleItem":124,"./ArticleItemView":126,"backbone.marionette":4,"jquery":32,"markdown":33}],128:[function(require,module,exports){
+},{"../config/commands":130,"./ArticleCollection":120,"./ArticleCompositeView":121,"./ArticleItem":123,"./ArticleItemView":125,"backbone.marionette":4,"jquery":32,"markdown":33}],128:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	ArticlesController = require('./ArticlesController'),

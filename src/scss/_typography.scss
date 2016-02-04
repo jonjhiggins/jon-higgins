@@ -62,10 +62,11 @@ a {
 
         p,
         ul,
-        ol {
+        ol,
+        figcaption {
             font-size: rem($fontSizeBody);
             line-height: $lineHeightBody / $fontSizeBody;
-            color: rgba(0,0,0,0.6);
+            color: $colourDarkGrey;
             position: relative;
             top: -1px; // Visual adjustment to baseline grid
         }

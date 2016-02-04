@@ -7,6 +7,13 @@ date: 2015-03-01
 type: web
 skills: [build]
 images: [work-hero--land-rover-visual-identity@2x.png, work-hero--land-rover-visual-identity--large.png]
+heroImages:
+  -
+    image: work-hero--land-rover-visual-identity--before.jpg
+    caption: Before
+  -
+    image: work-hero--land-rover-visual-identity--after.jpg
+    caption: After
 content_url: http://www.landrover.co.uk
 description: Applying Land Rover's refreshed identity to every part of their global marketing websites.
 archive: false

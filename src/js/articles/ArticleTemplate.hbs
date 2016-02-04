@@ -1,10 +1,15 @@
 <div class="page">
     <p class="article__date">{{date}}</p>
     <h1 class="article__title">{{item.title}}</h1>
-    {{#if item.images}}
-        <figure class="article__image">
-            <img src="/assets/img/{{item.images}}" alt="" />
-        </figure>
+    {{#if item.heroImages}}
+        <div class="article__hero-images">
+            {{#each item.heroImages}}
+                <figure class="article__hero-image">
+                    <img src="/assets/img/{{this.image}}" alt="" />
+                    {{#if this.caption}}<figcaption class="article__hero-caption">{{this.caption}}</figcaption>{{/if}}
+                </figure>
+            {{/each}}
+        </div>
     {{/if}}
     <div class="article__description">{{{md item.__content}}}</div>
     {{#if item.content_url}}
