@@ -26,7 +26,7 @@ Land Rover's refreshed visual identity (VI) needed to be rolled out across all i
 Also, there were visual inconsistencies through out the site which broke VI/brand guidelines.
 
 ## The solution
-As part of the Land Rover Agile team I collaborated with other developers and designers to implement the new VI. We worked hard on visual consistency, particularly on grids and typography, with minute attention to detail.
+As part of the Land Rover Agile team I collaborated with other developers and designers to implement the new VI. This included new colour palettes, fonts and grids. We worked hard on visual consistency, particularly on grids and typography, with minute attention to detail.
 
 My colleague [Pete Williams](http://www.petewritescode.com) and I re-worked the SASS codebase to make it more modular and documented the new VI guidelines for future maintainability.
 
