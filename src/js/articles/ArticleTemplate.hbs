@@ -5,7 +5,7 @@
         <div class="article__hero-images">
             {{#each item.heroImages}}
                 <figure class="article__hero-image">
-                    <img src="/assets/img/{{this.image}}" alt="" />
+                    <span class="article__hero-image-holder"><img src="/assets/img/{{this.image}}" alt="" /></span>
                     {{#if this.caption}}<figcaption class="article__hero-caption">{{this.caption}}</figcaption>{{/if}}
                 </figure>
             {{/each}}

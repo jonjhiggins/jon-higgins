@@ -472,6 +472,40 @@ img {
       .navigation .navigation__link {
         padding: 0; } }
 
+.article .article__hero-images {
+  margin-left: -1.5rem;
+  margin-right: -1.5rem; }
+  .article .article__hero-images:before, .article .article__hero-images:after {
+    content: " ";
+    display: table; }
+  .article .article__hero-images:after {
+    clear: both; }
+
+.article .article__hero-image {
+  width: 50%;
+  float: left; }
+  .article .article__hero-image:first-child .article__hero-image-holder {
+    border-right-width: 0.125rem; }
+  .article .article__hero-image:last-child .article__hero-image-holder {
+    border-left-width: 0.125rem; }
+
+.article .article__hero-image-holder {
+  position: relative;
+  padding-top: 168.75%;
+  border: 0.1875rem solid #E6E6E6;
+  overflow: hidden;
+  display: block; }
+  .article .article__hero-image-holder img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: none;
+    width: 275%; }
+
+.article .article__hero-caption {
+  text-align: center;
+  margin-top: 0.375rem; }
+
 .article .article__buttons {
   margin-top: 1.875rem; }
 

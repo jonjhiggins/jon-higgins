@@ -7,9 +7,59 @@
 
     .article {
 
+        // Hero images
+        // ----
+
+        .article__hero-images {
+            margin-left: rem(-$gutterSmall);
+            margin-right: rem(-$gutterSmall);
+            @include clearfix;
+        }
+
+        .article__hero-image {
+            width: 50%;
+
+            float: left;
+
+            &:first-child {
+                .article__hero-image-holder {
+                    border-right-width: rem(2);
+                }
+            }
+
+            &:last-child {
+                .article__hero-image-holder {
+                    border-left-width: rem(2);
+                }
+            }
+        }
+
+        .article__hero-image-holder {
+            position: relative;
+            padding-top: 270 / 160 * 100%;
+            border: rem(3) solid $colourPageBorder;
+            overflow: hidden;
+            display: block;
+
+            img {
+                position: absolute;
+                top: 0;
+                left: 0;
+                max-width: none;
+                width: 275%;
+            }
+        }
+
+        .article__hero-caption {
+            text-align: center;
+            margin-top: rem(6);
+        }
+
         .article__buttons {
             margin-top: rem(30);
         }
+
+
 
         // Responsive: XLarge
         // ----
