@@ -521,20 +521,6 @@ img {
       padding-top: 3rem;
       padding-bottom: 3rem;
       overflow: hidden; }
-      .article-item:nth-child(even) {
-        direction: rtl; }
-        .article-item:nth-child(even) .article-item__image {
-          right: auto;
-          left: 0; }
-        .article-item:nth-child(even) .article-item__header,
-        .article-item:nth-child(even) .article-item__footer,
-        .article-item:nth-child(even) .article-buttons {
-          margin: 0; }
-          .article-item:nth-child(even) .article-item__header *,
-          .article-item:nth-child(even) .article-item__footer *,
-          .article-item:nth-child(even) .article-buttons * {
-            direction: ltr;
-            text-align: right; }
       .article-item .article-item__image {
         position: absolute;
         top: -3rem;
@@ -544,14 +530,28 @@ img {
       .article-item .article-item__header,
       .article-item .article-item__footer {
         margin: 0;
+        padding-right: 6.1963775024%;
         background-color: #FFF200; }
-      .article-item .article-item__title,
-      .article-item .article-item__description {
-        width: 75%; }
       .article-item .article-item__header {
         padding-bottom: 0; }
         .article-item .article-item__header:before {
           content: none; }
       .article-item .article-item__footer {
-        padding-top: 0; } }
+        padding-top: 0; }
+      .article-item:nth-child(even) {
+        direction: rtl; }
+        .article-item:nth-child(even) .article-item__image {
+          right: auto;
+          left: 0; }
+        .article-item:nth-child(even) .article-item__header,
+        .article-item:nth-child(even) .article-item__footer,
+        .article-item:nth-child(even) .article-buttons {
+          margin: 0;
+          padding-left: 6.1963775024%;
+          padding-right: 3rem; }
+          .article-item:nth-child(even) .article-item__header *,
+          .article-item:nth-child(even) .article-item__footer *,
+          .article-item:nth-child(even) .article-buttons * {
+            direction: ltr;
+            text-align: right; } }
 /*# sourceMappingURL=../../css/maps/main.css.map */
