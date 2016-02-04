@@ -1,15 +1,28 @@
-<div class="page">
-    <p class="article__date">{{date}}</p>
-    <h1 class="article__title">{{item.title}}</h1>
+<a href="{{url}}" class="article-item__link">
+    <header class="article-item__header">
+        {{!-- @TODO add date in {{#if archiveMode}}
+        <p class="article-item__date">{{date}}</p>
+        {{/if}}--}}
+        <h3 class="article-item__title h1">{{item.title}}</h3>
+    </header>
     {{#if item.images}}
-        <figure class="article__image">
-            <img src="/assets/img/{{item.images}}" alt="" />
+        <figure class="article-item__image">
+
+            {{#if responsiveImages}}
+                <picture>
+                    <source media="(min-width: 58.25rem)" srcset="/assets/img/{{item.images.[1]}}"> {{! Large breakpoint}}
+                    <img src="/assets/img/{{item.images.[0]}}" alt="">
+                </picture>
+            {{else}}
+                <img src="/assets/img/{{item.images}}" alt="" />
+            {{/if}}
+            
         </figure>
     {{/if}}
-    <div class="article__description">{{{md item.__content}}}</div>
-    {{#if item.content_url}}
-        <div class="article__buttons button-holder">
-            <a href="{{item.content_url}}" class="button button--arrow">View Work</a>
+    <footer class="article-item__footer">
+        <p class="article-item__description">{{item.description}}</p>
+        <div class="article-item__buttons button-holder">
+            <div class="button button--arrow">View</div>
         </div>
-    {{/if}}
-</div>
+    </footer>
+</a>

@@ -1,6 +1,6 @@
 var Marionette = require('backbone.marionette'),
-    templateSingle = require('./ArticleItemTemplate.hbs'),
-    templateCollection = require('./ArticleCollectionItemTemplate.hbs'),
+    templateSingle = require('./ArticleTemplate.hbs'),
+    templateCollection = require('./ArticleItemTemplate.hbs'),
     HandlebarsCompiler = require('hbsfy/runtime'),
     moment = require('moment'),
     ArticleItemView;
