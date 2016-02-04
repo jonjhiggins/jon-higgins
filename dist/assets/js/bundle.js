@@ -42165,9 +42165,15 @@ var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<figure class=\"article__image\"><img src=\"/assets/img/"
+  return "        <figure class=\"article__image\">\n            <img src=\"/assets/img/"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1), depth0))
-    + "\" alt=\"\" /></figure>";
+    + "\" alt=\"\" />\n        </figure>\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "        <div class=\"article__buttons button-holder\">\n            <a href=\""
+    + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.content_url : stack1), depth0))
+    + "\" class=\"button button--arrow\">View Work</a>\n        </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression, alias3=depth0 != null ? depth0 : {};
 
@@ -42175,11 +42181,13 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias2(alias1((depth0 != null ? depth0.date : depth0), depth0))
     + "</p>\n    <h1 class=\"article__title\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</h1>\n    "
+    + "</h1>\n"
     + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n    <div class=\"article__description\">"
+    + "    <div class=\"article__description\">"
     + ((stack1 = helpers.md.call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.__content : stack1),{"name":"md","hash":{},"data":data})) != null ? stack1 : "")
-    + "</div>\n</div>\n";
+    + "</div>\n"
+    + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.content_url : stack1),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</div>\n";
 },"useData":true});
 
 },{"hbsfy/runtime":28}],126:[function(require,module,exports){
@@ -42462,12 +42470,12 @@ if (Backbone.history && Backbone.history._hasPushState) {
   // Use delegation to avoid initial DOM selection and allow all matching elements to bubble
   $(document).on('click', 'a', function(evt) {
     // Get the anchor href and protcol
-    var href = $(this).attr("href"),
-		protocol = this.protocol + "//";
+    var href = $(this).attr('href'),
+		protocol = this.protocol + '//';
 
     // Ensure the protocol is not part of URL, meaning its relative.
     // Stop the event bubbling to ensure the link will not cause a page refresh.
-    if (!openLinkInTab && href.slice(protocol.length) !== protocol) {
+    if (!openLinkInTab && href.slice(0, protocol.length) !== protocol) {
       evt.preventDefault();
 
       // Note by using Backbone.history.navigate, router events will not be

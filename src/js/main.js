@@ -75,12 +75,12 @@ if (Backbone.history && Backbone.history._hasPushState) {
   // Use delegation to avoid initial DOM selection and allow all matching elements to bubble
   $(document).on('click', 'a', function(evt) {
     // Get the anchor href and protcol
-    var href = $(this).attr("href"),
-		protocol = this.protocol + "//";
+    var href = $(this).attr('href'),
+		protocol = this.protocol + '//';
 
     // Ensure the protocol is not part of URL, meaning its relative.
     // Stop the event bubbling to ensure the link will not cause a page refresh.
-    if (!openLinkInTab && href.slice(protocol.length) !== protocol) {
+    if (!openLinkInTab && href.slice(0, protocol.length) !== protocol) {
       evt.preventDefault();
 
       // Note by using Backbone.history.navigate, router events will not be

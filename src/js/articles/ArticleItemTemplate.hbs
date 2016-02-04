@@ -1,6 +1,15 @@
 <div class="page">
     <p class="article__date">{{date}}</p>
     <h1 class="article__title">{{item.title}}</h1>
-    {{#if item.images}}<figure class="article__image"><img src="/assets/img/{{item.images}}" alt="" /></figure>{{/if}}
+    {{#if item.images}}
+        <figure class="article__image">
+            <img src="/assets/img/{{item.images}}" alt="" />
+        </figure>
+    {{/if}}
     <div class="article__description">{{{md item.__content}}}</div>
+    {{#if item.content_url}}
+        <div class="article__buttons button-holder">
+            <a href="{{item.content_url}}" class="button button--arrow">View Work</a>
+        </div>
+    {{/if}}
 </div>
