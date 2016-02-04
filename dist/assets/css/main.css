@@ -226,6 +226,11 @@ body {
 .page {
   padding: 1.5rem; }
 
+.container {
+  max-width: 100rem;
+  margin-left: auto;
+  margin-right: auto; }
+
 .page {
   max-width: 46.25rem;
   margin: 3rem auto 2.25rem;

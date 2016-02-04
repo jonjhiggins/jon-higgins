@@ -18,6 +18,12 @@
         padding: rem($gutterSmall);
     }
 
+    .container {
+        max-width: rem($maxWidthOuterPage);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .page {
         max-width: rem($maxWidthPage);
         margin: rem(48) auto rem(36);
