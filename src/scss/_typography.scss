@@ -34,6 +34,22 @@ a {
 .page,
 .body-text {
 
+    // Default margins
+    // ----
+
+        p,
+        figure,
+        img {
+            margin: 0 0 em($lineHeightBody, $fontSizeBody) 0;
+        }
+
+    // Img
+    // ----
+
+        img {
+            display: block;
+        }
+
     // Links
     // ----
 
@@ -54,10 +70,6 @@ a {
             top: -1px; // Visual adjustment to baseline grid
         }
 
-        p,
-        figure {
-            margin: 0 0 em($lineHeightBody, $fontSizeBody) 0;
-        }
 
         ul,
         ol {

@@ -26,6 +26,18 @@ a {
   h1 a, h2 a, h3 a, h4 a, h5 a, h6 a, img a {
     border-bottom: none; }
 
+.page p,
+.page figure,
+.page img,
+.body-text p,
+.body-text figure,
+.body-text img {
+  margin: 0 0 1.5em 0; }
+
+.page img,
+.body-text img {
+  display: block; }
+
 .page a:hover,
 .body-text a:hover {
   background-color: #FFF200; }
@@ -41,12 +53,6 @@ a {
   color: rgba(0, 0, 0, 0.6);
   position: relative;
   top: -1px; }
-
-.page p,
-.page figure,
-.body-text p,
-.body-text figure {
-  margin: 0 0 1.5em 0; }
 
 .page ul,
 .page ol,
