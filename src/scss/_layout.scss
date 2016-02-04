@@ -50,3 +50,11 @@
             border: rem(3) solid $colourLightGrey;
         }
     }
+
+    @media screen and (min-width: $bpExtraLarge) {
+
+        .container,
+        .page {
+            padding: rem($gutterExtraLarge);
+        }
+    }

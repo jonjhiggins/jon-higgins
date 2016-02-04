@@ -12,6 +12,15 @@
         margin-bottom: rem(48);
         position: relative;
 
+        .article-item__link {
+            display: block;
+            border-bottom: 0;
+
+            &:hover {
+                background: none;
+            }
+        }
+
         .article-item__header,
         .article-item__footer {
             position: relative;
@@ -85,7 +94,7 @@
 
 
 
-        // Responsive
+        // Responsive: Medium
         // ----
 
         @media screen and (min-width: $bpMedium) {
@@ -107,6 +116,9 @@
                 padding-bottom: rem($gutterMedium * 0.75);
             }
 
+            // Custom article-items
+            // ----
+
             &.article-item--land-rover-visual-identity-refresh {
                 .article-item__image {
                     margin-left: rem(-$gutterMedium);
@@ -114,6 +126,9 @@
                 }
             }
         }
+
+        // Responsive: Large
+        // ----
 
         @media screen and (min-width: $bpLarge) {
 
@@ -168,6 +183,48 @@
                         direction: ltr;
                         text-align: right;
                     }
+                }
+            }
+
+            // Custom article-items
+            // ----
+
+            &.article-item--land-rover-visual-identity-refresh {
+                overflow: visible;
+
+
+                .article-item__link {
+                    background-color: $colourBrightYellow;
+                }
+
+                .article-item__image {
+                    margin-left: 0;
+                    margin-right: 0;
+                    top: rem(-24);
+                    width: auto;
+                    left: rem(-$gutterLarge / 2);
+                    right: calc( #{ ((100 / 6) * 3) * 1% } + #{rem(12)});
+
+                    img {
+                        max-width: none;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        // Responsive: XLarge
+        // ----
+
+        @media screen and (min-width: $bpExtraLarge) {
+
+
+            // Custom article-items
+            // ----
+
+            &.article-item--land-rover-visual-identity-refresh {
+                .article-item__image {
+                    left: rem(-$gutterExtraLarge / 2);
                 }
             }
         }
