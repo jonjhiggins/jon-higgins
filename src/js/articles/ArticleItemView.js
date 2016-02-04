@@ -16,11 +16,17 @@ ArticleItemView = Marionette.ItemView.extend({
     tagName: 'article',
     className: function() {
         return 'article-item article-item--' + this.model.get('item').class;
-    } ,
+    },
     templateHelpers: function() {
         return {
+
             date: function() {
                 return moment(this.model.get('item').date, 'YYYYMMDD').format('MMM YYYY');
+            }.bind(this),
+
+            responsiveImages: function() {
+                var responsiveImages = this.model.get('item').images.length > 1;
+                return responsiveImages;
             }.bind(this)
         };
     }

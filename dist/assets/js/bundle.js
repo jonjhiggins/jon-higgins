@@ -42059,9 +42059,23 @@ var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<figure class=\"article-item__image\"><img src=\"/assets/img/"
+  return "        <figure class=\"article-item__image\">\n"
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.responsiveImages : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.program(4, data, 0),"data":data})) != null ? stack1 : "")
+    + "        </figure>\n";
+},"2":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
+
+  return "                <picture>\n                    <source media=\"(min-width: 58.25rem)\" srcset=\"/assets/img/"
+    + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1)) != null ? stack1["1"] : stack1), depth0))
+    + "\"> \n                    <img src=\"/assets/img/"
+    + alias2(alias1(((stack1 = ((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1)) != null ? stack1["0"] : stack1), depth0))
+    + "\" alt=\"\">\n                </picture>\n";
+},"4":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "                <img src=\"/assets/img/"
     + container.escapeExpression(container.lambda(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1), depth0))
-    + "\" alt=\"\" /></figure>";
+    + "\" alt=\"\" />\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
@@ -42069,9 +42083,9 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias2(alias1((depth0 != null ? depth0.url : depth0), depth0))
     + "\" class=\"article-item__link\">\n    <header class=\"article-item__header\">\n        <h3 class=\"article-item__title h1\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
-    + "</h3>\n    </header>\n    "
+    + "</h3>\n    </header>\n"
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.images : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n    <footer class=\"article-item__footer\">\n        <p class=\"article-item__description\">"
+    + "    <footer class=\"article-item__footer\">\n        <p class=\"article-item__description\">"
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.description : stack1), depth0))
     + "</p>\n        <div class=\"article-item__buttons button-holder\">\n            <div class=\"button button--arrow\">View</div>\n        </div>\n    </footer>\n</a>\n";
 },"useData":true});
@@ -42187,11 +42201,17 @@ ArticleItemView = Marionette.ItemView.extend({
     tagName: 'article',
     className: function() {
         return 'article-item article-item--' + this.model.get('item').class;
-    } ,
+    },
     templateHelpers: function() {
         return {
+
             date: function() {
                 return moment(this.model.get('item').date, 'YYYYMMDD').format('MMM YYYY');
+            }.bind(this),
+
+            responsiveImages: function() {
+                var responsiveImages = this.model.get('item').images.length > 1;
+                return responsiveImages;
             }.bind(this)
         };
     }
