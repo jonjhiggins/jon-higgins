@@ -42113,7 +42113,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 
-  return "\n\n<div class=\"module module--article-list body-text\">\n    <div class=\"container\">\n\n"
+  return "\n\n<div class=\"module module--article-list body-text\">\n    <div class=\"container\">\n\n        <div class=\"grid__row grid__row--fixed\">\n           <div class=\"grid__col--l grid__col--l--1\"><span>a</span></div><div class=\"grid__col--l grid__col--l--1\"><span>a</span></div><div class=\"grid__col--l grid__col--l--1\"><span>a</span></div><div class=\"grid__col--l grid__col--l--1\"><span>a</span></div><div class=\"grid__col--l grid__col--l--1\"><span>a</span></div><div class=\"grid__col--l grid__col--l--1\"><span>a</span></div>\n        </div>\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.archiveMode : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n        <div class=\"article-list\"></div>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.archiveAvailable : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")

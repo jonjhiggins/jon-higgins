@@ -16,7 +16,7 @@
             margin: 0 rem(-$gutterSmall);
             padding: 0 rem($gutterSmall);
             @extend  %grid__col--l;
-            @extend  %grid__col--l--4;
+            @extend  %grid__col--l--3--c;
         }
 
         .article-item__header {

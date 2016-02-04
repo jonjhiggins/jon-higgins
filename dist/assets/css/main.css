@@ -262,7 +262,17 @@ img {
   .grid__row--fixed span {
     display: block;
     background: rgba(255, 0, 0, 0.25);
-    height: 100vh; }
+    height: 100vh;
+    position: relative; }
+    .grid__row--fixed span:after {
+      content: '';
+      width: 0.75rem;
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.25);
+      top: 0;
+      left: 50%;
+      height: 100%;
+      margin-left: -0.375rem; }
 
 .grid__col {
   padding: 0 0.375rem;
@@ -272,6 +282,9 @@ img {
   .grid__row--fixed {
     left: 3rem;
     right: 3rem; }
+    .grid__row--fixed span:after {
+      width: 1.5rem;
+      margin-left: -0.75rem; }
   .grid__col--l, .article-item .article-item__header,
   .article-item .article-item__footer {
     padding: 0 0.75rem;
@@ -279,10 +292,10 @@ img {
   .grid__col--l--1 {
     width: 16.6666666667%; }
   .article-item .article-item__image {
-    width: calc( 50% - 12px); }
+    width: calc( 50% - 0.75rem); }
   .article-item .article-item__header,
   .article-item .article-item__footer {
-    width: calc( 66.6666666667% - 8px); } }
+    width: calc( 58.3333333333% - 0.625rem); } }
 
 .button {
   display: inline-block;
