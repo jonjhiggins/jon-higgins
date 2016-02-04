@@ -228,4 +228,15 @@
                 }
             }
         }
+
+        @media screen and (min-width: $bpExtraExtraLarge) {
+
+
+            // Custom article-items
+            // ----
+
+            &.article-item--land-rover-visual-identity-refresh {
+                margin-bottom: 10vw;
+            }
+        }
     }

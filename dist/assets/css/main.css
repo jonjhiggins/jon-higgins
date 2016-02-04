@@ -591,4 +591,7 @@ img {
   @media screen and (min-width: 75rem) {
     .article-item.article-item--land-rover-visual-identity-refresh .article-item__image {
       left: -3rem; } }
+  @media screen and (min-width: 87.5rem) {
+    .article-item.article-item--land-rover-visual-identity-refresh {
+      margin-bottom: 10vw; } }
 /*# sourceMappingURL=../../css/maps/main.css.map */
