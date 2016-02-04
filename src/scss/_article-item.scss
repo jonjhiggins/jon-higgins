@@ -1,0 +1,242 @@
+// ====
+// Article Item
+// ====
+
+    // Article item
+    // ----
+
+    .article-item {
+
+        $paddingHeaderFooterLarge: 65 / 1049 * 100%;
+
+        margin-bottom: rem(48);
+        position: relative;
+
+        .article-item__link {
+            display: block;
+            border-bottom: 0;
+
+            &:hover {
+                background: none;
+            }
+        }
+
+        .article-item__header,
+        .article-item__footer {
+            position: relative;
+            margin: 0 rem(-$gutterSmall);
+            padding: 0 rem($gutterSmall);
+            @extend  %grid__col--l;
+            @extend  %grid__col--l--3--c;
+        }
+
+        .article-item__header {
+            padding-bottom: rem(60);
+            margin-bottom: rem(-60);
+
+            // Swiping yellow backround
+            &:before {
+                content: '';
+                background-color: $colourBrightYellow;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                transform-origin: 0% 50%;
+                transform: scale(0, 1);
+                animation: swipeHorizontal 600ms ease-out 0s forwards;
+                mix-blend-mode: multiply;
+            }
+        }
+
+        .article-item__footer {
+            padding-top: rem($gutterSmall);
+            padding-bottom: rem($gutterSmall);
+        }
+
+        .article-item__date {
+            margin-bottom: em(12, $fontSizeBody);
+        }
+
+        .article-item__image {
+            @extend %grid__col--l--3;
+            position: relative;
+            z-index: -2;
+            margin: 0;
+        }
+
+        .article-item__title {
+            margin: 0;
+            padding: rem($gutterSmall) 0 rem(18);
+        }
+
+        // Fade in animation
+
+            .article-item__title,
+            .article-item__image,
+            .article-item__description,
+            .article-item__buttons {
+                opacity: 0;
+                animation: fadeIn 600ms ease-out 0s forwards;
+            }
+
+        // Custom article-items
+        // ----
+
+        &.article-item--land-rover-visual-identity-refresh {
+            .article-item__image {
+                mix-blend-mode: normal;
+                margin: 0 rem(-$gutterSmall);
+            }
+        }
+
+
+
+        // Responsive: Medium
+        // ----
+
+        @media screen and (min-width: $bpMedium) {
+            .article-item__header,
+            .article-item__footer {
+                margin-left: rem(-$gutterMedium);
+                margin-right: rem(-$gutterMedium);
+                padding-left: rem($gutterMedium);
+                padding-right: rem($gutterMedium);
+            }
+
+            .article-item__footer {
+                padding-top: rem($gutterMedium);
+                padding-bottom: rem($gutterMedium);
+            }
+
+            .article-item__title {
+                padding-top: rem($gutterMedium);
+                padding-bottom: rem($gutterMedium * 0.75);
+            }
+
+            // Custom article-items
+            // ----
+
+            &.article-item--land-rover-visual-identity-refresh {
+                .article-item__image {
+                    margin-left: rem(-$gutterMedium);
+                    margin-right: rem(-$gutterMedium);
+                }
+            }
+        }
+
+        // Responsive: Large
+        // ----
+
+        @media screen and (min-width: $bpLarge) {
+
+            margin-top: rem(48);
+            margin-bottom: rem(72);
+            padding-top: rem(48);
+            padding-bottom: rem(48);
+            overflow: hidden;
+
+            .article-item__image {
+                position: absolute;
+                top: rem(-48);
+                right: 0;
+                z-index: 1;
+                mix-blend-mode: multiply;
+            }
+
+            .article-item__header,
+            .article-item__footer {
+                margin: 0;
+                padding-right: $paddingHeaderFooterLarge;
+                background-color: $colourBrightYellow;
+            }
+
+            .article-item__header {
+                padding-bottom: 0;
+                &:before {
+                    content: none;
+                }
+            }
+
+            .article-item__footer {
+                padding-top: 0;
+            }
+
+            // Reverse direction
+            &:nth-child(even) {
+                direction: rtl;
+                .article-item__image {
+                    right: auto;
+                    left: 0;
+                }
+
+                .article-item__header,
+                .article-item__footer,
+                .article-buttons {
+                    margin: 0;
+                    padding-left: $paddingHeaderFooterLarge;
+                    padding-right: rem($gutterLarge);
+
+                    * {
+                        direction: ltr;
+                        text-align: right;
+                    }
+                }
+            }
+
+            // Custom article-items
+            // ----
+
+            &.article-item--land-rover-visual-identity-refresh {
+                overflow: visible;
+
+
+                .article-item__link {
+                    background-color: $colourBrightYellow;
+                }
+
+                .article-item__image {
+                    margin-left: 0;
+                    margin-right: 0;
+                    top: rem(-24);
+                    width: auto;
+                    left: rem(-$gutterLarge / 2);
+                    right: calc( #{ ((100 / 6) * 3) * 1% } + #{rem(12)});
+
+                    img {
+                        max-width: none;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        // Responsive: XLarge
+        // ----
+
+        @media screen and (min-width: $bpExtraLarge) {
+
+
+            // Custom article-items
+            // ----
+
+            &.article-item--land-rover-visual-identity-refresh {
+                .article-item__image {
+                    left: rem(-$gutterExtraLarge / 2);
+                }
+            }
+        }
+
+        @media screen and (min-width: $bpExtraExtraLarge) {
+
+
+            // Custom article-items
+            // ----
+
+            &.article-item--land-rover-visual-identity-refresh {
+                margin-bottom: 10vw;
+            }
+        }
+    }

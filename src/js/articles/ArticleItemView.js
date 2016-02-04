@@ -15,7 +15,12 @@ ArticleItemView = Marionette.ItemView.extend({
     },
     tagName: 'article',
     className: function() {
-        return 'article-item article-item--' + this.model.get('item').class;
+        if (this.model.collection) {
+            return 'article-item article-item--' + this.model.get('item').class;
+        } else {
+            return 'article article--' + this.model.get('item').class;
+        }
+
     },
     templateHelpers: function() {
         return {

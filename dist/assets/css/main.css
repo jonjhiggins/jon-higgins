@@ -470,6 +470,13 @@ img {
       .navigation .navigation__link {
         padding: 0; } }
 
+.article .article__buttons {
+  margin-top: 1.875rem; }
+
+@media screen and (min-width: 37.5rem) {
+  .article .article__buttons {
+    margin-top: 3.75rem; } }
+
 .article-item {
   margin-bottom: 3rem;
   position: relative; }
