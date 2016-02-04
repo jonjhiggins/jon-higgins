@@ -114,3 +114,10 @@
             width: calc( #{ ((100 / 6) * 5) * 1% } - #{rem(4)});
         }
     }
+
+    @media screen and (min-width: $bpExtraLarge) {
+        .grid__row--fixed {
+            left: rem($gutterExtraLarge);
+            right: rem($gutterExtraLarge);
+        }
+    }
