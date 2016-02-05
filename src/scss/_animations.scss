@@ -25,3 +25,30 @@
             transform: scale(1, 1);
         }
     }
+
+    // Scrolling
+    // ----
+
+    @keyframes scrollThrough--Small {
+        50% {
+            transform: translateY(-33.3%);
+        }
+        75% {
+            transform: translateY(0%);
+        }
+        75.6% {
+            transform: translateY(0%);
+        }
+    }
+
+    @keyframes scrollThrough--Large {
+        50% {
+            transform: translateY(-66.6%);
+        }
+        75% {
+            transform: translateY(0%);
+        }
+        75.6% {
+            transform: translateY(0%);
+        }
+    }
