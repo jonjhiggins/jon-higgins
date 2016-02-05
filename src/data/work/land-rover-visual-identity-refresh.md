@@ -40,7 +40,7 @@ My colleague [Pete Williams](http://www.petewritescode.com) and I re-worked the 
 
 * SASS: replaced manually inputted values with variables for consistency
 * SASS: pulled out shared styles from components and moved to partials for consistency
-* Documented new VI guidelines in [http://assemble.io](Assemble)-based styleguide
+* Documented new VI guidelines in [Assemble](http://assemble.io)-based styleguide
 
 #### Improving content
 
