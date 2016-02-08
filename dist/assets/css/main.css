@@ -520,6 +520,7 @@ video {
 .article .article__hero-image-holder,
 .article .article__hero-video-holder {
   border: 0.1875rem solid #E6E6E6;
+  background-color: #FFF;
   display: block; }
 
 .article .article__hero-images,

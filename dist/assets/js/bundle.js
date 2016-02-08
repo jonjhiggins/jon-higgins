@@ -42274,13 +42274,15 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.heroVideos : stack1),{"name":"each","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "        </div>\n";
 },"8":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, alias1=container.lambda, alias2=container.escapeExpression;
 
   return "                <figure class=\"article__hero-content article__hero-content--video "
     + ((stack1 = helpers.unless.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.caption : depth0),{"name":"unless","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\">\n                    <span class=\"article__hero-video-holder\"><video src=\"/assets/img/"
-    + container.escapeExpression(container.lambda(depth0, depth0))
-    + "\" autoplay loop poster=\"posterimage.jpg\"></video></span>\n                </figure>\n";
+    + alias2(alias1(depth0, depth0))
+    + ".mp4\" autoplay loop poster=\"/assets/img/"
+    + alias2(alias1(depth0, depth0))
+    + ".jpg\"></video></span>\n                </figure>\n";
 },"10":function(container,depth0,helpers,partials,data) {
     var stack1;
 
