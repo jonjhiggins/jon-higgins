@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: ['Gruntfile.js', '<%= paths.src %>/js/*.js', '<%= paths.src %>/js/**/*.hbs', '<%= paths.src %>/js/**/*.js', '<%= paths.tests %>/src/*.js'],
-                tasks: ['jshint', 'browserify', /*'mochify', 'uglify'*/],
+                tasks: ['jshint', 'browserify', /*'mochify',*/ 'uglify'],
                 options: {
                     spawn: false,
                 },
