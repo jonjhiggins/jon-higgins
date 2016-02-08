@@ -4,9 +4,18 @@
     {{#if item.heroImages}}
         <div class="article__hero-images">
             {{#each item.heroImages}}
-                <figure class="article__hero-image">
+                <figure class="article__hero-content article__hero-content--image {{#unless this.caption}}article__hero-content--no-caption{{/unless}}">
                     <span class="article__hero-image-holder"><img src="/assets/img/{{this.image}}" alt="" /></span>
                     {{#if this.caption}}<figcaption class="article__hero-caption">{{this.caption}}</figcaption>{{/if}}
+                </figure>
+            {{/each}}
+        </div>
+    {{/if}}
+    {{#if item.heroVideos}}
+        <div class="article__hero-videos">
+            {{#each item.heroVideos}}
+                <figure class="article__hero-content article__hero-content--video {{#unless this.caption}}article__hero-content--no-caption{{/unless}}">
+                    <span class="article__hero-video-holder"><video src="/assets/img/{{this}}" autoplay loop poster="posterimage.jpg"></video></span>
                 </figure>
             {{/each}}
         </div>

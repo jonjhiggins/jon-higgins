@@ -42211,18 +42211,36 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.heroImages : stack1),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "        </div>\n";
 },"2":function(container,depth0,helpers,partials,data) {
-    var stack1;
+    var stack1, alias1=depth0 != null ? depth0 : {};
 
-  return "                <figure class=\"article__hero-image\">\n                    <span class=\"article__hero-image-holder\"><img src=\"/assets/img/"
+  return "                <figure class=\"article__hero-content article__hero-content--image "
+    + ((stack1 = helpers.unless.call(alias1,(depth0 != null ? depth0.caption : depth0),{"name":"unless","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\">\n                    <span class=\"article__hero-image-holder\"><img src=\"/assets/img/"
     + container.escapeExpression(container.lambda((depth0 != null ? depth0.image : depth0), depth0))
     + "\" alt=\"\" /></span>\n                    "
-    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.caption : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.caption : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "\n                </figure>\n";
 },"3":function(container,depth0,helpers,partials,data) {
+    return "article__hero-content--no-caption";
+},"5":function(container,depth0,helpers,partials,data) {
     return "<figcaption class=\"article__hero-caption\">"
     + container.escapeExpression(container.lambda((depth0 != null ? depth0.caption : depth0), depth0))
     + "</figcaption>";
-},"5":function(container,depth0,helpers,partials,data) {
+},"7":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "        <div class=\"article__hero-videos\">\n"
+    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.heroVideos : stack1),{"name":"each","hash":{},"fn":container.program(8, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "        </div>\n";
+},"8":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "                <figure class=\"article__hero-content article__hero-content--video "
+    + ((stack1 = helpers.unless.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.caption : depth0),{"name":"unless","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\">\n                    <span class=\"article__hero-video-holder\"><video src=\"/assets/img/"
+    + container.escapeExpression(container.lambda(depth0, depth0))
+    + "\" autoplay loop poster=\"posterimage.jpg\"></video></span>\n                </figure>\n";
+},"10":function(container,depth0,helpers,partials,data) {
     var stack1;
 
   return "        <div class=\"article__buttons button-holder\">\n            <a href=\""
@@ -42237,10 +42255,11 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias2(alias1(((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.title : stack1), depth0))
     + "</h1>\n"
     + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.heroImages : stack1),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.heroVideos : stack1),{"name":"if","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "    <div class=\"article__description\">"
     + ((stack1 = helpers.md.call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.__content : stack1),{"name":"md","hash":{},"data":data})) != null ? stack1 : "")
     + "</div>\n"
-    + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.content_url : stack1),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + ((stack1 = helpers["if"].call(alias3,((stack1 = (depth0 != null ? depth0.item : depth0)) != null ? stack1.content_url : stack1),{"name":"if","hash":{},"fn":container.program(10, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</div>\n";
 },"useData":true});
 

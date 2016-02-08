@@ -7,18 +7,27 @@
 
     .article {
 
-        // Hero images
+        // Hero images and videos
         // ----
 
-        .article__hero-images {
+        %article__hero-content-holder {
+            border: rem(3) solid $colourPageBorder;
+            display: block;
+        }
+
+        .article__hero-images,
+        .article__hero-videos {
             margin-left: rem(-$gutterSmall);
             margin-right: rem(-$gutterSmall);
             @include clearfix;
         }
 
-        .article__hero-image {
-            width: 50%;
+        .article__hero-content--no-caption {
+            margin-bottom: rem(18);
+        }
 
+        .article__hero-content--image {
+            width: 50%;
             float: left;
 
             &:first-child {
@@ -38,12 +47,21 @@
             }
         }
 
+        .article__hero-image-holder,
+        .article__hero-video-holder {
+            @extend %article__hero-content-holder;
+        }
+
+        .article__hero-video-holder {
+            video {
+                width: 100%;
+            }
+        }
+
         .article__hero-image-holder {
             position: relative;
             padding-top: 270 / 160 * 100%;
-            border: rem(3) solid $colourPageBorder;
             overflow: hidden;
-            display: block;
 
             img {
                 position: absolute;
@@ -73,6 +91,10 @@
             .article__buttons {
                 margin-top: rem(60);
             }
+
+            .article__hero-content--no-caption {
+                margin-bottom: rem(36);
+            }
         }
 
         // Responsive: Large
@@ -80,12 +102,13 @@
 
         @media screen and (min-width: $bpLarge) {
 
-            .article__hero-images {
+            .article__hero-images,
+            .article__hero-videos {
                 margin-left: rem(-$gutterLarge * 2);
                 margin-right: rem(-$gutterLarge * 2);
             }
 
-            .article__hero-image {
+            .article__hero-content--image {
                 width: calc(50% - #{rem($gridMarginLarge / 2)});
                 &:first-child {
                     margin-right: rem($gridMarginLarge / 2);
@@ -109,7 +132,8 @@
 
         @media screen and (min-width: $bpExtraLarge) {
 
-            .article__hero-images {
+            .article__hero-images,
+            .article__hero-videos {
                 margin-left: rem(-$gutterExtraLarge * 2);
                 margin-right: rem(-$gutterExtraLarge * 2);
             }
