@@ -11,7 +11,7 @@
 		ArticlesModule = require('./articles/ArticlesModule'),
 		WhoModule = require('./Who/WhoModule'),
 		NavigationModule = require('./Navigation/NavigationModule'),
-		ShowAnimated = require('../js/plugins/backbone.marionette.showAnimated'),
+		RegionHideShow = require('./Animation/RegionShowHide'),
 		$ = require('jQuery');
 
 // Modules
@@ -21,10 +21,10 @@
 	app.module('articles', ArticlesModule);
 	app.module('who', WhoModule);
 
+// Animation
 
-	/*globals console*/
+	var RegionHideShow = new RegionHideShow();
 
-	var showAnimated = new ShowAnimated();
 
 // Command handlers
 

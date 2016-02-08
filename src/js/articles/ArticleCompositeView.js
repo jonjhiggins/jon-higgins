@@ -7,6 +7,12 @@ ArticleCompositeView = Marionette.CompositeView.extend({
     childViewContainer: '.article-list',
     template: ArticleCompositeViewTemplate,
     childView: ArticleItemView,
+    regionHide: function(deferred) {
+        this.$el.fadeOut(400, this.deferredResolve.bind(null, deferred));
+    },
+    deferredResolve: function(deferred) {
+        deferred.resolve();
+    },
     templateHelpers: function() {
         return {
             archiveMode: function() {

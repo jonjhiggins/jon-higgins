@@ -41734,6 +41734,81 @@ module.exports={
 }
 
 },{}],101:[function(require,module,exports){
+
+/*globals Power2*/
+
+var TweenMax = require('gsap/src/uncompressed/TweenMax.js'),
+    Marionette = require('backbone.marionette'),
+    $ = require('jQuery'),
+    _ = require('underscore');
+
+var RegionHideShow = function() {
+
+    _.extend(Marionette.Region.prototype, {
+
+        hidingDeferredRequired: false,
+
+        hidingDeferred: null,
+
+        showAnimated: function(view, options) {
+
+            /*globals console*/ console.log('showAnimated');
+
+            // If hiding, defer until finished
+            if (this.hidingDeferredRequired) {
+
+                this.hidingDeferred.done(this.showAnimated.bind(this, view, options));
+                this.hidingDeferredRequired = false;
+
+                return;
+            }
+
+            options = options || {};
+
+            var oldView = this.currentView;
+
+            this.show(view, _.extend(options, {
+                preventDestroy: true
+            }));
+
+            //destroy oldView if not preventDestroy = true
+            if (!options.preventDestroy) {
+                oldView.destroy();
+            }
+
+        },
+
+        hideAnimated: function() {
+            /*globals console*/ console.log('hideAnimated');
+
+            // Reset deferred
+            this.hidingDeferred = $.Deferred();
+
+
+            if (this.currentView) {
+
+                this.hidingDeferredRequired = true;
+
+                if (this.currentView.regionHide) {
+                    // Custom hide specifed in view
+                    this.currentView.regionHide(this.hidingDeferred);
+                } else {
+                    // Default hide
+                    this.currentView.$el.fadeOut(400, this.resolveHidingDeferred.bind(this));
+                }
+            }
+        },
+
+        resolveHidingDeferred: function() {
+            this.hidingDeferred.resolve();
+        }
+    });
+
+};
+
+module.exports = RegionHideShow;
+
+},{"backbone.marionette":4,"gsap/src/uncompressed/TweenMax.js":8,"jQuery":31,"underscore":97}],102:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	HomeView = require('./homeView'),
 	commands = require('../config/commands'),
@@ -41755,7 +41830,7 @@ HomeController = Marionette.Controller.extend({
 
 module.exports = HomeController;
 
-},{"../config/commands":131,"./homeView":105,"backbone.marionette":4}],102:[function(require,module,exports){
+},{"../config/commands":132,"./homeView":106,"backbone.marionette":4}],103:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	HomeController = require('./HomeController'),
@@ -41780,7 +41855,7 @@ HomeModule = Marionette.Module.extend({
 });
 
 module.exports = HomeModule;
-},{"./HomeController":101,"./HomeRouter":103,"backbone":6,"backbone.marionette":4}],103:[function(require,module,exports){
+},{"./HomeController":102,"./HomeRouter":104,"backbone":6,"backbone.marionette":4}],104:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -41794,14 +41869,14 @@ HomeRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = HomeRouter;
-},{"backbone.marionette":4}],104:[function(require,module,exports){
+},{"backbone.marionette":4}],105:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"page\">Home Template</div>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],105:[function(require,module,exports){
+},{"hbsfy/runtime":28}],106:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./HomeTemplate.hbs'),
 	HomeView;
@@ -41812,7 +41887,7 @@ HomeView = Marionette.CompositeView.extend({
 
 module.exports = HomeView;
 
-},{"./HomeTemplate.hbs":104,"backbone.marionette":4}],106:[function(require,module,exports){
+},{"./HomeTemplate.hbs":105,"backbone.marionette":4}],107:[function(require,module,exports){
 var Backbone = require('backbone'),
 	Navigation;
 
@@ -41820,7 +41895,7 @@ var Navigation = Backbone.Model.extend({});
 
 module.exports = Navigation;
 
-},{"backbone":6}],107:[function(require,module,exports){
+},{"backbone":6}],108:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     Backbone = require('backbone'),
     commands = require('../config/commands'),
@@ -41866,14 +41941,14 @@ NavigationController = Marionette.Controller.extend({
 
 module.exports = NavigationController;
 
-},{"../../data/site.json":100,"../config/commands":131,"./Navigation":106,"./NavigationItem":108,"./NavigationItems":111,"./navigationView":114,"backbone":6,"backbone.marionette":4}],108:[function(require,module,exports){
+},{"../../data/site.json":100,"../config/commands":132,"./Navigation":107,"./NavigationItem":109,"./NavigationItems":112,"./navigationView":115,"backbone":6,"backbone.marionette":4}],109:[function(require,module,exports){
 var Backbone = require('backbone'),
 	NavigationItem;
 
 var NavigationItem = Backbone.Model.extend({});
 
 module.exports = NavigationItem;
-},{"backbone":6}],109:[function(require,module,exports){
+},{"backbone":6}],110:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -41890,7 +41965,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "</span></a>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],110:[function(require,module,exports){
+},{"hbsfy/runtime":28}],111:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./NavigationItemTemplate.hbs'),
 	NavigationItemView;
@@ -41911,7 +41986,7 @@ NavigationItemView = Marionette.ItemView.extend({
 
 module.exports = NavigationItemView;
 
-},{"./NavigationItemTemplate.hbs":109,"backbone.marionette":4}],111:[function(require,module,exports){
+},{"./NavigationItemTemplate.hbs":110,"backbone.marionette":4}],112:[function(require,module,exports){
 var Backbone = require('backbone'),
     NavigationItem = require('./NavigationItem'),
     NavigationItems;
@@ -41921,7 +41996,7 @@ var NavigationItems = Backbone.Collection.extend({
 });
 
 module.exports = NavigationItems;
-},{"./NavigationItem":108,"backbone":6}],112:[function(require,module,exports){
+},{"./NavigationItem":109,"backbone":6}],113:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	NavigationController = require('./NavigationController'),
@@ -41945,14 +42020,14 @@ NavigationModule = Marionette.Module.extend({
 
 module.exports = NavigationModule;
 
-},{"./NavigationController":107,"backbone":6,"backbone.marionette":4}],113:[function(require,module,exports){
+},{"./NavigationController":108,"backbone":6,"backbone.marionette":4}],114:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],114:[function(require,module,exports){
+},{"hbsfy/runtime":28}],115:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./NavigationTemplate.hbs'),
     NavigationItemView = require('./NavigationItemView.js'),
@@ -41990,7 +42065,7 @@ NavigationView = Marionette.CompositeView.extend({
 
 module.exports = NavigationView;
 
-},{"./NavigationItemView.js":110,"./NavigationTemplate.hbs":113,"backbone.marionette":4,"jQuery":31}],115:[function(require,module,exports){
+},{"./NavigationItemView.js":111,"./NavigationTemplate.hbs":114,"backbone.marionette":4,"jQuery":31}],116:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	WhoView = require('./whoView'),
 	commands = require('../config/commands'),
@@ -42012,7 +42087,7 @@ WhoController = Marionette.Controller.extend({
 
 module.exports = WhoController;
 
-},{"../config/commands":131,"./whoView":119,"backbone.marionette":4}],116:[function(require,module,exports){
+},{"../config/commands":132,"./whoView":120,"backbone.marionette":4}],117:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WhoController = require('./WhoController'),
@@ -42037,7 +42112,7 @@ WhoModule = Marionette.Module.extend({
 });
 
 module.exports = WhoModule;
-},{"./WhoController":115,"./WhoRouter":117,"backbone":6,"backbone.marionette":4}],117:[function(require,module,exports){
+},{"./WhoController":116,"./WhoRouter":118,"backbone":6,"backbone.marionette":4}],118:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -42050,14 +42125,14 @@ WhoRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WhoRouter;
-},{"backbone.marionette":4}],118:[function(require,module,exports){
+},{"backbone.marionette":4}],119:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"page\">\n    Who Template\n</div>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],119:[function(require,module,exports){
+},{"hbsfy/runtime":28}],120:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WhoTemplate.hbs'),
 	WhoView;
@@ -42068,7 +42143,7 @@ WhoView = Marionette.CompositeView.extend({
 
 module.exports = WhoView;
 
-},{"./WhoTemplate.hbs":118,"backbone.marionette":4}],120:[function(require,module,exports){
+},{"./WhoTemplate.hbs":119,"backbone.marionette":4}],121:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -42083,7 +42158,7 @@ var app = new Marionette.Application({
 
 module.exports = app;
 
-},{"backbone.marionette":4}],121:[function(require,module,exports){
+},{"backbone.marionette":4}],122:[function(require,module,exports){
 var Backbone = require('backbone'),
     ArticleItem = require('./ArticleItem'),
     ArticleCollection;
@@ -42094,7 +42169,7 @@ ArticleCollection = Backbone.Collection.extend({
 
 module.exports = ArticleCollection;
 
-},{"./ArticleItem":124,"backbone":6}],122:[function(require,module,exports){
+},{"./ArticleItem":125,"backbone":6}],123:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     ArticleItemView = require('./ArticleItemView'),
     ArticleCompositeViewTemplate = require('./ArticleCompositeViewTemplate.hbs'),
@@ -42104,6 +42179,12 @@ ArticleCompositeView = Marionette.CompositeView.extend({
     childViewContainer: '.article-list',
     template: ArticleCompositeViewTemplate,
     childView: ArticleItemView,
+    regionHide: function(deferred) {
+        this.$el.fadeOut(400, this.deferredResolve.bind(null, deferred));
+    },
+    deferredResolve: function(deferred) {
+        deferred.resolve();
+    },
     templateHelpers: function() {
         return {
             archiveMode: function() {
@@ -42121,7 +42202,7 @@ ArticleCompositeView = Marionette.CompositeView.extend({
 
 module.exports = ArticleCompositeView;
 
-},{"./ArticleCompositeViewTemplate.hbs":123,"./ArticleItemView":126,"backbone.marionette":4}],123:[function(require,module,exports){
+},{"./ArticleCompositeViewTemplate.hbs":124,"./ArticleItemView":127,"backbone.marionette":4}],124:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -42138,7 +42219,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "    </div>\n</div>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],124:[function(require,module,exports){
+},{"hbsfy/runtime":28}],125:[function(require,module,exports){
 var Backbone = require('backbone'),
     ArticleItem;
 
@@ -42163,7 +42244,7 @@ ArticleItem = Backbone.Model.extend({
 
 module.exports = ArticleItem;
 
-},{"backbone":6}],125:[function(require,module,exports){
+},{"backbone":6}],126:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -42200,7 +42281,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "</p>\n        <div class=\"article-item__buttons button-holder\">\n            <div class=\"button button--arrow\">View</div>\n        </div>\n    </footer>\n</a>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],126:[function(require,module,exports){
+},{"hbsfy/runtime":28}],127:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     templateSingle = require('./ArticleTemplate.hbs'),
     templateCollection = require('./ArticleItemTemplate.hbs'),
@@ -42242,7 +42323,7 @@ ArticleItemView = Marionette.ItemView.extend({
 
 module.exports = ArticleItemView;
 
-},{"./ArticleItemTemplate.hbs":125,"./ArticleTemplate.hbs":127,"backbone.marionette":4,"hbsfy/runtime":28,"helper-md":29,"moment":35}],127:[function(require,module,exports){
+},{"./ArticleItemTemplate.hbs":126,"./ArticleTemplate.hbs":128,"backbone.marionette":4,"hbsfy/runtime":28,"helper-md":29,"moment":35}],128:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -42306,7 +42387,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "</div>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],128:[function(require,module,exports){
+},{"hbsfy/runtime":28}],129:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     markdown = require('markdown').markdown,
@@ -42421,7 +42502,7 @@ ArticlesController = Marionette.Controller.extend({
 
 module.exports = ArticlesController;
 
-},{"../config/commands":131,"./ArticleCollection":121,"./ArticleCompositeView":122,"./ArticleItem":124,"./ArticleItemView":126,"backbone.marionette":4,"jquery":32,"markdown":33}],129:[function(require,module,exports){
+},{"../config/commands":132,"./ArticleCollection":122,"./ArticleCompositeView":123,"./ArticleItem":125,"./ArticleItemView":127,"backbone.marionette":4,"jquery":32,"markdown":33}],130:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	ArticlesController = require('./ArticlesController'),
@@ -42447,7 +42528,7 @@ ArticlesModule = Marionette.Module.extend({
 
 module.exports = ArticlesModule;
 
-},{"./ArticlesController":128,"./ArticlesRouter":130,"backbone":6,"backbone.marionette":4}],130:[function(require,module,exports){
+},{"./ArticlesController":129,"./ArticlesRouter":131,"backbone":6,"backbone.marionette":4}],131:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -42467,11 +42548,11 @@ ArticlesRouter = Marionette.AppRouter.extend({
 
 module.exports = ArticlesRouter;
 
-},{"backbone.marionette":4}],131:[function(require,module,exports){
+},{"backbone.marionette":4}],132:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = new Backbone.Wreqr.Commands();
-},{"backbone":6}],132:[function(require,module,exports){
+},{"backbone":6}],133:[function(require,module,exports){
 'use strict';
 
 // Requires
@@ -42485,7 +42566,7 @@ module.exports = new Backbone.Wreqr.Commands();
 		ArticlesModule = require('./articles/ArticlesModule'),
 		WhoModule = require('./Who/WhoModule'),
 		NavigationModule = require('./Navigation/NavigationModule'),
-		ShowAnimated = require('../js/plugins/backbone.marionette.showAnimated'),
+		RegionHideShow = require('./Animation/RegionShowHide'),
 		$ = require('jQuery');
 
 // Modules
@@ -42495,10 +42576,10 @@ module.exports = new Backbone.Wreqr.Commands();
 	app.module('articles', ArticlesModule);
 	app.module('who', WhoModule);
 
+// Animation
 
-	/*globals console*/
+	var RegionHideShow = new RegionHideShow();
 
-	var showAnimated = new ShowAnimated();
 
 // Command handlers
 
@@ -42570,101 +42651,4 @@ if (Backbone.history && Backbone.history._hasPushState) {
 
 }
 
-},{"../data/site.json":100,"../js/plugins/backbone.marionette.showAnimated":133,"./Home/HomeModule":102,"./Navigation/NavigationModule":112,"./Who/WhoModule":116,"./app":120,"./articles/ArticlesModule":129,"./config/commands":131,"backbone":6,"backbone.marionette":4,"jQuery":31}],133:[function(require,module,exports){
-/**
- * Created by marcinkrysiak on 25/02/15.
- */
-
-/*globals Power2*/
-
-var TweenMax = require('gsap/src/uncompressed/TweenMax.js'),
-    Marionette = require('backbone.marionette'),
-    _ = require('underscore');
-
-var ShowAnimated = function() {
-
-    _.extend(Marionette.Region.prototype, {
-
-        animationType: 'default',
-
-        attachHtml: function(view) {
-
-            var self = this,
-                oldView = this.currentView,
-                newView = view;
-
-            if (!oldView || !oldView.$el) this.animationType = 'default';
-
-            switch (this.animationType) {
-
-                case 'slideLeft':
-                    TweenMax.to(oldView.$el, 0.5, {
-                        x: '-100%',
-                        ease: Power2.easeInOut,
-                        onComplete: function() {
-
-                            //empty old view
-                            self.el.innerHTML = ''; //from the original attachHtml method
-
-                            //reset the old view position
-                            TweenMax.set(oldView.$el, {
-                                x: '0%'
-                            });
-
-                            //prepare the new view
-                            TweenMax.set(newView.$el, {
-                                x: '100%'
-                            });
-
-                            //show the new view
-
-                            self.el.appendChild(newView.el); //from the original attachHtml method
-
-                            //animate in the new view
-                            TweenMax.to(newView.$el, 0.5, {
-                                x: '0%',
-                                ease: Power2.easeInOut
-                            });
-                        }
-                    });
-                    break;
-
-                default:
-                    this.el.innerHTML = '';
-                    this.el.appendChild(view.el);
-            }
-
-            this.animationType = 'default';
-        },
-
-        showAnimated: function(view, options) {
-
-            options = options || {};
-            this.animationType = options.animationType || 'default';
-            //options.preventDestroy = true;
-
-            var oldView = this.currentView;
-
-            this.show(view, _.extend(options, {
-                preventDestroy: true
-            }));
-
-            //destroy oldView if not preventDestroy = true
-            if (!options.preventDestroy) {
-                oldView.destroy();
-            }
-
-        },
-
-        hideAnimated: function() {
-            if (this.currentView) {
-                this.currentView.$el.fadeOut();
-            }
-        }
-    });
-
-};
-
-module.exports = ShowAnimated;
-
-},{"backbone.marionette":4,"gsap/src/uncompressed/TweenMax.js":8,"underscore":97}]},{},[132]);
+},{"../data/site.json":100,"./Animation/RegionShowHide":101,"./Home/HomeModule":103,"./Navigation/NavigationModule":113,"./Who/WhoModule":117,"./app":121,"./articles/ArticlesModule":130,"./config/commands":132,"backbone":6,"backbone.marionette":4,"jQuery":31}]},{},[133]);
