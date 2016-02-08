@@ -196,6 +196,11 @@ a {
   .body-text .p--pullquote:before {
     margin-left: -2.475em; } }
 
+@media screen and (min-width: 75rem) {
+  .page .p--pullquote:before,
+  .body-text .p--pullquote:before {
+    margin-left: -3.675em; } }
+
 @-webkit-keyframes fadeIn {
   0% {
     opacity: 0; }

@@ -229,4 +229,17 @@ a {
                 }
             }
     }
+
+    @media screen and (min-width: $bpExtraLarge) {
+
+        // Pull quotes
+        // ----
+
+            // pull out wider than page
+            .p--pullquote {
+                &:before {
+                    margin-left: em(-99 - ($gutterExtraLarge / 2), $fontSizeH2Large);
+                }
+            }
+    }
 }

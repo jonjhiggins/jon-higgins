@@ -20,7 +20,10 @@ Land Rover's design agency [OgilvyOne](https://www.ogilvyone.com/) produced a co
 Our Agile team was tasked with developing the concept into a set of fully-functional, responsive components that were authorable via CMS. As the concept was created in After Effects we were unsure all of the concept's effects were possible on the web.
 
 ## The solution
-To achieve the effects we sketched out different solutions in code and iterated with the designers to find a balance between interactivity/motion and performance. We worked with new / experimental technologies, such as [clip-path](https://developer.mozilla.org/en/docs/Web/CSS/clip-path) and [ accelerometer](https://developer.mozilla.org/en-US/docs/Web/Events/devicemotion), as such we were always considering fallbacks - using a tiered approach to support basic and advanced devices/browsers.
+To achieve the effects we sketched out different solutions in code and iterated with the designers to find a balance between interactivity/motion and performance.
+
+<p class="p--pullquote" data-pullquote="we iterated to find a balance between interactivity and performance" markdown="1">We worked with new / experimental technologies, such as <a href="https://developer.mozilla.org/en/docs/Web/CSS/clip-path">clip-path</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/Events/devicemotion">accelerometer</a>, as such we were always considering fallbacks - using a tiered approach to support basic and advanced devices/browsers.
+</p>
 
 Performance was a major concern due to the combination of effects and the number of interactive components that could be on the same page. We kept an eye on the FPS monitor, refactoring as required - in particular compositing layers and avoiding re-draws.
 
