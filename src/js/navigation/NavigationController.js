@@ -1,6 +1,7 @@
 var Marionette = require('backbone.marionette'),
     Backbone = require('backbone'),
     commands = require('../config/commands'),
+    Navigation = require('./Navigation'),
 	NavigationView = require('./navigationView'),
     NavigationItem = require('./NavigationItem'),
     NavigationItems =require('./NavigationItems'),
@@ -10,6 +11,7 @@ var Marionette = require('backbone.marionette'),
 NavigationController = Marionette.Controller.extend({
 	initialize: function() {
         this.buildNavigationItems();
+        this.showNavigation();
     },
 
     buildNavigationItems: function() {
@@ -24,11 +26,18 @@ NavigationController = Marionette.Controller.extend({
     },
 
     showNavigation: function(section) {
-    	this.view = new NavigationView({
-            collection: this.navigationItems,
+        this.model = new Navigation({
             section: section
         });
-        return this.view;
+    	this.view = new NavigationView({
+            collection: this.navigationItems,
+            model: this.model
+        });
+        commands.execute('app:navigation:show', this.view);
+    },
+
+    updateNavigation: function(section) {
+        this.model.set('section', section);
     }
 });
 

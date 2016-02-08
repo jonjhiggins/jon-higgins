@@ -9,6 +9,10 @@ NavigationModule = Marionette.Module.extend({
         this.controller = new NavigationController({});
     },
 
+    updateNavigation: function(section) {
+        return this.controller.updateNavigation(section);
+    },
+
     showNavigation: function(section) {
         return this.controller.showNavigation(section);
     }

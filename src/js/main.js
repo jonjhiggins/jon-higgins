@@ -16,10 +16,11 @@
 
 // Modules
 
+	app.module('navigation', NavigationModule);
 	app.module('home', HomeModule);
 	app.module('articles', ArticlesModule);
 	app.module('who', WhoModule);
-	app.module('navigation', NavigationModule);
+
 
 	/*globals console*/
 
@@ -37,9 +38,12 @@
 		app.mainRegion.showAnimated(view, {animationType: 'slideLeft'});
 	});
 
-	commands.setHandler('app:navigation:update', function(section) {
-		var view = app.navigation.showNavigation(section);
+	commands.setHandler('app:navigation:show', function(view) {
 	    app.navigationRegion.show(view);
+	});
+
+	commands.setHandler('app:navigation:update', function(section) {
+		 app.navigation.updateNavigation(section);
 	});
 
 	// Set <title> tag
