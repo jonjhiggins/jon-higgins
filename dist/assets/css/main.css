@@ -623,22 +623,6 @@ video {
   .article-item .article-item__header {
     padding-bottom: 3.75rem;
     margin-bottom: -3.75rem; }
-    .article-item .article-item__header:before {
-      content: '';
-      background-color: #FFF200;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: -1;
-      -webkit-transform-origin: 0% 50%;
-              transform-origin: 0% 50%;
-      -webkit-transform: scale(0, 1);
-              transform: scale(0, 1);
-      -webkit-animation: swipeHorizontal 600ms ease-out 0s forwards;
-              animation: swipeHorizontal 600ms ease-out 0s forwards;
-      mix-blend-mode: multiply; }
   .article-item .article-item__footer {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem; }
@@ -647,20 +631,28 @@ video {
   .article-item .article-item__image {
     position: relative;
     z-index: -2;
-    margin: 0; }
+    margin: 0;
+    color: #E6E6E6; }
   .article-item .article-item__title {
     margin: 0;
     padding: 1.5rem 0 1.125rem; }
-  .article-item .article-item__title,
-  .article-item .article-item__image,
-  .article-item .article-item__description,
-  .article-item .article-item__buttons {
-    opacity: 0;
-    -webkit-animation: fadeIn 600ms ease-out 0s forwards;
-            animation: fadeIn 600ms ease-out 0s forwards; }
-  .article-item.article-item--land-rover-visual-identity-refresh .article-item__image {
-    mix-blend-mode: normal;
-    margin: 0 -1.5rem; }
+  .article-item .outline {
+    pointer-events: none;
+    position: absolute; }
+    .article-item .outline span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0; }
+      .article-item .outline span:nth-child(1) {
+        border-left: 3px solid; }
+      .article-item .outline span:nth-child(2) {
+        border-top: 3px solid; }
+      .article-item .outline span:nth-child(3) {
+        border-right: 3px solid; }
+      .article-item .outline span:nth-child(4) {
+        border-bottom: 3px solid; }
   @media screen and (min-width: 37.5rem) {
     .article-item .article-item__header,
     .article-item .article-item__footer {
@@ -673,23 +665,21 @@ video {
       padding-bottom: 3rem; }
     .article-item .article-item__title {
       padding-top: 3rem;
-      padding-bottom: 2.25rem; }
-    .article-item.article-item--land-rover-visual-identity-refresh .article-item__image {
-      margin-left: -3rem;
-      margin-right: -3rem; } }
+      padding-bottom: 2.25rem; } }
   @media screen and (min-width: 58.25rem) {
     .article-item {
       margin-top: 3rem;
       margin-bottom: 4.5rem;
       padding-top: 3rem;
-      padding-bottom: 3rem;
-      overflow: hidden; }
+      padding-bottom: 3rem; }
       .article-item .article-item__image {
         position: absolute;
-        top: -3rem;
+        top: -1.5rem;
+        bottom: -1.5rem;
         right: 0;
         z-index: 1;
-        mix-blend-mode: multiply; }
+        mix-blend-mode: multiply;
+        overflow: hidden; }
       .article-item .article-item__header,
       .article-item .article-item__footer {
         margin: 0;
@@ -717,23 +707,8 @@ video {
           .article-item:nth-child(even) .article-buttons * {
             direction: ltr;
             text-align: right; }
-      .article-item.article-item--land-rover-visual-identity-refresh {
-        overflow: visible; }
-        .article-item.article-item--land-rover-visual-identity-refresh .article-item__link {
-          background-color: #FFF200; }
-        .article-item.article-item--land-rover-visual-identity-refresh .article-item__image {
-          margin-left: 0;
-          margin-right: 0;
-          top: -1.5rem;
-          width: auto;
-          left: -1.5rem;
-          right: calc( 50% + 0.75rem); }
-          .article-item.article-item--land-rover-visual-identity-refresh .article-item__image img {
-            max-width: none;
-            width: 100%; } }
-  @media screen and (min-width: 75rem) {
-    .article-item.article-item--land-rover-visual-identity-refresh .article-item__image {
-      left: -3rem; } }
+      .article-item.article-item--land-rover-visual-identity-refresh .article-item__image {
+        overflow: visible; } }
   @media screen and (min-width: 87.5rem) {
     .article-item.article-item--land-rover-visual-identity-refresh {
       margin-bottom: 10vw; } }
