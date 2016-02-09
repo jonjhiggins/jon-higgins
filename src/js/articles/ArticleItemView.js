@@ -21,6 +21,8 @@ var props = {
 
 ArticleItemView = Marionette.ItemView.extend({
 
+    templateType: null, // set in onBeforeRender, either 'collection' or  'single';
+
     cache: {}, // set in refreshSelectors
 
     // Different template when in a collection
@@ -73,11 +75,18 @@ ArticleItemView = Marionette.ItemView.extend({
     },
 
     onBeforeShow: function() {
+        this.templateType = this.model.collection ? 'collection' : 'single';
         this.refreshSelectors();
     },
 
     onShow: function() {
-
+        if (this.templateType === 'collection') {
+            this.onShowCollection();
+        } else {
+            this.onShowSingle();
+        }
+    },
+    onShowCollection: function() {
         props.headerFooterColor = this.cache.$headerFooter.css('background-color').replace(/[rgb\(\)']+/g, '');
 
         // Set header / footer initial styles
@@ -94,17 +103,45 @@ ArticleItemView = Marionette.ItemView.extend({
             .done(this.setupOutlines.bind(this));
 
             // @TODO fail etc
+    },
+    onShowSingle: function() {
 
+
+
+        // Create outline
+        var pageOffset = this.cache.$page.offset(),
+            elOffset = this.$el.offset(),
+            outlineWidth = this.cache.$page.outerWidth(),
+            outlineHeight = this.cache.$page.outerHeight(),
+            outlineTop = pageOffset.top - elOffset.top,
+            outlineLeft = pageOffset.left - elOffset.left,
+            outlineBorderColor = this.cache.$page.css('border-color'),
+            $outline = this.buildOutline(outlineWidth, outlineHeight, outlineTop, outlineLeft, outlineBorderColor, false);
+
+        this.$el.append($outline);
+
+        // Fade in page
+        TweenMax.from(this.cache.$page, 0.4, { opacity: 0, delay: 2 });
+        // Fade out outlines
+        TweenMax.to(this.$el.find('.outline'), 0.4, {autoAlpha: 0, delay: 2}, Power2.ease);
     },
     refreshSelectors: function() {
-        this.cache = {
-            $header: this.$el.find('.article-item__header'),
-            $footer: this.$el.find('.article-item__footer'),
-            $headerFooter: this.$el.find('.article-item__header, .article-item__footer'),
-            $headerFooterContents: this.$el.find('.article-item__header > *, .article-item__footer > *'),
-            $image: $(this.el).find('.article-item__image'), // Have to refresh this.el  selector for imagesLoaded
-            $imageContents: this.$el.find('.article-item__image img')
-        };
+
+        if (this.templateType === 'collection') {
+            this.cache = {
+                $header: this.$el.find('.article-item__header'),
+                $footer: this.$el.find('.article-item__footer'),
+                $headerFooter: this.$el.find('.article-item__header, .article-item__footer'),
+                $headerFooterContents: this.$el.find('.article-item__header > *, .article-item__footer > *'),
+                $image: $(this.el).find('.article-item__image'), // Have to refresh this.el  selector for imagesLoaded
+                $imageContents: this.$el.find('.article-item__image img')
+            };
+        } else {
+            this.cache = {
+                $page: this.$el.find('.page')
+            };
+        }
+
     },
     setupOutlines: function() {
 

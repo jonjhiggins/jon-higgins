@@ -7,6 +7,12 @@
 
     .article {
 
+        position: relative;
+
+        // Outline
+        // ----
+        z-index: 0;
+
         // Hero images and videos
         // ----
 
