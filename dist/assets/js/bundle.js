@@ -42875,9 +42875,9 @@ ArticleItemView = Marionette.ItemView.extend({
         // Create outline
         var headerPosition = this.cache.$header.position(),
             outlineWidth = this.cache.$header.outerWidth(),
-            outlineHeight = this.cache.$header.outerHeight() + this.cache.$footer.outerHeight(),
+            outlineHeight = (this.cache.$header.outerHeight() + this.cache.$footer.outerHeight()) + parseInt(this.cache.$header.css('margin-bottom')),
             outlineTop = headerPosition.top,
-            outlineLeft = headerPosition.left,
+            outlineLeft = headerPosition.left + parseInt(this.cache.$header.css('margin-left')),
             outlineBorderColor = 'rgb(' + props.headerFooterColor + ')',
             $outline = this.buildOutline(outlineWidth, outlineHeight, outlineTop, outlineLeft, outlineBorderColor, false);
 
