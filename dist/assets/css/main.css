@@ -296,7 +296,8 @@ body {
   border: 0 solid #E6E6E6; }
 
 img,
-video {
+video,
+pre {
   max-width: 100%; }
 
 @media screen and (min-width: 37.5rem) {
