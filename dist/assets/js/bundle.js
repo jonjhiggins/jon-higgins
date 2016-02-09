@@ -2552,7 +2552,7 @@ return Autolinker;
 
 }));
 
-},{"backbone":6,"underscore":97}],4:[function(require,module,exports){
+},{"backbone":6,"underscore":99}],4:[function(require,module,exports){
 // MarionetteJS (Backbone.Marionette)
 // ----------------------------------
 // v2.4.2
@@ -5991,7 +5991,7 @@ return Autolinker;
   return Marionette;
 }));
 
-},{"backbone":6,"backbone.babysitter":3,"backbone.wreqr":5,"underscore":97}],5:[function(require,module,exports){
+},{"backbone":6,"backbone.babysitter":3,"backbone.wreqr":5,"underscore":99}],5:[function(require,module,exports){
 // Backbone.Wreqr (Backbone.Marionette)
 // ----------------------------------
 // v1.3.5
@@ -6428,7 +6428,7 @@ return Autolinker;
 
 }));
 
-},{"backbone":6,"underscore":97}],6:[function(require,module,exports){
+},{"backbone":6,"underscore":99}],6:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.1
 
@@ -8305,7 +8305,118 @@ return Autolinker;
 }));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":32,"underscore":97}],7:[function(require,module,exports){
+},{"jquery":34,"underscore":99}],7:[function(require,module,exports){
+/**
+ * EvEmitter v1.0.1
+ * Lil' event emitter
+ * MIT License
+ */
+
+/* jshint unused: true, undef: true, strict: true */
+
+( function( global, factory ) {
+  // universal module definition
+  /* jshint strict: false */ /* globals define, module */
+  if ( typeof define == 'function' && define.amd ) {
+    // AMD - RequireJS
+    define( factory );
+  } else if ( typeof module == 'object' && module.exports ) {
+    // CommonJS - Browserify, Webpack
+    module.exports = factory();
+  } else {
+    // Browser globals
+    global.EvEmitter = factory();
+  }
+
+}( this, function() {
+
+"use strict";
+
+function EvEmitter() {}
+
+var proto = EvEmitter.prototype;
+
+proto.on = function( eventName, listener ) {
+  if ( !eventName || !listener ) {
+    return;
+  }
+  // set events hash
+  var events = this._events = this._events || {};
+  // set listeners array
+  var listeners = events[ eventName ] = events[ eventName ] || [];
+  // only add once
+  if ( listeners.indexOf( listener ) == -1 ) {
+    listeners.push( listener );
+  }
+
+  return this;
+};
+
+proto.once = function( eventName, listener ) {
+  if ( !eventName || !listener ) {
+    return;
+  }
+  // add event
+  this.on( eventName, listener );
+  // set once flag
+  // set onceEvents hash
+  var onceEvents = this._onceEvents = this._onceEvents || {};
+  // set onceListeners array
+  var onceListeners = onceEvents[ eventName ] = onceEvents[ eventName ] || [];
+  // set flag
+  onceListeners[ listener ] = true;
+
+  return this;
+};
+
+proto.off = function( eventName, listener ) {
+  var listeners = this._events && this._events[ eventName ];
+  if ( !listeners || !listeners.length ) {
+    return;
+  }
+  var index = listeners.indexOf( listener );
+  if ( index != -1 ) {
+    listeners.splice( index, 1 );
+  }
+
+  return this;
+};
+
+proto.emitEvent = function( eventName, args ) {
+  var listeners = this._events && this._events[ eventName ];
+  if ( !listeners || !listeners.length ) {
+    return;
+  }
+  var i = 0;
+  var listener = listeners[i];
+  args = args || [];
+  // once stuff
+  var onceListeners = this._onceEvents && this._onceEvents[ eventName ];
+
+  while ( listener ) {
+    var isOnce = onceListeners && onceListeners[ listener ];
+    if ( isOnce ) {
+      // remove listener
+      // remove before trigger to prevent recursion
+      this.off( eventName, listener );
+      // unset once flag
+      delete onceListeners[ listener ];
+    }
+    // trigger listener
+    listener.apply( this, args );
+    // get next listener
+    i += isOnce ? 0 : 1;
+    listener = listeners[i];
+  }
+
+  return this;
+};
+
+return EvEmitter;
+
+}));
+
+},{}],8:[function(require,module,exports){
 'use strict';
 
 var slice = require('array-slice');
@@ -8339,7 +8450,7 @@ module.exports = function extend(o) {
   return o;
 };
 
-},{"array-slice":1}],8:[function(require,module,exports){
+},{"array-slice":1}],9:[function(require,module,exports){
 (function (global){
 /*!
  * VERSION: 1.18.2
@@ -15923,7 +16034,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 
 })((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenMax");
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -15991,7 +16102,7 @@ exports['default'] = inst;
 module.exports = exports['default'];
 
 
-},{"./handlebars/base":10,"./handlebars/exception":13,"./handlebars/no-conflict":23,"./handlebars/runtime":24,"./handlebars/safe-string":25,"./handlebars/utils":26}],10:[function(require,module,exports){
+},{"./handlebars/base":11,"./handlebars/exception":14,"./handlebars/no-conflict":24,"./handlebars/runtime":25,"./handlebars/safe-string":26,"./handlebars/utils":27}],11:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16097,7 +16208,7 @@ exports.createFrame = _utils.createFrame;
 exports.logger = _logger2['default'];
 
 
-},{"./decorators":11,"./exception":13,"./helpers":14,"./logger":22,"./utils":26}],11:[function(require,module,exports){
+},{"./decorators":12,"./exception":14,"./helpers":15,"./logger":23,"./utils":27}],12:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16115,7 +16226,7 @@ function registerDefaultDecorators(instance) {
 }
 
 
-},{"./decorators/inline":12}],12:[function(require,module,exports){
+},{"./decorators/inline":13}],13:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16146,7 +16257,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":26}],13:[function(require,module,exports){
+},{"../utils":27}],14:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16188,7 +16299,7 @@ exports['default'] = Exception;
 module.exports = exports['default'];
 
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16236,7 +16347,7 @@ function registerDefaultHelpers(instance) {
 }
 
 
-},{"./helpers/block-helper-missing":15,"./helpers/each":16,"./helpers/helper-missing":17,"./helpers/if":18,"./helpers/log":19,"./helpers/lookup":20,"./helpers/with":21}],15:[function(require,module,exports){
+},{"./helpers/block-helper-missing":16,"./helpers/each":17,"./helpers/helper-missing":18,"./helpers/if":19,"./helpers/log":20,"./helpers/lookup":21,"./helpers/with":22}],16:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16277,7 +16388,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":26}],16:[function(require,module,exports){
+},{"../utils":27}],17:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16373,7 +16484,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../exception":13,"../utils":26}],17:[function(require,module,exports){
+},{"../exception":14,"../utils":27}],18:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16400,7 +16511,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../exception":13}],18:[function(require,module,exports){
+},{"../exception":14}],19:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16431,7 +16542,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":26}],19:[function(require,module,exports){
+},{"../utils":27}],20:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16459,7 +16570,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16473,7 +16584,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16508,7 +16619,7 @@ exports['default'] = function (instance) {
 module.exports = exports['default'];
 
 
-},{"../utils":26}],22:[function(require,module,exports){
+},{"../utils":27}],23:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16557,7 +16668,7 @@ exports['default'] = logger;
 module.exports = exports['default'];
 
 
-},{"./utils":26}],23:[function(require,module,exports){
+},{"./utils":27}],24:[function(require,module,exports){
 (function (global){
 /* global window */
 'use strict';
@@ -16581,7 +16692,7 @@ module.exports = exports['default'];
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -16875,7 +16986,7 @@ function executeDecorators(fn, prog, container, depths, data, blockParams) {
 }
 
 
-},{"./base":10,"./exception":13,"./utils":26}],25:[function(require,module,exports){
+},{"./base":11,"./exception":14,"./utils":27}],26:[function(require,module,exports){
 // Build out our basic SafeString type
 'use strict';
 
@@ -16892,7 +17003,7 @@ exports['default'] = SafeString;
 module.exports = exports['default'];
 
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 
 exports.__esModule = true;
@@ -17018,15 +17129,15 @@ function appendContextPath(contextPath, id) {
 }
 
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 // Create a simple path alias to allow browserify to resolve
 // the runtime on a supported path.
 module.exports = require('./dist/cjs/handlebars.runtime')['default'];
 
-},{"./dist/cjs/handlebars.runtime":9}],28:[function(require,module,exports){
+},{"./dist/cjs/handlebars.runtime":10}],29:[function(require,module,exports){
 module.exports = require("handlebars/runtime")["default"];
 
-},{"handlebars/runtime":27}],29:[function(require,module,exports){
+},{"handlebars/runtime":28}],30:[function(require,module,exports){
 (function (process){
 /*!
  * helper-markdown <https://github.com/jonschlinkert/helper-markdown>
@@ -17110,7 +17221,379 @@ function markdown(options) {
 }
 
 }).call(this,require('_process'))
-},{"_process":36,"extend-shallow":7,"remarkable":37}],30:[function(require,module,exports){
+},{"_process":38,"extend-shallow":8,"remarkable":39}],31:[function(require,module,exports){
+/*!
+ * imagesLoaded v4.1.0
+ * JavaScript is all like "You images are done yet or what?"
+ * MIT License
+ */
+
+( function( window, factory ) { 'use strict';
+  // universal module definition
+
+  /*global define: false, module: false, require: false */
+
+  if ( typeof define == 'function' && define.amd ) {
+    // AMD
+    define( [
+      'ev-emitter/ev-emitter'
+    ], function( EvEmitter ) {
+      return factory( window, EvEmitter );
+    });
+  } else if ( typeof module == 'object' && module.exports ) {
+    // CommonJS
+    module.exports = factory(
+      window,
+      require('ev-emitter')
+    );
+  } else {
+    // browser global
+    window.imagesLoaded = factory(
+      window,
+      window.EvEmitter
+    );
+  }
+
+})( window,
+
+// --------------------------  factory -------------------------- //
+
+function factory( window, EvEmitter ) {
+
+'use strict';
+
+var $ = window.jQuery;
+var console = window.console;
+
+// -------------------------- helpers -------------------------- //
+
+// extend objects
+function extend( a, b ) {
+  for ( var prop in b ) {
+    a[ prop ] = b[ prop ];
+  }
+  return a;
+}
+
+// turn element or nodeList into an array
+function makeArray( obj ) {
+  var ary = [];
+  if ( Array.isArray( obj ) ) {
+    // use object if already an array
+    ary = obj;
+  } else if ( typeof obj.length == 'number' ) {
+    // convert nodeList to array
+    for ( var i=0; i < obj.length; i++ ) {
+      ary.push( obj[i] );
+    }
+  } else {
+    // array of single index
+    ary.push( obj );
+  }
+  return ary;
+}
+
+// -------------------------- imagesLoaded -------------------------- //
+
+/**
+ * @param {Array, Element, NodeList, String} elem
+ * @param {Object or Function} options - if function, use as callback
+ * @param {Function} onAlways - callback function
+ */
+function ImagesLoaded( elem, options, onAlways ) {
+  // coerce ImagesLoaded() without new, to be new ImagesLoaded()
+  if ( !( this instanceof ImagesLoaded ) ) {
+    return new ImagesLoaded( elem, options, onAlways );
+  }
+  // use elem as selector string
+  if ( typeof elem == 'string' ) {
+    elem = document.querySelectorAll( elem );
+  }
+
+  this.elements = makeArray( elem );
+  this.options = extend( {}, this.options );
+
+  if ( typeof options == 'function' ) {
+    onAlways = options;
+  } else {
+    extend( this.options, options );
+  }
+
+  if ( onAlways ) {
+    this.on( 'always', onAlways );
+  }
+
+  this.getImages();
+
+  if ( $ ) {
+    // add jQuery Deferred object
+    this.jqDeferred = new $.Deferred();
+  }
+
+  // HACK check async to allow time to bind listeners
+  setTimeout( function() {
+    this.check();
+  }.bind( this ));
+}
+
+ImagesLoaded.prototype = Object.create( EvEmitter.prototype );
+
+ImagesLoaded.prototype.options = {};
+
+ImagesLoaded.prototype.getImages = function() {
+  this.images = [];
+
+  // filter & find items if we have an item selector
+  this.elements.forEach( this.addElementImages, this );
+};
+
+/**
+ * @param {Node} element
+ */
+ImagesLoaded.prototype.addElementImages = function( elem ) {
+  // filter siblings
+  if ( elem.nodeName == 'IMG' ) {
+    this.addImage( elem );
+  }
+  // get background image on element
+  if ( this.options.background === true ) {
+    this.addElementBackgroundImages( elem );
+  }
+
+  // find children
+  // no non-element nodes, #143
+  var nodeType = elem.nodeType;
+  if ( !nodeType || !elementNodeTypes[ nodeType ] ) {
+    return;
+  }
+  var childImgs = elem.querySelectorAll('img');
+  // concat childElems to filterFound array
+  for ( var i=0; i < childImgs.length; i++ ) {
+    var img = childImgs[i];
+    this.addImage( img );
+  }
+
+  // get child background images
+  if ( typeof this.options.background == 'string' ) {
+    var children = elem.querySelectorAll( this.options.background );
+    for ( i=0; i < children.length; i++ ) {
+      var child = children[i];
+      this.addElementBackgroundImages( child );
+    }
+  }
+};
+
+var elementNodeTypes = {
+  1: true,
+  9: true,
+  11: true
+};
+
+ImagesLoaded.prototype.addElementBackgroundImages = function( elem ) {
+  var style = getComputedStyle( elem );
+  if ( !style ) {
+    // Firefox returns null if in a hidden iframe https://bugzil.la/548397
+    return;
+  }
+  // get url inside url("...")
+  var reURL = /url\((['"])?(.*?)\1\)/gi;
+  var matches = reURL.exec( style.backgroundImage );
+  while ( matches !== null ) {
+    var url = matches && matches[2];
+    if ( url ) {
+      this.addBackground( url, elem );
+    }
+    matches = reURL.exec( style.backgroundImage );
+  }
+};
+
+/**
+ * @param {Image} img
+ */
+ImagesLoaded.prototype.addImage = function( img ) {
+  var loadingImage = new LoadingImage( img );
+  this.images.push( loadingImage );
+};
+
+ImagesLoaded.prototype.addBackground = function( url, elem ) {
+  var background = new Background( url, elem );
+  this.images.push( background );
+};
+
+ImagesLoaded.prototype.check = function() {
+  var _this = this;
+  this.progressedCount = 0;
+  this.hasAnyBroken = false;
+  // complete if no images
+  if ( !this.images.length ) {
+    this.complete();
+    return;
+  }
+
+  function onProgress( image, elem, message ) {
+    // HACK - Chrome triggers event before object properties have changed. #83
+    setTimeout( function() {
+      _this.progress( image, elem, message );
+    });
+  }
+
+  this.images.forEach( function( loadingImage ) {
+    loadingImage.once( 'progress', onProgress );
+    loadingImage.check();
+  });
+};
+
+ImagesLoaded.prototype.progress = function( image, elem, message ) {
+  this.progressedCount++;
+  this.hasAnyBroken = this.hasAnyBroken || !image.isLoaded;
+  // progress event
+  this.emitEvent( 'progress', [ this, image, elem ] );
+  if ( this.jqDeferred && this.jqDeferred.notify ) {
+    this.jqDeferred.notify( this, image );
+  }
+  // check if completed
+  if ( this.progressedCount == this.images.length ) {
+    this.complete();
+  }
+
+  if ( this.options.debug && console ) {
+    console.log( 'progress: ' + message, image, elem );
+  }
+};
+
+ImagesLoaded.prototype.complete = function() {
+  var eventName = this.hasAnyBroken ? 'fail' : 'done';
+  this.isComplete = true;
+  this.emitEvent( eventName, [ this ] );
+  this.emitEvent( 'always', [ this ] );
+  if ( this.jqDeferred ) {
+    var jqMethod = this.hasAnyBroken ? 'reject' : 'resolve';
+    this.jqDeferred[ jqMethod ]( this );
+  }
+};
+
+// --------------------------  -------------------------- //
+
+function LoadingImage( img ) {
+  this.img = img;
+}
+
+LoadingImage.prototype = Object.create( EvEmitter.prototype );
+
+LoadingImage.prototype.check = function() {
+  // If complete is true and browser supports natural sizes,
+  // try to check for image status manually.
+  var isComplete = this.getIsImageComplete();
+  if ( isComplete ) {
+    // report based on naturalWidth
+    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
+    return;
+  }
+
+  // If none of the checks above matched, simulate loading on detached element.
+  this.proxyImage = new Image();
+  this.proxyImage.addEventListener( 'load', this );
+  this.proxyImage.addEventListener( 'error', this );
+  // bind to image as well for Firefox. #191
+  this.img.addEventListener( 'load', this );
+  this.img.addEventListener( 'error', this );
+  this.proxyImage.src = this.img.src;
+};
+
+LoadingImage.prototype.getIsImageComplete = function() {
+  return this.img.complete && this.img.naturalWidth !== undefined;
+};
+
+LoadingImage.prototype.confirm = function( isLoaded, message ) {
+  this.isLoaded = isLoaded;
+  this.emitEvent( 'progress', [ this, this.img, message ] );
+};
+
+// ----- events ----- //
+
+// trigger specified handler for event type
+LoadingImage.prototype.handleEvent = function( event ) {
+  var method = 'on' + event.type;
+  if ( this[ method ] ) {
+    this[ method ]( event );
+  }
+};
+
+LoadingImage.prototype.onload = function() {
+  this.confirm( true, 'onload' );
+  this.unbindEvents();
+};
+
+LoadingImage.prototype.onerror = function() {
+  this.confirm( false, 'onerror' );
+  this.unbindEvents();
+};
+
+LoadingImage.prototype.unbindEvents = function() {
+  this.proxyImage.removeEventListener( 'load', this );
+  this.proxyImage.removeEventListener( 'error', this );
+  this.img.removeEventListener( 'load', this );
+  this.img.removeEventListener( 'error', this );
+};
+
+// -------------------------- Background -------------------------- //
+
+function Background( url, element ) {
+  this.url = url;
+  this.element = element;
+  this.img = new Image();
+}
+
+// inherit LoadingImage prototype
+Background.prototype = Object.create( LoadingImage.prototype );
+
+Background.prototype.check = function() {
+  this.img.addEventListener( 'load', this );
+  this.img.addEventListener( 'error', this );
+  this.img.src = this.url;
+  // check if image is already complete
+  var isComplete = this.getIsImageComplete();
+  if ( isComplete ) {
+    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
+    this.unbindEvents();
+  }
+};
+
+Background.prototype.unbindEvents = function() {
+  this.img.removeEventListener( 'load', this );
+  this.img.removeEventListener( 'error', this );
+};
+
+Background.prototype.confirm = function( isLoaded, message ) {
+  this.isLoaded = isLoaded;
+  this.emitEvent( 'progress', [ this, this.element, message ] );
+};
+
+// -------------------------- jQuery -------------------------- //
+
+ImagesLoaded.makeJQueryPlugin = function( jQuery ) {
+  jQuery = jQuery || window.jQuery;
+  if ( !jQuery ) {
+    return;
+  }
+  // set local variable
+  $ = jQuery;
+  // $().imagesLoaded()
+  $.fn.imagesLoaded = function( options, callback ) {
+    var instance = new ImagesLoaded( this, options, callback );
+    return instance.jqDeferred.promise( $(this) );
+  };
+};
+// try making plugin
+ImagesLoaded.makeJQueryPlugin();
+
+// --------------------------  -------------------------- //
+
+return ImagesLoaded;
+
+});
+
+},{"ev-emitter":7}],32:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -17135,7 +17618,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],31:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -26347,14 +26830,14 @@ return jQuery;
 
 }));
 
-},{}],32:[function(require,module,exports){
-arguments[4][31][0].apply(exports,arguments)
-},{"dup":31}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
+arguments[4][33][0].apply(exports,arguments)
+},{"dup":33}],35:[function(require,module,exports){
 // super simple module for the most common nodejs use case.
 exports.markdown = require("./markdown");
 exports.parse = exports.markdown.toHTML;
 
-},{"./markdown":34}],34:[function(require,module,exports){
+},{"./markdown":36}],36:[function(require,module,exports){
 // Released under MIT license
 // Copyright (c) 2009-2010 Dominic Baggott
 // Copyright (c) 2009-2010 Ash Berlin
@@ -28081,7 +28564,7 @@ function merge_text_nodes( jsonml ) {
   }
 } )() );
 
-},{"util":99}],35:[function(require,module,exports){
+},{"util":101}],37:[function(require,module,exports){
 //! moment.js
 //! version : 2.11.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
@@ -31688,7 +32171,7 @@ function merge_text_nodes( jsonml ) {
     return _moment;
 
 }));
-},{}],36:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -31781,13 +32264,13 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],37:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 'use strict';
 
 
 module.exports = require('./lib/');
 
-},{"./lib/":51}],38:[function(require,module,exports){
+},{"./lib/":53}],40:[function(require,module,exports){
 // List of valid entities
 //
 // Generate with ./support/entities.js script
@@ -33923,7 +34406,7 @@ module.exports = {
   "zwnj":"\u200C"
 };
 
-},{}],39:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 // List of valid html blocks names, accorting to commonmark spec
 // http://jgm.github.io/CommonMark/spec.html#html-blocks
 
@@ -33987,7 +34470,7 @@ var html_blocks = {};
 
 module.exports = html_blocks;
 
-},{}],40:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 // Regexps to match html elements
 
 'use strict';
@@ -34048,7 +34531,7 @@ var HTML_TAG_RE = replace(/^(?:open_tag|close_tag|comment|processing|declaration
 
 module.exports.HTML_TAG_RE = HTML_TAG_RE;
 
-},{}],41:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 // List of valid url schemas, accorting to commonmark spec
 // http://jgm.github.io/CommonMark/spec.html#autolinks
 
@@ -34222,7 +34705,7 @@ module.exports = [
   'ymsgr'
 ];
 
-},{}],42:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 'use strict';
 
 /**
@@ -34365,7 +34848,7 @@ exports.fromCodePoint     = fromCodePoint;
 exports.replaceEntities   = replaceEntities;
 exports.escapeHtml        = escapeHtml;
 
-},{"./entities":38}],43:[function(require,module,exports){
+},{"./entities":40}],45:[function(require,module,exports){
 // Commonmark default options
 
 'use strict';
@@ -34437,7 +34920,7 @@ module.exports = {
   }
 };
 
-},{}],44:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 // Remarkable default options
 
 'use strict';
@@ -34517,7 +35000,7 @@ module.exports = {
   }
 };
 
-},{}],45:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 // Remarkable default options
 
 'use strict';
@@ -34556,7 +35039,7 @@ module.exports = {
   }
 };
 
-},{}],46:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 'use strict';
 
 var replaceEntities = require('../common/utils').replaceEntities;
@@ -34571,7 +35054,7 @@ module.exports = function normalizeLink(url) {
   return encodeURI(normalized);
 };
 
-},{"../common/utils":42}],47:[function(require,module,exports){
+},{"../common/utils":44}],49:[function(require,module,exports){
 'use strict';
 
 module.exports = function normalizeReference(str) {
@@ -34581,7 +35064,7 @@ module.exports = function normalizeReference(str) {
   return str.trim().replace(/\s+/g, ' ').toUpperCase();
 };
 
-},{}],48:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 'use strict';
 
 
@@ -34667,7 +35150,7 @@ module.exports = function parseLinkDestination(state, pos) {
   return true;
 };
 
-},{"../common/utils":42,"./normalize_link":46}],49:[function(require,module,exports){
+},{"../common/utils":44,"./normalize_link":48}],51:[function(require,module,exports){
 'use strict';
 
 /**
@@ -34728,7 +35211,7 @@ module.exports = function parseLinkLabel(state, start) {
   return labelEnd;
 };
 
-},{}],50:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 'use strict';
 
 
@@ -34776,7 +35259,7 @@ module.exports = function parseLinkTitle(state, pos) {
   return false;
 };
 
-},{"../common/utils":42}],51:[function(require,module,exports){
+},{"../common/utils":44}],53:[function(require,module,exports){
 'use strict';
 
 /**
@@ -34973,7 +35456,7 @@ module.exports = Remarkable;
 
 module.exports.utils = require('./common/utils');
 
-},{"./common/utils":42,"./configs/commonmark":43,"./configs/default":44,"./configs/full":45,"./parser_block":52,"./parser_core":53,"./parser_inline":54,"./renderer":55,"./ruler":56}],52:[function(require,module,exports){
+},{"./common/utils":44,"./configs/commonmark":45,"./configs/default":46,"./configs/full":47,"./parser_block":54,"./parser_core":55,"./parser_inline":56,"./renderer":57,"./ruler":58}],54:[function(require,module,exports){
 'use strict';
 
 /**
@@ -35130,7 +35613,7 @@ ParserBlock.prototype.parse = function (str, options, env, outTokens) {
 
 module.exports = ParserBlock;
 
-},{"./ruler":56,"./rules_block/blockquote":58,"./rules_block/code":59,"./rules_block/deflist":60,"./rules_block/fences":61,"./rules_block/footnote":62,"./rules_block/heading":63,"./rules_block/hr":64,"./rules_block/htmlblock":65,"./rules_block/lheading":66,"./rules_block/list":67,"./rules_block/paragraph":68,"./rules_block/state_block":69,"./rules_block/table":70}],53:[function(require,module,exports){
+},{"./ruler":58,"./rules_block/blockquote":60,"./rules_block/code":61,"./rules_block/deflist":62,"./rules_block/fences":63,"./rules_block/footnote":64,"./rules_block/heading":65,"./rules_block/hr":66,"./rules_block/htmlblock":67,"./rules_block/lheading":68,"./rules_block/list":69,"./rules_block/paragraph":70,"./rules_block/state_block":71,"./rules_block/table":72}],55:[function(require,module,exports){
 'use strict';
 
 /**
@@ -35190,7 +35673,7 @@ Core.prototype.process = function (state) {
 
 module.exports = Core;
 
-},{"./ruler":56,"./rules_core/abbr":71,"./rules_core/abbr2":72,"./rules_core/block":73,"./rules_core/footnote_tail":74,"./rules_core/inline":75,"./rules_core/linkify":76,"./rules_core/references":77,"./rules_core/replacements":78,"./rules_core/smartquotes":79}],54:[function(require,module,exports){
+},{"./ruler":58,"./rules_core/abbr":73,"./rules_core/abbr2":74,"./rules_core/block":75,"./rules_core/footnote_tail":76,"./rules_core/inline":77,"./rules_core/linkify":78,"./rules_core/references":79,"./rules_core/replacements":80,"./rules_core/smartquotes":81}],56:[function(require,module,exports){
 'use strict';
 
 /**
@@ -35353,7 +35836,7 @@ function validateLink(url) {
 
 module.exports = ParserInline;
 
-},{"./common/utils":42,"./ruler":56,"./rules_inline/autolink":80,"./rules_inline/backticks":81,"./rules_inline/del":82,"./rules_inline/emphasis":83,"./rules_inline/entity":84,"./rules_inline/escape":85,"./rules_inline/footnote_inline":86,"./rules_inline/footnote_ref":87,"./rules_inline/htmltag":88,"./rules_inline/ins":89,"./rules_inline/links":90,"./rules_inline/mark":91,"./rules_inline/newline":92,"./rules_inline/state_inline":93,"./rules_inline/sub":94,"./rules_inline/sup":95,"./rules_inline/text":96}],55:[function(require,module,exports){
+},{"./common/utils":44,"./ruler":58,"./rules_inline/autolink":82,"./rules_inline/backticks":83,"./rules_inline/del":84,"./rules_inline/emphasis":85,"./rules_inline/entity":86,"./rules_inline/escape":87,"./rules_inline/footnote_inline":88,"./rules_inline/footnote_ref":89,"./rules_inline/htmltag":90,"./rules_inline/ins":91,"./rules_inline/links":92,"./rules_inline/mark":93,"./rules_inline/newline":94,"./rules_inline/state_inline":95,"./rules_inline/sub":96,"./rules_inline/sup":97,"./rules_inline/text":98}],57:[function(require,module,exports){
 'use strict';
 
 /**
@@ -35430,7 +35913,7 @@ Renderer.prototype.render = function (tokens, options, env) {
   return result;
 };
 
-},{"./common/utils":42,"./rules":57}],56:[function(require,module,exports){
+},{"./common/utils":44,"./rules":59}],58:[function(require,module,exports){
 'use strict';
 
 /**
@@ -35705,7 +36188,7 @@ Ruler.prototype.getRules = function (chainName) {
 
 module.exports = Ruler;
 
-},{}],57:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 'use strict';
 
 /**
@@ -36133,7 +36616,7 @@ var getBreak = rules.getBreak = function getBreak(tokens, idx) {
 
 module.exports = rules;
 
-},{"./common/utils":42}],58:[function(require,module,exports){
+},{"./common/utils":44}],60:[function(require,module,exports){
 // Block quotes
 
 'use strict';
@@ -36268,7 +36751,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],59:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 // Code block (4 spaces padded)
 
 'use strict';
@@ -36306,7 +36789,7 @@ module.exports = function code(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],60:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 // Definition lists
 
 'use strict';
@@ -36515,7 +36998,7 @@ module.exports = function deflist(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],61:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 // fences (``` lang, ~~~ lang)
 
 'use strict';
@@ -36608,7 +37091,7 @@ module.exports = function fences(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],62:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 // Process footnote reference list
 
 'use strict';
@@ -36677,7 +37160,7 @@ module.exports = function footnote(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],63:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 // heading (#, ##, ...)
 
 'use strict';
@@ -36737,7 +37220,7 @@ module.exports = function heading(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],64:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 // Horizontal rule
 
 'use strict';
@@ -36784,7 +37267,7 @@ module.exports = function hr(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],65:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 // HTML block
 
 'use strict';
@@ -36860,7 +37343,7 @@ module.exports = function htmlblock(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/html_blocks":39}],66:[function(require,module,exports){
+},{"../common/html_blocks":41}],68:[function(require,module,exports){
 // lheading (---, ===)
 
 'use strict';
@@ -36917,7 +37400,7 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],67:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 // Lists
 
 'use strict';
@@ -37185,7 +37668,7 @@ module.exports = function list(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],68:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 // Paragraph
 
 'use strict';
@@ -37246,7 +37729,7 @@ module.exports = function paragraph(state, startLine/*, endLine*/) {
   return true;
 };
 
-},{}],69:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 // Parser state class
 
 'use strict';
@@ -37406,7 +37889,7 @@ StateBlock.prototype.getLines = function getLines(begin, end, indent, keepLastLF
 
 module.exports = StateBlock;
 
-},{}],70:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 // GFM table, non-standard
 
 'use strict';
@@ -37542,7 +38025,7 @@ module.exports = function table(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],71:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 // Parse abbreviation definitions, i.e. `*[abbr]: description`
 //
 
@@ -37614,7 +38097,7 @@ module.exports = function abbr(state) {
   }
 };
 
-},{"../helpers/parse_link_label":49,"../rules_inline/state_inline":93}],72:[function(require,module,exports){
+},{"../helpers/parse_link_label":51,"../rules_inline/state_inline":95}],74:[function(require,module,exports){
 // Enclose abbreviations in <abbr> tags
 //
 'use strict';
@@ -37704,7 +38187,7 @@ module.exports = function abbr2(state) {
   }
 };
 
-},{}],73:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 'use strict';
 
 module.exports = function block(state) {
@@ -37723,7 +38206,7 @@ module.exports = function block(state) {
   }
 };
 
-},{}],74:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 'use strict';
 
 
@@ -37820,7 +38303,7 @@ module.exports = function footnote_block(state) {
   });
 };
 
-},{}],75:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 'use strict';
 
 module.exports = function inline(state) {
@@ -37835,7 +38318,7 @@ module.exports = function inline(state) {
   }
 };
 
-},{}],76:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 // Replace link-like texts with link nodes.
 //
 // Currently restricted by `inline.validateLink()` to http/https/ftp
@@ -37998,7 +38481,7 @@ module.exports = function linkify(state) {
   }
 };
 
-},{"autolinker":2}],77:[function(require,module,exports){
+},{"autolinker":2}],79:[function(require,module,exports){
 'use strict';
 
 
@@ -38098,7 +38581,7 @@ module.exports = function references(state) {
   }
 };
 
-},{"../helpers/normalize_reference":47,"../helpers/parse_link_destination":48,"../helpers/parse_link_label":49,"../helpers/parse_link_title":50,"../rules_inline/state_inline":93}],78:[function(require,module,exports){
+},{"../helpers/normalize_reference":49,"../helpers/parse_link_destination":50,"../helpers/parse_link_label":51,"../helpers/parse_link_title":52,"../rules_inline/state_inline":95}],80:[function(require,module,exports){
 // Simple typographical replacements
 //
 'use strict';
@@ -38164,7 +38647,7 @@ module.exports = function replace(state) {
   }
 };
 
-},{}],79:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 // Convert straight quotation marks to typographic ones
 //
 'use strict';
@@ -38279,7 +38762,7 @@ module.exports = function smartquotes(state) {
   }
 };
 
-},{}],80:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 // Process autolinks '<protocol:...>'
 
 'use strict';
@@ -38359,7 +38842,7 @@ module.exports = function autolink(state, silent) {
   return false;
 };
 
-},{"../common/url_schemas":41,"../helpers/normalize_link":46}],81:[function(require,module,exports){
+},{"../common/url_schemas":43,"../helpers/normalize_link":48}],83:[function(require,module,exports){
 // Parse backticks
 
 'use strict';
@@ -38407,7 +38890,7 @@ module.exports = function backticks(state, silent) {
   return true;
 };
 
-},{}],82:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 // Process ~~deleted text~~
 
 'use strict';
@@ -38493,7 +38976,7 @@ module.exports = function del(state, silent) {
   return true;
 };
 
-},{}],83:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 // Process *this* and _that_
 
 'use strict';
@@ -38644,7 +39127,7 @@ module.exports = function emphasis(state, silent) {
   return true;
 };
 
-},{}],84:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 // Process html entity - &#123;, &#xAF;, &quot;, ...
 
 'use strict';
@@ -38694,7 +39177,7 @@ module.exports = function entity(state, silent) {
   return true;
 };
 
-},{"../common/entities":38,"../common/utils":42}],85:[function(require,module,exports){
+},{"../common/entities":40,"../common/utils":44}],87:[function(require,module,exports){
 // Proceess escaped chars and hardbreaks
 
 'use strict';
@@ -38745,7 +39228,7 @@ module.exports = function escape(state, silent) {
   return true;
 };
 
-},{}],86:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 // Process inline footnotes (^[...])
 
 'use strict';
@@ -38800,7 +39283,7 @@ module.exports = function footnote_inline(state, silent) {
   return true;
 };
 
-},{"../helpers/parse_link_label":49}],87:[function(require,module,exports){
+},{"../helpers/parse_link_label":51}],89:[function(require,module,exports){
 // Process footnote references ([^...])
 
 'use strict';
@@ -38864,7 +39347,7 @@ module.exports = function footnote_ref(state, silent) {
   return true;
 };
 
-},{}],88:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 // Process html tags
 
 'use strict';
@@ -38915,7 +39398,7 @@ module.exports = function htmltag(state, silent) {
   return true;
 };
 
-},{"../common/html_re":40}],89:[function(require,module,exports){
+},{"../common/html_re":42}],91:[function(require,module,exports){
 // Process ++inserted text++
 
 'use strict';
@@ -39001,7 +39484,7 @@ module.exports = function ins(state, silent) {
   return true;
 };
 
-},{}],90:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 // Process [links](<to> "stuff")
 
 'use strict';
@@ -39168,7 +39651,7 @@ module.exports = function links(state, silent) {
   return true;
 };
 
-},{"../helpers/normalize_reference":47,"../helpers/parse_link_destination":48,"../helpers/parse_link_label":49,"../helpers/parse_link_title":50}],91:[function(require,module,exports){
+},{"../helpers/normalize_reference":49,"../helpers/parse_link_destination":50,"../helpers/parse_link_label":51,"../helpers/parse_link_title":52}],93:[function(require,module,exports){
 // Process ==highlighted text==
 
 'use strict';
@@ -39254,7 +39737,7 @@ module.exports = function del(state, silent) {
   return true;
 };
 
-},{}],92:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 // Proceess '\n'
 
 'use strict';
@@ -39304,7 +39787,7 @@ module.exports = function newline(state, silent) {
   return true;
 };
 
-},{}],93:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 // Inline parser state
 
 'use strict';
@@ -39388,7 +39871,7 @@ StateInline.prototype.cacheGet = function (key) {
 
 module.exports = StateInline;
 
-},{}],94:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 // Process ~subscript~
 
 'use strict';
@@ -39448,7 +39931,7 @@ module.exports = function sub(state, silent) {
   return true;
 };
 
-},{}],95:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 // Process ^superscript^
 
 'use strict';
@@ -39508,7 +39991,7 @@ module.exports = function sup(state, silent) {
   return true;
 };
 
-},{}],96:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 // Skip text characters for text token, place those to pending buffer
 // and increment current pos
 
@@ -39563,7 +40046,7 @@ module.exports = function text(state, silent) {
   return true;
 };
 
-},{}],97:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -41113,14 +41596,14 @@ module.exports = function text(state, silent) {
   }
 }.call(this));
 
-},{}],98:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],99:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -41710,7 +42193,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":98,"_process":36,"inherits":30}],100:[function(require,module,exports){
+},{"./support/isBuffer":100,"_process":38,"inherits":32}],102:[function(require,module,exports){
 module.exports={
 	"siteName": "Jon Higgins",
 	"navigation": [
@@ -41733,7 +42216,7 @@ module.exports={
 	]
 }
 
-},{}],101:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 
 /*globals Power2*/
 
@@ -41805,7 +42288,7 @@ var RegionHideShow = function() {
 
 module.exports = RegionHideShow;
 
-},{"backbone.marionette":4,"gsap/src/uncompressed/TweenMax.js":8,"jQuery":31,"underscore":97}],102:[function(require,module,exports){
+},{"backbone.marionette":4,"gsap/src/uncompressed/TweenMax.js":9,"jQuery":33,"underscore":99}],104:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	HomeView = require('./homeView'),
 	commands = require('../config/commands'),
@@ -41827,7 +42310,7 @@ HomeController = Marionette.Controller.extend({
 
 module.exports = HomeController;
 
-},{"../config/commands":132,"./homeView":106,"backbone.marionette":4}],103:[function(require,module,exports){
+},{"../config/commands":134,"./homeView":108,"backbone.marionette":4}],105:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	HomeController = require('./HomeController'),
@@ -41852,7 +42335,7 @@ HomeModule = Marionette.Module.extend({
 });
 
 module.exports = HomeModule;
-},{"./HomeController":102,"./HomeRouter":104,"backbone":6,"backbone.marionette":4}],104:[function(require,module,exports){
+},{"./HomeController":104,"./HomeRouter":106,"backbone":6,"backbone.marionette":4}],106:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -41866,14 +42349,14 @@ HomeRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = HomeRouter;
-},{"backbone.marionette":4}],105:[function(require,module,exports){
+},{"backbone.marionette":4}],107:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"page\">Home Template</div>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],106:[function(require,module,exports){
+},{"hbsfy/runtime":29}],108:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./HomeTemplate.hbs'),
 	HomeView;
@@ -41884,7 +42367,7 @@ HomeView = Marionette.CompositeView.extend({
 
 module.exports = HomeView;
 
-},{"./HomeTemplate.hbs":105,"backbone.marionette":4}],107:[function(require,module,exports){
+},{"./HomeTemplate.hbs":107,"backbone.marionette":4}],109:[function(require,module,exports){
 var Backbone = require('backbone'),
 	Navigation;
 
@@ -41892,7 +42375,7 @@ var Navigation = Backbone.Model.extend({});
 
 module.exports = Navigation;
 
-},{"backbone":6}],108:[function(require,module,exports){
+},{"backbone":6}],110:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     Backbone = require('backbone'),
     commands = require('../config/commands'),
@@ -41938,14 +42421,14 @@ NavigationController = Marionette.Controller.extend({
 
 module.exports = NavigationController;
 
-},{"../../data/site.json":100,"../config/commands":132,"./Navigation":107,"./NavigationItem":109,"./NavigationItems":112,"./navigationView":115,"backbone":6,"backbone.marionette":4}],109:[function(require,module,exports){
+},{"../../data/site.json":102,"../config/commands":134,"./Navigation":109,"./NavigationItem":111,"./NavigationItems":114,"./navigationView":117,"backbone":6,"backbone.marionette":4}],111:[function(require,module,exports){
 var Backbone = require('backbone'),
 	NavigationItem;
 
 var NavigationItem = Backbone.Model.extend({});
 
 module.exports = NavigationItem;
-},{"backbone":6}],110:[function(require,module,exports){
+},{"backbone":6}],112:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -41962,7 +42445,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "</span></a>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],111:[function(require,module,exports){
+},{"hbsfy/runtime":29}],113:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./NavigationItemTemplate.hbs'),
 	NavigationItemView;
@@ -41983,7 +42466,7 @@ NavigationItemView = Marionette.ItemView.extend({
 
 module.exports = NavigationItemView;
 
-},{"./NavigationItemTemplate.hbs":110,"backbone.marionette":4}],112:[function(require,module,exports){
+},{"./NavigationItemTemplate.hbs":112,"backbone.marionette":4}],114:[function(require,module,exports){
 var Backbone = require('backbone'),
     NavigationItem = require('./NavigationItem'),
     NavigationItems;
@@ -41993,7 +42476,7 @@ var NavigationItems = Backbone.Collection.extend({
 });
 
 module.exports = NavigationItems;
-},{"./NavigationItem":109,"backbone":6}],113:[function(require,module,exports){
+},{"./NavigationItem":111,"backbone":6}],115:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	NavigationController = require('./NavigationController'),
@@ -42017,14 +42500,14 @@ NavigationModule = Marionette.Module.extend({
 
 module.exports = NavigationModule;
 
-},{"./NavigationController":108,"backbone":6,"backbone.marionette":4}],114:[function(require,module,exports){
+},{"./NavigationController":110,"backbone":6,"backbone.marionette":4}],116:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],115:[function(require,module,exports){
+},{"hbsfy/runtime":29}],117:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./NavigationTemplate.hbs'),
     NavigationItemView = require('./NavigationItemView.js'),
@@ -42062,7 +42545,7 @@ NavigationView = Marionette.CompositeView.extend({
 
 module.exports = NavigationView;
 
-},{"./NavigationItemView.js":111,"./NavigationTemplate.hbs":114,"backbone.marionette":4,"jQuery":31}],116:[function(require,module,exports){
+},{"./NavigationItemView.js":113,"./NavigationTemplate.hbs":116,"backbone.marionette":4,"jQuery":33}],118:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	WhoView = require('./whoView'),
 	commands = require('../config/commands'),
@@ -42084,7 +42567,7 @@ WhoController = Marionette.Controller.extend({
 
 module.exports = WhoController;
 
-},{"../config/commands":132,"./whoView":120,"backbone.marionette":4}],117:[function(require,module,exports){
+},{"../config/commands":134,"./whoView":122,"backbone.marionette":4}],119:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	WhoController = require('./WhoController'),
@@ -42109,7 +42592,7 @@ WhoModule = Marionette.Module.extend({
 });
 
 module.exports = WhoModule;
-},{"./WhoController":116,"./WhoRouter":118,"backbone":6,"backbone.marionette":4}],118:[function(require,module,exports){
+},{"./WhoController":118,"./WhoRouter":120,"backbone":6,"backbone.marionette":4}],120:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -42122,14 +42605,14 @@ WhoRouter = Marionette.AppRouter.extend({
 });
 
 module.exports = WhoRouter;
-},{"backbone.marionette":4}],119:[function(require,module,exports){
+},{"backbone.marionette":4}],121:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<div class=\"page\">\n    Who Template\n</div>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],120:[function(require,module,exports){
+},{"hbsfy/runtime":29}],122:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	template = require('./WhoTemplate.hbs'),
 	WhoView;
@@ -42140,7 +42623,7 @@ WhoView = Marionette.CompositeView.extend({
 
 module.exports = WhoView;
 
-},{"./WhoTemplate.hbs":119,"backbone.marionette":4}],121:[function(require,module,exports){
+},{"./WhoTemplate.hbs":121,"backbone.marionette":4}],123:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette');
@@ -42155,7 +42638,7 @@ var app = new Marionette.Application({
 
 module.exports = app;
 
-},{"backbone.marionette":4}],122:[function(require,module,exports){
+},{"backbone.marionette":4}],124:[function(require,module,exports){
 var Backbone = require('backbone'),
     ArticleItem = require('./ArticleItem'),
     ArticleCollection;
@@ -42166,7 +42649,7 @@ ArticleCollection = Backbone.Collection.extend({
 
 module.exports = ArticleCollection;
 
-},{"./ArticleItem":125,"backbone":6}],123:[function(require,module,exports){
+},{"./ArticleItem":127,"backbone":6}],125:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     ArticleItemView = require('./ArticleItemView'),
     ArticleCompositeViewTemplate = require('./ArticleCompositeViewTemplate.hbs'),
@@ -42199,7 +42682,7 @@ ArticleCompositeView = Marionette.CompositeView.extend({
 
 module.exports = ArticleCompositeView;
 
-},{"./ArticleCompositeViewTemplate.hbs":124,"./ArticleItemView":127,"backbone.marionette":4}],124:[function(require,module,exports){
+},{"./ArticleCompositeViewTemplate.hbs":126,"./ArticleItemView":129,"backbone.marionette":4}],126:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -42216,7 +42699,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "    </div>\n</div>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],125:[function(require,module,exports){
+},{"hbsfy/runtime":29}],127:[function(require,module,exports){
 var Backbone = require('backbone'),
     ArticleItem;
 
@@ -42241,7 +42724,7 @@ ArticleItem = Backbone.Model.extend({
 
 module.exports = ArticleItem;
 
-},{"backbone":6}],126:[function(require,module,exports){
+},{"backbone":6}],128:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -42278,7 +42761,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "</p>\n        <div class=\"article-item__buttons button-holder\">\n            <div class=\"button button--arrow\">View</div>\n        </div>\n    </footer>\n</a>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],127:[function(require,module,exports){
+},{"hbsfy/runtime":29}],129:[function(require,module,exports){
 /*globals Bounce, Back, Elastic, Power2*/
 
 var Marionette = require('backbone.marionette'),
@@ -42288,12 +42771,22 @@ var Marionette = require('backbone.marionette'),
     moment = require('moment'),
     TweenMax = require('gsap/src/uncompressed/TweenMax.js'),
     $ = require('jQuery'),
+    imagesLoaded = require('imagesloaded'),
     ArticleItemView;
 
 // Register handlebars markdown helper
 HandlebarsCompiler.registerHelper('md', require('helper-md'));
+// Setup imagesLoaded plugin
+imagesLoaded.makeJQueryPlugin($);
+
+var props = {
+    headerFooterColor: '255, 242, 0'
+};
 
 ArticleItemView = Marionette.ItemView.extend({
+
+    cache: {}, // set in refreshSelectors
+
     // Different template when in a collection
     getTemplate: function() {
         return this.model.collection ? templateCollection : templateSingle;
@@ -42308,7 +42801,7 @@ ArticleItemView = Marionette.ItemView.extend({
 
     },
 
-    buildOutline: function(width, height, top, left, borderColor) {
+    buildOutline: function(width, height, top, left, borderColor, alternate) {
 
         var $outline = $('<div class="outline"><span></span><span></span><span></span><span></span></div>');
 
@@ -42320,6 +42813,10 @@ ArticleItemView = Marionette.ItemView.extend({
             left: left,
             color: borderColor
         });
+
+        if (alternate) {
+            $outline.css('transform', 'rotate(180deg)');
+        }
 
         $outline.find('span').each(function(index, item) {
             var $item = $(item);
@@ -42339,42 +42836,75 @@ ArticleItemView = Marionette.ItemView.extend({
         return $outline;
     },
 
+    onBeforeShow: function() {
+        this.refreshSelectors();
+    },
+
     onShow: function() {
 
-        // Selectors
-        var $header = this.$el.find('.article-item__header'),
-            $footer = this.$el.find('.article-item__footer'),
-            $headerFooter = this.$el.find('.article-item__header, .article-item__footer'),
-            $image = this.$el.find('.article-item__image');
+        props.headerFooterColor = this.cache.$headerFooter.css('background-color').replace(/[rgb\(\)']+/g, '');
 
-        // Create outline
-        var outlineWidth = $header.outerWidth(),
-            outlineHeight = $header.outerHeight() + $footer.outerHeight(),
-            outlineTop = $header.position().top,
-            outlineLeft = $header.position().left,
-            outlineBorderColor = $header.css('background-color'),
-            $outline = this.buildOutline(outlineWidth, outlineHeight, outlineTop, outlineLeft, outlineBorderColor);
+        // Set header / footer initial styles
+        TweenMax.set(this.cache.$headerFooterContents, {opacity: '0'});
+        TweenMax.set(this.cache.$headerFooter, {backgroundColor: 'rgba(' + props.headerFooterColor + ',0)'});
 
-        this.$el.append($outline);
-        TweenMax.from($headerFooter.find('*'), 0.4, {opacity: '0', delay: 2}, Power2.ease);
-        TweenMax.from($headerFooter, 0.4, {backgroundColor: 'rgba(255,255,255,0)', delay: 2}, Power2.ease);
-
-        // Create image outline
-        if ($image.length) {
-            var outlineImageWidth = $image.outerWidth(),
-                outlineImageHeight = $image.outerHeight(),
-                outlineImageTop = $image.position().top,
-                outlineImageLeft = $image.position().left,
-                outlineImageBorderColor = $image.css('color'),
-                $outlineImage = this.buildOutline(outlineImageWidth, outlineImageHeight, outlineImageTop, outlineImageLeft, outlineImageBorderColor);
-
-            this.$el.append($outlineImage);
-            TweenMax.from($image, 0.4, {backgroundColor: 'rgba(255,255,255,0)', delay: 2}, Power2.ease);
-            TweenMax.from($image.find('*'), 0.4, {opacity: '0', delay: 2}, Power2.ease);
+        // Set image initial styles
+        if (this.cache.$image.length) {
+            TweenMax.set(this.cache.$imageContents, {opacity: '0'});
         }
 
-        TweenMax.to(this.$el.find('.outline'), 0.4, {autoAlpha: 0, delay: 2}, Power2.ease);
+        //Check if image loaded
+        this.cache.$image.imagesLoaded()
+            .done(this.setupOutlines.bind(this));
 
+            // @TODO fail etc
+
+    },
+    refreshSelectors: function() {
+        this.cache = {
+            $header: this.$el.find('.article-item__header'),
+            $footer: this.$el.find('.article-item__footer'),
+            $headerFooter: this.$el.find('.article-item__header, .article-item__footer'),
+            $headerFooterContents: this.$el.find('.article-item__header > *, .article-item__footer > *'),
+            $image: $(this.el).find('.article-item__image'), // Have to refresh this.el  selector for imagesLoaded
+            $imageContents: this.$el.find('.article-item__image img')
+        };
+    },
+    setupOutlines: function() {
+
+        // Create outline
+        var headerPosition = this.cache.$header.position(),
+            outlineWidth = this.cache.$header.outerWidth(),
+            outlineHeight = this.cache.$header.outerHeight() + this.cache.$footer.outerHeight(),
+            outlineTop = headerPosition.top,
+            outlineLeft = headerPosition.left,
+            outlineBorderColor = 'rgb(' + props.headerFooterColor + ')',
+            $outline = this.buildOutline(outlineWidth, outlineHeight, outlineTop, outlineLeft, outlineBorderColor, false);
+
+        this.$el.append($outline);
+
+        // Fade in contents and background colour
+        TweenMax.to(this.cache.$headerFooterContents, 0.4, {opacity: '1', delay: 2}, Power2.ease);
+        TweenMax.to(this.cache.$headerFooter, 0.4, {backgroundColor: 'rgba(' + props.headerFooterColor + ',1)', delay: 2}, Power2.ease);
+
+        // Create image outline
+        if (this.cache.$image.length) {
+            var imagePosition = this.cache.$image.position(),
+                outlineImageWidth = this.cache.$image.outerWidth(),
+                outlineImageHeight = this.cache.$image.outerHeight(),
+                outlineImageTop = imagePosition.top,
+                outlineImageLeft = imagePosition.left,
+                outlineImageBorderColor = this.cache.$image.css('color'),
+                $outlineImage = this.buildOutline(outlineImageWidth, outlineImageHeight, outlineImageTop, outlineImageLeft, outlineImageBorderColor, true);
+
+            this.$el.append($outlineImage);
+
+            // Fade in contents
+            TweenMax.to(this.cache.$imageContents, 0.4, {opacity: '1', delay: 2}, Power2.ease);
+        }
+
+        // Fade out outlines
+        TweenMax.to(this.$el.find('.outline'), 0.4, {autoAlpha: 0, delay: 2}, Power2.ease);
     },
     templateHelpers: function() {
         return {
@@ -42393,7 +42923,7 @@ ArticleItemView = Marionette.ItemView.extend({
 
 module.exports = ArticleItemView;
 
-},{"./ArticleItemTemplate.hbs":126,"./ArticleTemplate.hbs":128,"backbone.marionette":4,"gsap/src/uncompressed/TweenMax.js":8,"hbsfy/runtime":28,"helper-md":29,"jQuery":31,"moment":35}],128:[function(require,module,exports){
+},{"./ArticleItemTemplate.hbs":128,"./ArticleTemplate.hbs":130,"backbone.marionette":4,"gsap/src/uncompressed/TweenMax.js":9,"hbsfy/runtime":29,"helper-md":30,"imagesloaded":31,"jQuery":33,"moment":37}],130:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -42457,7 +42987,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "</div>\n";
 },"useData":true});
 
-},{"hbsfy/runtime":28}],129:[function(require,module,exports){
+},{"hbsfy/runtime":29}],131:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
     $ = require('jquery'),
     markdown = require('markdown').markdown,
@@ -42572,7 +43102,7 @@ ArticlesController = Marionette.Controller.extend({
 
 module.exports = ArticlesController;
 
-},{"../config/commands":132,"./ArticleCollection":122,"./ArticleCompositeView":123,"./ArticleItem":125,"./ArticleItemView":127,"backbone.marionette":4,"jquery":32,"markdown":33}],130:[function(require,module,exports){
+},{"../config/commands":134,"./ArticleCollection":124,"./ArticleCompositeView":125,"./ArticleItem":127,"./ArticleItemView":129,"backbone.marionette":4,"jquery":34,"markdown":35}],132:[function(require,module,exports){
 var Marionette = require('backbone.marionette'),
 	Backbone = require('backbone'),
 	ArticlesController = require('./ArticlesController'),
@@ -42598,7 +43128,7 @@ ArticlesModule = Marionette.Module.extend({
 
 module.exports = ArticlesModule;
 
-},{"./ArticlesController":129,"./ArticlesRouter":131,"backbone":6,"backbone.marionette":4}],131:[function(require,module,exports){
+},{"./ArticlesController":131,"./ArticlesRouter":133,"backbone":6,"backbone.marionette":4}],133:[function(require,module,exports){
 'use strict';
 
 var Marionette = require('backbone.marionette'),
@@ -42618,11 +43148,11 @@ ArticlesRouter = Marionette.AppRouter.extend({
 
 module.exports = ArticlesRouter;
 
-},{"backbone.marionette":4}],132:[function(require,module,exports){
+},{"backbone.marionette":4}],134:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = new Backbone.Wreqr.Commands();
-},{"backbone":6}],133:[function(require,module,exports){
+},{"backbone":6}],135:[function(require,module,exports){
 'use strict';
 
 // Requires
@@ -42721,4 +43251,4 @@ if (Backbone.history && Backbone.history._hasPushState) {
 
 }
 
-},{"../data/site.json":100,"./Animation/RegionShowHide":101,"./Home/HomeModule":103,"./Navigation/NavigationModule":113,"./Who/WhoModule":117,"./app":121,"./articles/ArticlesModule":130,"./config/commands":132,"backbone":6,"backbone.marionette":4,"jQuery":31}]},{},[133]);
+},{"../data/site.json":102,"./Animation/RegionShowHide":103,"./Home/HomeModule":105,"./Navigation/NavigationModule":115,"./Who/WhoModule":119,"./app":123,"./articles/ArticlesModule":132,"./config/commands":134,"backbone":6,"backbone.marionette":4,"jQuery":33}]},{},[135]);

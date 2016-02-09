@@ -7,12 +7,22 @@ var Marionette = require('backbone.marionette'),
     moment = require('moment'),
     TweenMax = require('gsap/src/uncompressed/TweenMax.js'),
     $ = require('jQuery'),
+    imagesLoaded = require('imagesloaded'),
     ArticleItemView;
 
 // Register handlebars markdown helper
 HandlebarsCompiler.registerHelper('md', require('helper-md'));
+// Setup imagesLoaded plugin
+imagesLoaded.makeJQueryPlugin($);
+
+var props = {
+    headerFooterColor: '255, 242, 0'
+};
 
 ArticleItemView = Marionette.ItemView.extend({
+
+    cache: {}, // set in refreshSelectors
+
     // Different template when in a collection
     getTemplate: function() {
         return this.model.collection ? templateCollection : templateSingle;
@@ -27,7 +37,7 @@ ArticleItemView = Marionette.ItemView.extend({
 
     },
 
-    buildOutline: function(width, height, top, left, borderColor) {
+    buildOutline: function(width, height, top, left, borderColor, alternate) {
 
         var $outline = $('<div class="outline"><span></span><span></span><span></span><span></span></div>');
 
@@ -39,6 +49,10 @@ ArticleItemView = Marionette.ItemView.extend({
             left: left,
             color: borderColor
         });
+
+        if (alternate) {
+            $outline.css('transform', 'rotate(180deg)');
+        }
 
         $outline.find('span').each(function(index, item) {
             var $item = $(item);
@@ -58,42 +72,75 @@ ArticleItemView = Marionette.ItemView.extend({
         return $outline;
     },
 
+    onBeforeShow: function() {
+        this.refreshSelectors();
+    },
+
     onShow: function() {
 
-        // Selectors
-        var $header = this.$el.find('.article-item__header'),
-            $footer = this.$el.find('.article-item__footer'),
-            $headerFooter = this.$el.find('.article-item__header, .article-item__footer'),
-            $image = this.$el.find('.article-item__image');
+        props.headerFooterColor = this.cache.$headerFooter.css('background-color').replace(/[rgb\(\)']+/g, '');
 
-        // Create outline
-        var outlineWidth = $header.outerWidth(),
-            outlineHeight = $header.outerHeight() + $footer.outerHeight(),
-            outlineTop = $header.position().top,
-            outlineLeft = $header.position().left,
-            outlineBorderColor = $header.css('background-color'),
-            $outline = this.buildOutline(outlineWidth, outlineHeight, outlineTop, outlineLeft, outlineBorderColor);
+        // Set header / footer initial styles
+        TweenMax.set(this.cache.$headerFooterContents, {opacity: '0'});
+        TweenMax.set(this.cache.$headerFooter, {backgroundColor: 'rgba(' + props.headerFooterColor + ',0)'});
 
-        this.$el.append($outline);
-        TweenMax.from($headerFooter.find('*'), 0.4, {opacity: '0', delay: 2}, Power2.ease);
-        TweenMax.from($headerFooter, 0.4, {backgroundColor: 'rgba(255,255,255,0)', delay: 2}, Power2.ease);
-
-        // Create image outline
-        if ($image.length) {
-            var outlineImageWidth = $image.outerWidth(),
-                outlineImageHeight = $image.outerHeight(),
-                outlineImageTop = $image.position().top,
-                outlineImageLeft = $image.position().left,
-                outlineImageBorderColor = $image.css('color'),
-                $outlineImage = this.buildOutline(outlineImageWidth, outlineImageHeight, outlineImageTop, outlineImageLeft, outlineImageBorderColor);
-
-            this.$el.append($outlineImage);
-            TweenMax.from($image, 0.4, {backgroundColor: 'rgba(255,255,255,0)', delay: 2}, Power2.ease);
-            TweenMax.from($image.find('*'), 0.4, {opacity: '0', delay: 2}, Power2.ease);
+        // Set image initial styles
+        if (this.cache.$image.length) {
+            TweenMax.set(this.cache.$imageContents, {opacity: '0'});
         }
 
-        TweenMax.to(this.$el.find('.outline'), 0.4, {autoAlpha: 0, delay: 2}, Power2.ease);
+        //Check if image loaded
+        this.cache.$image.imagesLoaded()
+            .done(this.setupOutlines.bind(this));
 
+            // @TODO fail etc
+
+    },
+    refreshSelectors: function() {
+        this.cache = {
+            $header: this.$el.find('.article-item__header'),
+            $footer: this.$el.find('.article-item__footer'),
+            $headerFooter: this.$el.find('.article-item__header, .article-item__footer'),
+            $headerFooterContents: this.$el.find('.article-item__header > *, .article-item__footer > *'),
+            $image: $(this.el).find('.article-item__image'), // Have to refresh this.el  selector for imagesLoaded
+            $imageContents: this.$el.find('.article-item__image img')
+        };
+    },
+    setupOutlines: function() {
+
+        // Create outline
+        var headerPosition = this.cache.$header.position(),
+            outlineWidth = this.cache.$header.outerWidth(),
+            outlineHeight = this.cache.$header.outerHeight() + this.cache.$footer.outerHeight(),
+            outlineTop = headerPosition.top,
+            outlineLeft = headerPosition.left,
+            outlineBorderColor = 'rgb(' + props.headerFooterColor + ')',
+            $outline = this.buildOutline(outlineWidth, outlineHeight, outlineTop, outlineLeft, outlineBorderColor, false);
+
+        this.$el.append($outline);
+
+        // Fade in contents and background colour
+        TweenMax.to(this.cache.$headerFooterContents, 0.4, {opacity: '1', delay: 2}, Power2.ease);
+        TweenMax.to(this.cache.$headerFooter, 0.4, {backgroundColor: 'rgba(' + props.headerFooterColor + ',1)', delay: 2}, Power2.ease);
+
+        // Create image outline
+        if (this.cache.$image.length) {
+            var imagePosition = this.cache.$image.position(),
+                outlineImageWidth = this.cache.$image.outerWidth(),
+                outlineImageHeight = this.cache.$image.outerHeight(),
+                outlineImageTop = imagePosition.top,
+                outlineImageLeft = imagePosition.left,
+                outlineImageBorderColor = this.cache.$image.css('color'),
+                $outlineImage = this.buildOutline(outlineImageWidth, outlineImageHeight, outlineImageTop, outlineImageLeft, outlineImageBorderColor, true);
+
+            this.$el.append($outlineImage);
+
+            // Fade in contents
+            TweenMax.to(this.cache.$imageContents, 0.4, {opacity: '1', delay: 2}, Power2.ease);
+        }
+
+        // Fade out outlines
+        TweenMax.to(this.$el.find('.outline'), 0.4, {autoAlpha: 0, delay: 2}, Power2.ease);
     },
     templateHelpers: function() {
         return {
