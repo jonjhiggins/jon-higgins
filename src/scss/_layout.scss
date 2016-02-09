@@ -29,6 +29,7 @@
         max-width: rem($maxWidthPage);
         margin: rem(48) auto rem(36);
         box-sizing: content-box;
+        border: 0 solid $colourPageBorder;
     }
 
     img,
@@ -55,7 +56,7 @@
         }
 
         .page {
-            border: rem(3) solid $colourPageBorder;
+            border-width: rem(3);
         }
     }
 
