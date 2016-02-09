@@ -27,4 +27,4 @@ To achieve the effects we sketched out different solutions in code and iterated 
 
 Performance was a major concern due to the combination of effects and the number of interactive components that could be on the same page. We kept an eye on the FPS monitor, refactoring as required - in particular compositing layers and avoiding re-draws.
 
-Creative solutions were sometimes required to get the best performance. On hovering the gallery component, images were slowly scaled, their opacity was adjusted and their borders grew via clip-path. Firefox and Safari couldn't cope with this combination of effects, after much experimentation we found they could animate clipPaths of SVGs smoothly, so we re-wrote the whole component to nest the images within SVGs!s
+Creative solutions were sometimes required to get the best performance. On hovering the gallery component, images were slowly scaled, their opacity was adjusted and their borders grew via clip-path. Firefox and Safari couldn't cope with this combination of effects, after much experimentation we found they could animate clipPaths of SVGs smoothly, so we re-wrote the whole component to nest the images within SVGs!
