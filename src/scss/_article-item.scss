@@ -59,34 +59,6 @@
             padding: rem($gutterSmall) 0 rem(18);
         }
 
-        .outline {
-
-            pointer-events: none;
-            position: absolute;
-
-
-            span {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-
-                &:nth-child(1) {
-                    border-left: 3px solid;
-                }
-                &:nth-child(2) {
-                    border-top: 3px solid;
-                }
-                &:nth-child(3) {
-                    border-right: 3px solid;
-                }
-                &:nth-child(4) {
-                    border-bottom: 3px solid;
-                }
-            }
-        }
-
 
         // Custom article-items
         // ----
