@@ -16,8 +16,6 @@ var RegionHideShow = function() {
 
         showAnimated: function(view, options) {
 
-            /*globals console*/ console.log('showAnimated');
-
             // If hiding, defer until finished
             if (this.hidingDeferredRequired) {
 
@@ -43,7 +41,6 @@ var RegionHideShow = function() {
         },
 
         hideAnimated: function() {
-            /*globals console*/ console.log('hideAnimated');
 
             // Reset deferred
             this.hidingDeferred = $.Deferred();
