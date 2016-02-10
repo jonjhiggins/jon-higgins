@@ -691,6 +691,53 @@ pre {
     .article-item.article-item--land-rover-visual-identity-refresh {
       margin-bottom: 10vw; } }
 
+.home .home__content {
+  padding: 1.5rem;
+  background-color: #FFF200; }
+
+.home .home__title {
+  color: #8D8940; }
+
+.home .animation__block {
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  margin: 40px; }
+
+.home .shape {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  position: relative;
+  width: 450px;
+  height: 100px;
+  margin: 0 auto; }
+
+.home .shape__side {
+  background-color: #FFF200;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0.1875rem solid #8D8940;
+  text-align: center;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+  .home .shape__side:first-child {
+    z-index: 1; }
+
+.home .shape__text {
+  padding: 0;
+  margin: 0;
+  color: #8D8940;
+  line-height: 100px;
+  font-size: 3em; }
+
+@media screen and (min-width: 58.25rem) {
+  .home .home__content {
+    padding: 3rem; } }
+
+@media screen and (min-width: 75rem) {
+  .home .home__content {
+    padding: 6rem; } }
+
 .outline {
   pointer-events: none;
   position: absolute; }
