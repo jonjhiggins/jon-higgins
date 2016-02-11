@@ -6,13 +6,14 @@
     // Variables
     // ----
 
-    $heightShape: 96;
+    $heightShapeSmall: 60;
+    $heightShapeMedium: 96;
 
 
     // Content
     // ----
     .home__content {
-        padding: rem($gutterSmall) 0;
+        padding: rem($gutterSmall);
         background-color: $colourBrightYellow;
     }
     // Screen readers
@@ -26,13 +27,28 @@
     }
 
     .animation__block {
+        margin-bottom: rem(24);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    // override selector in medium breakpoint
+    div.animation__block {
+
         @extend %grid__col--l;
-        @extend %grid__col--l--2;
+
+        &,
+        &:nth-child(2) {
+            @extend %grid__col--l--2;
+        }
 
 
         &:nth-child(1) {
             @extend %grid__col--l--1;
         }
+
 
     }
 
@@ -49,7 +65,7 @@
     .shape {
         transform-style: preserve-3d;
         position: relative;
-        height: rem(96);
+        height: rem($heightShapeSmall);
         margin: 0 auto;
         transition: transform 400ms ease;
     }
@@ -91,19 +107,19 @@
     .shape--3d {
         .shape__side {
             &:nth-child(1) {
-                transform: rotateX(0) translateZ($heightShape * 0.5px);
+                transform: rotateX(0) translateZ($heightShapeSmall * 0.5px);
             }
 
             &:nth-child(2) {
-                transform: rotateX(90deg) translateZ($heightShape * 0.5px);
+                transform: rotateX(90deg) translateZ($heightShapeSmall * 0.5px);
             }
 
             &:nth-child(3) {
-                transform: rotateX(180deg) translateZ($heightShape * 0.5px);
+                transform: rotateX(180deg) translateZ($heightShapeSmall * 0.5px);
             }
 
             &:nth-child(4) {
-                transform: rotateX(270deg) translateZ($heightShape * 0.5px);
+                transform: rotateX(270deg) translateZ($heightShapeSmall * 0.5px);
             }
         }
     }
@@ -142,8 +158,7 @@
         padding: 0;
         margin: 0;
         color: $colourBrown;
-        line-height: rem($heightShape);
-        font-size: 3vw; // roughly 48px @1440px screen
+        line-height: rem($heightShapeSmall);
         transition: color 400ms ease;
     }
 
@@ -176,10 +191,62 @@
 
     // Responsive
     // ----
+
+    @media screen and (min-width: $bpMedium) {
+        .animation__block {
+            &:nth-child(1) {
+                width: 25%;
+                display: inline-block;
+            }
+            &:nth-child(2) {
+                width: calc(75% - #{rem($gridMarginMedium)});
+                margin-left: rem($gridMarginMedium);
+                display: inline-block;
+            }
+        }
+        .shape {
+            height: rem($heightShapeMedium);
+        }
+        .shape__text {
+            font-size: rem($fontSizeH2Large);
+            line-height: rem($heightShapeMedium);
+        }
+        .shape--3d {
+            .shape__side {
+                &:nth-child(1) {
+                    transform: rotateX(0) translateZ($heightShapeMedium * 0.5px);
+                }
+
+                &:nth-child(2) {
+                    transform: rotateX(90deg) translateZ($heightShapeMedium * 0.5px);
+                }
+
+                &:nth-child(3) {
+                    transform: rotateX(180deg) translateZ($heightShapeMedium * 0.5px);
+                }
+
+                &:nth-child(4) {
+                    transform: rotateX(270deg) translateZ($heightShapeMedium * 0.5px);
+                }
+            }
+        }
+    }
+
+
     @media screen and (min-width: $bpLarge) {
         .home__content {
             padding: rem($gutterLarge) 0;
         }
+        .shape__text {
+            font-size: 3vw; // roughly 48px @1440px screen
+        }
+        .animation__block {
+            margin-bottom: 0;
+            &:nth-child(2) {
+                margin-left: 0;
+            }
+        }
+
     }
     @media screen and (min-width: $bpExtraLarge) {
         .home__content {

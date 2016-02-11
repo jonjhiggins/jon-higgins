@@ -15,7 +15,6 @@
         padding: 0;
         text-align: right;
         flex: none;
-
     }
 
     // Navigation Item
@@ -87,11 +86,6 @@
     @media screen and (min-width: $bpMedium) {
 
         height: rem(102);
-
-        .navigation__list {
-            @extend .grid__row;
-            flex-basis: calc(100% + #{rem($gutterMedium)});
-        }
 
         .navigation__item {
             font-size: rem($fontSizeH3Large);

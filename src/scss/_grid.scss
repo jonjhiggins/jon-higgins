@@ -9,17 +9,6 @@
 //     <div class="grid__col--l grid__col--l--1"><span>a</span></div><div class="grid__col--l grid__col--l--1"><span>a</span></div><div class="grid__col--l grid__col--l--1"><span>a</span></div><div class="grid__col--l grid__col--l--1"><span>a</span></div><div class="grid__col--l grid__col--l--1"><span>a</span></div><div class="grid__col--l grid__col--l--1"><span>a</span></div>
 // </div>
 
-    // Rows
-    // ----
-    .grid__row {
-        white-space: nowrap;
-        margin:0 rem(-$gridMarginSmall);
-
-        > * {
-            white-space: normal;
-        }
-    }
-
     // Fixed grid (visible in browser)
     // ----
 
@@ -72,6 +61,17 @@
     // ----
 
     @media screen and (min-width: $bpLarge) {
+
+        // Rows
+        // ----
+        .grid__row {
+            white-space: nowrap;
+            margin:0 rem(-$gridMarginSmall);
+
+            > * {
+                white-space: normal;
+            }
+        }
 
         .grid__row--fixed {
             left: rem($gutterLarge);
