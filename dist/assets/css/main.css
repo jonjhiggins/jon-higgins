@@ -318,10 +318,10 @@ pre {
   .page {
     padding: 6rem; } }
 
-.grid__row, .navigation .navigation__list {
+.grid__row, .navigation .navigation__list, .home .home__text-animation {
   white-space: nowrap;
   margin: 0 -0.75rem; }
-  .grid__row > *, .navigation .navigation__list > * {
+  .grid__row > *, .navigation .navigation__list > *, .home .home__text-animation > * {
     white-space: normal; }
 
 .grid__row--fixed {
@@ -358,13 +358,15 @@ pre {
       width: 1.5rem;
       margin-left: -0.75rem; }
   .grid__col--l, .article-item .article-item__header,
-  .article-item .article-item__footer {
+  .article-item .article-item__footer, .article-item .article-item__image, .home .animation__block {
     padding: 0 0.75rem;
     display: inline-block; }
-  .grid__col--l--1 {
+  .grid__col--l--1, .home .animation__block:nth-child(1) {
     width: 16.6666666667%; }
+  .home .animation__block {
+    width: 33.3333333333%; }
   .article-item .article-item__image {
-    width: calc( 50% - 0.75rem); }
+    width: 50%; }
   .article-item .article-item__header,
   .article-item .article-item__footer {
     width: calc( 58.3333333333% - 0.625rem); } }
@@ -670,11 +672,14 @@ pre {
           content: none; }
       .article-item .article-item__footer {
         padding-top: 0; }
+      .article-item:nth-child(odd) .article-item__image {
+        padding-right: 0; }
       .article-item:nth-child(even) {
         direction: rtl; }
         .article-item:nth-child(even) .article-item__image {
           right: auto;
-          left: 0; }
+          left: 0;
+          padding-left: 0; }
         .article-item:nth-child(even) .article-item__header,
         .article-item:nth-child(even) .article-item__footer,
         .article-item:nth-child(even) .article-buttons {
@@ -693,9 +698,8 @@ pre {
       margin-bottom: 10vw; } }
 
 .home .home__content {
-  padding: 1.5rem;
-  background-color: #FFF200;
-  overflow: hidden; }
+  padding: 1.5rem 0;
+  background-color: #FFF200; }
 
 .home .home__content--sr {
   border: 0;
@@ -714,31 +718,23 @@ pre {
     position: static;
     width: auto; }
 
+.home .home__text-animation {
+  text-align: center; }
+
 .home .animation__block {
   -webkit-perspective: 62.5rem;
           perspective: 62.5rem;
-  float: left;
-  margin-right: 1.5rem;
   position: relative; }
-  .home .animation__block:last-child {
-    margin-right: 0; }
 
 .home .shape {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
   position: relative;
-  width: 450px;
-  height: 100px;
+  height: 6rem;
   margin: 0 auto;
   transition: -webkit-transform 400ms ease;
   transition: transform 400ms ease;
   transition: transform 400ms ease, -webkit-transform 400ms ease; }
-
-.home .animation__block:nth-child(1) .shape {
-  width: 150px; }
-
-.home .animation__block:nth-child(2) .shape {
-  width: 300px; }
 
 .home .shape__side {
   background-color: #FFF200;
@@ -765,20 +761,20 @@ pre {
             transform: rotateX(270deg); }
 
 .home .shape--3d .shape__side:nth-child(1) {
-  -webkit-transform: rotateX(0) translateZ(50px);
-          transform: rotateX(0) translateZ(50px); }
+  -webkit-transform: rotateX(0) translateZ(48px);
+          transform: rotateX(0) translateZ(48px); }
 
 .home .shape--3d .shape__side:nth-child(2) {
-  -webkit-transform: rotateX(90deg) translateZ(50px);
-          transform: rotateX(90deg) translateZ(50px); }
+  -webkit-transform: rotateX(90deg) translateZ(48px);
+          transform: rotateX(90deg) translateZ(48px); }
 
 .home .shape--3d .shape__side:nth-child(3) {
-  -webkit-transform: rotateX(180deg) translateZ(50px);
-          transform: rotateX(180deg) translateZ(50px); }
+  -webkit-transform: rotateX(180deg) translateZ(48px);
+          transform: rotateX(180deg) translateZ(48px); }
 
 .home .shape--3d .shape__side:nth-child(4) {
-  -webkit-transform: rotateX(270deg) translateZ(50px);
-          transform: rotateX(270deg) translateZ(50px); }
+  -webkit-transform: rotateX(270deg) translateZ(48px);
+          transform: rotateX(270deg) translateZ(48px); }
 
 .home .shape--show-2 {
   -webkit-transform: rotateX(-90deg);
@@ -808,8 +804,8 @@ pre {
   padding: 0;
   margin: 0;
   color: #8D8940;
-  line-height: 100px;
-  font-size: 3em;
+  line-height: 6rem;
+  font-size: 3vw;
   transition: color 400ms ease; }
 
 .home .animation__block:nth-child(2) .shape--show-3 .shape__text {
@@ -825,11 +821,11 @@ pre {
 
 @media screen and (min-width: 58.25rem) {
   .home .home__content {
-    padding: 3rem; } }
+    padding: 3rem 0; } }
 
 @media screen and (min-width: 75rem) {
   .home .home__content {
-    padding: 6rem; } }
+    padding: 6rem 0; } }
 
 .outline {
   pointer-events: none;

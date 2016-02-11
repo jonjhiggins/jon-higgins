@@ -3,30 +3,45 @@
 // ====
 .home {
 
+    // Variables
+    // ----
+
+    $heightShape: 96;
+
+
     // Content
     // ----
     .home__content {
-        padding: rem($gutterSmall);
+        padding: rem($gutterSmall) 0;
         background-color: $colourBrightYellow;
-        overflow: hidden;
     }
     // Screen readers
     .home__content--sr {
         @include visuallyhidden;
     }
 
+    .home__text-animation {
+        @extend .grid__row;
+        text-align: center;
+    }
+
+    .animation__block {
+        @extend %grid__col--l;
+        @extend %grid__col--l--2;
+
+
+        &:nth-child(1) {
+            @extend %grid__col--l--1;
+        }
+
+    }
+
     // Text animation
     // ----
-    $height: 100px;
 
     .animation__block {
         perspective: rem(1000);
-        float: left;
-        margin-right: rem($gridMarginLarge);
         position: relative;
-        &:last-child {
-            margin-right: 0;
-        }
     }
 
 
@@ -34,22 +49,9 @@
     .shape {
         transform-style: preserve-3d;
         position: relative;
-        width: 450px;
-        height: $height;
+        height: rem(96);
         margin: 0 auto;
         transition: transform 400ms ease;
-    }
-
-    .animation__block:nth-child(1) {
-        .shape {
-            width: 150px;
-        }
-    }
-
-    .animation__block:nth-child(2) {
-        .shape {
-            width: 300px;
-        }
     }
 
     .shape__side {
@@ -89,19 +91,19 @@
     .shape--3d {
         .shape__side {
             &:nth-child(1) {
-                transform: rotateX(0) translateZ($height / 2);
+                transform: rotateX(0) translateZ($heightShape * 0.5px);
             }
 
             &:nth-child(2) {
-                transform: rotateX(90deg) translateZ($height / 2);
+                transform: rotateX(90deg) translateZ($heightShape * 0.5px);
             }
 
             &:nth-child(3) {
-                transform: rotateX(180deg) translateZ($height / 2);
+                transform: rotateX(180deg) translateZ($heightShape * 0.5px);
             }
 
             &:nth-child(4) {
-                transform: rotateX(270deg) translateZ($height / 2);
+                transform: rotateX(270deg) translateZ($heightShape * 0.5px);
             }
         }
     }
@@ -140,8 +142,8 @@
         padding: 0;
         margin: 0;
         color: $colourBrown;
-        line-height: $height;
-        font-size: 3em;
+        line-height: rem($heightShape);
+        font-size: 3vw; // roughly 48px @1440px screen
         transition: color 400ms ease;
     }
 
@@ -176,12 +178,12 @@
     // ----
     @media screen and (min-width: $bpLarge) {
         .home__content {
-            padding: rem($gutterLarge);
+            padding: rem($gutterLarge) 0;
         }
     }
     @media screen and (min-width: $bpExtraLarge) {
         .home__content {
-            padding: rem($gutterExtraLarge);
+            padding: rem($gutterExtraLarge) 0;
         }
     }
 }
