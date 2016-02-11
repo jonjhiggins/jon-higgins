@@ -46,6 +46,7 @@
         }
 
         .article-item__image {
+            @extend %grid__col--l;
             @extend %grid__col--l--3;
             position: relative;
             z-index: 1;
@@ -126,12 +127,20 @@
                 padding-top: 0;
             }
 
+            // Normal direction
+            &:nth-child(odd) {
+                .article-item__image {
+                    padding-right: 0;
+                }
+            }
+
             // Reverse direction
             &:nth-child(even) {
                 direction: rtl;
                 .article-item__image {
                     right: auto;
                     left: 0;
+                    padding-left: 0;
                 }
 
                 .article-item__header,
