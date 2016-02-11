@@ -42444,7 +42444,7 @@ HomeView = Marionette.CompositeView.extend({
 			actualSideNo = shapeTextIndex % 4;
 
 		// Shape sides: set the text content
-		window.setTimeout(this.shapeItemSetContent.bind(this, shapeTextIndex, actualSideNo), delay);
+		window.setTimeout(this.shapeItemSetContent.bind(this, shapeTextIndex, actualSideNo), delay + 2300);
 	},
 	shapeAnimation: function() {
 
