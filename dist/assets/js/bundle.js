@@ -42387,6 +42387,14 @@ HomeView = Marionette.CompositeView.extend({
 			$shape.removeClass('shape--3d');
 		};
 
+		var highlight = function($shape) {
+			$shape.addClass('js--highlight');
+		};
+
+		var unHighlight = function($shape) {
+			$shape.removeClass('js--highlight');
+		};
+
 		var updateShapeClasses = function($shape, sideNo) {
 			var sideClasses = [
 				'shape--show-1',
@@ -42403,17 +42411,19 @@ HomeView = Marionette.CompositeView.extend({
 				.addClass('shape--show-' + sideNo);
 		};
 
+
 		var showSide = function($shape, sideNo) {
-			// Move forward, except first time
-			if (sideNo !== 1) {
-				setShape3d($shape);
-				// Show side
-				window.setTimeout(updateShapeClasses.bind(null, $shape, sideNo), 100);
-				// Move backward
-				window.setTimeout(unsetShape3d.bind(null, $shape), 500);
-			} else {
-				updateShapeClasses($shape, sideNo);
-			}
+			// Move forward
+			setShape3d($shape);
+			// Show side
+			window.setTimeout(updateShapeClasses.bind(null, $shape, sideNo), 100);
+
+			// Highlight text
+			window.setTimeout(highlight.bind(null, $shape), 400);
+			window.setTimeout(unHighlight.bind(null, $shape), 2400);
+
+			// Move backward
+			window.setTimeout(unsetShape3d.bind(null, $shape), 500);
 
 
 		};
@@ -42426,6 +42436,7 @@ HomeView = Marionette.CompositeView.extend({
 		window.setTimeout(showSide.bind(null, $shape1, sideNo), delay + 2400);
 		window.setTimeout(showSide.bind(null, $shape2, sideNo), delay + 2800);
 		window.setTimeout(showSide.bind(null, $shape3, sideNo), delay + 3200);
+
 	},
 	onShow: function() {
 		// Set selectors

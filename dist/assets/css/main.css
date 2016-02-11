@@ -714,13 +714,6 @@ pre {
     position: static;
     width: auto; }
 
-.home .home__title {
-  color: #8D8940;
-  transition: color 400ms ease; }
-
-.home .heading__highlight {
-  color: #333; }
-
 .home .animation__block {
   -webkit-perspective: 62.5rem;
           perspective: 62.5rem;
@@ -771,9 +764,6 @@ pre {
     -webkit-transform: rotateX(270deg);
             transform: rotateX(270deg); }
 
-.home .shape--highlight .shape__text {
-  color: #333; }
-
 .home .shape--3d .shape__side:nth-child(1) {
   -webkit-transform: rotateX(0) translateZ(50px);
           transform: rotateX(0) translateZ(50px); }
@@ -819,7 +809,19 @@ pre {
   margin: 0;
   color: #8D8940;
   line-height: 100px;
-  font-size: 3em; }
+  font-size: 3em;
+  transition: color 400ms ease; }
+
+.home .animation__block:nth-child(2) .shape--show-3 .shape__text {
+  color: #605e3a; }
+
+.home .animation__block:nth-child(3) .shape--show-2 .shape__side:nth-child(2) .shape__text,
+.home .animation__block:nth-child(3) .shape--show-3 .shape__side:nth-child(3) .shape__text,
+.home .animation__block:nth-child(3) .shape--show-4 .shape__side:nth-child(4) .shape__text,
+.home .animation__block:nth-child(3) .shape--show-5 .shape__side:nth-child(1) .shape__text,
+.home .animation__block:nth-child(3) .shape--show-6 .shape__side:nth-child(2) .shape__text,
+.home .animation__block:nth-child(3) .shape--show-7 .shape__side:nth-child(3) .shape__text {
+  color: #605e3a; }
 
 @media screen and (min-width: 58.25rem) {
   .home .home__content {

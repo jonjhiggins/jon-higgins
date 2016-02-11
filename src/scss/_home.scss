@@ -14,13 +14,6 @@
     .home__content--sr {
         @include visuallyhidden;
     }
-    .home__title {
-        color: $colourBrown;
-        transition: color 400ms ease;
-    }
-    .heading__highlight {
-        color: $colourBlack;
-    }
 
     // Text animation
     // ----
@@ -89,14 +82,7 @@
         }
     }
 
-    // Shape: highlighted
-    // ----
 
-    .shape--highlight {
-        .shape__text {
-            color: $colourBlack;
-        }
-    }
 
     // 3D version (sticks out)
     // ----
@@ -123,10 +109,6 @@
     // Shape: show various sides
     // ----
 
-    .shape--show-1 {
-        //transform: rotateX(0deg);
-    }
-
     .shape--show-2 {
         transform: rotateX(-90deg * 1);
     }
@@ -151,13 +133,44 @@
         transform: rotateX(-90deg * 6);
     }
 
+    // Shape: text
+    // ----
+
     .shape__text {
         padding: 0;
         margin: 0;
         color: $colourBrown;
         line-height: $height;
         font-size: 3em;
+        transition: color 400ms ease;
     }
+
+    // Highlight "front-end" only in second shape
+    .animation__block:nth-child(2) {
+        .shape--show-3  {
+            .shape__text {
+                color: mix($colourBrown, $colourBlack, 50%);
+            }
+        }
+    }
+
+    // Highlight all in third shape
+    .animation__block:nth-child(3) {
+        .shape--show-2 .shape__side:nth-child(2),
+        .shape--show-3 .shape__side:nth-child(3),
+        .shape--show-4 .shape__side:nth-child(4),
+        .shape--show-5 .shape__side:nth-child(1),
+        .shape--show-6 .shape__side:nth-child(2),
+        .shape--show-7 .shape__side:nth-child(3)  {
+            .shape__text {
+                color: mix($colourBrown, $colourBlack, 50%);
+            }
+        }
+    }
+
+
+
+
 
     // Responsive
     // ----
