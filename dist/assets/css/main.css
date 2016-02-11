@@ -10,7 +10,7 @@
 body {
   font-family: "Input Sans", monospace; }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .heading {
   font-family: "Boing", sans-serif;
   font-weight: normal; }
 
@@ -68,13 +68,14 @@ a {
   .body-text ol li {
     margin: 0 0 1.5em 0; }
 
-.page h1, .page h2, .page h3, .page h4, .page h5, .page h6,
+.page h1, .page h2, .page h3, .page h4, .page h5, .page h6, .page .heading,
 .body-text h1,
 .body-text h2,
 .body-text h3,
 .body-text h4,
 .body-text h5,
-.body-text h6 {
+.body-text h6,
+.body-text .heading {
   margin-top: 0;
   line-height: 1em; }
 
@@ -696,6 +697,23 @@ pre {
   background-color: #FFF200;
   overflow: hidden; }
 
+.home .home__content--sr {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+  .home .home__content--sr.focusable:active, .home .home__content--sr.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto; }
+
 .home .home__title {
   color: #8D8940;
   transition: color 400ms ease; }
@@ -791,6 +809,10 @@ pre {
 .home .shape--show-6 {
   -webkit-transform: rotateX(-450deg);
           transform: rotateX(-450deg); }
+
+.home .shape--show-7 {
+  -webkit-transform: rotateX(-540deg);
+          transform: rotateX(-540deg); }
 
 .home .shape__text {
   padding: 0;

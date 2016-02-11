@@ -4,7 +4,18 @@ var Marionette = require('backbone.marionette'),
 	$ = require('jQuery'),
 	HomeView;
 
+var animationContent = [
+	['', '', ''],
+	['Hi', 'I&rsquo;m', 'Jon Higgins,'],
+	['a', 'front-end', 'developer'],
+	['who', 'loves', 'learning'],
+	['and', 'enjoys', 'experimenting.'],
+	['Is', 'partial to', 'collaboration'],
+	['and', 'first-rate', 'production.']
+];
+
 HomeView = Marionette.CompositeView.extend({
+
 	$shapes: null,
 	template: template,
 	rotateShapes: function(sideNo, delay) {
@@ -25,6 +36,7 @@ HomeView = Marionette.CompositeView.extend({
 				'shape--show-4',
 				'shape--show-5',
 				'shape--show-6',
+				'shape--show-7',
 			];
 
 			$shape
@@ -33,21 +45,19 @@ HomeView = Marionette.CompositeView.extend({
 		};
 
 		var showSide = function($shape, sideNo) {
-			// Move forward
-			setShape3d($shape);
-			// Show side
-			window.setTimeout(updateShapeClasses.bind(null, $shape, sideNo), 100);
-			// Move backward
-			window.setTimeout(unsetShape3d.bind(null, $shape), 500);
+			// Move forward, except first time
+			if (sideNo !== 1) {
+				setShape3d($shape);
+				// Show side
+				window.setTimeout(updateShapeClasses.bind(null, $shape, sideNo), 100);
+				// Move backward
+				window.setTimeout(unsetShape3d.bind(null, $shape), 500);
+			} else {
+				updateShapeClasses($shape, sideNo);
+			}
+
+
 		};
-
-		// There are only 4 sides to each shape.
-		// When sideNo is over 4, replace the 1st side, 2nd side again etc.
-		var shapeTextIndex = sideNo - 1,
-			actualSideNo = shapeTextIndex % 4;
-
-		// Shape sides: set the text content
-		window.setTimeout(this.shapeItemSetContent.bind(this, shapeTextIndex, actualSideNo), delay);
 
 		// @TODO move to each?
 		var $shape1 = this.$shapes.eq(0),
@@ -61,54 +71,47 @@ HomeView = Marionette.CompositeView.extend({
 	onShow: function() {
 		// Set selectors
 		this.$shapes = this.$el.find('.animation__block .shape');
-		// Set content
-		this.shapeSetContent();
 		// Animate
 		this.shapeAnimation();
 	},
+	setContentRotateShapes: function(sideNo, delay) {
+		this.setShapeContent(sideNo, delay);
+		this.rotateShapes(sideNo, delay);
+	},
+	setShapeContent: function (sideNo, delay) {
+		// There are only 4 sides to each shape.
+		// When sideNo is over 4, replace the 1st side, 2nd side again etc.
+		var shapeTextIndex = sideNo - 1,
+			actualSideNo = shapeTextIndex % 4;
+
+		// Shape sides: set the text content
+		window.setTimeout(this.shapeItemSetContent.bind(this, shapeTextIndex, actualSideNo), delay);
+	},
 	shapeAnimation: function() {
 
-		var rotateDelay = 2400;
+		var rotateDelay = 2400,
+			sidesTotal = 6,
+			sidesStartIndex = 2,
+			i;
 
-		// Show side 2
-		this.rotateShapes(1, rotateDelay * 0);
+		var startTimeline = function() {
+			for (i = 0; i < sidesTotal; i++) {
+				this.setContentRotateShapes(sidesStartIndex + i, rotateDelay * i);
+			}
+		};
 
-		// Show side 2
-		this.rotateShapes(2, rotateDelay * 1);
-
-		//  Show side 3
-		this.rotateShapes(3, rotateDelay * 2);
-
-		//  Show side 4
-		this.rotateShapes(4, rotateDelay * 3);
-
-		//  Show side 5
-		this.rotateShapes(5, rotateDelay * 4);
-
-		//  Show side 6
-		this.rotateShapes(6, rotateDelay * 5);
-
-		this.rotateShapes(1, rotateDelay * 7);
+		startTimeline.call(this);
+		window.setInterval(startTimeline.bind(this), rotateDelay * (sidesTotal + 1));
 
 	},
 	// iterate through the 3 shapes, call shapeTextSetContent on each text element
 	shapeItemSetContent: function(shapeTextIndex, actualSideNo) {
 		this.$shapes.each(this.shapeTextSetContent.bind(this, shapeTextIndex, actualSideNo));
 	},
-	shapeSetContent: function () {
-		this.content = [
-			['Hi', 'I&rsquo;m', 'Jon Higgins,'],
-			['a', 'front-end', 'developer'],
-			['who', 'loves', 'learning'],
-			['and', 'enjoys', 'experimenting.'],
-			['Is', 'partial to', 'collaboration'],
-			['and', 'first-rate', 'production.']
-		];
-	},
 	// Set the content of the text element itself
 	shapeTextSetContent: function(shapeTextIndex, actualSideNo, shapeIndex, shape) {
 		var $shapeText = $(shape).find('.shape__text').eq(actualSideNo);
-		$shapeText.html(this.content[shapeTextIndex][shapeIndex]);
+		$shapeText.html(animationContent[shapeTextIndex][shapeIndex]);
 	}
 });
 

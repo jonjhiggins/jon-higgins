@@ -10,6 +10,10 @@
         background-color: $colourBrightYellow;
         overflow: hidden;
     }
+    // Screen readers
+    .home__content--sr {
+        @include visuallyhidden;
+    }
     .home__title {
         color: $colourBrown;
         transition: color 400ms ease;
@@ -141,6 +145,10 @@
 
     .shape--show-6 {
         transform: rotateX(-90deg * 5);
+    }
+
+    .shape--show-7 {
+        transform: rotateX(-90deg * 6);
     }
 
     .shape__text {
